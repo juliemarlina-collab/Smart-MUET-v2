@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#00C9C0">
-  <meta name="description" content="MUET Guide Hub — Smart MUET Guide">
-  <title>MUET Guide · Smart MUET Guide</title>
+  <meta name="theme-color" content="#18C7B5">
+  <meta name="description" content="MUET General Information — Smart MUET Guide">
+  <title>Know Your MUET · Smart MUET Guide</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,6 @@
       --white:#ffffff;
       --paper:#fffdf8;
       --soft:#f4f7f8;
-
       --electric:#12D8FF;
       --hotpink:#FF4FA3;
       --lime:#48F000;
@@ -34,14 +33,29 @@
       --azure:#0D78E8;
       --scarlet:#ff2525;
       --emerald:#0DBD79;
+      --ruby:#E60059;
+      --sapphire:#1355B3;
       --amber:#F3AB00;
+      --indigo:#4D0A85;
+      --jade:#0B9E70;
+      --aqua:#1FDCE8;
+      --cobalt:#1545A1;
+      --fuchsia:#FF00C8;
+      --chartreuse:#54F000;
+      --teal:#107B7B;
 
+      --red:var(--scarlet);
+      --yellow:var(--gold);
+      --blue:var(--azure);
+      --green:var(--emerald);
+      --pink:var(--hotpink);
       --muted:#4f535b;
-      --line:3px solid var(--ink);
-      --shadow:5px 5px 0 var(--ink);
 
       --font-heading:"Sora",sans-serif;
       --font-body:"DM Sans",sans-serif;
+
+      --line:3px solid var(--ink);
+      --shadow:5px 5px 0 var(--ink);
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -56,6 +70,7 @@
     }
 
     a{color:inherit;text-decoration:none}
+    button,input{font:inherit}
 
     .app{
       width:100%;
@@ -71,6 +86,7 @@
       background:var(--soft);
     }
 
+    /* HEADER */
     .topbar{
       display:flex;
       align-items:center;
@@ -122,6 +138,7 @@
       font-weight:1000;
     }
 
+    /* HERO */
     .hero{
       position:relative;
       overflow:hidden;
@@ -136,20 +153,24 @@
     .hero::before{z-index:-1;
       content:"";
       position:absolute;
-      width:88px;height:88px;
-      right:-24px;top:-24px;
+      width:88px;
+      height:88px;
+      right:-24px;
+      top:-24px;
       border:var(--line);
       border-radius:50%;
-      background:var(--gold);
+      background:var(--yellow);
     }
 
     .hero::after{z-index:-1;
       content:"";
       position:absolute;
-      width:42px;height:118px;
-      left:-14px;bottom:-30px;
+      width:38px;
+      height:110px;
+      left:-12px;
+      bottom:-28px;
       border:var(--line);
-      background:var(--azure);
+      background:var(--blue);
     }
 
     .eyebrow{
@@ -180,271 +201,521 @@
 
     .hero h1 .red{
       display:block;
-      color:var(--scarlet);
+      color:var(--red);
     }
 
     .hero p{
       position:relative;
       z-index:2;
       margin-top:14px;
+      max-width:450px;
       color:#343840;
       font-size:17px;
       line-height:1.5;
       font-weight:650;
-      max-width:460px;
     }
 
-    .system-banner{
-      background:var(--ink);
-      color:var(--white);
-      border:var(--line);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      padding:14px;
-      margin-bottom:15px;
-    }
-
-    .system-banner strong{
-      display:block;
-      font-family:var(--font-heading);
-      font-size:18px;
-    }
-
-    .system-banner p{
-      margin-top:5px;
-      color:#e8e8e8;
-      font-size:14px;
-      line-height:1.45;
-      font-weight:700;
-    }
-
-    .strategy-row{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:6px;
-      margin-top:11px;
-    }
-
-    .strategy-chip{
-      border:2px solid var(--white);
-      border-radius:10px;
-      padding:8px 4px;
-      text-align:center;
-      font-family:var(--font-heading);
-      font-size:11px;
-      font-weight:800;
-    }
-
-    .strategy-chip:nth-child(1){background:var(--cyan);color:var(--ink)}
-    .strategy-chip:nth-child(2){background:var(--hotpink);color:var(--ink)}
-    .strategy-chip:nth-child(3){background:var(--azure);color:var(--white)}
-    .strategy-chip:nth-child(4){background:var(--orange);color:var(--ink)}
-
-    .section-head{
-      display:flex;
-      align-items:end;
-      justify-content:space-between;
-      gap:10px;
-      margin-bottom:11px;
-    }
-
-    .section-head h2{
-      font-size:22px;
-    }
-
-    .section-head span{
-      color:var(--muted);
-      font-size:11px;
-      font-weight:800;
-    }
-
-    .component-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-bottom:15px;
-    }
-
-    .component-card{
-      min-height:270px;
-      border:var(--line);
-      border-radius:18px;
-      box-shadow:4px 4px 0 var(--ink);
-      padding:14px;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .component-card::after{
-      content:"";
-      position:absolute;
-      width:48px;height:48px;
-      right:-10px;bottom:-10px;
-      border:2px solid var(--ink);
-      background:rgba(255,255,255,.3);
-      transform:rotate(12deg);
-    }
-
-    .listening{background:var(--cyan)}
-    .speaking{background:var(--hotpink)}
-    .reading{background:var(--azure);color:var(--white)}
-    .writing{background:var(--orange)}
-
-    .card-top{
-      position:relative;
-      z-index:2;
-    }
-
-    .icon-box{
-      width:52px;
-      height:52px;
-      display:grid;
-      place-items:center;
-      background:var(--white);
-      border:2px solid var(--ink);
-      border-radius:13px;
-      font-size:27px;
-      box-shadow:2px 2px 0 var(--ink);
-    }
-
-    .component-card h3{
-      margin-top:12px;
-      font-size:20px;
-      line-height:1.05;
-    }
-
-    .component-card .tagline{
-      margin-top:6px;
-      font-size:13px;
-      line-height:1.35;
-      font-weight:750;
-    }
-
-    .technique{
-      position:relative;
-      z-index:2;
-      margin-top:12px;
-      background:var(--white);
-      color:var(--ink);
-      border:2px solid var(--ink);
-      border-radius:11px;
-      padding:10px;
-    }
-
-    .technique small{
-      display:block;
-      color:var(--muted);
-      font-size:9px;
-      font-weight:900;
-      letter-spacing:.07em;
-      text-transform:uppercase;
-    }
-
-    .technique b{
-      display:block;
-      margin-top:3px;
-      font-family:var(--font-heading);
-      font-size:20px;
-      line-height:1.05;
-    }
-
-    .technique em{
-      display:block;
-      margin-top:5px;
-      font-style:normal;
-      color:#373b42;
-      font-size:11px;
-      line-height:1.35;
-      font-weight:700;
-    }
-
-    .inside{
-      position:relative;
-      z-index:2;
-      margin-top:10px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:5px;
-    }
-
-    .inside span{
-      border:2px solid var(--ink);
-      border-radius:999px;
-      background:rgba(255,255,255,.92);
-      color:var(--ink);
-      padding:5px 7px;
-      font-size:9px;
-      font-weight:900;
-    }
-
-    .card-cta{
-      position:relative;
-      z-index:2;
-      margin-top:13px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height:46px;
-      background:var(--ink);
-      color:var(--white);
-      border:2px solid var(--ink);
-      border-radius:11px;
-      font-size:11px;
-      font-weight:1000;
-    }
-
-    .flow-card{
+    /* SECTION */
+    .section{
       background:var(--white);
       border:var(--line);
       border-radius:20px;
       box-shadow:var(--shadow);
-      padding:15px;
+      padding:16px;
       margin-bottom:15px;
     }
 
-    .flow-card h2{
-      font-size:21px;
+    .section-head{
+      margin-bottom:12px;
     }
 
-    .flow-card p{
-      margin-top:5px;
+    .section-head h2{
+      font-size:22px;
+      line-height:1.1;
+    }
+
+    .section-head p{
+      margin-top:6px;
       color:var(--muted);
       font-size:14px;
       line-height:1.45;
       font-weight:700;
     }
 
-    .flow-row{
+    /* AT A GLANCE */
+    .glance-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .glance{
+      min-height:124px;
+      border:2px solid var(--ink);
+      border-radius:15px;
+      box-shadow:3px 3px 0 var(--ink);
+      padding:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .glance:nth-child(1){background:var(--gold)}
+    .glance:nth-child(2){background:var(--aqua)}
+    .glance:nth-child(3){background:var(--azure);color:var(--white)}
+    .glance:nth-child(4){background:var(--hotpink)}
+
+    .glance .icon{
+      font-size:28px;
+      line-height:1;
+    }
+
+    .glance b{
+      display:block;
+      margin-top:8px;
+      font-family:var(--font-heading);
+      font-size:16px;
+      line-height:1.15;
+    }
+
+    .glance span{
+      display:block;
+      margin-top:5px;
+      color:inherit;
+      font-size:13px;
+      line-height:1.3;
+      font-weight:700;
+    }
+
+    /* COMPONENTS */
+    .component-list{
+      display:grid;
+      gap:10px;
+    }
+
+    details.component{
+      overflow:hidden;
+      background:var(--white);
+      border:2px solid var(--ink);
+      border-radius:15px;
+      box-shadow:3px 3px 0 var(--ink);
+    }
+
+    details.component summary{
+      list-style:none;
+      cursor:pointer;
+      display:grid;
+      grid-template-columns:48px 1fr auto;
+      gap:11px;
+      align-items:center;
+      min-height:74px;
+      padding:11px 12px;
+    }
+
+    details.component summary::-webkit-details-marker{
+      display:none;
+    }
+
+    details.component:nth-child(1) summary{background:var(--aqua)}
+    details.component:nth-child(2) summary{background:var(--hotpink)}
+    details.component:nth-child(3) summary{background:var(--violet);color:var(--white)}
+    details.component:nth-child(4) summary{background:var(--orange)}
+
+    .component-icon{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:var(--white);
+      font-size:24px;
+    }
+
+    .component-title b{
+      display:block;
+      font-family:var(--font-heading);
+      font-size:17px;
+    }
+
+    .component-title span{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      font-size:12px;
+      font-weight:750;
+    }
+
+    .toggle{
+      font-family:var(--font-heading);
+      font-size:22px;
+      font-weight:800;
+      transition:transform .2s ease;
+    }
+
+    details[open] .toggle{
+      transform:rotate(45deg);
+    }
+
+    .component-body{
+      border-top:2px solid var(--ink);
+      padding:13px;
+      background:var(--white);
+    }
+
+    .facts{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:8px;
+      margin-bottom:10px;
+    }
+
+    .fact{
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:#fafafa;
+      padding:9px;
+    }
+
+    .fact small{
+      display:block;
+      color:var(--muted);
+      font-size:10px;
+      font-weight:850;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
+
+    .fact b{
+      display:block;
+      margin-top:3px;
+      font-family:var(--font-heading);
+      font-size:14px;
+    }
+
+    .component-body p{
+      color:#343840;
+      font-size:14px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .expect{
+      margin-top:9px;
+      background:#f4f7f8;
+      border-left:5px solid var(--blue);
+      border-radius:9px;
+      padding:10px 11px;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    /* HOW IT FITS TOGETHER */
+    .flow{
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:6px;
-      margin-top:12px;
+      align-items:center;
     }
 
-    .flow-step{
+    .flow-item{
+      min-width:0;
       text-align:center;
       border:2px solid var(--ink);
       border-radius:11px;
-      background:var(--white);
       padding:9px 4px;
-      font-size:9px;
+      background:var(--white);
+      font-size:10px;
       font-weight:900;
     }
 
-    .flow-step.active{
-      background:var(--gold);
-      box-shadow:2px 2px 0 var(--ink);
-    }
+    .flow-item:nth-child(1){background:var(--aqua)}
+    .flow-item:nth-child(2){background:var(--hotpink)}
+    .flow-item:nth-child(3){background:var(--violet);color:var(--white)}
+    .flow-item:nth-child(4){background:var(--orange)}
 
-    .flow-step b{
+    .flow-item b{
       display:block;
       margin-top:4px;
-      font-size:10px;
+      font-size:11px;
     }
 
+    .band-note{
+      margin-top:11px;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:var(--yellow);
+      padding:11px;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+
+    /* BAND DESCRIPTIONS */
+    .band-section{
+      background:linear-gradient(135deg,#fff 0%,#fff8c9 100%);
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:16px;
+      margin-bottom:15px;
+    }
+
+    .band-highlight{
+      background:var(--ink);
+      color:var(--white);
+      border:2px solid var(--ink);
+      border-radius:13px;
+      padding:12px;
+      margin-bottom:12px;
+      font-size:14px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .band-highlight strong{
+      color:var(--yellow);
+    }
+
+    .band-scale{
+      display:grid;
+      gap:9px;
+    }
+
+    .band-row{
+      position:relative;
+      display:grid;
+      grid-template-columns:72px 86px 1fr auto;
+      gap:9px;
+      align-items:center;
+      min-height:66px;
+      border:2px solid var(--ink);
+      border-radius:13px;
+      box-shadow:2px 2px 0 var(--ink);
+      padding:9px;
+    }
+
+    /* Highlights the row matching the student's own saved target band,
+       so the 9-row scale is easier to scan at a glance (Von Restorff). */
+    .band-row.my-target{
+      outline:3px solid var(--ink);
+      outline-offset:2px;
+      box-shadow:4px 4px 0 var(--ink);
+    }
+
+    .band-row.my-target::after{
+      content:"YOUR TARGET \2605";
+      position:absolute;
+      top:-11px;
+      right:10px;
+      background:var(--ink);
+      color:#fff;
+      border:2px solid var(--ink);
+      border-radius:999px;
+      padding:3px 8px;
+      font-size:9px;
+      font-weight:1000;
+      letter-spacing:.04em;
+      white-space:nowrap;
+    }
+
+.band-row:nth-child(1){background:var(--chartreuse)}
+    .band-row:nth-child(2){background:var(--fuchsia);color:var(--white)}
+    .band-row:nth-child(3){background:var(--violet);color:var(--white)}
+    .band-row:nth-child(4){background:var(--azure);color:var(--white)}
+    .band-row:nth-child(5){background:var(--electric)}
+    .band-row:nth-child(6){background:var(--aqua)}
+    .band-row:nth-child(7){background:var(--gold)}
+    .band-row:nth-child(8){background:var(--amber)}
+    .band-row:nth-child(9){background:var(--coral)}
+
+    .band-badge{
+      min-width:72px;
+      border:3px solid var(--ink);
+      border-radius:12px;
+      background:#ffffff !important;
+      color:#111111 !important;
+      padding:8px 7px;
+      text-align:center;
+      font-family:var(--font-heading);
+      font-size:17px;
+      line-height:1.1;
+      font-weight:900;
+      opacity:1 !important;
+      -webkit-text-fill-color:#111111 !important;
+    }
+
+    .band-score{
+      font-size:12px;
+      line-height:1.25;
+      font-weight:900;
+    }
+
+    .band-desc b{
+      display:block;
+      font-family:var(--font-heading);
+      font-size:13px;
+      line-height:1.2;
+    }
+
+    .band-desc span{
+      display:block;
+      margin-top:3px;
+      font-size:12px;
+      line-height:1.35;
+      font-weight:700;
+    }
+
+    .cefr{
+      border:3px solid var(--ink);
+      border-radius:999px;
+      background:#ffffff !important;
+      color:#111111 !important;
+      padding:6px 10px;
+      font-size:11px;
+      line-height:1.1;
+      font-weight:1000;
+      white-space:nowrap;
+      opacity:1 !important;
+      -webkit-text-fill-color:#111111 !important;
+    }
+
+    .band-note-2{
+      margin-top:12px;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:var(--electric);
+      padding:11px;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    @media(max-width:520px){
+      .band-row{
+        grid-template-columns:82px 1fr;
+        gap:8px 10px;
+        align-items:start;
+        padding:12px;
+      }
+
+      .band-badge{
+        grid-column:1;
+        grid-row:1;
+        align-self:start;
+      }
+
+      .band-score{
+        grid-column:2;
+        grid-row:1;
+        align-self:center;
+        font-size:14px;
+      }
+
+      .band-desc{
+        grid-column:1 / -1;
+        grid-row:2;
+      }
+
+      .band-desc b{
+        font-size:15px;
+      }
+
+      .band-desc span{
+        font-size:13px;
+        line-height:1.45;
+      }
+
+      .cefr{
+        grid-column:1;
+        grid-row:3;
+        justify-self:start;
+        margin-top:2px;
+      }
+    }
+
+
+    .band-row:nth-child(2) .band-desc span,
+    .band-row:nth-child(3) .band-desc span,
+    .band-row:nth-child(4) .band-desc span{
+      color:var(--white);
+    }
+
+    .band-row:nth-child(2) .band-score,
+    .band-row:nth-child(3) .band-score,
+    .band-row:nth-child(4) .band-score{
+      color:var(--white);
+    }
+
+    .important-strip{
+      margin-top:12px;
+      border:3px solid var(--ink);
+      border-radius:13px;
+      background:var(--magenta);
+      color:var(--white);
+      box-shadow:3px 3px 0 var(--ink);
+      padding:11px 12px;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:800;
+    }
+
+    .important-strip strong{
+      color:var(--yellow);
+    }
+
+    .focus-word{
+      display:inline-block;
+      border:2px solid var(--ink);
+      border-radius:8px;
+      background:var(--chartreuse);
+      color:var(--ink);
+      padding:2px 6px;
+      font-weight:1000;
+    }
+
+    /* CTA */
+    .finish{
+      background:#dce7ff;
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:16px;
+      margin-bottom:15px;
+    }
+
+    .finish h2{
+      font-size:22px;
+    }
+
+    .finish p{
+      margin:7px 0 13px;
+      color:#343840;
+      font-size:15px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .finish-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:56px;
+      background:var(--chartreuse);
+      color:var(--ink);
+      border:var(--line);
+      border-radius:13px;
+      box-shadow:4px 4px 0 var(--ink);
+      padding:12px 14px;
+      text-align:center;
+      font-size:15px;
+      font-weight:1000;
+    }
+
+    /* NAV */
     .bottom-nav{
       position:fixed;
       left:50%;
@@ -453,6 +724,7 @@
       width:calc(100% - 20px);
       max-width:500px;
       z-index:60;
+
       display:grid;
       grid-template-columns:repeat(5,1fr);
       background:var(--white);
@@ -474,7 +746,7 @@
     }
 
     .bottom-nav a.active{
-      background:var(--gold);
+      background:var(--yellow);
       border:2px solid var(--ink);
     }
 
@@ -484,9 +756,10 @@
       object-fit:contain;
     }
 
+    /* RESPONSIVE */
     @media(min-width:700px){
       .app{
-        max-width:840px;
+        max-width:820px;
         padding:24px 24px 120px;
       }
 
@@ -494,35 +767,35 @@
       .brand small{font-size:11px}
       .brand strong{font-size:19px}
 
-      .hero{
-        padding:28px 24px 25px;
-      }
-
+      .hero{padding:28px 24px 25px}
       .hero h1{font-size:56px}
       .hero p{font-size:19px}
 
-      .component-card{
-        min-height:305px;
-        padding:18px;
+      .glance-grid{
+        grid-template-columns:repeat(4,1fr);
       }
 
-      .component-card h3{font-size:24px}
-      .component-card .tagline{font-size:15px}
-      .technique b{font-size:24px}
+      .component-list{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .component-body{
+        min-height:230px;
+      }
 
       .bottom-nav{
-        max-width:800px;
+        max-width:780px;
       }
     }
 
     @media(min-width:1024px){
       .app{
-        max-width:1100px;
+        max-width:1080px;
         padding:30px 32px 122px;
       }
 
       .hero{
-        min-height:330px;
+        min-height:360px;
         display:flex;
         flex-direction:column;
         justify-content:center;
@@ -532,16 +805,8 @@
       .hero h1{font-size:66px}
       .hero p{font-size:20px}
 
-      .component-grid{
-        grid-template-columns:repeat(4,1fr);
-      }
-
-      .component-card{
-        min-height:325px;
-      }
-
       .bottom-nav{
-        max-width:1040px;
+        max-width:1020px;
       }
     }
 
@@ -550,17 +815,532 @@
       .brand img{width:48px;height:48px}
       .hero h1{font-size:34px}
       .hero p{font-size:15px}
-      .component-grid{gap:7px}
-      .component-card{padding:10px;min-height:255px}
-      .component-card h3{font-size:18px}
-      .component-card .tagline{font-size:12px}
-      .inside span{font-size:8px}
-      .strategy-row{grid-template-columns:1fr 1fr}
+      .glance-grid{gap:7px}
+      .glance{padding:10px;min-height:116px}
+      .facts{grid-template-columns:1fr}
+      .flow{grid-template-columns:1fr 1fr}
     }
   </style>
+  <link rel="stylesheet" href="css/responsive-v2.css">
+
+<style id="intro-guidance-final-responsive-type">
+/* ===== MUET GENERAL INFO · FINAL RESPONSIVE + TYPE SCALE ===== */
+.page-guidance-intro{
+  font-size:16px;
+}
+
+/* Top header */
+.page-guidance-intro .topbar{
+  min-height:68px !important;
+  gap:14px !important;
+  margin-bottom:16px !important;
+}
+.page-guidance-intro .brand{
+  gap:12px !important;
+}
+.page-guidance-intro .brand img{
+  width:clamp(58px,8vw,70px) !important;
+  height:clamp(58px,8vw,70px) !important;
+}
+.page-guidance-intro .brand small{
+  font-size:clamp(.72rem,.28vw + .67rem,.84rem) !important;
+  line-height:1.18 !important;
+  letter-spacing:.075em !important;
+}
+.page-guidance-intro .brand strong{
+  margin-top:4px !important;
+  font-size:clamp(1.2rem,.75vw + 1.05rem,1.5rem) !important;
+  line-height:1.12 !important;
+}
+.page-guidance-intro .home-btn{
+  min-height:46px !important;
+  padding:9px 13px !important;
+  font-size:clamp(.78rem,.28vw + .73rem,.9rem) !important;
+}
+
+/* Hero */
+.page-guidance-intro .hero{
+  padding:clamp(22px,3.4vw,36px) !important;
+  margin-bottom:18px !important;
+}
+.page-guidance-intro .hero .eyebrow{
+  font-size:clamp(.72rem,.28vw + .67rem,.84rem) !important;
+}
+.page-guidance-intro .hero h1{
+  max-width:13ch !important;
+  font-size:clamp(2.55rem,8.6vw,4.45rem) !important;
+  line-height:.94 !important;
+  letter-spacing:-.045em !important;
+}
+.page-guidance-intro .hero p{
+  max-width:62ch !important;
+  font-size:clamp(1rem,.48vw + .91rem,1.18rem) !important;
+  line-height:1.58 !important;
+}
+
+/* Section framing */
+.page-guidance-intro .section,
+.page-guidance-intro .band-section{
+  padding:clamp(16px,2vw,24px) !important;
+  margin-bottom:18px !important;
+}
+.page-guidance-intro .section-head{
+  margin-bottom:14px !important;
+}
+.page-guidance-intro .section-head h2{
+  font-size:clamp(1.55rem,1.1vw + 1.28rem,1.95rem) !important;
+  line-height:1.08 !important;
+}
+.page-guidance-intro .section-head p{
+  max-width:70ch;
+  margin-top:7px !important;
+  font-size:clamp(.94rem,.38vw + .86rem,1.06rem) !important;
+  line-height:1.5 !important;
+}
+
+/* Glance/context cards */
+.page-guidance-intro .glance-grid{
+  gap:12px !important;
+}
+.page-guidance-intro .glance{
+  min-height:150px !important;
+  padding:14px !important;
+}
+.page-guidance-intro .glance .icon{
+  font-size:clamp(2rem,3.2vw,2.45rem) !important;
+}
+.page-guidance-intro .glance b{
+  margin-top:10px !important;
+  font-size:clamp(1.08rem,.45vw + 1rem,1.22rem) !important;
+  line-height:1.18 !important;
+}
+.page-guidance-intro .glance span{
+  margin-top:7px !important;
+  font-size:clamp(.88rem,.3vw + .82rem,.98rem) !important;
+  line-height:1.45 !important;
+  font-weight:750 !important;
+}
+.page-guidance-intro .context-section .glance{
+  min-height:190px !important;
+}
+
+/* Component accordions */
+.page-guidance-intro details.component summary{
+  min-height:82px !important;
+  grid-template-columns:52px minmax(0,1fr) auto !important;
+  gap:12px !important;
+  padding:13px 14px !important;
+}
+.page-guidance-intro .component-icon{
+  width:50px !important;
+  height:50px !important;
+  font-size:27px !important;
+}
+.page-guidance-intro .component-title b{
+  font-size:clamp(1.1rem,.44vw + 1.02rem,1.24rem) !important;
+  line-height:1.18 !important;
+}
+.page-guidance-intro .component-title span{
+  margin-top:4px !important;
+  font-size:clamp(.84rem,.28vw + .79rem,.94rem) !important;
+  line-height:1.35 !important;
+}
+.page-guidance-intro .toggle{
+  font-size:1.65rem !important;
+}
+.page-guidance-intro .component-body{
+  padding:15px !important;
+}
+.page-guidance-intro .fact{
+  padding:11px !important;
+}
+.page-guidance-intro .fact small{
+  font-size:clamp(.72rem,.22vw + .68rem,.8rem) !important;
+}
+.page-guidance-intro .fact b{
+  font-size:clamp(.96rem,.35vw + .89rem,1.08rem) !important;
+}
+.page-guidance-intro .component-body p,
+.page-guidance-intro .expect,
+.page-guidance-intro .band-note,
+.page-guidance-intro .band-note-2,
+.page-guidance-intro .important-strip{
+  font-size:clamp(.9rem,.3vw + .84rem,1rem) !important;
+  line-height:1.55 !important;
+}
+
+/* Four-paper flow */
+.page-guidance-intro .flow{
+  gap:8px !important;
+}
+.page-guidance-intro .flow-item{
+  min-height:64px !important;
+  padding:10px 6px !important;
+  font-size:clamp(.72rem,.24vw + .68rem,.82rem) !important;
+  line-height:1.25 !important;
+}
+.page-guidance-intro .flow-item b{
+  margin-top:5px !important;
+  font-size:clamp(.8rem,.26vw + .75rem,.9rem) !important;
+}
+
+/* Band rows */
+.page-guidance-intro .band-desc b{
+  font-size:clamp(1rem,.36vw + .93rem,1.12rem) !important;
+}
+.page-guidance-intro .band-desc span,
+.page-guidance-intro .band-score{
+  font-size:clamp(.88rem,.3vw + .82rem,.98rem) !important;
+  line-height:1.48 !important;
+}
+.page-guidance-intro .cefr{
+  font-size:clamp(.74rem,.24vw + .69rem,.84rem) !important;
+}
+
+/* Bottom nav */
+.page-guidance-intro .bottom-nav a{
+  min-height:62px !important;
+  gap:4px !important;
+  font-size:clamp(.68rem,.24vw + .63rem,.78rem) !important;
+}
+.page-guidance-intro .bottom-nav img{
+  width:clamp(29px,3vw,33px) !important;
+  height:clamp(29px,3vw,33px) !important;
+}
+
+@media(min-width:600px){
+  .page-guidance-intro .app{
+    max-width:900px !important;
+    padding:24px 26px 124px !important;
+  }
+  .page-guidance-intro .glance-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+  .page-guidance-intro .context-section .glance{
+    min-height:225px !important;
+  }
+  .page-guidance-intro .component-list{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:12px !important;
+  }
+}
+
+@media(min-width:900px){
+  .page-guidance-intro .app{
+    max-width:1140px !important;
+    padding:30px 32px 126px !important;
+  }
+  .page-guidance-intro .hero{
+    min-height:370px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+  }
+  .page-guidance-intro .hero h1{
+    font-size:clamp(3.8rem,5.1vw,4.75rem) !important;
+  }
+  .page-guidance-intro .context-section .glance{
+    min-height:235px !important;
+  }
+  .page-guidance-intro .bottom-nav{
+    max-width:780px !important;
+  }
+}
+
+@media(min-width:1200px){
+  .page-guidance-intro .app{
+    max-width:1240px !important;
+  }
+}
+
+@media(max-width:420px){
+  .page-guidance-intro .brand img{
+    width:54px !important;
+    height:54px !important;
+  }
+  .page-guidance-intro .brand small{
+    font-size:.68rem !important;
+  }
+  .page-guidance-intro .brand strong{
+    font-size:1.08rem !important;
+  }
+  .page-guidance-intro .hero h1{
+    font-size:2.35rem !important;
+  }
+  .page-guidance-intro .glance-grid{
+    grid-template-columns:1fr 1fr !important;
+  }
+  .page-guidance-intro .glance,
+  .page-guidance-intro .context-section .glance{
+    min-height:175px !important;
+    padding:12px !important;
+  }
+  .page-guidance-intro .glance b{
+    font-size:1rem !important;
+  }
+  .page-guidance-intro .glance span{
+    font-size:.82rem !important;
+  }
+  .page-guidance-intro .flow{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+@media(max-width:350px){
+  .page-guidance-intro .glance-grid{
+    grid-template-columns:1fr !important;
+  }
+  .page-guidance-intro .glance,
+  .page-guidance-intro .context-section .glance{
+    min-height:150px !important;
+  }
+}
+</style>
+
+
+<style id="why-who-when-how-infographic">
+.context-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.context-card{
+  position:relative;
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:16px;
+  overflow:hidden;
+}
+
+.context-card::after{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:80px;
+  border:3px solid var(--ink);
+  border-radius:50%;
+  right:-34px;
+  top:-34px;
+  background:rgba(255,255,255,.34);
+}
+
+.context-why{background:var(--gold);}
+.context-who{background:var(--aqua);}
+.context-when{background:var(--azure);}
+.context-how{background:var(--hotpink);}
+
+.context-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  position:relative;
+  z-index:1;
+}
+
+.context-icon{
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  border:var(--line);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:3px 3px 0 var(--ink);
+  font-size:30px;
+}
+
+.context-label{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#111;
+  color:#fff;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.08em;
+}
+
+.context-card h3{
+  position:relative;
+  z-index:1;
+  margin:14px 0 10px;
+  font-size:clamp(1.18rem,.55vw + 1.05rem,1.4rem);
+  line-height:1.15;
+}
+
+.context-points{
+  position:relative;
+  z-index:1;
+  display:grid;
+  gap:8px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.context-points li{
+  position:relative;
+  padding-left:26px;
+  font-size:clamp(.9rem,.3vw + .84rem,1rem);
+  line-height:1.43;
+  font-weight:800;
+}
+
+.context-points li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:1px;
+  width:18px;
+  height:18px;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--ink);
+  border-radius:50%;
+  background:#fff;
+  font-size:10px;
+  font-weight:1000;
+}
+
+.fact-toggle{
+  position:relative;
+  z-index:1;
+  width:100%;
+  min-height:44px;
+  margin-top:14px;
+  padding:9px 12px;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  font-size:12px;
+  font-weight:1000;
+  cursor:pointer;
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+.fact-toggle span{
+  font-size:20px;
+  line-height:1;
+  transition:transform .2s ease;
+}
+
+.fact-toggle[aria-expanded="true"] span{
+  transform:rotate(45deg);
+}
+
+.fact-reveal{
+  display:none;
+  position:relative;
+  z-index:1;
+  margin-top:10px;
+  padding:11px 12px;
+  border:2px dashed var(--ink);
+  border-radius:12px;
+  background:rgba(255,255,255,.72);
+  font-size:clamp(.84rem,.28vw + .79rem,.94rem);
+  line-height:1.45;
+  font-weight:800;
+}
+
+.fact-reveal.show{
+  display:block;
+  animation:contextReveal .18s ease-out;
+}
+
+@keyframes contextReveal{
+  from{opacity:0;transform:translateY(-4px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.context-summary{
+  margin-top:14px;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  background:#111;
+  color:#fff;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+}
+
+.summary-icon{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border:2px solid #fff;
+  border-radius:13px;
+  font-size:25px;
+}
+
+.context-summary b{
+  font-size:clamp(1rem,.4vw + .92rem,1.15rem);
+}
+
+.context-summary p{
+  margin-top:3px;
+  color:rgba(255,255,255,.78);
+  font-size:clamp(.84rem,.3vw + .78rem,.94rem);
+  line-height:1.4;
+  font-weight:750;
+}
+
+@media(min-width:600px){
+  .context-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .context-card{
+    min-height:365px;
+    display:flex;
+    flex-direction:column;
+  }
+  .fact-toggle{
+    margin-top:auto;
+  }
+}
+
+@media(min-width:900px){
+  .context-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+  .context-card{
+    min-height:390px;
+  }
+}
+
+@media(max-width:420px){
+  .context-card{
+    padding:14px;
+  }
+  .context-icon{
+    width:52px;
+    height:52px;
+    font-size:27px;
+  }
+  .context-points li{
+    font-size:.88rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .fact-reveal.show{animation:none}
+  .fact-toggle span{transition:none}
+}
+</style>
+
 </head>
 
-<body>
+<body class="page-guidance-intro">
 
 <main class="app">
 
@@ -571,8 +1351,8 @@
         alt="Smart MUET Guide"
       >
       <div>
-        <small>02 · LEARN</small>
-        <strong>MUET Guide</strong>
+        <small>01 · KNOW YOUR EXAM</small>
+        <strong>MUET General Info</strong>
       </div>
     </div>
 
@@ -585,219 +1365,496 @@
   </header>
 
 
+  <!-- HERO -->
   <section class="hero">
-    <span class="eyebrow">MUET GUIDE</span>
+    <span class="eyebrow">
+      MUET GENERAL INFO
+    </span>
 
     <h1>
-      4 Components.
-      <span class="red">4 Techniques.</span>
+      Before you prepare,
+      <span class="red">know your exam.</span>
     </h1>
 
     <p>
-      Each MUET component has one memorable strategy to help you think clearly
-      under exam pressure. Learn the technique first, then build the full exam skill around it.
+      Start with the essentials: what MUET tests, how the four papers work,
+      and the exam details you should know before moving into preparation.
     </p>
   </section>
 
 
-  <section class="system-banner">
-    <strong>One Exam-Ready System</strong>
 
-    <p>
-      CLUE · PREP · SCAN · PEEL give you a simple mental framework
-      for Listening, Speaking, Reading and Writing.
-    </p>
 
-    <div class="strategy-row">
-      <div class="strategy-chip">🎧 CLUE</div>
-      <div class="strategy-chip">🎤 PREP</div>
-      <div class="strategy-chip">📖 SCAN</div>
-      <div class="strategy-chip">✍️ PEEL</div>
+  <!-- WHY / WHO / WHEN / HOW -->
+  <section class="section context-section">
+    <div class="section-head">
+      <h2>Why, Who, When &amp; How</h2>
+      <p>Four things every MUET candidate should know before preparing.</p>
+    </div>
+
+    <div class="context-grid">
+
+      <article class="context-card context-why">
+        <div class="context-top">
+          <div class="context-icon">🎓</div>
+          <div class="context-label">01 · WHY</div>
+        </div>
+        <h3>Why MUET Matters</h3>
+        <ul class="context-points">
+          <li>Supports entry into Bachelor’s Degree programmes at Malaysian Public Universities.</li>
+          <li>Shows your academic English proficiency level.</li>
+          <li>Your required band may differ by programme or university.</li>
+        </ul>
+        <button class="fact-toggle" type="button" aria-expanded="false">
+          QUICK FACT <span>＋</span>
+        </button>
+        <div class="fact-reveal">
+          MUET requirements are subject to the admission conditions set by each university and its Senate.
+        </div>
+      </article>
+
+      <article class="context-card context-who">
+        <div class="context-top">
+          <div class="context-icon">👥</div>
+          <div class="context-label">02 · WHO</div>
+        </div>
+        <h3>Who Sits For MUET?</h3>
+        <ul class="context-points">
+          <li>STPM students</li>
+          <li>Matriculation and Diploma students</li>
+          <li>Private candidates who need MUET for higher-education requirements</li>
+        </ul>
+        <button class="fact-toggle" type="button" aria-expanded="false">
+          QUICK FACT <span>＋</span>
+        </button>
+        <div class="fact-reveal">
+          MUET is commonly taken before progressing into degree-level study.
+        </div>
+      </article>
+
+      <article class="context-card context-when">
+        <div class="context-top">
+          <div class="context-icon">🗓️</div>
+          <div class="context-label">03 · WHEN</div>
+        </div>
+        <h3>When Is MUET Held?</h3>
+        <ul class="context-points">
+          <li>MPM runs Session 1, Session 2 and Session 3 in 2026.</li>
+          <li>Registration and test dates differ by session.</li>
+          <li>Always check the current MPM timetable.</li>
+        </ul>
+        <button class="fact-toggle" type="button" aria-expanded="false">
+          QUICK FACT <span>＋</span>
+        </button>
+        <div class="fact-reveal">
+          Plan your preparation backwards from your selected MUET session date.
+        </div>
+      </article>
+
+      <article class="context-card context-how">
+        <div class="context-top">
+          <div class="context-icon">📝</div>
+          <div class="context-label">04 · HOW</div>
+        </div>
+        <h3>How Do I Register?</h3>
+        <ul class="context-points">
+          <li>Register through the Malaysian Examinations Council (MPM) registration service.</li>
+          <li>Select the MUET session available to you.</li>
+          <li>Follow MPM instructions and complete the required registration details.</li>
+        </ul>
+        <button class="fact-toggle" type="button" aria-expanded="false">
+          QUICK FACT <span>＋</span>
+        </button>
+        <div class="fact-reveal">
+          Keep your registration information and MUET timetable details together for easy reference.
+        </div>
+      </article>
+
+    </div>
+
+    <div class="context-summary">
+      <span class="summary-icon">💡</span>
+      <div>
+        <b>Remember</b>
+        <p>Know your target programme, target band and MUET session before building your study plan.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AT A GLANCE -->
+  <section class="section">
+    <div class="section-head">
+      <h2>MUET at a Glance</h2>
+      <p>
+        The important picture first — without information overload.
+      </p>
+    </div>
+
+    <div class="glance-grid">
+
+      <article class="glance">
+        <div class="icon">🧩</div>
+        <div>
+          <b>4 Papers</b>
+          <span>Listening, Speaking, Reading & Writing</span>
+        </div>
+      </article>
+
+      <article class="glance">
+        <div class="icon">⏱️</div>
+        <div>
+          <b>Timed Test</b>
+          <span>Each paper has its own test duration</span>
+        </div>
+      </article>
+
+      <article class="glance">
+        <div class="icon">🎯</div>
+        <div>
+          <b>Band Result</b>
+          <span>Your overall performance is reported as a MUET band</span>
+        </div>
+      </article>
+
+      <article class="glance">
+        <div class="icon">🗓️</div>
+        <div>
+          <b>My Session</b>
+          <span id="mySession">Your selected MUET session</span>
+        </div>
+      </article>
+
     </div>
   </section>
 
 
-  <div class="section-head">
-    <h2>Choose a Component</h2>
-    <span>4 focused guides</span>
-  </div>
+  <!-- COMPONENTS -->
+  <section class="section">
+    <div class="section-head">
+      <h2>Know the 4 MUET Papers</h2>
+      <p>
+        Tap a paper when you want more information. You do not need
+        to read everything at once.
+      </p>
+    </div>
 
-  <section class="component-grid">
+    <div class="component-list">
 
-    <a
-      class="component-card listening"
-      href="listening-guidance.html"
-    >
-      <div class="card-top">
-        <div class="icon-box">🎧</div>
+      <details class="component">
+        <summary>
+          <div class="component-icon">🎧</div>
+          <div class="component-title">
+            <b>Listening</b>
+            <span>800/1 · 50 minutes</span>
+          </div>
+          <div class="toggle">+</div>
+        </summary>
 
-        <h3>Listening</h3>
+        <div class="component-body">
+          <div class="facts">
+            <div class="fact">
+              <small>Paper</small>
+              <b>800/1</b>
+            </div>
+            <div class="fact">
+              <small>Duration</small>
+              <b>50 min</b>
+            </div>
+          </div>
 
-        <p class="tagline">
-          Listen for meaning, not just words.
-        </p>
+          <p>
+            This paper tests how well you understand spoken English
+            in different situations and contexts.
+          </p>
 
-        <div class="technique">
-          <small>Core Technique</small>
-          <b>CLUE</b>
-          <em>
-            Check → Listen → Understand → Eliminate
-          </em>
+          <div class="expect">
+            <b>What to expect:</b> listen carefully for key ideas,
+            specific information, speaker meaning and changes in direction.
+          </div>
         </div>
+      </details>
 
-        <div class="inside">
-          <span>Exam Snapshot</span>
-          <span>Keywords</span>
-          <span>Distractors</span>
-          <span>Note-taking</span>
-          <span>Exam Tips</span>
+
+      <details class="component">
+        <summary>
+          <div class="component-icon">🎤</div>
+          <div class="component-title">
+            <b>Speaking</b>
+            <span>800/2 · 30 minutes</span>
+          </div>
+          <div class="toggle">+</div>
+        </summary>
+
+        <div class="component-body">
+          <div class="facts">
+            <div class="fact">
+              <small>Paper</small>
+              <b>800/2</b>
+            </div>
+            <div class="fact">
+              <small>Duration</small>
+              <b>30 min</b>
+            </div>
+          </div>
+
+          <p>
+            Speaking assesses your ability to communicate ideas clearly
+            and interact appropriately in spoken English.
+          </p>
+
+          <div class="expect">
+            <b>Important:</b> your Speaking date may be scheduled separately,
+            so always know the exact date stated for you.
+          </div>
         </div>
-      </div>
-
-      <div class="card-cta">
-        EXPLORE LISTENING →
-      </div>
-    </a>
+      </details>
 
 
-    <a
-      class="component-card speaking"
-      href="speaking-guidance.html"
-    >
-      <div class="card-top">
-        <div class="icon-box">🎤</div>
+      <details class="component">
+        <summary>
+          <div class="component-icon">📖</div>
+          <div class="component-title">
+            <b>Reading</b>
+            <span>800/3 · 75 minutes</span>
+          </div>
+          <div class="toggle">+</div>
+        </summary>
 
-        <h3>Speaking</h3>
+        <div class="component-body">
+          <div class="facts">
+            <div class="fact">
+              <small>Paper</small>
+              <b>800/3</b>
+            </div>
+            <div class="fact">
+              <small>Duration</small>
+              <b>75 min</b>
+            </div>
+          </div>
 
-        <p class="tagline">
-          Think clearly. Speak with confidence.
-        </p>
+          <p>
+            Reading tests your ability to understand, interpret and
+            locate information across different written texts.
+          </p>
 
-        <div class="technique">
-          <small>Core Technique</small>
-          <b>PREP</b>
-          <em>
-            Point → Reason → Example → Point
-          </em>
+          <div class="expect">
+            <b>What to expect:</b> work with main ideas, specific details,
+            meaning in context, inference and evidence from the text.
+          </div>
         </div>
+      </details>
 
-        <div class="inside">
-          <span>Task A</span>
-          <span>Task B</span>
-          <span>Useful Language</span>
-          <span>Interaction</span>
-          <span>Exam Tips</span>
+
+      <details class="component">
+        <summary>
+          <div class="component-icon">✍️</div>
+          <div class="component-title">
+            <b>Writing</b>
+            <span>800/4 · 75 minutes</span>
+          </div>
+          <div class="toggle">+</div>
+        </summary>
+
+        <div class="component-body">
+          <div class="facts">
+            <div class="fact">
+              <small>Paper</small>
+              <b>800/4</b>
+            </div>
+            <div class="fact">
+              <small>Duration</small>
+              <b>75 min</b>
+            </div>
+          </div>
+
+          <p>
+            Writing assesses how effectively you communicate ideas
+            in written English while responding to the required task.
+          </p>
+
+          <div class="expect">
+            <b>What to expect:</b> organise ideas clearly, respond to the task,
+            support points and maintain appropriate language control.
+          </div>
         </div>
-      </div>
+      </details>
 
-      <div class="card-cta">
-        EXPLORE SPEAKING →
-      </div>
-    </a>
-
-
-    <a
-      class="component-card reading"
-      href="reading-guidance.html"
-    >
-      <div class="card-top">
-        <div class="icon-box">📖</div>
-
-        <h3>Reading</h3>
-
-        <p class="tagline">
-          Question first. Evidence always.
-        </p>
-
-        <div class="technique">
-          <small>Core Technique</small>
-          <b>SCAN</b>
-          <em>
-            Study → Circle → Analyse → Nail
-          </em>
-        </div>
-
-        <div class="inside">
-          <span>Question Types</span>
-          <span>Scanning</span>
-          <span>Paraphrase</span>
-          <span>Inference</span>
-          <span>Time Strategy</span>
-        </div>
-      </div>
-
-      <div class="card-cta">
-        EXPLORE READING →
-      </div>
-    </a>
-
-
-    <a
-      class="component-card writing"
-      href="writing-guidance.html"
-    >
-      <div class="card-top">
-        <div class="icon-box">✍️</div>
-
-        <h3>Writing</h3>
-
-        <p class="tagline">
-          Plan clearly. Write with purpose.
-        </p>
-
-        <div class="technique">
-          <small>Core Technique</small>
-          <b>PEEL</b>
-          <em>
-            Point → Explain → Example → Link
-          </em>
-        </div>
-
-        <div class="inside">
-          <span>Task 1</span>
-          <span>Task 2</span>
-          <span>Organisation</span>
-          <span>Development</span>
-          <span>Exam Tips</span>
-        </div>
-      </div>
-
-      <div class="card-cta">
-        EXPLORE WRITING →
-      </div>
-    </a>
-
+    </div>
   </section>
 
 
-  <section class="flow-card">
-    <h2>Your Exam Ready Journey</h2>
+  <!-- SCORING BIG PICTURE -->
+  <section class="section">
+    <div class="section-head">
+      <h2>How It Fits Together</h2>
+      <p>
+        Think of MUET as four parts contributing to one overall result.
+      </p>
+    </div>
 
-    <p>
-      You already know the exam. Now learn the strategies before moving into practice.
-    </p>
-
-    <div class="flow-row">
-      <div class="flow-step">
-        ✓
-        <b>KNOW</b>
+    <div class="flow">
+      <div class="flow-item">
+        🎧
+        <b>Listening</b>
       </div>
-
-      <div class="flow-step active">
-        💡
-        <b>LEARN</b>
+      <div class="flow-item">
+        🎤
+        <b>Speaking</b>
       </div>
-
-      <div class="flow-step">
-        ✏️
-        <b>PRACTISE</b>
+      <div class="flow-item">
+        📖
+        <b>Reading</b>
       </div>
-
-      <div class="flow-step">
-        📊
-        <b>TRACK</b>
+      <div class="flow-item">
+        ✍️
+        <b>Writing</b>
       </div>
     </div>
+
+    <div class="band-note">
+      <b>Your goal is not to be strong in only one paper.</b>
+      Your overall MUET result reflects performance across all four papers,
+      which is why Smart MUET helps you prepare for every component.
+    </div>
+  </section>
+
+
+
+  <!-- MUET BAND DESCRIPTIONS -->
+  <section class="band-section">
+    <div class="section-head">
+      <h2>Understand Your MUET Band</h2>
+      <p>
+        Your overall MUET result is reported as a Band. Each Band also aligns
+        with a CEFR level, so it gives you a clearer picture of your English proficiency.
+      </p>
+    </div>
+
+    <div class="band-highlight">
+      <strong>Important:</strong> your Band is based on your aggregated score
+      across Listening, Speaking, Reading and Writing — not one paper alone.
+    </div>
+
+    <div class="important-strip">
+      Aim to improve <span class="focus-word">all four papers</span>.
+      One strong component cannot fully compensate for weak performance across the rest.
+    </div>
+
+    <div class="band-scale">
+
+      <div class="band-row" data-band="5+">
+        <div class="band-badge">Band 5+</div>
+        <div class="band-score">331–360</div>
+        <div class="band-desc">
+          <b>Proficient User</b>
+          <span>Handles demanding language confidently and flexibly for academic and professional purposes.</span>
+        </div>
+        <div class="cefr">CEFR C1+</div>
+      </div>
+
+      <div class="band-row" data-band="5.0">
+        <div class="band-badge">Band 5.0</div>
+        <div class="band-score">294–330</div>
+        <div class="band-desc">
+          <b>Proficient User</b>
+          <span>Communicates fluently and effectively across complex academic, social and professional contexts.</span>
+        </div>
+        <div class="cefr">CEFR C1</div>
+      </div>
+
+      <div class="band-row" data-band="4.5">
+        <div class="band-badge">Band 4.5</div>
+        <div class="band-score">258–293</div>
+        <div class="band-desc">
+          <b>Independent User</b>
+          <span>Understands complex ideas and communicates clearly with good fluency and detail.</span>
+        </div>
+        <div class="cefr">CEFR B2</div>
+      </div>
+
+      <div class="band-row" data-band="4.0">
+        <div class="band-badge">Band 4.0</div>
+        <div class="band-score">211–257</div>
+        <div class="band-desc">
+          <b>Independent User</b>
+          <span>Can handle familiar and many academic situations with clear connected language.</span>
+        </div>
+        <div class="cefr">CEFR B2</div>
+      </div>
+
+      <div class="band-row" data-band="3.5">
+        <div class="band-badge">Band 3.5</div>
+        <div class="band-score">164–210</div>
+        <div class="band-desc">
+          <b>Independent User</b>
+          <span>Understands main points and communicates adequately on familiar topics and situations.</span>
+        </div>
+        <div class="cefr">CEFR B1</div>
+      </div>
+
+      <div class="band-row">
+        <div class="band-badge">Band 3.0</div>
+        <div class="band-score">123–163</div>
+        <div class="band-desc">
+          <b>Independent User</b>
+          <span>Uses connected language for familiar topics and can give basic reasons and explanations.</span>
+        </div>
+        <div class="cefr">CEFR B1</div>
+      </div>
+
+      <div class="band-row">
+        <div class="band-badge">Band 2.5</div>
+        <div class="band-score">82–122</div>
+        <div class="band-desc">
+          <b>Basic User</b>
+          <span>Can manage simple routine communication and understand frequently used expressions.</span>
+        </div>
+        <div class="cefr">CEFR A2</div>
+      </div>
+
+      <div class="band-row">
+        <div class="band-badge">Band 2.0</div>
+        <div class="band-score">36–81</div>
+        <div class="band-desc">
+          <b>Basic User</b>
+          <span>Shows limited control of English and relies on simple language in familiar situations.</span>
+        </div>
+        <div class="cefr">CEFR A2</div>
+      </div>
+
+      <div class="band-row">
+        <div class="band-badge">Band 1.0</div>
+        <div class="band-score">1–35</div>
+        <div class="band-desc">
+          <b>Basic User</b>
+          <span>Uses very basic language and needs substantial support to communicate meaning.</span>
+        </div>
+        <div class="cefr">CEFR A2</div>
+      </div>
+
+    </div>
+
+    <div class="band-note-2">
+      <b>Use your Target Band as a goal, not a label.</b>
+      Smart MUET will help you build all four components progressively towards that target.
+    </div>
+  </section>
+
+  <!-- ONE CTA ONLY -->
+  <section class="finish">
+    <h2>Know your exam? Great.</h2>
+
+    <p>
+      Your next stage is to learn the strategy for each MUET component.
+      We’ll keep it simple and take them one at a time.
+    </p>
+
+    <a
+      class="finish-btn"
+      href="guidance.html"
+    >
+      I KNOW MY EXAM ✓ → START THE MUET GUIDE
+    </a>
   </section>
 
 </main>
@@ -849,6 +1906,76 @@
   </a>
 
 </nav>
+
+
+<script>
+  function loadProfile(){
+
+    try{
+
+      return JSON.parse(
+        localStorage.getItem("muet_profile") ||
+        "{}"
+      );
+
+    }catch(_){
+
+      return {};
+    }
+  }
+
+
+  function sessionName(value){
+
+    const map = {
+      "S1-2026":"Session 1 · 2026",
+      "S2-2026":"Session 2 · 2026",
+      "S3-2026":"Session 3 · 2026"
+    };
+
+    return map[value] || "Set your session in Profile";
+  }
+
+
+  function showSession(){
+
+    const profile = loadProfile();
+
+    document.getElementById(
+      "mySession"
+    ).textContent =
+      sessionName(
+        profile.examSession
+      );
+  }
+
+
+  function highlightMyTargetBand(){
+    const profile = loadProfile();
+    const target = profile.targetBand;
+    if (!target) return;
+
+    const row = document.querySelector(
+      '.band-row[data-band="' + target + '"]'
+    );
+    if (row) row.classList.add('my-target');
+  }
+
+  showSession();
+  highlightMyTargetBand();
+</script>
+
+
+<script id="why-who-when-how-interaction">
+document.querySelectorAll('.fact-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const reveal=btn.nextElementSibling;
+    const isOpen=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',String(!isOpen));
+    reveal.classList.toggle('show',!isOpen);
+  });
+});
+</script>
 
 </body>
 </html>
