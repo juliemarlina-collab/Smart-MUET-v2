@@ -290,3 +290,2197 @@ input,select,textarea{
     transition-duration:.01ms !important;
   }
 }
+
+
+/* =========================================================
+   PART 2 · ENTRY JOURNEY + HOME
+   Splash → Welcome → Register / Welcome Back → Home
+   ========================================================= */
+
+/* Shared entry/auth page container */
+.page-welcome .page,
+.page-register .page,
+.page-welcome-back .page{
+  width:min(100%,1280px) !important;
+  max-width:560px !important;
+  margin-inline:auto !important;
+  padding-inline:var(--muet-pad-mobile) !important;
+}
+
+/* Header consistency */
+.page-welcome .topbar,
+.page-register .topbar,
+.page-welcome-back .topbar,
+.page-home .topbar{
+  min-height:62px;
+  gap:12px !important;
+}
+.page-welcome .brand img,
+.page-register .brand img,
+.page-welcome-back .brand img{
+  width:clamp(50px,7vw,64px) !important;
+  height:clamp(50px,7vw,64px) !important;
+}
+.page-welcome .brand-text strong,
+.page-register .brand strong,
+.page-welcome-back .brand strong{
+  font-size:clamp(.98rem,.5vw + .88rem,1.18rem) !important;
+}
+
+/* SPLASH — keep centred and scale instead of stretching on desktop */
+.page-splash .splash{
+  width:min(calc(100% - 24px),620px) !important;
+  min-height:min(780px,calc(100dvh - 24px));
+  margin:12px auto !important;
+  padding:clamp(18px,4vw,34px) !important;
+}
+.page-splash .logo-wrap{
+  width:clamp(110px,24vw,164px) !important;
+  height:clamp(110px,24vw,164px) !important;
+}
+.page-splash .title{
+  font-size:clamp(2.15rem,8vw,4.2rem) !important;
+  line-height:.93 !important;
+}
+.page-splash .tagline{
+  font-size:clamp(.95rem,2vw,1.18rem) !important;
+}
+.page-splash .subline{
+  max-width:42ch !important;
+  margin-inline:auto !important;
+  font-size:clamp(.82rem,1.4vw,.98rem) !important;
+}
+.page-splash .skip-btn{
+  min-height:48px;
+  padding-inline:18px;
+}
+
+/* WELCOME */
+.page-welcome .hero-copy{
+  padding:clamp(18px,4vw,34px) !important;
+}
+.page-welcome .hero-copy h1{
+  font-size:clamp(2.35rem,7vw,4.35rem) !important;
+}
+.page-welcome .hero-lead{
+  max-width:58ch !important;
+  margin-inline:auto !important;
+  font-size:clamp(.98rem,1.2vw,1.18rem) !important;
+}
+.page-welcome .benefits{
+  gap:clamp(8px,1.4vw,14px) !important;
+}
+.page-welcome .benefit{
+  min-width:0;
+  padding:clamp(12px,1.8vw,18px) !important;
+}
+.page-welcome .benefit p{
+  font-size:clamp(.82rem,.55vw + .72rem,.98rem) !important;
+}
+.page-welcome .journey-row{
+  gap:clamp(5px,1.2vw,12px) !important;
+}
+.page-welcome .action-card{
+  width:100%;
+}
+
+/* REGISTER + WELCOME BACK */
+.page-register .hero,
+.page-welcome-back .hero{
+  padding:clamp(18px,3vw,30px) !important;
+}
+.page-register .hero h1,
+.page-welcome-back .hero h1{
+  font-size:clamp(2.2rem,5.5vw,3.8rem) !important;
+}
+.page-register .card,
+.page-welcome-back .card,
+.page-welcome-back .welcome-card{
+  padding:clamp(14px,2vw,22px) !important;
+}
+.page-register .form-grid,
+.page-welcome-back .form-grid{
+  gap:clamp(9px,1.4vw,14px) !important;
+}
+.page-register .btn,
+.page-welcome-back .btn{
+  min-height:52px !important;
+  font-size:clamp(.92rem,.35vw + .86rem,1.04rem) !important;
+}
+
+/* HOME */
+.page-home .hero-copy{
+  padding:clamp(17px,2.5vw,30px) !important;
+}
+.page-home .hero h1{
+  font-size:clamp(2.35rem,5vw,3.55rem) !important;
+}
+.page-home .hero p{
+  font-size:clamp(.94rem,.7vw + .82rem,1.16rem) !important;
+  max-width:58ch;
+}
+.page-home .dashboard-grid{
+  gap:clamp(11px,1.5vw,16px) !important;
+}
+.page-home .countdown,
+.page-home .progress-block,
+.page-home .next-step{
+  min-width:0;
+}
+.page-home .time-grid{
+  gap:clamp(5px,1vw,10px) !important;
+}
+.page-home .time{
+  min-width:0;
+}
+.page-home .time b{
+  font-size:clamp(1.35rem,3vw,2rem) !important;
+}
+.page-home .journey-card{
+  min-width:0;
+}
+.page-home .bottom-nav{
+  width:calc(100% - 20px) !important;
+}
+
+/* TABLET */
+@media (min-width:600px){
+  .page-welcome .page,
+  .page-register .page,
+  .page-welcome-back .page{
+    max-width:820px !important;
+    padding:22px !important;
+  }
+  .page-welcome .benefits{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+  .page-register .form-grid.two,
+  .page-welcome-back .form-grid.two{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-home .journey-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+}
+
+/* LAPTOP / DESKTOP */
+@media (min-width:900px){
+  .page-welcome .page,
+  .page-register .page,
+  .page-welcome-back .page{
+    max-width:1120px !important;
+    padding:26px 28px 38px !important;
+  }
+
+  .page-welcome .hero{
+    grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr) !important;
+    min-height:440px !important;
+  }
+  .page-welcome .hero-image{
+    min-height:440px !important;
+  }
+
+  .page-register .layout-two,
+  .page-welcome-back .layout-two{
+    display:grid !important;
+    grid-template-columns:minmax(280px,.72fr) minmax(0,1.28fr) !important;
+    gap:18px !important;
+    align-items:start !important;
+  }
+  .page-register .layout-two > .hero,
+  .page-welcome-back .layout-two > .hero{
+    position:sticky !important;
+    top:22px !important;
+    margin-bottom:0 !important;
+  }
+
+  .page-home .hero{
+    grid-template-columns:minmax(0,1.08fr) minmax(340px,.92fr) !important;
+  }
+  .page-home .dashboard-grid{
+    grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr) !important;
+  }
+}
+
+/* Wide desktop: preserve readable measures, not oversized UI */
+@media (min-width:1280px){
+  .page-welcome .page,
+  .page-register .page,
+  .page-welcome-back .page{
+    max-width:1200px !important;
+    padding-inline:30px !important;
+  }
+  .page-home .app{
+    max-width:1200px !important;
+  }
+}
+
+/* Small phone safety */
+@media (max-width:399px){
+  .page-welcome .topbar,
+  .page-register .topbar,
+  .page-welcome-back .topbar,
+  .page-home .topbar{
+    align-items:flex-start;
+  }
+  .page-welcome .phase{
+    font-size:.62rem !important;
+    padding:6px 7px !important;
+  }
+  .page-welcome .benefits{
+    grid-template-columns:1fr !important;
+  }
+  .page-welcome .journey-row{
+    overflow-x:auto;
+    padding-bottom:4px;
+    scroll-snap-type:x proximity;
+  }
+  .page-welcome .journey-step{
+    min-width:76px;
+    scroll-snap-align:start;
+  }
+  .page-home .journey-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+
+/* =========================================================
+   PART 3 · GUIDANCE SYSTEM
+   Hub → Intro → Listening / Speaking / Reading / Writing
+   ========================================================= */
+
+/* Shared guide page measure */
+.page-guidance-hub .app,
+.page-guidance-intro .app,
+.page-guidance-component .app{
+  width:min(100%,1280px) !important;
+  margin-inline:auto !important;
+}
+
+.page-guidance-hub .topbar,
+.page-guidance-intro .topbar,
+.page-guidance-component .topbar{
+  min-height:62px;
+  gap:12px !important;
+}
+
+.page-guidance-hub .brand img,
+.page-guidance-intro .brand img,
+.page-guidance-component .brand img{
+  width:clamp(50px,6vw,64px) !important;
+  height:clamp(50px,6vw,64px) !important;
+}
+
+/* ---------------- GUIDANCE HUB ---------------- */
+.page-guidance-hub .hero{
+  padding:clamp(18px,3vw,30px) !important;
+}
+.page-guidance-hub .hero h1{
+  font-size:clamp(2.35rem,5.4vw,4rem) !important;
+}
+.page-guidance-hub .hero p{
+  max-width:62ch !important;
+  font-size:clamp(.96rem,.65vw + .84rem,1.15rem) !important;
+  line-height:1.55 !important;
+}
+.page-guidance-hub .system-banner{
+  padding:clamp(13px,1.8vw,20px) !important;
+}
+.page-guidance-hub .system-banner h2{
+  font-size:clamp(1.12rem,1.4vw,1.45rem) !important;
+}
+.page-guidance-hub .strategy-row{
+  gap:clamp(6px,1vw,10px) !important;
+}
+.page-guidance-hub .strategy-chip{
+  min-height:42px;
+  font-size:clamp(.72rem,.4vw + .66rem,.86rem) !important;
+}
+.page-guidance-hub .component-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:clamp(10px,1.3vw,15px) !important;
+}
+.page-guidance-hub .component-card{
+  min-width:0;
+  padding:clamp(13px,1.8vw,20px) !important;
+}
+.page-guidance-hub .component-card h3{
+  font-size:clamp(1.18rem,1.2vw,1.5rem) !important;
+}
+.page-guidance-hub .component-card .tagline{
+  font-size:clamp(.86rem,.55vw + .76rem,1rem) !important;
+  line-height:1.45 !important;
+}
+.page-guidance-hub .inside{
+  font-size:clamp(.8rem,.4vw + .73rem,.93rem) !important;
+}
+.page-guidance-hub .card-cta{
+  min-height:48px !important;
+  font-size:clamp(.76rem,.45vw + .69rem,.9rem) !important;
+}
+.page-guidance-hub .flow-row{
+  gap:clamp(5px,1vw,10px) !important;
+}
+.page-guidance-hub .flow-step{
+  min-width:0;
+}
+
+/* ---------------- INTRO / MUET AT A GLANCE ---------------- */
+.page-guidance-intro .hero{
+  padding:clamp(18px,3vw,30px) !important;
+}
+.page-guidance-intro .hero h1{
+  font-size:clamp(2.35rem,5.2vw,3.9rem) !important;
+}
+.page-guidance-intro .hero p{
+  max-width:62ch !important;
+  font-size:clamp(.96rem,.65vw + .84rem,1.14rem) !important;
+  line-height:1.55 !important;
+}
+.page-guidance-intro .section{
+  padding:clamp(13px,2vw,21px) !important;
+}
+.page-guidance-intro .section-head h2{
+  font-size:clamp(1.2rem,1.3vw,1.55rem) !important;
+}
+.page-guidance-intro .glance-grid{
+  display:grid !important;
+  grid-template-columns:1fr 1fr !important;
+  gap:clamp(7px,1vw,11px) !important;
+}
+.page-guidance-intro .glance{
+  min-width:0;
+  padding:clamp(10px,1.5vw,16px) !important;
+}
+.page-guidance-intro .glance .icon{
+  font-size:clamp(1.5rem,2.2vw,2rem) !important;
+}
+.page-guidance-intro .glance b{
+  font-size:clamp(.92rem,.55vw + .82rem,1.06rem) !important;
+}
+.page-guidance-intro .glance p{
+  font-size:clamp(.78rem,.4vw + .7rem,.9rem) !important;
+  line-height:1.4 !important;
+}
+.page-guidance-intro .component{
+  min-width:0;
+}
+.page-guidance-intro .component-title b{
+  font-size:clamp(.98rem,.6vw + .88rem,1.14rem) !important;
+}
+.page-guidance-intro .component-body{
+  font-size:clamp(.86rem,.45vw + .78rem,.98rem) !important;
+  line-height:1.5 !important;
+}
+.page-guidance-intro .facts{
+  gap:8px !important;
+}
+.page-guidance-intro .fact{
+  min-width:0;
+}
+.page-guidance-intro .expect{
+  max-width:72ch;
+}
+
+/* -------- LISTENING / SPEAKING / READING / WRITING -------- */
+.page-guidance-component .hero{
+  padding:clamp(18px,3vw,30px) !important;
+}
+.page-guidance-component .hero h1{
+  font-size:clamp(2.35rem,5.3vw,4rem) !important;
+}
+.page-guidance-component .hero p{
+  max-width:62ch !important;
+  font-size:clamp(.96rem,.65vw + .84rem,1.14rem) !important;
+  line-height:1.55 !important;
+}
+
+/* Technique card */
+.page-guidance-component .tech-card,
+.page-guide-speaking .prep-card{
+  padding:clamp(14px,2vw,22px) !important;
+}
+.page-guidance-component .tech-card h2,
+.page-guide-speaking .prep-card h2{
+  font-size:clamp(1.28rem,1.4vw,1.65rem) !important;
+}
+.page-guidance-component .tech-card p,
+.page-guide-speaking .prep-card p{
+  max-width:70ch;
+  font-size:clamp(.86rem,.5vw + .77rem,1rem) !important;
+}
+.page-guidance-component .tech-letters,
+.page-guide-speaking .prep-letters{
+  gap:clamp(6px,1vw,10px) !important;
+}
+.page-guidance-component .tech-btn,
+.page-guide-speaking .prep-btn{
+  min-width:0;
+  min-height:80px;
+  padding:clamp(8px,1.2vw,13px) !important;
+}
+.page-guidance-component .tech-btn b,
+.page-guide-speaking .prep-btn b{
+  font-size:clamp(1.45rem,2.2vw,2rem) !important;
+}
+.page-guidance-component .tech-btn span,
+.page-guide-speaking .prep-btn span{
+  font-size:clamp(.65rem,.3vw + .6rem,.78rem) !important;
+}
+.page-guidance-component .tech-detail,
+.page-guide-speaking .prep-detail{
+  max-width:78ch;
+  font-size:clamp(.87rem,.45vw + .79rem,1rem) !important;
+  line-height:1.55 !important;
+}
+
+/* Main guidance panels: readable rather than over-compressed */
+.page-guidance-component .panel-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:clamp(9px,1.2vw,14px) !important;
+  align-items:start !important;
+}
+.page-guidance-component .panel{
+  min-width:0;
+}
+.page-guidance-component .panel-toggle{
+  min-height:68px;
+  gap:10px !important;
+  padding:clamp(10px,1.4vw,14px) !important;
+}
+.page-guidance-component .panel-icon{
+  width:clamp(42px,4vw,50px) !important;
+  height:clamp(42px,4vw,50px) !important;
+}
+.page-guidance-component .panel-title b{
+  font-size:clamp(1rem,.55vw + .9rem,1.16rem) !important;
+}
+.page-guidance-component .panel-title span{
+  font-size:clamp(.76rem,.35vw + .7rem,.88rem) !important;
+  line-height:1.35 !important;
+}
+.page-guidance-component .panel-body{
+  padding:clamp(11px,1.6vw,17px) !important;
+}
+.page-guidance-component .panel-body > p,
+.page-guidance-component .example-box p{
+  max-width:72ch;
+}
+.page-guidance-component .mini{
+  font-size:clamp(.84rem,.38vw + .77rem,.95rem) !important;
+  line-height:1.48 !important;
+}
+.page-guidance-component .example-box{
+  padding:clamp(10px,1.5vw,15px) !important;
+}
+.page-guidance-component .example-box h3{
+  font-size:clamp(.98rem,.5vw + .9rem,1.12rem) !important;
+}
+.page-guidance-component .example-box p,
+.page-guidance-component .example-answer,
+.page-guidance-component .phrase,
+.page-guidance-component .do-item,
+.page-guidance-component .avoid-item{
+  font-size:clamp(.84rem,.38vw + .77rem,.95rem) !important;
+  line-height:1.48 !important;
+}
+
+/* Tabs and answer buttons */
+.page-guidance-component .example-buttons{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:7px !important;
+}
+.page-guidance-component .example-btn{
+  min-width:0;
+  min-height:46px !important;
+  font-size:clamp(.92rem,.5vw + .83rem,1.05rem) !important;
+}
+.page-guidance-component .smart-tabs,
+.page-guide-speaking .task-tabs{
+  display:grid !important;
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  gap:6px !important;
+}
+.page-guide-speaking .task-tabs{
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+}
+.page-guidance-component .tab-btn{
+  min-width:0;
+  min-height:44px;
+  padding:8px 6px !important;
+  font-size:clamp(.7rem,.32vw + .64rem,.82rem) !important;
+  line-height:1.2 !important;
+}
+
+/* Final Vault CTA */
+.page-guidance-component .vault{
+  padding:clamp(13px,2vw,21px) !important;
+}
+.page-guidance-component .vault h2{
+  font-size:clamp(1.2rem,1.2vw,1.5rem) !important;
+}
+.page-guidance-component .vault p{
+  max-width:68ch;
+  font-size:clamp(.9rem,.45vw + .82rem,1.04rem) !important;
+}
+.page-guidance-component .vault-btn{
+  min-height:54px !important;
+  font-size:clamp(.88rem,.5vw + .8rem,1rem) !important;
+}
+
+/* TABLET */
+@media (min-width:600px){
+  .page-guidance-hub .app,
+  .page-guidance-intro .app,
+  .page-guidance-component .app{
+    max-width:860px !important;
+    padding:22px 24px 120px !important;
+  }
+  .page-guidance-hub .component-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-guidance-intro .glance-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+  .page-guidance-component .panel-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-guidance-component .panel.open{
+    grid-column:auto;
+  }
+}
+
+/* LAPTOP */
+@media (min-width:900px){
+  .page-guidance-hub .app,
+  .page-guidance-intro .app,
+  .page-guidance-component .app{
+    max-width:1120px !important;
+    padding:28px 30px 122px !important;
+  }
+
+  .page-guidance-hub .component-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+  .page-guidance-hub .component-card{
+    display:flex;
+    flex-direction:column;
+  }
+  .page-guidance-hub .card-cta{
+    margin-top:auto;
+  }
+
+  .page-guidance-intro .component-list{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:11px !important;
+    align-items:start !important;
+  }
+  .page-guidance-intro .component{
+    margin:0 !important;
+  }
+
+  .page-guidance-component .tech-card,
+  .page-guide-speaking .prep-card{
+    display:grid;
+    grid-template-columns:minmax(220px,.7fr) minmax(0,1.3fr);
+    gap:16px 20px;
+    align-items:start;
+  }
+  .page-guidance-component .tech-card > h2,
+  .page-guidance-component .tech-card > p,
+  .page-guide-speaking .prep-card > h2,
+  .page-guide-speaking .prep-card > p{
+    grid-column:1;
+  }
+  .page-guidance-component .tech-letters,
+  .page-guide-speaking .prep-letters{
+    grid-column:2;
+    grid-row:1 / span 2;
+  }
+  .page-guidance-component .tech-detail,
+  .page-guide-speaking .prep-detail{
+    grid-column:1 / -1;
+  }
+}
+
+/* WIDE DESKTOP: 3 instructional panels only when there is room */
+@media (min-width:1280px){
+  .page-guidance-hub .app,
+  .page-guidance-intro .app,
+  .page-guidance-component .app{
+    max-width:1240px !important;
+  }
+  .page-guidance-component .panel-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
+
+/* PHONE */
+@media (max-width:599px){
+  .page-guidance-hub .strategy-row{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-guidance-hub .flow-row{
+    overflow-x:auto;
+    scroll-snap-type:x proximity;
+    padding-bottom:4px;
+  }
+  .page-guidance-hub .flow-step{
+    min-width:92px;
+    scroll-snap-align:start;
+  }
+  .page-guidance-component .tech-letters,
+  .page-guide-speaking .prep-letters{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-guidance-component .smart-tabs{
+    grid-template-columns:1fr !important;
+  }
+  .page-guide-speaking .task-tabs{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+/* VERY SMALL PHONE */
+@media (max-width:399px){
+  .page-guidance-intro .glance-grid{
+    grid-template-columns:1fr !important;
+  }
+  .page-guidance-component .example-buttons{
+    grid-template-columns:1fr !important;
+  }
+  .page-guidance-component .panel-toggle{
+    grid-template-columns:42px minmax(0,1fr) auto !important;
+  }
+}
+
+
+/* =========================================================
+   PART 4 · STUDY VAULT + VAULT 1 / VAULT 2 / MOCK 1 LANDINGS
+   ========================================================= */
+
+/* Shared page width and header rhythm */
+.page-vault-hub .app,
+.page-vault-landing .app{
+  width:min(100%,1280px) !important;
+  margin-inline:auto !important;
+}
+
+.page-vault-hub .topbar,
+.page-vault-landing .topbar,
+.page-vault-hub .brandbar,
+.page-vault-landing .brandbar{
+  min-height:62px;
+  gap:12px !important;
+}
+
+.page-vault-hub .brand img,
+.page-vault-landing .brand img,
+.page-vault-hub .brandbar img,
+.page-vault-landing .brandbar img{
+  width:clamp(50px,6vw,64px) !important;
+  height:clamp(50px,6vw,64px) !important;
+}
+
+/* ---------------- STUDY VAULT HUB ---------------- */
+.page-vault-hub .hero,
+.page-vault-hub .vault-hero{
+  min-height:unset !important;
+  padding:clamp(18px,3vw,30px) !important;
+}
+.page-vault-hub .hero h1,
+.page-vault-hub .vault-hero h1{
+  font-size:clamp(2.35rem,5.4vw,4.1rem) !important;
+  line-height:.96 !important;
+}
+.page-vault-hub .hero p,
+.page-vault-hub .vault-hero p{
+  max-width:64ch !important;
+  font-size:clamp(.96rem,.65vw + .84rem,1.14rem) !important;
+  line-height:1.55 !important;
+}
+.page-vault-hub .vault-intro,
+.page-vault-hub .howto,
+.page-vault-hub .how-to{
+  padding:clamp(13px,2vw,20px) !important;
+}
+.page-vault-hub .vault-grid,
+.page-vault-hub .level-grid,
+.page-vault-hub .path-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:clamp(10px,1.4vw,15px) !important;
+}
+.page-vault-hub .vault-card,
+.page-vault-hub .level-card,
+.page-vault-hub .path-card{
+  min-width:0;
+  padding:clamp(13px,1.8vw,20px) !important;
+}
+.page-vault-hub .vault-card h2,
+.page-vault-hub .vault-card h3,
+.page-vault-hub .level-card h2,
+.page-vault-hub .level-card h3{
+  font-size:clamp(1.18rem,1.2vw,1.52rem) !important;
+}
+.page-vault-hub .vault-card p,
+.page-vault-hub .level-card p,
+.page-vault-hub .path-card p{
+  font-size:clamp(.84rem,.45vw + .76rem,.98rem) !important;
+  line-height:1.48 !important;
+}
+.page-vault-hub .vault-card .btn,
+.page-vault-hub .level-card .btn,
+.page-vault-hub .path-card .btn{
+  min-height:50px !important;
+  font-size:clamp(.82rem,.4vw + .75rem,.94rem) !important;
+}
+.page-vault-hub .status,
+.page-vault-hub .pill,
+.page-vault-hub .badge{
+  white-space:normal !important;
+}
+
+/* ---------------- VAULT / MOCK LANDING HERO ---------------- */
+.page-vault-landing .hero,
+.page-vault-landing .vault-hero,
+.page-vault-landing .mock-hero{
+  min-height:unset !important;
+  padding:clamp(18px,3vw,30px) !important;
+}
+.page-vault-landing .hero h1,
+.page-vault-landing .vault-hero h1,
+.page-vault-landing .mock-hero h1{
+  font-size:clamp(2.35rem,5.3vw,4rem) !important;
+  line-height:.96 !important;
+}
+.page-vault-landing .hero p,
+.page-vault-landing .vault-hero p,
+.page-vault-landing .mock-hero p{
+  max-width:64ch !important;
+  font-size:clamp(.96rem,.65vw + .84rem,1.14rem) !important;
+  line-height:1.55 !important;
+}
+
+/* How-to-use / instructions should appear compact and early */
+.page-vault-landing .howto,
+.page-vault-landing .how-to,
+.page-vault-landing .instructions,
+.page-vault-landing .instruction-card{
+  padding:clamp(12px,1.8vw,18px) !important;
+}
+.page-vault-landing .howto h2,
+.page-vault-landing .how-to h2,
+.page-vault-landing .instructions h2{
+  font-size:clamp(1.08rem,1vw,1.35rem) !important;
+}
+.page-vault-landing .howto p,
+.page-vault-landing .how-to p,
+.page-vault-landing .instructions p{
+  max-width:70ch;
+  font-size:clamp(.84rem,.42vw + .77rem,.96rem) !important;
+  line-height:1.45 !important;
+}
+
+/* Component card systems */
+.page-vault-landing .component-grid,
+.page-vault-landing .skill-grid,
+.page-vault-landing .paper-grid,
+.page-vault-landing .practice-grid{
+  display:grid !important;
+  grid-template-columns:1fr !important;
+  gap:clamp(10px,1.3vw,15px) !important;
+  align-items:stretch !important;
+}
+.page-vault-landing .component-card,
+.page-vault-landing .skill-card,
+.page-vault-landing .paper-card,
+.page-vault-landing .practice-card{
+  min-width:0;
+  padding:clamp(13px,1.8vw,20px) !important;
+  height:100%;
+}
+.page-vault-landing .component-card h2,
+.page-vault-landing .component-card h3,
+.page-vault-landing .skill-card h2,
+.page-vault-landing .skill-card h3,
+.page-vault-landing .paper-card h2,
+.page-vault-landing .paper-card h3{
+  font-size:clamp(1.12rem,1.1vw,1.42rem) !important;
+  line-height:1.2 !important;
+}
+.page-vault-landing .component-card p,
+.page-vault-landing .skill-card p,
+.page-vault-landing .paper-card p,
+.page-vault-landing .practice-card p{
+  font-size:clamp(.82rem,.42vw + .75rem,.96rem) !important;
+  line-height:1.45 !important;
+}
+.page-vault-landing .component-card .btn,
+.page-vault-landing .skill-card .btn,
+.page-vault-landing .paper-card .btn,
+.page-vault-landing .practice-card .btn,
+.page-vault-landing .component-card a[class*="btn"],
+.page-vault-landing .skill-card a[class*="btn"],
+.page-vault-landing .paper-card a[class*="btn"]{
+  min-height:50px !important;
+  font-size:clamp(.8rem,.38vw + .73rem,.92rem) !important;
+}
+
+/* Component icons / number blocks */
+.page-vault-landing .component-icon,
+.page-vault-landing .skill-icon,
+.page-vault-landing .paper-icon{
+  width:clamp(44px,5vw,56px) !important;
+  height:clamp(44px,5vw,56px) !important;
+  flex:0 0 auto;
+}
+.page-vault-landing .component-no,
+.page-vault-landing .step-no,
+.page-vault-landing .number{
+  flex:0 0 auto;
+}
+
+/* Progress / stage rows */
+.page-vault-landing .progress-row,
+.page-vault-landing .progress-strip,
+.page-vault-landing .stage-row,
+.page-vault-landing .meta-row{
+  gap:clamp(5px,1vw,9px) !important;
+  flex-wrap:wrap !important;
+}
+.page-vault-landing .progress-row > *,
+.page-vault-landing .progress-strip > *,
+.page-vault-landing .stage-row > *,
+.page-vault-landing .meta-row > *{
+  min-width:0;
+}
+.page-vault-landing .pill,
+.page-vault-landing .status,
+.page-vault-landing .tag,
+.page-vault-landing .chip{
+  font-size:clamp(.68rem,.3vw + .62rem,.8rem) !important;
+  line-height:1.2 !important;
+}
+
+/* Mock readiness / full-test CTA blocks */
+.page-mock1-landing .mock-note,
+.page-mock1-landing .exam-note,
+.page-mock1-landing .ready-card,
+.page-mock1-landing .test-card{
+  padding:clamp(12px,1.8vw,18px) !important;
+}
+.page-mock1-landing .mock-note p,
+.page-mock1-landing .exam-note p,
+.page-mock1-landing .ready-card p,
+.page-mock1-landing .test-card p{
+  max-width:70ch;
+}
+
+/* Prevent decorative hero assets from dominating desktop */
+.page-vault-hub .hero img,
+.page-vault-hub .vault-hero img,
+.page-vault-landing .hero img,
+.page-vault-landing .vault-hero img,
+.page-vault-landing .mock-hero img{
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+}
+
+/* TABLET */
+@media (min-width:600px){
+  .page-vault-hub .app,
+  .page-vault-landing .app{
+    max-width:860px !important;
+    padding:22px 24px 120px !important;
+  }
+
+  .page-vault-hub .vault-grid,
+  .page-vault-hub .level-grid,
+  .page-vault-hub .path-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  .page-vault-landing .component-grid,
+  .page-vault-landing .skill-grid,
+  .page-vault-landing .paper-grid,
+  .page-vault-landing .practice-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+/* LAPTOP */
+@media (min-width:900px){
+  .page-vault-hub .app,
+  .page-vault-landing .app{
+    max-width:1120px !important;
+    padding:28px 30px 122px !important;
+  }
+
+  /* Three pathway cards on Vault Hub */
+  .page-vault-hub .vault-grid,
+  .page-vault-hub .level-grid,
+  .page-vault-hub .path-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+
+  /* Four MUET components in one row on landing pages */
+  .page-vault-landing .component-grid,
+  .page-vault-landing .skill-grid,
+  .page-vault-landing .paper-grid,
+  .page-vault-landing .practice-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+
+  .page-vault-landing .component-card,
+  .page-vault-landing .skill-card,
+  .page-vault-landing .paper-card,
+  .page-vault-landing .practice-card{
+    display:flex;
+    flex-direction:column;
+  }
+  .page-vault-landing .component-card .btn,
+  .page-vault-landing .skill-card .btn,
+  .page-vault-landing .paper-card .btn,
+  .page-vault-landing .practice-card .btn,
+  .page-vault-landing .component-card a[class*="btn"],
+  .page-vault-landing .skill-card a[class*="btn"],
+  .page-vault-landing .paper-card a[class*="btn"]{
+    margin-top:auto;
+  }
+
+  /* Where hero already contains an image, use it as split layout */
+  .page-vault-hub .hero:has(img),
+  .page-vault-hub .vault-hero:has(img),
+  .page-vault-landing .hero:has(img),
+  .page-vault-landing .vault-hero:has(img),
+  .page-vault-landing .mock-hero:has(img){
+    display:grid !important;
+    grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr) !important;
+    align-items:center !important;
+    gap:18px !important;
+  }
+}
+
+/* WIDE DESKTOP */
+@media (min-width:1280px){
+  .page-vault-hub .app,
+  .page-vault-landing .app{
+    max-width:1240px !important;
+  }
+}
+
+/* MOBILE */
+@media (max-width:599px){
+  .page-vault-hub .vault-grid,
+  .page-vault-hub .level-grid,
+  .page-vault-hub .path-grid,
+  .page-vault-landing .component-grid,
+  .page-vault-landing .skill-grid,
+  .page-vault-landing .paper-grid,
+  .page-vault-landing .practice-grid{
+    grid-template-columns:1fr !important;
+  }
+}
+
+/* VERY SMALL PHONE */
+@media (max-width:399px){
+  .page-vault-landing .component-card,
+  .page-vault-landing .skill-card,
+  .page-vault-landing .paper-card,
+  .page-vault-landing .practice-card{
+    padding:11px !important;
+  }
+  .page-vault-landing .progress-row,
+  .page-vault-landing .progress-strip,
+  .page-vault-landing .stage-row{
+    display:grid !important;
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+/* =========================================================
+   PART 5 · VAULT 1 COMPONENT PRACTICE
+   Speaking · Listening · Reading · Writing
+   ========================================================= */
+
+/* ---------- SHARED VAULT 1 COMPONENT SHELL ---------- */
+.page-vault1-component .app{
+  width:min(100%,1280px) !important;
+  max-width:100% !important;
+  margin-inline:auto !important;
+  padding:clamp(14px,2vw,26px) clamp(12px,2vw,28px) 122px !important;
+}
+
+.page-vault1-component .top{
+  min-height:62px;
+  gap:12px !important;
+  margin-bottom:clamp(12px,1.5vw,16px) !important;
+}
+.page-vault1-component .brand{
+  min-width:0;
+}
+.page-vault1-component .brand img{
+  width:clamp(50px,5vw,64px) !important;
+  height:clamp(50px,5vw,64px) !important;
+  flex:0 0 auto;
+}
+.page-vault1-component .brand small{
+  font-size:clamp(.62rem,.28vw + .58rem,.73rem) !important;
+}
+.page-vault1-component .brand b{
+  font-size:clamp(1rem,.48vw + .9rem,1.18rem) !important;
+  line-height:1.2 !important;
+}
+.page-vault1-component .back{
+  min-height:44px !important;
+  flex:0 0 auto;
+  font-size:clamp(.72rem,.3vw + .66rem,.84rem) !important;
+}
+
+/* Hero */
+.page-vault1-component .hero{
+  padding:clamp(18px,3vw,30px) !important;
+  margin-bottom:clamp(13px,1.5vw,17px) !important;
+}
+.page-vault1-component .hero .tag{
+  font-size:clamp(.64rem,.28vw + .6rem,.76rem) !important;
+}
+.page-vault1-component .hero h1{
+  font-size:clamp(2.35rem,5.1vw,4rem) !important;
+  line-height:.96 !important;
+}
+.page-vault1-component .hero p{
+  max-width:66ch !important;
+  font-size:clamp(.96rem,.62vw + .84rem,1.14rem) !important;
+  line-height:1.55 !important;
+}
+
+/* Technique strip */
+.page-vault1-component .tech{
+  padding:clamp(13px,1.8vw,19px) !important;
+}
+.page-vault1-component .tech h2{
+  font-size:clamp(1.15rem,1vw,1.4rem) !important;
+}
+.page-vault1-component .tech p{
+  max-width:72ch;
+  font-size:clamp(.82rem,.4vw + .75rem,.96rem) !important;
+  line-height:1.45 !important;
+}
+.page-vault1-component .techgrid{
+  gap:clamp(6px,.9vw,10px) !important;
+}
+.page-vault1-component .techgrid div{
+  min-width:0;
+  min-height:68px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  padding:clamp(7px,1vw,11px) 5px !important;
+  font-size:clamp(.66rem,.3vw + .61rem,.78rem) !important;
+  line-height:1.2;
+}
+.page-vault1-component .techgrid b{
+  font-size:clamp(1.25rem,1.5vw,1.7rem) !important;
+}
+
+/* Paper stats */
+.page-vault1-component .paperbar{
+  padding:clamp(12px,1.7vw,18px) !important;
+}
+.page-vault1-component .paperbar h2{
+  font-size:clamp(1.08rem,.9vw + .95rem,1.35rem) !important;
+}
+.page-vault1-component .paperstats{
+  gap:clamp(6px,.9vw,10px) !important;
+}
+.page-vault1-component .paperstats div{
+  min-width:0;
+  padding:clamp(8px,1vw,12px) 5px !important;
+}
+.page-vault1-component .paperstats b{
+  font-size:clamp(1.08rem,1vw,1.35rem) !important;
+}
+.page-vault1-component .paperstats span{
+  font-size:clamp(.62rem,.27vw + .58rem,.73rem) !important;
+}
+
+/* Task / Part accordion headers */
+.page-vault1-component .task,
+.page-vault1-component .part{
+  border-radius:clamp(16px,1.5vw,20px) !important;
+  margin-bottom:clamp(10px,1.2vw,14px) !important;
+}
+.page-vault1-component .task-head,
+.page-vault1-component .part-head{
+  min-height:76px !important;
+  grid-template-columns:clamp(44px,4vw,52px) minmax(0,1fr) auto !important;
+  gap:clamp(8px,1vw,12px) !important;
+  padding:clamp(10px,1.4vw,15px) !important;
+}
+.page-vault1-component .task-num,
+.page-vault1-component .part-num{
+  width:clamp(42px,4vw,50px) !important;
+  height:clamp(42px,4vw,50px) !important;
+  font-size:clamp(1rem,.75vw + .86rem,1.2rem) !important;
+}
+.page-vault1-component .task-title,
+.page-vault1-component .part-title{
+  min-width:0;
+}
+.page-vault1-component .task-title b,
+.page-vault1-component .part-title b{
+  font-size:clamp(.98rem,.55vw + .88rem,1.15rem) !important;
+  line-height:1.25 !important;
+}
+.page-vault1-component .task-title span,
+.page-vault1-component .part-title span{
+  font-size:clamp(.73rem,.34vw + .67rem,.86rem) !important;
+  line-height:1.35 !important;
+}
+.page-vault1-component .chev{
+  font-size:clamp(1.3rem,1.4vw,1.65rem) !important;
+}
+.page-vault1-component .task-body,
+.page-vault1-component .part-body{
+  padding:clamp(11px,1.6vw,18px) !important;
+}
+
+/* Shared prompts / support */
+.page-vault1-component .prompt,
+.page-vault1-component .clue-mini,
+.page-vault1-component .scan-help,
+.page-vault1-component .support{
+  padding:clamp(9px,1.3vw,14px) !important;
+  font-size:clamp(.82rem,.42vw + .75rem,.96rem) !important;
+  line-height:1.5 !important;
+}
+.page-vault1-component .support summary,
+.page-vault1-component .scan-help summary{
+  font-size:clamp(.82rem,.42vw + .75rem,.96rem) !important;
+}
+.page-vault1-component .support p,
+.page-vault1-component .scan-help p{
+  font-size:clamp(.8rem,.4vw + .73rem,.93rem) !important;
+  line-height:1.5 !important;
+}
+
+/* Shared question cards */
+.page-vault1-component .qcard{
+  min-width:0;
+  padding:clamp(10px,1.3vw,14px) !important;
+  margin-top:clamp(8px,1vw,11px) !important;
+}
+.page-vault1-component .qtag{
+  font-size:clamp(.62rem,.26vw + .58rem,.73rem) !important;
+}
+.page-vault1-component .stem{
+  font-size:clamp(.88rem,.45vw + .8rem,1.02rem) !important;
+  line-height:1.46 !important;
+  margin:9px 0 !important;
+}
+.page-vault1-component .opt{
+  grid-template-columns:22px minmax(0,1fr) !important;
+  gap:8px !important;
+  padding:clamp(9px,1vw,12px) !important;
+  font-size:clamp(.82rem,.4vw + .75rem,.95rem) !important;
+  line-height:1.42 !important;
+}
+.page-vault1-component .opt input{
+  width:18px;
+  height:18px;
+}
+.page-vault1-component .explain{
+  padding:clamp(8px,1vw,11px) !important;
+  font-size:clamp(.76rem,.35vw + .7rem,.88rem) !important;
+  line-height:1.45 !important;
+}
+
+/* Standard buttons */
+.page-vault1-component .part-submit,
+.page-vault1-component .final-submit,
+.page-vault1-component .btn,
+.page-vault1-component .secondary-btn{
+  min-height:50px !important;
+  padding:10px 14px !important;
+  font-size:clamp(.78rem,.38vw + .71rem,.91rem) !important;
+  line-height:1.25 !important;
+}
+
+/* Finish/result cards */
+.page-vault1-component .finish,
+.page-vault1-component .summary{
+  padding:clamp(13px,1.8vw,20px) !important;
+}
+.page-vault1-component .finish h2,
+.page-vault1-component .summary h2{
+  font-size:clamp(1.18rem,1vw,1.45rem) !important;
+}
+.page-vault1-component .finish p,
+.page-vault1-component .summary p{
+  max-width:72ch;
+  font-size:clamp(.84rem,.42vw + .77rem,.97rem) !important;
+  line-height:1.48 !important;
+}
+.page-vault1-component .part-result,
+.page-vault1-component .summary-result,
+.page-vault1-component .result,
+.page-vault1-component .postcheck{
+  font-size:clamp(.8rem,.4vw + .73rem,.94rem) !important;
+  line-height:1.48 !important;
+}
+.page-vault1-component .bigscore{
+  font-size:clamp(1.8rem,2.4vw,2.5rem) !important;
+}
+
+/* ---------- SPEAKING ---------- */
+.page-v1-speaking .topic{
+  min-height:50px !important;
+  font-size:clamp(.88rem,.42vw + .8rem,1rem) !important;
+}
+.page-v1-speaking .prep,
+.page-v1-speaking .practice-box{
+  padding:clamp(10px,1.3vw,15px) !important;
+}
+.page-v1-speaking .prep-row{
+  grid-template-columns:clamp(30px,3vw,36px) minmax(0,1fr) !important;
+  gap:9px !important;
+}
+.page-v1-speaking .letter{
+  width:clamp(29px,3vw,34px) !important;
+  height:clamp(29px,3vw,34px) !important;
+  font-size:clamp(.78rem,.4vw + .72rem,.92rem) !important;
+}
+.page-v1-speaking .prep-row input,
+.page-v1-speaking .prep-row textarea,
+.page-v1-speaking textarea,
+.page-v1-speaking select{
+  width:100% !important;
+  min-width:0;
+  font-size:max(16px,1rem) !important;
+}
+.page-v1-speaking .practice-box h3{
+  font-size:clamp(1rem,.55vw + .9rem,1.16rem) !important;
+}
+.page-v1-speaking .checks{
+  gap:7px !important;
+}
+.page-v1-speaking .check{
+  grid-template-columns:22px minmax(0,1fr) !important;
+  font-size:clamp(.8rem,.38vw + .73rem,.93rem) !important;
+  line-height:1.4 !important;
+}
+
+/* ---------- LISTENING ---------- */
+.page-v1-listening .audio{
+  padding:clamp(10px,1.3vw,14px) !important;
+}
+.page-v1-listening .audio-head{
+  gap:10px !important;
+}
+.page-v1-listening .audio-head b{
+  font-size:clamp(.88rem,.45vw + .8rem,1.02rem) !important;
+}
+.page-v1-listening .audio-head span{
+  font-size:clamp(.72rem,.32vw + .66rem,.83rem) !important;
+}
+.page-v1-listening .audio-pill{
+  max-width:48%;
+  white-space:normal !important;
+  text-align:center;
+  font-size:clamp(.66rem,.28vw + .61rem,.77rem) !important;
+}
+.page-v1-listening .audio iframe{
+  height:clamp(84px,8vw,112px) !important;
+}
+.page-v1-listening .audio p{
+  font-size:clamp(.7rem,.3vw + .65rem,.82rem) !important;
+  line-height:1.4 !important;
+}
+
+/* ---------- READING ---------- */
+.page-v1-reading .passage-card{
+  min-width:0;
+}
+.page-v1-reading .passage-title{
+  font-size:clamp(.88rem,.44vw + .8rem,1.02rem) !important;
+}
+.page-v1-reading .passage-scroll{
+  max-height:clamp(300px,46vh,480px) !important;
+  padding:clamp(11px,1.4vw,16px) !important;
+  font-size:clamp(.86rem,.42vw + .79rem,1rem) !important;
+  line-height:1.68 !important;
+  font-weight:650 !important;
+  overscroll-behavior:contain;
+}
+.page-v1-reading .passage-scroll.expanded{
+  max-height:min(78vh,760px) !important;
+}
+.page-v1-reading .expand-btn{
+  min-height:44px !important;
+  font-size:clamp(.72rem,.32vw + .66rem,.84rem) !important;
+}
+
+/* ---------- WRITING ---------- */
+.page-v1-writing .guide-strip{
+  gap:clamp(6px,.9vw,10px) !important;
+}
+.page-v1-writing .guide-strip div{
+  min-width:0;
+  min-height:52px;
+  display:grid;
+  place-items:center;
+  padding:8px 5px !important;
+  font-size:clamp(.64rem,.28vw + .6rem,.76rem) !important;
+  line-height:1.2 !important;
+}
+.page-v1-writing .plan{
+  gap:9px !important;
+}
+.page-v1-writing .plan-row{
+  grid-template-columns:clamp(30px,3vw,36px) minmax(0,1fr) !important;
+  gap:9px !important;
+}
+.page-v1-writing .plan-row textarea,
+.page-v1-writing .answer-box textarea{
+  width:100% !important;
+  min-width:0;
+  font-size:max(16px,1rem) !important;
+  line-height:1.6 !important;
+}
+.page-v1-writing .answer-box{
+  padding:clamp(10px,1.3vw,15px) !important;
+}
+.page-v1-writing .answer-head{
+  gap:8px !important;
+  flex-wrap:wrap;
+}
+.page-v1-writing .answer-head h3{
+  font-size:clamp(.96rem,.5vw + .87rem,1.1rem) !important;
+}
+.page-v1-writing .words{
+  font-size:clamp(.68rem,.3vw + .63rem,.8rem) !important;
+}
+.page-v1-writing .autosave{
+  font-size:clamp(.64rem,.26vw + .6rem,.74rem) !important;
+}
+.page-v1-writing .criterion{
+  padding:clamp(9px,1.1vw,12px) !important;
+}
+.page-v1-writing .criterion b{
+  font-size:clamp(.78rem,.38vw + .71rem,.9rem) !important;
+}
+.page-v1-writing .criterion-score{
+  font-size:clamp(1.25rem,1.6vw,1.7rem) !important;
+}
+.page-v1-writing .criterion p,
+.page-v1-writing .coach,
+.page-v1-writing .self-reflect,
+.page-v1-writing .save-state{
+  font-size:clamp(.76rem,.35vw + .69rem,.88rem) !important;
+  line-height:1.45 !important;
+}
+
+/* ---------- TABLET ---------- */
+@media (min-width:600px){
+  .page-vault1-component .app{
+    max-width:880px !important;
+    padding:22px 24px 122px !important;
+  }
+
+  .page-vault1-component .techgrid{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+
+  /* Questions can use two columns for shorter listening items */
+  .page-v1-listening .part-body{
+    display:none;
+  }
+  .page-v1-listening .part.open .part-body{
+    display:block;
+  }
+
+  .page-v1-writing .guide-strip{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+}
+
+/* ---------- LAPTOP ---------- */
+@media (min-width:900px){
+  .page-vault1-component .app{
+    max-width:1120px !important;
+    padding:28px 30px 124px !important;
+  }
+
+  /* Give long reading/listening papers a wider comfortable canvas. */
+  .page-v1-listening .part.open .part-body,
+  .page-v1-reading .part.open .part-body{
+    padding:18px !important;
+  }
+
+  .page-v1-listening .audio,
+  .page-v1-reading .passage-card{
+    max-width:900px;
+    margin-inline:auto;
+  }
+
+  /* Speaking/Writing keep a readable response measure. */
+  .page-v1-speaking .task-body > *,
+  .page-v1-writing .task-body > *{
+    max-width:880px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  /* Wider writing response areas, without full-screen lines. */
+  .page-v1-writing .answer-box,
+  .page-v1-writing .plan,
+  .page-v1-speaking .prep,
+  .page-v1-speaking .practice-box{
+    max-width:900px !important;
+  }
+
+  .page-v1-reading .passage-scroll{
+    max-height:520px !important;
+  }
+}
+
+/* ---------- WIDE DESKTOP ---------- */
+@media (min-width:1180px){
+  .page-vault1-component .app{
+    max-width:1240px !important;
+  }
+
+  /* Listening questions: two balanced columns after the audio/helper content. */
+  .page-v1-listening .part.open .part-body{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:12px !important;
+    align-items:start;
+  }
+  .page-v1-listening .part.open .audio,
+  .page-v1-listening .part.open .clue-mini,
+  .page-v1-listening .part.open .part-submit,
+  .page-v1-listening .part.open .part-result{
+    grid-column:1 / -1;
+    width:100%;
+  }
+  .page-v1-listening .qcard{
+    margin-top:0 !important;
+    height:100%;
+  }
+
+  /* Reading: passage above, question cards in two columns.
+     This preserves the original passage/question order. */
+  .page-v1-reading .part.open .part-body{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:12px !important;
+    align-items:start;
+  }
+  .page-v1-reading .part.open .passage-card,
+  .page-v1-reading .part.open .scan-help,
+  .page-v1-reading .part.open .part-submit,
+  .page-v1-reading .part.open .part-result{
+    grid-column:1 / -1;
+    width:100%;
+  }
+  .page-v1-reading .qcard{
+    margin-top:0 !important;
+    height:100%;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:599px){
+  .page-vault1-component .techgrid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-vault1-component .paperstats{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+  .page-v1-listening .audio-head{
+    flex-direction:column;
+  }
+  .page-v1-listening .audio-pill{
+    max-width:100%;
+  }
+}
+
+/* ---------- VERY SMALL PHONE ---------- */
+@media (max-width:399px){
+  .page-vault1-component .top{
+    align-items:flex-start;
+  }
+  .page-vault1-component .back{
+    padding:7px 9px !important;
+  }
+  .page-vault1-component .task-head,
+  .page-vault1-component .part-head{
+    grid-template-columns:40px minmax(0,1fr) auto !important;
+    gap:7px !important;
+    padding:9px !important;
+  }
+  .page-vault1-component .task-num,
+  .page-vault1-component .part-num{
+    width:40px !important;
+    height:40px !important;
+  }
+  .page-vault1-component .paperstats span{
+    overflow-wrap:anywhere;
+  }
+  .page-v1-writing .guide-strip{
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+/* =========================================================
+   PART 6 · VAULT 2 COMPONENT PRACTICE
+   Speaking · Listening · Reading · Writing
+   Independent application — less scaffolding, more workspace
+   ========================================================= */
+
+/* ---------- SHARED VAULT 2 COMPONENT SHELL ---------- */
+.page-vault2-component .app{
+  width:min(100%,1280px) !important;
+  max-width:100% !important;
+  margin-inline:auto !important;
+  padding:clamp(14px,2vw,26px) clamp(12px,2vw,28px) 122px !important;
+}
+
+.page-vault2-component .top{
+  min-height:62px;
+  gap:12px !important;
+  margin-bottom:clamp(12px,1.5vw,16px) !important;
+}
+.page-vault2-component .brand{
+  min-width:0;
+}
+.page-vault2-component .brand img{
+  width:clamp(50px,5vw,64px) !important;
+  height:clamp(50px,5vw,64px) !important;
+  flex:0 0 auto;
+}
+.page-vault2-component .brand small{
+  font-size:clamp(.62rem,.28vw + .58rem,.73rem) !important;
+}
+.page-vault2-component .brand b{
+  font-size:clamp(1rem,.48vw + .9rem,1.18rem) !important;
+  line-height:1.2 !important;
+}
+.page-vault2-component .back{
+  min-height:44px !important;
+  flex:0 0 auto;
+  font-size:clamp(.72rem,.3vw + .66rem,.84rem) !important;
+}
+
+/* Hero */
+.page-vault2-component .hero{
+  padding:clamp(18px,3vw,30px) !important;
+  margin-bottom:clamp(13px,1.5vw,17px) !important;
+}
+.page-vault2-component .hero .tag{
+  font-size:clamp(.64rem,.28vw + .6rem,.76rem) !important;
+}
+.page-vault2-component .hero h1{
+  font-size:clamp(2.35rem,5.1vw,4rem) !important;
+  line-height:.96 !important;
+}
+.page-vault2-component .hero p{
+  max-width:66ch !important;
+  font-size:clamp(.96rem,.62vw + .84rem,1.14rem) !important;
+  line-height:1.55 !important;
+}
+
+/* Testing / session banners */
+.page-vault2-component .exam,
+.page-vault2-component .testing-note,
+.page-vault2-component .notice{
+  padding:clamp(11px,1.5vw,16px) !important;
+}
+.page-vault2-component .exam-row{
+  gap:10px !important;
+  align-items:center !important;
+}
+.page-vault2-component .exam h2{
+  font-size:clamp(1.02rem,.65vw + .9rem,1.2rem) !important;
+}
+.page-vault2-component .exam p{
+  font-size:clamp(.66rem,.28vw + .61rem,.78rem) !important;
+  line-height:1.35 !important;
+}
+.page-vault2-component .timer{
+  font-size:clamp(1.55rem,2.2vw,2.05rem) !important;
+  white-space:nowrap;
+}
+.page-vault2-component .start{
+  min-height:48px !important;
+  font-size:clamp(.74rem,.34vw + .68rem,.86rem) !important;
+}
+
+/* Flow/status strip */
+.page-vault2-component .flow,
+.page-vault2-component .progress{
+  gap:clamp(5px,.8vw,8px) !important;
+}
+.page-vault2-component .flow div,
+.page-vault2-component .progress div{
+  min-width:0;
+  min-height:36px;
+  display:grid;
+  place-items:center;
+  padding:7px 4px !important;
+  font-size:clamp(.6rem,.24vw + .56rem,.7rem) !important;
+  line-height:1.15 !important;
+}
+
+/* Task/Part accordions */
+.page-vault2-component .task,
+.page-vault2-component .part,
+.page-vault2-component .listen-part,
+.page-vault2-component .mock-task{
+  border-radius:clamp(16px,1.5vw,20px) !important;
+  margin-bottom:clamp(10px,1.2vw,14px) !important;
+}
+
+.page-vault2-component .task-head,
+.page-vault2-component .part-head,
+.page-vault2-component .listen-part-head,
+.page-vault2-component .mock-task-head{
+  min-height:76px !important;
+  grid-template-columns:clamp(44px,4vw,52px) minmax(0,1fr) auto !important;
+  gap:clamp(8px,1vw,12px) !important;
+  padding:clamp(10px,1.4vw,15px) !important;
+}
+.page-vault2-component .num,
+.page-vault2-component .part-num,
+.page-vault2-component .listen-part-no,
+.page-vault2-component .mock-task-num{
+  width:clamp(42px,4vw,50px) !important;
+  height:clamp(42px,4vw,50px) !important;
+  font-size:clamp(1rem,.75vw + .86rem,1.2rem) !important;
+}
+.page-vault2-component .title,
+.page-vault2-component .part-title,
+.page-vault2-component .listen-part-meta,
+.page-vault2-component .mock-task-title{
+  min-width:0;
+}
+.page-vault2-component .title b,
+.page-vault2-component .part-title b,
+.page-vault2-component .listen-part-meta b,
+.page-vault2-component .mock-task-title b{
+  font-size:clamp(.98rem,.55vw + .88rem,1.15rem) !important;
+  line-height:1.25 !important;
+}
+.page-vault2-component .title span,
+.page-vault2-component .part-title span,
+.page-vault2-component .listen-part-meta small,
+.page-vault2-component .mock-task-title span{
+  font-size:clamp(.73rem,.34vw + .67rem,.86rem) !important;
+  line-height:1.35 !important;
+}
+.page-vault2-component .plus,
+.page-vault2-component .chev,
+.page-vault2-component .listen-part-plus,
+.page-vault2-component .mock-task-plus{
+  font-size:clamp(1.3rem,1.4vw,1.65rem) !important;
+}
+.page-vault2-component .task-body,
+.page-vault2-component .part-body,
+.page-vault2-component .listen-part-body,
+.page-vault2-component .mock-task-body{
+  padding:clamp(11px,1.6vw,18px) !important;
+}
+
+/* Prompts / optional support */
+.page-vault2-component .prompt,
+.page-vault2-component .help,
+.page-vault2-component .instruction-card,
+.page-vault2-component .question-picker{
+  padding:clamp(9px,1.3vw,14px) !important;
+  font-size:clamp(.82rem,.42vw + .75rem,.96rem) !important;
+  line-height:1.5 !important;
+}
+.page-vault2-component .help summary,
+.page-vault2-component .stimulus-details summary{
+  font-size:clamp(.8rem,.4vw + .73rem,.93rem) !important;
+  line-height:1.35 !important;
+}
+.page-vault2-component .help p,
+.page-vault2-component .phrase,
+.page-vault2-component .instruction-card{
+  font-size:clamp(.8rem,.4vw + .73rem,.93rem) !important;
+  line-height:1.5 !important;
+}
+
+/* Question cards */
+.page-vault2-component .qcard{
+  min-width:0;
+  padding:clamp(10px,1.3vw,14px) !important;
+  margin-top:clamp(8px,1vw,11px) !important;
+}
+.page-vault2-component .qtag{
+  font-size:clamp(.62rem,.26vw + .58rem,.73rem) !important;
+}
+.page-vault2-component .stem{
+  font-size:clamp(.88rem,.45vw + .8rem,1.02rem) !important;
+  line-height:1.46 !important;
+  margin:9px 0 !important;
+}
+.page-vault2-component .opt{
+  grid-template-columns:22px minmax(0,1fr) !important;
+  gap:8px !important;
+  padding:clamp(9px,1vw,12px) !important;
+  font-size:clamp(.82rem,.4vw + .75rem,.95rem) !important;
+  line-height:1.42 !important;
+}
+.page-vault2-component .opt input{
+  width:18px;
+  height:18px;
+}
+
+/* Buttons and submit cards */
+.page-vault2-component .submit,
+.page-vault2-component .part-submit,
+.page-vault2-component .final-submit,
+.page-vault2-component .retry,
+.page-vault2-component .smallbtn,
+.page-vault2-component .secondary-btn{
+  min-height:50px !important;
+  padding:10px 14px !important;
+  font-size:clamp(.78rem,.38vw + .71rem,.91rem) !important;
+  line-height:1.25 !important;
+}
+.page-vault2-component .finish,
+.page-vault2-component .summary,
+.page-vault2-component .mock-finish{
+  padding:clamp(13px,1.8vw,20px) !important;
+}
+.page-vault2-component .finish h2,
+.page-vault2-component .summary h2,
+.page-vault2-component .mock-finish h2{
+  font-size:clamp(1.18rem,1vw,1.45rem) !important;
+}
+.page-vault2-component .finish p,
+.page-vault2-component .summary p,
+.page-vault2-component .mock-finish p{
+  max-width:72ch;
+  font-size:clamp(.84rem,.42vw + .77rem,.97rem) !important;
+  line-height:1.48 !important;
+}
+
+/* Rubric/report cards */
+.page-vault2-component .criteria{
+  gap:clamp(6px,.8vw,9px) !important;
+}
+.page-vault2-component .crit,
+.page-vault2-component .criterion{
+  padding:clamp(9px,1.1vw,12px) !important;
+}
+.page-vault2-component .crit b,
+.page-vault2-component .criterion b{
+  font-size:clamp(.78rem,.38vw + .71rem,.9rem) !important;
+}
+.page-vault2-component .score,
+.page-vault2-component .criterion-score{
+  font-size:clamp(1.25rem,1.6vw,1.7rem) !important;
+}
+.page-vault2-component .crit p,
+.page-vault2-component .criterion p,
+.page-vault2-component .coach,
+.page-vault2-component .save-state{
+  font-size:clamp(.76rem,.35vw + .69rem,.88rem) !important;
+  line-height:1.45 !important;
+}
+.page-vault2-component .total{
+  gap:10px !important;
+}
+.page-vault2-component .total strong{
+  font-size:clamp(1.55rem,2vw,2.15rem) !important;
+}
+
+/* ---------- SPEAKING ---------- */
+.page-v2-speaking select,
+.page-v2-speaking textarea,
+.page-v2-speaking input{
+  font-size:max(16px,1rem) !important;
+}
+.page-v2-speaking .notes textarea,
+.page-v2-speaking .transcript textarea{
+  min-height:clamp(130px,18vh,190px) !important;
+  line-height:1.55 !important;
+}
+.page-v2-speaking .phase-timer{
+  gap:10px !important;
+  flex-wrap:wrap;
+}
+.page-v2-speaking .phase-timer b{
+  font-size:clamp(1.2rem,1.6vw,1.65rem) !important;
+}
+.page-v2-speaking .rec{
+  padding:clamp(10px,1.4vw,15px) !important;
+}
+.page-v2-speaking .rec-head{
+  gap:10px !important;
+}
+.page-v2-speaking .rec h3{
+  font-size:clamp(.98rem,.52vw + .88rem,1.14rem) !important;
+}
+.page-v2-speaking .rec-time{
+  font-size:clamp(1.35rem,1.8vw,1.8rem) !important;
+}
+.page-v2-speaking .rec-actions{
+  gap:8px !important;
+}
+.page-v2-speaking .evidence{
+  gap:clamp(6px,.8vw,9px) !important;
+}
+.page-v2-speaking .metric{
+  min-width:0;
+}
+.page-v2-speaking .metric b{
+  font-size:clamp(1rem,.7vw + .88rem,1.2rem) !important;
+}
+.page-v2-speaking .metric small{
+  font-size:clamp(.58rem,.23vw + .54rem,.68rem) !important;
+}
+.page-v2-speaking .transcript label{
+  font-size:clamp(.7rem,.3vw + .65rem,.82rem) !important;
+  gap:8px !important;
+}
+
+/* ---------- LISTENING ---------- */
+.page-v2-listening .audio{
+  padding:clamp(10px,1.3vw,14px) !important;
+}
+.page-v2-listening .audio-head{
+  gap:10px !important;
+}
+.page-v2-listening .audio-head b{
+  font-size:clamp(.88rem,.45vw + .8rem,1.02rem) !important;
+}
+.page-v2-listening .audio-pill{
+  max-width:48%;
+  white-space:normal !important;
+  text-align:center;
+  font-size:clamp(.66rem,.28vw + .61rem,.77rem) !important;
+}
+.page-v2-listening iframe,
+.page-v2-listening audio{
+  width:100% !important;
+  max-width:100%;
+}
+.page-v2-listening iframe{
+  height:clamp(84px,8vw,112px) !important;
+}
+
+/* ---------- READING ---------- */
+.page-v2-reading .passage-card,
+.page-v2-reading .source-paper{
+  min-width:0;
+}
+.page-v2-reading .passage-scroll,
+.page-v2-reading .reading-text,
+.page-v2-reading .passage{
+  max-width:100%;
+  font-size:clamp(.86rem,.42vw + .79rem,1rem) !important;
+  line-height:1.68 !important;
+}
+.page-v2-reading .passage-scroll{
+  max-height:clamp(300px,46vh,500px) !important;
+  padding:clamp(11px,1.4vw,16px) !important;
+  overflow:auto;
+  overscroll-behavior:contain;
+}
+
+/* ---------- WRITING ---------- */
+.page-v2-writing select,
+.page-v2-writing textarea,
+.page-v2-writing input{
+  font-size:max(16px,1rem) !important;
+}
+.page-v2-writing .answer{
+  padding:clamp(10px,1.3vw,15px) !important;
+}
+.page-v2-writing .answer-head{
+  gap:8px !important;
+  flex-wrap:wrap;
+}
+.page-v2-writing .answer-head h3{
+  font-size:clamp(.96rem,.5vw + .87rem,1.1rem) !important;
+}
+.page-v2-writing .wc{
+  font-size:clamp(.68rem,.3vw + .63rem,.8rem) !important;
+}
+.page-v2-writing textarea{
+  min-height:clamp(180px,30vh,360px) !important;
+  line-height:1.62 !important;
+}
+.page-v2-writing .autosave{
+  font-size:clamp(.64rem,.26vw + .6rem,.74rem) !important;
+}
+.page-v2-writing .stimulus-details .email-body{
+  padding:clamp(10px,1.3vw,15px) !important;
+  font-size:clamp(.82rem,.4vw + .75rem,.95rem) !important;
+  line-height:1.55 !important;
+}
+.page-v2-writing .email-meta{
+  grid-template-columns:minmax(64px,82px) minmax(0,1fr) !important;
+}
+.page-v2-writing .email-line{
+  grid-template-columns:minmax(0,1fr) auto !important;
+  gap:9px !important;
+}
+.page-v2-writing .note-chip{
+  font-size:clamp(.58rem,.22vw + .54rem,.68rem) !important;
+}
+.page-v2-writing .question-picker select{
+  width:100%;
+  min-height:48px !important;
+}
+.page-v2-writing .statement{
+  font-size:clamp(1.05rem,.8vw + .92rem,1.35rem) !important;
+  line-height:1.5 !important;
+}
+
+/* ---------- TABLET ---------- */
+@media (min-width:600px){
+  .page-vault2-component .app{
+    max-width:880px !important;
+    padding:22px 24px 122px !important;
+  }
+
+  .page-v2-speaking .evidence{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+
+  .page-v2-writing .email-line{
+    align-items:start;
+  }
+}
+
+/* ---------- LAPTOP ---------- */
+@media (min-width:900px){
+  .page-vault2-component .app{
+    max-width:1120px !important;
+    padding:28px 30px 124px !important;
+  }
+
+  .page-v2-speaking .task-body > *,
+  .page-v2-writing .task-body > *{
+    max-width:920px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .page-v2-speaking .rec,
+  .page-v2-speaking .transcript,
+  .page-v2-speaking .notes,
+  .page-v2-writing .answer,
+  .page-v2-writing .stimulus-details,
+  .page-v2-writing .question-picker,
+  .page-v2-writing .statement,
+  .page-v2-writing .instruction-card{
+    max-width:920px !important;
+  }
+
+  .page-v2-listening .audio,
+  .page-v2-reading .passage-card,
+  .page-v2-reading .source-paper{
+    max-width:920px;
+    margin-inline:auto;
+  }
+
+  .page-v2-reading .passage-scroll{
+    max-height:540px !important;
+  }
+}
+
+/* ---------- WIDE DESKTOP ---------- */
+@media (min-width:1180px){
+  .page-vault2-component .app{
+    max-width:1240px !important;
+  }
+
+  /* Listening questions in two columns, audio full width. */
+  .page-v2-listening .part.open .part-body,
+  .page-v2-listening .listen-part.open .listen-part-body{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:12px !important;
+    align-items:start;
+  }
+  .page-v2-listening .part.open .audio,
+  .page-v2-listening .part.open .part-submit,
+  .page-v2-listening .part.open .part-result,
+  .page-v2-listening .listen-part.open .audio,
+  .page-v2-listening .listen-part.open .part-submit,
+  .page-v2-listening .listen-part.open .part-result{
+    grid-column:1 / -1;
+    width:100%;
+  }
+  .page-v2-listening .qcard{
+    margin-top:0 !important;
+    height:100%;
+  }
+
+  /* Reading: source text full-width, questions can split underneath. */
+  .page-v2-reading .part.open .part-body{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:12px !important;
+    align-items:start;
+  }
+  .page-v2-reading .part.open .passage-card,
+  .page-v2-reading .part.open .source-paper,
+  .page-v2-reading .part.open .part-submit,
+  .page-v2-reading .part.open .part-result{
+    grid-column:1 / -1;
+    width:100%;
+  }
+  .page-v2-reading .qcard{
+    margin-top:0 !important;
+    height:100%;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:599px){
+  .page-vault2-component .exam-row{
+    align-items:flex-start !important;
+  }
+  .page-vault2-component .flow,
+  .page-vault2-component .progress{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-v2-listening .audio-head{
+    flex-direction:column;
+  }
+  .page-v2-listening .audio-pill{
+    max-width:100%;
+  }
+  .page-v2-writing .email-line{
+    grid-template-columns:1fr !important;
+  }
+  .page-v2-writing .note-chip{
+    width:max-content;
+    max-width:100%;
+    white-space:normal !important;
+  }
+}
+
+/* ---------- VERY SMALL PHONE ---------- */
+@media (max-width:399px){
+  .page-vault2-component .top{
+    align-items:flex-start;
+  }
+  .page-vault2-component .back{
+    padding:7px 9px !important;
+  }
+  .page-vault2-component .task-head,
+  .page-vault2-component .part-head,
+  .page-vault2-component .listen-part-head,
+  .page-vault2-component .mock-task-head{
+    grid-template-columns:40px minmax(0,1fr) auto !important;
+    gap:7px !important;
+    padding:9px !important;
+  }
+  .page-vault2-component .num,
+  .page-vault2-component .part-num,
+  .page-vault2-component .listen-part-no,
+  .page-vault2-component .mock-task-num{
+    width:40px !important;
+    height:40px !important;
+  }
+  .page-vault2-component .flow,
+  .page-vault2-component .progress{
+    grid-template-columns:1fr !important;
+  }
+  .page-v2-speaking .rec-actions{
+    grid-template-columns:1fr !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL QA SAFETY PASS
+   ========================================================= */
+html,body{max-width:100%;overflow-x:hidden}
+img,svg,video,canvas,iframe{max-width:100%}
+button,a,input,select,textarea{max-width:100%}
+button,a{-webkit-tap-highlight-color:transparent}
+input,select,textarea{min-width:0}
+pre,code{overflow-wrap:anywhere}
+table{max-width:100%}
+.nav,.bottom-nav{padding-bottom:max(6px,env(safe-area-inset-bottom))!important}
+.app{padding-bottom:max(118px,calc(104px + env(safe-area-inset-bottom)))!important}
+
+/* Prevent long labels / IDs from forcing horizontal scroll */
+.brand,
+.brandbar>div,
+.task-title,
+.part-title,
+.accordion-title,
+.mock-task-title,
+.listen-part-meta,
+.component-card,
+.paper-card,
+.profile-section,
+.feedback-item{
+  min-width:0;
+}
+.brand b,
+.brand small,
+.brandbar b,
+.brandbar small,
+.task-title b,
+.task-title span,
+.part-title b,
+.part-title span,
+.accordion-title b,
+.accordion-title span,
+.mock-task-title b,
+.mock-task-title span,
+.listen-part-meta b,
+.listen-part-meta small{
+  overflow-wrap:anywhere;
+}
+
+/* Bottom nav stays usable at all breakpoints */
+.nav a,.bottom-nav a{
+  min-width:0;
+  overflow:hidden;
+}
+.nav a span,.bottom-nav a span{
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Touch target floor */
+@media (pointer:coarse){
+  button,
+  .btn,
+  .back,
+  .nav a,
+  .bottom-nav a,
+  summary{
+    min-height:44px;
+  }
+}
+
+/* Print / desktop browser zoom safety */
+@media (min-width:1400px){
+  body{font-size:16px}
+}
