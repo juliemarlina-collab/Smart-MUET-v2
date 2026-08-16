@@ -47,6 +47,17 @@
 .progress-hero .kicker,
 .progress-hero h1,
 .progress-hero p{position:relative;z-index:2}
+.progress-hero .hero-banner{
+  display:block;
+  width:100%;
+  max-height:150px;
+  object-fit:cover;
+  border:var(--line);
+  border-radius:16px;
+  margin-bottom:12px;
+  position:relative;
+  z-index:2;
+}
 .progress-hero h1{
   font-size:clamp(36px,9vw,50px);
   line-height:.96;
@@ -440,10 +451,19 @@
 }
 
 @media(min-width:700px){
+  .progress-hero{padding:24px}
+  .progress-hero .hero-banner{max-height:190px}
+  .progress-hero p{font-size:14px}
   .component-grid{grid-template-columns:repeat(4,1fr)}
   .snapshot-grid{grid-template-columns:repeat(4,1fr)}
   .badge-grid{grid-template-columns:repeat(8,1fr)}
   .insight-grid{grid-template-columns:1fr 1fr}
+}
+@media(min-width:1024px){
+  .progress-hero{padding:30px}
+  .progress-hero h1{font-size:60px}
+  .progress-hero p{font-size:16px;max-width:640px}
+  .progress-hero .hero-banner{max-height:230px}
 }
 
 /* ===== CLEAN DEFAULT / EMPTY STATE ===== */
@@ -486,16 +506,19 @@
 <body>
 <main class="app">
 
-<div class="brandbar">
-  <img src="assets/heroes/small-muet-logo.svg" alt="">
-  <div>
-    <small>SMART MUET GUIDE · ANALYTICS</small>
-    <b>Progress</b>
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide">
+    <div>
+      <small>SMART MUET GUIDE · ANALYTICS</small>
+      <strong>Progress</strong>
+    </div>
   </div>
   <a class="back" href="muet-hub.html">Home</a>
-</div>
+</header>
 
 <section class="progress-hero">
+  <img class="hero-banner" src="assets/heroes/progress-hero.svg" alt="Track your MUET progress">
   <span class="kicker">03 · TRACK YOUR READINESS</span>
   <h1>See your progress.<span>Know what to improve.</span></h1>
   <p>Compare your Vault practice, Mock performance, component scores and earned badges from one dashboard.</p>

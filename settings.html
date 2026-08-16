@@ -42,6 +42,17 @@
 .profile-cover .kicker,
 .profile-cover h1,
 .profile-cover p{position:relative;z-index:2}
+.profile-cover .hero-banner{
+  display:block;
+  width:100%;
+  max-height:150px;
+  object-fit:cover;
+  border:var(--line);
+  border-radius:16px;
+  margin-bottom:12px;
+  position:relative;
+  z-index:2;
+}
 .profile-cover h1{
   margin-top:9px;
   font-size:clamp(36px,9vw,50px);
@@ -385,8 +396,17 @@
 }
 
 @media(min-width:700px){
+  .profile-cover{padding:24px}
+  .profile-cover .hero-banner{max-height:190px}
+  .profile-cover p{font-size:14px}
   .field-grid.two{grid-template-columns:1fr 1fr}
   .quick-links{grid-template-columns:repeat(4,1fr)}
+}
+@media(min-width:1024px){
+  .profile-cover{padding:30px}
+  .profile-cover h1{font-size:60px}
+  .profile-cover p{font-size:16px;max-width:640px}
+  .profile-cover .hero-banner{max-height:230px}
 }
 
 /* ===== PROFILE PHOTO + EDITABLE SPEAKING DATE ===== */
@@ -465,16 +485,19 @@
 <body>
 <main class="app">
 
-<div class="brandbar">
-  <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide">
-  <div>
-    <small>SMART MUET GUIDE · MY ACCOUNT</small>
-    <b>Profile & Settings</b>
+<header class="topbar">
+  <div class="brand">
+    <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide">
+    <div>
+      <small>SMART MUET GUIDE · MY ACCOUNT</small>
+      <strong>Profile & Settings</strong>
+    </div>
   </div>
   <a class="back" href="muet-hub.html">Home</a>
-</div>
+</header>
 
 <section class="profile-cover">
+  <img class="hero-banner" src="assets/heroes/profile-hero.svg" alt="Your Smart MUET profile">
   <span class="kicker">04 · MY PROFILE</span>
   <h1>My MUET goal.<span>My learning journey.</span></h1>
   <p>Keep your candidate details, target band and exam information in one place. Your scores and badges stay in Progress.</p>
