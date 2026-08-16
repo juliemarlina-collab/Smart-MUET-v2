@@ -8,8 +8,499 @@
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/phase1-clean.css">
   <link rel="stylesheet" href="css/responsive-v2.css">
+
+<style id="part8-responsive">
+/* =========================================================
+   PART 8 · PROGRESS + PROFILE/SETTINGS + FEEDBACK
+   ========================================================= */
+
+body[class*="page-part8-"] .app{
+  width:min(100%,1240px)!important;
+  max-width:100%!important;
+  margin-inline:auto!important;
+  padding:clamp(14px,2vw,26px) clamp(12px,2vw,28px) 122px!important;
+}
+
+/* Shared header */
+body[class*="page-part8-"] .brandbar,
+body[class*="page-part8-"] .top,
+body[class*="page-part8-"] .topbar{
+  min-height:62px;
+  gap:12px!important;
+  margin-bottom:clamp(12px,1.5vw,16px)!important;
+}
+body[class*="page-part8-"] .brandbar img,
+body[class*="page-part8-"] .brand img{
+  width:clamp(50px,5vw,64px)!important;
+  height:clamp(50px,5vw,64px)!important;
+  flex:0 0 auto;
+}
+body[class*="page-part8-"] .brandbar small,
+body[class*="page-part8-"] .brand small{
+  font-size:clamp(.62rem,.28vw + .58rem,.73rem)!important;
+}
+body[class*="page-part8-"] .brandbar b,
+body[class*="page-part8-"] .brand b{
+  font-size:clamp(1rem,.48vw + .9rem,1.18rem)!important;
+  line-height:1.2!important;
+}
+body[class*="page-part8-"] .back{
+  min-height:44px!important;
+  font-size:clamp(.72rem,.3vw + .66rem,.84rem)!important;
+}
+
+/* Shared hero */
+body[class*="page-part8-"] .progress-hero,
+body[class*="page-part8-"] .profile-cover,
+body[class*="page-part8-"] .hero{
+  padding:clamp(18px,3vw,30px)!important;
+  margin-bottom:clamp(13px,1.5vw,17px)!important;
+}
+body[class*="page-part8-"] .progress-hero h1,
+body[class*="page-part8-"] .profile-cover h1,
+body[class*="page-part8-"] .hero h1{
+  font-size:clamp(2.35rem,5.1vw,4rem)!important;
+  line-height:.96!important;
+}
+body[class*="page-part8-"] .progress-hero p,
+body[class*="page-part8-"] .profile-cover p,
+body[class*="page-part8-"] .hero p{
+  max-width:66ch!important;
+  font-size:clamp(.96rem,.62vw + .84rem,1.14rem)!important;
+  line-height:1.55!important;
+}
+
+/* ---------------- PROGRESS ---------------- */
+.page-part8-progress .snapshot{
+  padding:clamp(13px,1.8vw,20px)!important;
+}
+.page-part8-progress .snapshot-top{
+  gap:12px!important;
+  flex-wrap:wrap;
+}
+.page-part8-progress .total-score{
+  font-size:clamp(2rem,4vw,3rem)!important;
+}
+.page-part8-progress .band-pill{
+  min-width:96px!important;
+}
+.page-part8-progress .band-pill b{
+  font-size:clamp(1.25rem,1.6vw,1.7rem)!important;
+}
+.page-part8-progress .snapshot-grid{
+  gap:clamp(7px,1vw,10px)!important;
+}
+.page-part8-progress .snap-mini{
+  min-width:0;
+  padding:clamp(8px,1vw,11px)!important;
+}
+.page-part8-progress .snap-mini span{
+  font-size:clamp(.58rem,.22vw + .54rem,.68rem)!important;
+}
+.page-part8-progress .snap-mini b{
+  font-size:clamp(.9rem,.5vw + .82rem,1.04rem)!important;
+  overflow-wrap:anywhere;
+}
+.page-part8-progress .dashboard-title{
+  gap:8px!important;
+  align-items:flex-end!important;
+}
+.page-part8-progress .dashboard-title h2{
+  font-size:clamp(1.12rem,.9vw + 1rem,1.38rem)!important;
+}
+.page-part8-progress .dashboard-title span{
+  font-size:clamp(.58rem,.22vw + .54rem,.68rem)!important;
+}
+.page-part8-progress .component-grid{
+  gap:clamp(8px,1vw,11px)!important;
+}
+.page-part8-progress .component-card{
+  min-width:0;
+  min-height:132px!important;
+  padding:clamp(10px,1.3vw,14px)!important;
+}
+.page-part8-progress .component-card h3{
+  font-size:clamp(.88rem,.44vw + .8rem,1rem)!important;
+}
+.page-part8-progress .component-score{
+  font-size:clamp(1.55rem,2.1vw,2rem)!important;
+}
+.page-part8-progress .component-source{
+  font-size:clamp(.58rem,.22vw + .54rem,.68rem)!important;
+}
+.page-part8-progress .stage summary{
+  grid-template-columns:42px minmax(0,1fr) auto!important;
+  gap:9px!important;
+}
+.page-part8-progress .stage-head{
+  min-width:0;
+}
+.page-part8-progress .stage-head b{
+  font-size:clamp(.86rem,.42vw + .79rem,.98rem)!important;
+}
+.page-part8-progress .stage-head span{
+  font-size:clamp(.62rem,.25vw + .58rem,.72rem)!important;
+  line-height:1.3!important;
+}
+.page-part8-progress .stage-total{
+  font-size:clamp(1rem,.65vw + .88rem,1.18rem)!important;
+}
+.page-part8-progress .stage-scores{
+  gap:6px!important;
+}
+.page-part8-progress .stage-score{
+  min-width:0;
+}
+.page-part8-progress .trend-row{
+  grid-template-columns:70px minmax(0,1fr) 48px!important;
+  gap:8px!important;
+}
+.page-part8-progress .insight-grid{
+  gap:clamp(8px,1vw,11px)!important;
+}
+.page-part8-progress .insight{
+  min-width:0;
+  min-height:128px!important;
+  padding:clamp(10px,1.3vw,14px)!important;
+}
+.page-part8-progress .insight h3{
+  font-size:clamp(.98rem,.52vw + .89rem,1.14rem)!important;
+}
+.page-part8-progress .insight p{
+  font-size:clamp(.74rem,.34vw + .68rem,.86rem)!important;
+}
+.page-part8-progress .feedback-item{
+  grid-template-columns:38px minmax(0,1fr)!important;
+}
+.page-part8-progress .badge-grid{
+  gap:clamp(6px,.8vw,9px)!important;
+}
+.page-part8-progress .badge{
+  min-width:0;
+  min-height:108px!important;
+}
+.page-part8-progress .badge b{
+  font-size:clamp(.68rem,.3vw + .63rem,.8rem)!important;
+}
+.page-part8-progress .badge span{
+  font-size:clamp(.54rem,.2vw + .51rem,.63rem)!important;
+}
+.page-part8-progress .next-card{
+  padding:clamp(13px,1.8vw,20px)!important;
+}
+.page-part8-progress .next-card h2{
+  font-size:clamp(1.12rem,.9vw + 1rem,1.38rem)!important;
+}
+.page-part8-progress .next-card p{
+  font-size:clamp(.82rem,.4vw + .75rem,.95rem)!important;
+  line-height:1.45!important;
+}
+.page-part8-progress .action-row{
+  grid-template-columns:minmax(0,1fr) 52px!important;
+  gap:8px!important;
+}
+.page-part8-progress .refresh{
+  min-height:50px;
+}
+
+/* ---------------- PROFILE / SETTINGS ---------------- */
+.page-part8-settings .identity-card{
+  grid-template-columns:clamp(66px,7vw,82px) minmax(0,1fr)!important;
+  gap:clamp(10px,1.3vw,14px)!important;
+  padding:clamp(12px,1.6vw,18px)!important;
+}
+.page-part8-settings .identity-avatar{
+  width:clamp(66px,7vw,82px)!important;
+  height:clamp(66px,7vw,82px)!important;
+}
+.page-part8-settings .identity-copy{
+  min-width:0;
+}
+.page-part8-settings .identity-copy h2{
+  font-size:clamp(1.08rem,.75vw + .95rem,1.28rem)!important;
+  overflow-wrap:anywhere;
+}
+.page-part8-settings .identity-copy p{
+  font-size:clamp(.68rem,.3vw + .63rem,.8rem)!important;
+  line-height:1.35!important;
+}
+.page-part8-settings .photo-actions{
+  flex-wrap:wrap!important;
+}
+.page-part8-settings .photo-btn{
+  min-height:40px;
+  font-size:clamp(.62rem,.25vw + .58rem,.72rem)!important;
+}
+.page-part8-settings .profile-section{
+  padding:clamp(13px,1.8vw,20px)!important;
+}
+.page-part8-settings .profile-section-head{
+  gap:10px!important;
+}
+.page-part8-settings .section-icon{
+  width:clamp(38px,4vw,44px)!important;
+  height:clamp(38px,4vw,44px)!important;
+  flex-basis:clamp(38px,4vw,44px)!important;
+}
+.page-part8-settings .profile-section-head h2{
+  font-size:clamp(1.12rem,.9vw + 1rem,1.38rem)!important;
+}
+.page-part8-settings .profile-section-head p{
+  font-size:clamp(.66rem,.28vw + .61rem,.78rem)!important;
+}
+.page-part8-settings .field-grid{
+  gap:clamp(9px,1.2vw,13px)!important;
+}
+.page-part8-settings .field input,
+.page-part8-settings .field select{
+  min-height:48px!important;
+  font-size:max(16px,1rem)!important;
+}
+.page-part8-settings .field>span:first-child,
+.page-part8-settings .field label{
+  font-size:clamp(.68rem,.3vw + .63rem,.8rem)!important;
+}
+.page-part8-settings .help,
+.page-part8-settings .date-status{
+  font-size:clamp(.62rem,.25vw + .58rem,.72rem)!important;
+}
+.page-part8-settings .goal-grid{
+  gap:8px!important;
+}
+.page-part8-settings .goal-mini{
+  min-width:0;
+  padding:clamp(9px,1.2vw,12px)!important;
+}
+.page-part8-settings .goal-mini b{
+  font-size:clamp(1rem,.65vw + .88rem,1.18rem)!important;
+  overflow-wrap:anywhere;
+}
+.page-part8-settings .exam-preview{
+  padding:clamp(9px,1.2vw,13px)!important;
+}
+.page-part8-settings .exam-preview b{
+  font-size:clamp(.86rem,.42vw + .79rem,.98rem)!important;
+}
+.page-part8-settings .pref{
+  grid-template-columns:minmax(0,1fr) auto!important;
+  gap:10px!important;
+}
+.page-part8-settings .pref b{
+  font-size:clamp(.78rem,.38vw + .71rem,.9rem)!important;
+}
+.page-part8-settings .pref span{
+  font-size:clamp(.6rem,.24vw + .56rem,.7rem)!important;
+}
+.page-part8-settings .save-bar{
+  bottom:86px!important;
+}
+.page-part8-settings .save-btn{
+  min-height:52px!important;
+  font-size:clamp(.8rem,.4vw + .73rem,.93rem)!important;
+}
+.page-part8-settings .quick-links{
+  gap:clamp(8px,1vw,11px)!important;
+}
+.page-part8-settings .quick-link{
+  min-width:0;
+  min-height:94px!important;
+}
+.page-part8-settings .quick-link b{
+  font-size:clamp(.74rem,.34vw + .68rem,.86rem)!important;
+}
+.page-part8-settings .quick-link small{
+  font-size:clamp(.58rem,.22vw + .54rem,.68rem)!important;
+}
+.page-part8-settings .data-btn{
+  min-height:48px!important;
+  font-size:clamp(.72rem,.32vw + .66rem,.84rem)!important;
+}
+
+/* ---------------- FEEDBACK ---------------- */
+.page-part8-feedback .card,
+.page-part8-feedback .feedback-card,
+.page-part8-feedback .form-card{
+  padding:clamp(13px,1.8vw,20px)!important;
+}
+.page-part8-feedback h2{
+  font-size:clamp(1.12rem,.9vw + 1rem,1.38rem)!important;
+}
+.page-part8-feedback .field,
+.page-part8-feedback .form-group{
+  margin-bottom:clamp(10px,1.2vw,14px)!important;
+}
+.page-part8-feedback label,
+.page-part8-feedback .field-label{
+  font-size:clamp(.72rem,.32vw + .66rem,.84rem)!important;
+}
+.page-part8-feedback input,
+.page-part8-feedback select,
+.page-part8-feedback textarea{
+  width:100%!important;
+  min-width:0;
+  font-size:max(16px,1rem)!important;
+}
+.page-part8-feedback input,
+.page-part8-feedback select{
+  min-height:48px!important;
+}
+.page-part8-feedback textarea{
+  min-height:clamp(130px,20vh,220px)!important;
+  line-height:1.55!important;
+}
+.page-part8-feedback .rating,
+.page-part8-feedback .rating-row,
+.page-part8-feedback .scale-row{
+  gap:clamp(6px,.8vw,9px)!important;
+  flex-wrap:wrap!important;
+}
+.page-part8-feedback .rating button,
+.page-part8-feedback .rating-option,
+.page-part8-feedback .scale-option{
+  min-width:44px;
+  min-height:44px;
+}
+.page-part8-feedback .btn,
+.page-part8-feedback button[type="submit"]{
+  min-height:52px!important;
+  font-size:clamp(.8rem,.4vw + .73rem,.93rem)!important;
+}
+.page-part8-feedback .success,
+.page-part8-feedback .result,
+.page-part8-feedback .note{
+  font-size:clamp(.76rem,.35vw + .69rem,.88rem)!important;
+  line-height:1.45!important;
+}
+
+/* TABLET */
+@media (min-width:600px){
+  body[class*="page-part8-"] .app{
+    max-width:900px!important;
+    padding:22px 24px 122px!important;
+  }
+  .page-part8-progress .component-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .page-part8-progress .snapshot-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  .page-part8-progress .badge-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  .page-part8-settings .field-grid.two{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .page-part8-settings .quick-links{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* LAPTOP */
+@media (min-width:900px){
+  body[class*="page-part8-"] .app{
+    max-width:1120px!important;
+    padding:28px 30px 124px!important;
+  }
+
+  .page-part8-progress .component-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  .page-part8-progress .badge-grid{
+    grid-template-columns:repeat(8,minmax(0,1fr))!important;
+  }
+  .page-part8-progress .insight-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+
+  .page-part8-settings .quick-links{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+  .page-part8-settings .profile-section{
+    max-width:1040px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+  .page-part8-settings .identity-card{
+    max-width:1040px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .page-part8-feedback .card,
+  .page-part8-feedback .feedback-card,
+  .page-part8-feedback .form-card{
+    max-width:900px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+}
+
+/* WIDE DESKTOP */
+@media (min-width:1180px){
+  body[class*="page-part8-"] .app{
+    max-width:1240px!important;
+  }
+}
+
+/* MOBILE */
+@media (max-width:599px){
+  .page-part8-progress .component-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .page-part8-progress .snapshot-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .page-part8-progress .badge-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .page-part8-settings .quick-links{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* VERY SMALL PHONE */
+@media (max-width:399px){
+  body[class*="page-part8-"] .brandbar,
+  body[class*="page-part8-"] .top,
+  body[class*="page-part8-"] .topbar{
+    align-items:flex-start;
+  }
+
+  .page-part8-progress .component-grid,
+  .page-part8-progress .snapshot-grid,
+  .page-part8-progress .insight-grid{
+    grid-template-columns:1fr!important;
+  }
+  .page-part8-progress .stage-scores{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .page-part8-progress .trend-row{
+    grid-template-columns:58px minmax(0,1fr) 40px!important;
+  }
+
+  .page-part8-settings .identity-card{
+    grid-template-columns:64px minmax(0,1fr)!important;
+  }
+  .page-part8-settings .identity-avatar{
+    width:64px!important;
+    height:64px!important;
+  }
+  .page-part8-settings .goal-grid,
+  .page-part8-settings .quick-links{
+    grid-template-columns:1fr!important;
+  }
+
+  .page-part8-feedback .rating,
+  .page-part8-feedback .rating-row,
+  .page-part8-feedback .scale-row{
+    display:grid!important;
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  }
+}
+</style>
+
 </head>
-<body><main class="app">
+<body class="page-part8-feedback"><main class="app">
 <header class="topbar"><div class="brand"><img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide"><div><small>SMART MUET GUIDE · PHASE 1</small><strong>Feedback</strong></div></div><a class="back" href="muet-hub.html">Home</a></header>
 
 <section class="card pink"><span class="kicker">PILOT FEEDBACK</span><h1>Feedback</h1><p class="lead">A short reflection after using Smart MUET Guide helps us improve the exam-ready experience.</p></section>
