@@ -457,9 +457,293 @@ a{
 }
 </style>
   <link rel="stylesheet" href="css/responsive-v2.css">
+
+<style id="mock1-landing-final-responsive">
+/* =========================================================
+   MOCK PRACTICE 1 LANDING · FINAL RESPONSIVE PASS
+   Matches Part 7 component pages
+   ========================================================= */
+
+.page-mock1-landing-final .app{
+  width:min(100%,1240px)!important;
+  max-width:100%!important;
+  margin-inline:auto!important;
+  padding:clamp(14px,2vw,26px) clamp(12px,2vw,28px) 122px!important;
+}
+
+/* Header */
+.page-mock1-landing-final .top,
+.page-mock1-landing-final .topbar,
+.page-mock1-landing-final .brandbar{
+  min-height:62px;
+  gap:12px!important;
+  margin-bottom:clamp(12px,1.5vw,16px)!important;
+}
+.page-mock1-landing-final .brand,
+.page-mock1-landing-final .brandbar>div{min-width:0}
+.page-mock1-landing-final .brand img,
+.page-mock1-landing-final .brandbar img{
+  width:clamp(50px,5vw,64px)!important;
+  height:clamp(50px,5vw,64px)!important;
+  flex:0 0 auto;
+}
+.page-mock1-landing-final .brand small,
+.page-mock1-landing-final .brandbar small{
+  font-size:clamp(.62rem,.28vw + .58rem,.73rem)!important;
+}
+.page-mock1-landing-final .brand b,
+.page-mock1-landing-final .brandbar b{
+  font-size:clamp(1rem,.48vw + .9rem,1.18rem)!important;
+  line-height:1.2!important;
+}
+.page-mock1-landing-final .back{
+  min-height:44px!important;
+  flex:0 0 auto;
+  font-size:clamp(.72rem,.3vw + .66rem,.84rem)!important;
+}
+
+/* Hero */
+.page-mock1-landing-final .hero,
+.page-mock1-landing-final .mock-hero{
+  padding:clamp(18px,3vw,30px)!important;
+  margin-bottom:clamp(13px,1.5vw,17px)!important;
+}
+.page-mock1-landing-final .hero .tag,
+.page-mock1-landing-final .mock-hero .tag{
+  font-size:clamp(.64rem,.28vw + .6rem,.76rem)!important;
+}
+.page-mock1-landing-final .hero h1,
+.page-mock1-landing-final .mock-hero h1{
+  font-size:clamp(2.35rem,5.1vw,4rem)!important;
+  line-height:.96!important;
+}
+.page-mock1-landing-final .hero p,
+.page-mock1-landing-final .mock-hero p{
+  max-width:66ch!important;
+  font-size:clamp(.96rem,.62vw + .84rem,1.14rem)!important;
+  line-height:1.55!important;
+}
+.page-mock1-landing-final .hero img,
+.page-mock1-landing-final .mock-hero img{
+  max-width:100%;
+  height:auto;
+  object-fit:contain;
+}
+
+/* Mock instructions / readiness */
+.page-mock1-landing-final .howto,
+.page-mock1-landing-final .how-to,
+.page-mock1-landing-final .instructions,
+.page-mock1-landing-final .mock-note,
+.page-mock1-landing-final .ready-card,
+.page-mock1-landing-final .exam-note{
+  padding:clamp(12px,1.8vw,18px)!important;
+}
+.page-mock1-landing-final .howto h2,
+.page-mock1-landing-final .how-to h2,
+.page-mock1-landing-final .instructions h2,
+.page-mock1-landing-final .ready-card h2{
+  font-size:clamp(1.08rem,1vw,1.35rem)!important;
+}
+.page-mock1-landing-final .howto p,
+.page-mock1-landing-final .how-to p,
+.page-mock1-landing-final .instructions p,
+.page-mock1-landing-final .mock-note p,
+.page-mock1-landing-final .ready-card p,
+.page-mock1-landing-final .exam-note p{
+  max-width:72ch;
+  font-size:clamp(.84rem,.42vw + .77rem,.96rem)!important;
+  line-height:1.45!important;
+}
+
+/* Component/paper cards */
+.page-mock1-landing-final .component-grid,
+.page-mock1-landing-final .paper-grid,
+.page-mock1-landing-final .practice-grid,
+.page-mock1-landing-final .mock-grid{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:clamp(10px,1.3vw,15px)!important;
+  align-items:stretch!important;
+}
+
+.page-mock1-landing-final .component-card,
+.page-mock1-landing-final .paper-card,
+.page-mock1-landing-final .practice-card,
+.page-mock1-landing-final .mock-card{
+  min-width:0;
+  height:100%;
+  padding:clamp(13px,1.8vw,20px)!important;
+}
+
+.page-mock1-landing-final .component-card h2,
+.page-mock1-landing-final .component-card h3,
+.page-mock1-landing-final .paper-card h2,
+.page-mock1-landing-final .paper-card h3,
+.page-mock1-landing-final .mock-card h2,
+.page-mock1-landing-final .mock-card h3{
+  font-size:clamp(1.12rem,1.1vw,1.42rem)!important;
+  line-height:1.2!important;
+}
+.page-mock1-landing-final .component-card p,
+.page-mock1-landing-final .paper-card p,
+.page-mock1-landing-final .practice-card p,
+.page-mock1-landing-final .mock-card p{
+  font-size:clamp(.82rem,.42vw + .75rem,.96rem)!important;
+  line-height:1.45!important;
+}
+.page-mock1-landing-final .component-card .btn,
+.page-mock1-landing-final .paper-card .btn,
+.page-mock1-landing-final .practice-card .btn,
+.page-mock1-landing-final .mock-card .btn,
+.page-mock1-landing-final .component-card a[class*="btn"],
+.page-mock1-landing-final .paper-card a[class*="btn"],
+.page-mock1-landing-final .mock-card a[class*="btn"]{
+  min-height:50px!important;
+  font-size:clamp(.8rem,.38vw + .73rem,.92rem)!important;
+}
+
+/* Status / marks / badges */
+.page-mock1-landing-final .status,
+.page-mock1-landing-final .pill,
+.page-mock1-landing-final .chip,
+.page-mock1-landing-final .badge,
+.page-mock1-landing-final .score-pill{
+  font-size:clamp(.66rem,.28vw + .61rem,.78rem)!important;
+  line-height:1.2!important;
+  white-space:normal!important;
+}
+.page-mock1-landing-final .meta-row,
+.page-mock1-landing-final .progress-row,
+.page-mock1-landing-final .stage-row{
+  gap:clamp(5px,.8vw,9px)!important;
+  flex-wrap:wrap!important;
+}
+.page-mock1-landing-final .meta-row>*,
+.page-mock1-landing-final .progress-row>*,
+.page-mock1-landing-final .stage-row>*{
+  min-width:0;
+}
+
+/* If there is a total / readiness panel */
+.page-mock1-landing-final .summary,
+.page-mock1-landing-final .overview,
+.page-mock1-landing-final .mock-summary{
+  padding:clamp(13px,1.8vw,20px)!important;
+}
+.page-mock1-landing-final .summary h2,
+.page-mock1-landing-final .overview h2,
+.page-mock1-landing-final .mock-summary h2{
+  font-size:clamp(1.16rem,1vw,1.42rem)!important;
+}
+.page-mock1-landing-final .summary p,
+.page-mock1-landing-final .overview p,
+.page-mock1-landing-final .mock-summary p{
+  max-width:72ch;
+  font-size:clamp(.84rem,.42vw + .77rem,.97rem)!important;
+  line-height:1.48!important;
+}
+
+/* Tablet */
+@media (min-width:600px){
+  .page-mock1-landing-final .app{
+    max-width:900px!important;
+    padding:22px 24px 122px!important;
+  }
+  .page-mock1-landing-final .component-grid,
+  .page-mock1-landing-final .paper-grid,
+  .page-mock1-landing-final .practice-grid,
+  .page-mock1-landing-final .mock-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+
+/* Laptop */
+@media (min-width:900px){
+  .page-mock1-landing-final .app{
+    max-width:1120px!important;
+    padding:28px 30px 124px!important;
+  }
+
+  .page-mock1-landing-final .component-grid,
+  .page-mock1-landing-final .paper-grid,
+  .page-mock1-landing-final .practice-grid,
+  .page-mock1-landing-final .mock-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+
+  .page-mock1-landing-final .component-card,
+  .page-mock1-landing-final .paper-card,
+  .page-mock1-landing-final .practice-card,
+  .page-mock1-landing-final .mock-card{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .page-mock1-landing-final .component-card .btn,
+  .page-mock1-landing-final .paper-card .btn,
+  .page-mock1-landing-final .practice-card .btn,
+  .page-mock1-landing-final .mock-card .btn,
+  .page-mock1-landing-final .component-card a[class*="btn"],
+  .page-mock1-landing-final .paper-card a[class*="btn"],
+  .page-mock1-landing-final .mock-card a[class*="btn"]{
+    margin-top:auto;
+  }
+
+  .page-mock1-landing-final .hero:has(img),
+  .page-mock1-landing-final .mock-hero:has(img){
+    display:grid!important;
+    grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr)!important;
+    align-items:center!important;
+    gap:18px!important;
+  }
+}
+
+/* Wide desktop */
+@media (min-width:1180px){
+  .page-mock1-landing-final .app{
+    max-width:1240px!important;
+  }
+}
+
+/* Mobile */
+@media (max-width:599px){
+  .page-mock1-landing-final .component-grid,
+  .page-mock1-landing-final .paper-grid,
+  .page-mock1-landing-final .practice-grid,
+  .page-mock1-landing-final .mock-grid{
+    grid-template-columns:1fr!important;
+  }
+}
+
+/* Very small phone */
+@media (max-width:399px){
+  .page-mock1-landing-final .top,
+  .page-mock1-landing-final .topbar,
+  .page-mock1-landing-final .brandbar{
+    align-items:flex-start;
+  }
+  .page-mock1-landing-final .back{
+    padding:7px 9px!important;
+  }
+  .page-mock1-landing-final .component-card,
+  .page-mock1-landing-final .paper-card,
+  .page-mock1-landing-final .practice-card,
+  .page-mock1-landing-final .mock-card{
+    padding:11px!important;
+  }
+  .page-mock1-landing-final .meta-row,
+  .page-mock1-landing-final .progress-row,
+  .page-mock1-landing-final .stage-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
 </head>
 
-<body class="page-vault-landing page-mock1-landing">
+<body class="page-mock1-landing-final">
 
 <main class="app">
 
