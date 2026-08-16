@@ -1,0 +1,292 @@
+/* =========================================================
+   SMART MUET GUIDE V2 · RESPONSIVE FOUNDATION
+   Loaded LAST on every page to standardise scale and layout.
+   Part 1: global responsive system only.
+   ========================================================= */
+
+:root{
+  --muet-page-mobile: 100%;
+  --muet-page-tablet: 820px;
+  --muet-page-laptop: 1120px;
+  --muet-page-desktop: 1280px;
+  --muet-pad-mobile: clamp(12px, 3.5vw, 18px);
+  --muet-pad-tablet: 22px;
+  --muet-pad-desktop: 30px;
+  --muet-content-gap: clamp(10px, 1.6vw, 18px);
+  --muet-reading-measure: 72ch;
+}
+
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+  scroll-padding-bottom:110px;
+}
+
+body{
+  min-width:320px;
+  font-size:clamp(15px, .25vw + 14px, 17px);
+  line-height:1.5;
+}
+
+img,svg,video,canvas,audio{
+  max-width:100%;
+}
+
+img,svg,video,canvas{height:auto}
+
+audio{width:100%}
+
+button,input,select,textarea{
+  font-size:max(16px, 1em); /* prevents mobile auto-zoom */
+}
+
+button,a,input,select,textarea,summary{
+  -webkit-tap-highlight-color:transparent;
+}
+
+button,a,summary,[role="button"]{
+  touch-action:manipulation;
+}
+
+/* ---------- One page-width system ---------- */
+.app{
+  width:min(100%, var(--muet-page-desktop)) !important;
+  max-width:var(--muet-page-mobile) !important;
+  margin-inline:auto !important;
+  padding-inline:var(--muet-pad-mobile) !important;
+  padding-top:clamp(12px, 2vw, 24px) !important;
+  padding-bottom:max(116px, calc(104px + env(safe-area-inset-bottom))) !important;
+}
+
+/* ---------- Type scale ---------- */
+h1{
+  font-size:clamp(2rem, 5.7vw, 3.55rem) !important;
+  line-height:.98 !important;
+  letter-spacing:-.045em !important;
+}
+
+h2{
+  font-size:clamp(1.22rem, 2.1vw, 1.65rem) !important;
+  line-height:1.12 !important;
+}
+
+h3{
+  font-size:clamp(1rem, 1.4vw, 1.25rem) !important;
+  line-height:1.18 !important;
+}
+
+p,.lead{
+  font-size:clamp(.92rem, .45vw + .78rem, 1.04rem) !important;
+}
+
+.kicker,.tag,.eyebrow{
+  font-size:clamp(.62rem, .25vw + .55rem, .74rem) !important;
+  line-height:1.15 !important;
+}
+
+small,.meta,.help{
+  line-height:1.35;
+}
+
+/* ---------- Common controls ---------- */
+.btn,
+.back,
+button[class*="btn"],
+button[class*="submit"],
+a[class*="btn"]{
+  min-height:46px;
+}
+
+textarea{
+  line-height:1.58;
+  resize:vertical;
+}
+
+input,select,textarea{
+  max-width:100%;
+}
+
+/* Long examination text should not become an unreadable full-screen line. */
+.passage,
+.reading-text,
+.email-body,
+.source-paper,
+.stimulus,
+.question-text,
+.prompt p,
+.task-body>p{
+  overflow-wrap:anywhere;
+}
+
+/* ---------- Cards / spacing ---------- */
+.card,
+.tile,
+.task,
+.mock-task,
+.listen-part,
+.accordion-task,
+.profile-section,
+.feedback-card,
+.trend-card,
+.stage,
+.mock-finish{
+  scroll-margin-top:18px;
+}
+
+/* ---------- Bottom navigation ---------- */
+.nav{
+  width:calc(100% - 20px) !important;
+  max-width:calc(var(--muet-page-mobile) - 20px) !important;
+  bottom:max(10px, env(safe-area-inset-bottom)) !important;
+}
+
+.nav a{
+  min-height:56px !important;
+  font-size:clamp(.58rem, .22vw + .54rem, .72rem) !important;
+}
+
+.nav img{
+  width:clamp(24px, 2.2vw, 30px) !important;
+  height:clamp(24px, 2.2vw, 30px) !important;
+}
+
+/* =========================================================
+   SMALL MOBILE · 320–399
+   ========================================================= */
+@media (max-width:399px){
+  .app{padding-inline:10px !important}
+
+  h1{font-size:clamp(1.82rem, 9vw, 2.15rem) !important}
+
+  .brand img,.brandbar img{
+    width:46px !important;
+    height:46px !important;
+  }
+
+  .nav{
+    width:calc(100% - 12px) !important;
+    padding:4px !important;
+  }
+
+  .nav a{
+    min-height:52px !important;
+    gap:1px !important;
+    padding-inline:1px !important;
+  }
+
+  .nav img{width:23px !important;height:23px !important}
+
+  .skill-row,.stage-scores,.topic-grid{
+    gap:4px !important;
+  }
+}
+
+/* =========================================================
+   LARGE MOBILE · 400–599
+   ========================================================= */
+@media (min-width:400px) and (max-width:599px){
+  .app{max-width:560px !important}
+}
+
+/* =========================================================
+   TABLET · 600–899
+   ========================================================= */
+@media (min-width:600px){
+  .app{
+    max-width:var(--muet-page-tablet) !important;
+    padding-inline:var(--muet-pad-tablet) !important;
+    padding-top:22px !important;
+    padding-bottom:124px !important;
+  }
+
+  .nav{
+    max-width:calc(var(--muet-page-tablet) - 28px) !important;
+  }
+
+  .brand img,.brandbar img{
+    width:60px !important;
+    height:60px !important;
+  }
+
+  .card,.tile,.profile-section,.mock-finish{
+    padding:clamp(15px,2vw,20px);
+  }
+
+  .quick-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+}
+
+/* =========================================================
+   LAPTOP · 900–1279
+   ========================================================= */
+@media (min-width:900px){
+  .app{
+    max-width:var(--muet-page-laptop) !important;
+    padding-inline:28px !important;
+    padding-top:26px !important;
+    padding-bottom:126px !important;
+  }
+
+  .nav{
+    max-width:calc(var(--muet-page-laptop) - 40px) !important;
+  }
+
+  /* Forms and long text are easier to read if they do not span 1100px. */
+  textarea{
+    font-size:1rem !important;
+  }
+
+  .field-grid.two{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+
+/* =========================================================
+   DESKTOP · 1280+
+   ========================================================= */
+@media (min-width:1280px){
+  .app{
+    max-width:var(--muet-page-desktop) !important;
+    padding-inline:var(--muet-pad-desktop) !important;
+    padding-top:30px !important;
+  }
+
+  .nav{
+    max-width:calc(var(--muet-page-desktop) - 48px) !important;
+  }
+}
+
+/* =========================================================
+   LANDSCAPE PHONE / SHORT VIEWPORT
+   ========================================================= */
+@media (orientation:landscape) and (max-height:650px){
+  .nav{
+    bottom:5px !important;
+  }
+
+  .nav a{
+    min-height:46px !important;
+  }
+
+  .nav img{
+    width:21px !important;
+    height:21px !important;
+  }
+
+  .app{
+    padding-bottom:92px !important;
+  }
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    scroll-behavior:auto !important;
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+  }
+}
