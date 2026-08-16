@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FF4FA3">
+<title>Speaking · Vault 1 · Smart MUET Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111;--white:#fff;--soft:#f4f7f8;--muted:#4f535b;--violet:#FF4FA3;--pink:#FF4FA3;--gold:#FFC400;--cyan:#18D9FF;--lime:#19EF14;--red:#ff2525;--line:3px solid var(--ink);--shadow:5px 5px 0 var(--ink);--fh:"Sora",sans-serif;--fb:"DM Sans",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--fb);background:var(--violet);color:var(--ink);overflow-x:hidden}a{color:inherit;text-decoration:none}button,textarea,select,input{font:inherit}
+.app{width:100%;max-width:590px;min-height:100dvh;margin:auto;background:var(--soft);padding:15px 14px 116px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.brand{display:flex;align-items:center;gap:9px}.brand img{width:54px;height:54px}.brand small{display:block;font-size:9px;font-weight:1000;color:var(--muted);letter-spacing:.08em}.brand b{display:block;margin-top:3px;font-family:var(--fh);font-size:17px}.back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:999px;background:#fff;box-shadow:2px 2px 0 var(--ink);padding:8px 11px;font-size:11px;font-weight:1000}
+.hero{position:relative;overflow:hidden;background:#fff;border:var(--line);border-radius:24px;box-shadow:var(--shadow);padding:20px 18px;margin-bottom:14px}.hero:after{z-index:-1;content:"";position:absolute;width:100px;height:100px;right:-28px;top:-30px;border:var(--line);border-radius:50%;background:var(--violet)}.tag{position:relative;z-index:2;display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 9px;font-size:9px;font-weight:1000;letter-spacing:.08em}.hero h1{position:relative;z-index:2;margin-top:10px;font-family:var(--fh);font-size:clamp(35px,9vw,50px);line-height:.96;letter-spacing:-.05em}.hero h1 span{display:block;color:var(--violet)}.hero p{position:relative;z-index:2;margin-top:10px;color:#3e434a;font-size:15px;line-height:1.48;font-weight:750}
+.exam{position:sticky;top:7px;z-index:50;background:var(--ink);color:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:12px;margin-bottom:14px}.exam-row{display:flex;justify-content:space-between;align-items:center;gap:10px}.exam h2{font-family:var(--fh);font-size:16px}.exam p{margin-top:3px;color:#ddd;font-size:9px;font-weight:750}.timer{font-family:var(--fh);font-size:28px;font-weight:900}.start{width:100%;min-height:44px;margin-top:8px;border:2px solid #fff;border-radius:10px;background:var(--gold);font-size:10px;font-weight:1000;cursor:pointer}
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:13px}.flow div{border:2px solid var(--ink);border-radius:9px;background:#fff;padding:7px 4px;text-align:center;font-size:8px;font-weight:1000}.flow div.on{background:var(--lime)}
+.task{overflow:hidden;background:#fff;border:var(--line);border-radius:19px;box-shadow:var(--shadow);margin-bottom:12px}.task-head{width:100%;min-height:76px;border:0;background:#f3e9ff;padding:11px;display:grid;grid-template-columns:46px 1fr auto;gap:9px;align-items:center;text-align:left;cursor:pointer}.num{width:44px;height:44px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:11px;background:#fff;font-family:var(--fh);font-size:17px;font-weight:800}.title b{display:block;font-family:var(--fh);font-size:14px}.title span{display:block;margin-top:3px;color:var(--muted);font-size:10px;font-weight:750}.plus{font-size:24px;font-weight:1000}.task.open .plus{transform:rotate(45deg)}.task-body{display:none;border-top:2px solid var(--ink);padding:11px}.task.open .task-body{display:block}
+select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;background:#fff;padding:10px;font-size:13px}select{min-height:46px;font-weight:800}.prompt{border:2px solid var(--ink);border-radius:12px;background:#fff7c9;padding:10px;margin-top:9px;font-size:12px;line-height:1.5;font-weight:750}
+.help{border:2px solid var(--ink);border-radius:11px;background:#fff0f8;padding:8px;margin-top:9px}.help summary{font-family:var(--fh);font-size:10px;font-weight:800;cursor:pointer}.help p,.phrase{margin-top:6px;font-size:11px;line-height:1.45;font-weight:700}
+.notes{margin-top:9px}.notes small{display:block;margin-bottom:5px;color:var(--muted);font-size:9px;font-weight:900}
+.phase-timer{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:9px;border:2px solid var(--ink);border-radius:11px;background:#fff;padding:8px}.phase-timer b{font-family:var(--fh);font-size:20px}.phase-timer button{border:2px solid var(--ink);border-radius:8px;background:var(--cyan);padding:7px 9px;font-size:9px;font-weight:1000;cursor:pointer}
+.rec{margin-top:10px;border:2px solid var(--ink);border-radius:14px;background:#eafdff;padding:10px}.rec-head{display:flex;justify-content:space-between;align-items:center;gap:8px}.rec h3{font-family:var(--fh);font-size:14px}.rec-time{font-family:var(--fh);font-size:21px;font-weight:900}.rec-actions{display:grid;grid-template-columns:1fr auto;gap:7px;margin-top:8px}.smallbtn,.submit,.retry{min-height:44px;border:var(--line);border-radius:10px;box-shadow:3px 3px 0 var(--ink);font-size:10px;font-weight:1000;cursor:pointer}.smallbtn{background:var(--gold)}.smallbtn.clear{background:#fff}.rec audio{display:none;width:100%;margin-top:9px}.status{font-size:9px;font-weight:800;color:var(--muted);margin-top:7px}.evidence{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:8px}.metric{border:2px solid var(--ink);border-radius:9px;background:#fff;padding:7px;text-align:center}.metric b{display:block;font-family:var(--fh);font-size:16px}.metric small{font-size:8px;font-weight:900;color:var(--muted)}
+.transcript{margin-top:9px}.transcript label{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:10px;font-weight:1000;margin-bottom:5px}.transcript textarea{min-height:150px;line-height:1.5}.submit{width:100%;margin-top:10px;background:var(--violet);color:#fff}.retry{width:100%;margin-top:8px;background:#fff}
+.feedback{display:none;margin-top:10px}.feedback.show{display:block}.criteria{display:grid;gap:7px}.crit{border:2px solid var(--ink);border-radius:11px;background:#fff;padding:9px}.crit-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.crit b{font-family:var(--fh);font-size:11px}.score{font-family:var(--fh);font-size:22px;font-weight:900}.crit p{margin-top:4px;font-size:10px;line-height:1.4;font-weight:750;color:var(--muted)}.coach{margin-top:8px;border:2px solid var(--ink);border-radius:11px;background:#fff7cc;padding:9px;font-size:11px;line-height:1.45;font-weight:800}.save-state{margin-top:8px;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:8px;font-size:10px;font-weight:850}
+.finish{background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:13px;margin-top:14px}.finish h2{font-family:var(--fh);font-size:19px}.finish p{margin-top:5px;color:var(--muted);font-size:11px;line-height:1.4;font-weight:700}
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:calc(100% - 20px);max-width:570px;z-index:70;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border:var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:6px}.nav a{min-height:58px;display:grid;place-items:center;align-content:center;gap:3px;border-radius:10px;font-size:9px;font-weight:1000}.nav a.active{background:var(--gold);border:2px solid var(--ink)}.nav img{width:26px;height:26px}
+@media(min-width:760px){.app{max-width:900px;padding:24px 24px 120px}.nav{max-width:860px}.evidence{grid-template-columns:repeat(4,1fr)}}
+</style>  <link rel="stylesheet" href="css/responsive-v2.css">
+
+<style id="vault1-speaking-current-style">
+.guided-note{background:#e7fff5;border:var(--line);border-radius:14px;box-shadow:4px 4px 0 var(--ink);padding:11px;margin-bottom:13px;font-size:11px;line-height:1.45;font-weight:850}
+.prep-guide,.interaction-guide{margin-top:10px;border:2px solid var(--ink);border-radius:14px;background:#fff7cc;padding:10px}
+.prep-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px}.prep-head b{font-family:var(--fh);font-size:11px}.prep-head span{font-size:9px;color:var(--muted);font-weight:850}
+.prep-guide label{display:grid;grid-template-columns:34px 72px minmax(0,1fr);gap:7px;align-items:center;margin-top:7px}.prep-guide label strong{width:32px;height:32px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:9px;background:var(--pink);font-family:var(--fh)}.prep-guide label:nth-of-type(2) strong{background:var(--gold)}.prep-guide label:nth-of-type(3) strong{background:var(--cyan)}.prep-guide label:nth-of-type(4) strong{background:var(--lime)}.prep-guide label span{font-size:10px;font-weight:900}.prep-guide textarea{min-height:58px}
+.phrase-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}.phrase-grid div{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:8px}.phrase-grid b{display:block;font-size:10px}.phrase-grid span{display:block;margin-top:3px;font-size:10px;line-height:1.4;font-weight:750}
+@media(max-width:599px){.prep-guide label{grid-template-columns:32px minmax(0,1fr)}.prep-guide label span{grid-column:2}.prep-guide label textarea{grid-column:1/-1}.phrase-grid{grid-template-columns:1fr}}
+</style>
+<link rel="stylesheet" href="css/responsive-v2.css">
+
+<style id="vault1-speaking-flow-fix">
+.flow{
+  margin:14px 0 18px !important;
+}
+.flow div{
+  min-height:48px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  padding:8px 5px !important;
+  font-size:clamp(.68rem,2.25vw,.82rem) !important;
+  line-height:1.15;
+}
+.task{
+  margin-top:0 !important;
+}
+@media(max-width:399px){
+  .flow{gap:5px !important;}
+  .flow div{
+    min-height:44px;
+    padding:7px 3px !important;
+    font-size:.64rem !important;
+  }
+}
+</style>
+
+</head>
+<body class="page-vault1-component page-v1-speaking">
+<main class="app">
+<header class="top"><div class="brand"><img src="assets/heroes/small-muet-logo.svg" alt=""><div><small>VAULT 1 · 800/2 · SPEAKING</small><b>Guided Speaking Practice</b></div></div><a class="back" href="vault1.html">← Vault 1</a></header>
+<section class="hero"><span class="tag">VAULT 01 · GUIDED PRACTICE</span><h1>Plan it.<span>Say it.</span></h1><p>Use PREP to organise Task A and interaction phrases to support Task B. Record your response, review the live transcript, then submit for rubric-based practice feedback.</p></section>
+
+<section class="guided-note"><b>GUIDED MODE:</b> Complete Task A and Task B at your own pace. Use the preparation support before recording. Feedback appears only after you submit each task.</section>
+<div class="flow"><div id="f1" class="on">1 · CHOOSE</div><div id="f2">2 · PREP</div><div id="f3">3 · RECORD</div><div id="f4">4 · REVIEW</div></div>
+
+<div id="practice" style="pointer-events:auto;opacity:1">
+<article class="task open" id="taskA">
+<button class="task-head"><div class="num">A</div><div class="title"><b>Task A · Individual Presentation</b><span>Job Choice · Candidate A–D</span></div><div class="plus">+</div></button>
+<div class="task-body">
+<select id="topicA">
+<option value="a1">Candidate A — Location</option>
+<option value="a2">Candidate B — Salary</option>
+<option value="a3">Candidate C — Working Hours</option>
+<option value="a4">Candidate D — Facilities</option>
+</select>
+<div class="prompt" id="promptA"></div>
+<div class="prep-guide">
+  <div class="prep-head"><b>PREP PLANNER</b><span>Use keywords, not a full script.</span></div>
+  <label><strong>P</strong><span>Point</span><textarea id="prepAP" rows="2" placeholder="My clear stand..."></textarea></label>
+  <label><strong>R</strong><span>Reason</span><textarea id="prepAR" rows="2" placeholder="Why is this important?"></textarea></label>
+  <label><strong>E</strong><span>Example</span><textarea id="prepAE" rows="2" placeholder="Specific example / Malaysian context..."></textarea></label>
+  <label><strong>P</strong><span>Point again</span><textarea id="prepAC" rows="2" placeholder="How will I conclude?"></textarea></label>
+</div>
+<div class="phase-timer"><span><b id="prepATimer">02:00</b><br><small>Task A preparation timer</small></span><button onclick="PhaseA.toggle()">START / PAUSE</button></div>
+
+<div class="rec">
+<div class="rec-head"><div><h3>🎙 Record Task A</h3><div class="status" id="statusA">Ready to record.</div></div><span class="rec-time" id="timeA">00:00</span></div>
+<div class="rec-actions"><button class="smallbtn" id="recBtnA" onclick="RecA.toggle()">● START RECORDING</button><button class="smallbtn clear" onclick="RecA.clear()">CLEAR</button></div>
+<audio id="audioA" controls></audio>
+<div class="evidence"><div class="metric"><b id="durA">0s</b><small>DURATION</small></div><div class="metric"><b id="wpmA">—</b><small>WORDS/MIN</small></div><div class="metric"><b id="silA">—</b><small>SILENCE</small></div><div class="metric"><b id="confA">—</b><small>TRANSCRIPT CONF.</small></div></div>
+</div>
+<div class="transcript"><label><span>LIVE TRANSCRIPT</span><span id="wcA">0 words</span></label><textarea id="transcriptA" placeholder="Your live transcript will appear here. Correct only obvious transcription errors."></textarea></div>
+<button class="submit" onclick="submitSpeaking('A')">SUBMIT TASK A →</button>
+<div class="feedback" id="feedbackA"></div>
+</div></article>
+
+<article class="task" id="taskB">
+<button class="task-head"><div class="num">B</div><div class="title"><b>Task B · Group Discussion</b><span>Career Guidance · Group Discussion</span></div><div class="plus">+</div></button>
+<div class="task-body">
+<div class="prompt"><b>Group Discussion:</b><br><br>It is very important for students to choose the right career. Discuss: <b>How can universities provide better career guidance for students?</b><br><br>Consider: <b>relevant clubs · internship programmes · professional courses · career guidance advisers · talks by professionals</b>.<br><br>At the end of the discussion, decide the <b>BEST</b> way.</div>
+<div class="interaction-guide">
+  <div class="prep-head"><b>TASK B INTERACTION SUPPORT</b><span>Use these functions naturally.</span></div>
+  <div class="phrase-grid">
+    <div><b>Initiate</b><span>“Shall we begin by looking at…?”</span></div>
+    <div><b>Invite</b><span>“What do you think about this?”</span></div>
+    <div><b>Build</b><span>“I would also add that…”</span></div>
+    <div><b>Negotiate</b><span>“I see your point, however…”</span></div>
+    <div><b>Evaluate</b><span>“This option may be more effective because…”</span></div>
+    <div><b>Conclude</b><span>“Based on our discussion, we agree that…”</span></div>
+  </div>
+</div>
+<div class="notes"><small>DISCUSSION PLAN</small><textarea id="notesB" rows="4" placeholder="My strongest point · response to others · final choice..."></textarea></div>
+<div class="phase-timer"><span><b id="prepBTimer">03:00</b><br><small>Task B preparation timer</small></span><button onclick="PhaseB.toggle()">START / PAUSE</button></div>
+
+<div class="rec">
+<div class="rec-head"><div><h3>🎙 Record Task B Contribution</h3><div class="status" id="statusB">Solo mode: simulate your contribution to the discussion.</div></div><span class="rec-time" id="timeB">00:00</span></div>
+<div class="rec-actions"><button class="smallbtn" id="recBtnB" onclick="RecB.toggle()">● START RECORDING</button><button class="smallbtn clear" onclick="RecB.clear()">CLEAR</button></div>
+<audio id="audioB" controls></audio>
+<div class="evidence"><div class="metric"><b id="durB">0s</b><small>DURATION</small></div><div class="metric"><b id="wpmB">—</b><small>WORDS/MIN</small></div><div class="metric"><b id="silB">—</b><small>SILENCE</small></div><div class="metric"><b id="confB">—</b><small>TRANSCRIPT CONF.</small></div></div>
+</div>
+<div class="transcript"><label><span>LIVE TRANSCRIPT</span><span id="wcB">0 words</span></label><textarea id="transcriptB" placeholder="Your live transcript will appear here..."></textarea></div>
+<button class="submit" onclick="submitSpeaking('B')">SUBMIT TASK B →</button>
+<div class="feedback" id="feedbackB"></div>
+</div></article>
+
+<section class="finish"><h2>Finish Vault 1 Speaking</h2><p>Both tasks must be submitted. Task B's fourth score is shown as <b>Interaction Readiness</b> in solo mode because full Communicative Ability requires real interaction.</p><button class="submit" id="finishBtn">SAVE VAULT 1 SPEAKING →</button><div class="feedback" id="finishResult"></div></section>
+</div>
+</main>
+
+<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
+<script src="js/backend-config.js"></script>
+<script>
+const prompts={
+a1:"Everyone has different reasons when choosing a job. Talk about: LOCATION. Explain why location is an important reason when choosing a job.",
+a2:"Everyone has different reasons when choosing a job. Talk about: SALARY. Explain why salary is an important reason when choosing a job.",
+a3:"Everyone has different reasons when choosing a job. Talk about: WORKING HOURS. Explain why working hours are an important reason when choosing a job.",
+a4:"Everyone has different reasons when choosing a job. Talk about: FACILITIES. Explain why workplace facilities are an important reason when choosing a job."
+};
+const topicKeywords={a1:['location','commute','distance','family','living'],a2:['salary','income','financial','ptptn','living'],a3:['working hours','hours','balance','shift','flexible'],a4:['facilities','gym','childcare','medical','canteen','tools']};
+const topicA=document.getElementById("topicA"),promptA=document.getElementById("promptA");
+function renderPrompt(){promptA.textContent=prompts[topicA.value]}topicA.onchange=renderPrompt;renderPrompt();
+
+document.querySelectorAll(".task-head").forEach(btn=>btn.onclick=()=>{const cur=btn.closest(".task");document.querySelectorAll(".task").forEach(t=>{if(t!==cur)t.classList.remove("open")});cur.classList.toggle("open");if(cur.classList.contains("open"))setTimeout(()=>cur.scrollIntoView({behavior:"smooth",block:"start"}),60)});
+
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+
+function phaseTimer(id,seconds){let left=seconds,t=null,running=false;return{toggle(){document.getElementById('f2').classList.add('on');if(running){clearInterval(t);running=false;return}running=true;t=setInterval(()=>{left--;document.getElementById(id).textContent=fmt(left);if(left<=0){clearInterval(t);running=false}},1000)},reset(){clearInterval(t);left=seconds;running=false;document.getElementById(id).textContent=fmt(left)}}}
+const PhaseA=phaseTimer('prepATimer',120),PhaseB=phaseTimer('prepBTimer',180);
+['prepAP','prepAR','prepAE','prepAC','notesB'].forEach(id=>document.getElementById(id)?.addEventListener('input',()=>document.getElementById('f2').classList.add('on')));
+
+function createRecorder(prefix, transcriptId){
+ let recorder=null,stream=null,chunks=[],blob=null,url=null,startAt=0,tick=null,ctx=null,analyser=null,sampleTimer=null,samples=0,silent=0,recognition=null,recWanted=false,confidence=[],base='';
+ const $=id=>document.getElementById(id);
+ function metrics(){const secs=startAt?Math.max(0,Math.round((Date.now()-startAt)/1000)):0,text=$(transcriptId).value.trim(),wc=text?text.split(/\s+/).filter(Boolean).length:0,wpm=secs?Math.round(wc/(secs/60)):0,sil=samples?Math.round(silent/samples*100):0,conf=confidence.length?Math.round(confidence.reduce((a,b)=>a+b,0)/confidence.length*100):null;$('dur'+prefix).textContent=secs+'s';$('wpm'+prefix).textContent=wpm||'—';$('sil'+prefix).textContent=samples?sil+'%':'—';$('conf'+prefix).textContent=conf!==null?conf+'%':'—';$('wc'+prefix).textContent=wc+' words';return{durationSeconds:secs,wordCount:wc,wpm,silenceRatio:sil,recognitionConfidence:conf}}
+ function audioAnalysis(){try{ctx=new(window.AudioContext||window.webkitAudioContext)();analyser=ctx.createAnalyser();const src=ctx.createMediaStreamSource(stream);src.connect(analyser);const data=new Uint8Array(analyser.fftSize);sampleTimer=setInterval(()=>{analyser.getByteTimeDomainData(data);let sum=0;for(const v of data){const x=(v-128)/128;sum+=x*x}const rms=Math.sqrt(sum/data.length);samples++;if(rms<.018)silent++},120)}catch(e){}}
+ function startRecog(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$('status'+prefix).textContent='Recording… live transcription is unavailable in this browser. Type the transcript after recording.';return}try{recognition=new SR();recognition.continuous=true;recognition.interimResults=true;recognition.lang='en-MY';recWanted=true;base=$(transcriptId).value.trim();recognition.onresult=e=>{let final='',interim='';for(let i=e.resultIndex;i<e.results.length;i++){const a=e.results[i][0];if(e.results[i].isFinal){final+=a.transcript+' ';if(a.confidence>0)confidence.push(a.confidence)}else interim+=a.transcript}if(final)base=(base+' '+final).trim();$(transcriptId).value=(base+' '+interim).trim();metrics()};recognition.onend=()=>{if(recWanted&&recorder&&recorder.state==='recording')try{recognition.start()}catch(e){}};recognition.start()}catch(e){}}
+ function stopSupport(){clearInterval(sampleTimer);try{ctx?.close()}catch(e){}ctx=null;recWanted=false;try{recognition?.stop()}catch(e){}recognition=null}
+ async function start(){try{stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];blob=null;samples=0;silent=0;confidence=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{blob=new Blob(chunks,{type:recorder.mimeType||'audio/webm'});if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(blob);const a=$('audio'+prefix);a.src=url;a.style.display='block';stream.getTracks().forEach(t=>t.stop());stopSupport();metrics();$('status'+prefix).textContent='Recording ready. Listen back, review transcript, then submit.';$('recBtn'+prefix).textContent='● RECORD AGAIN'};recorder.start(500);startAt=Date.now();$('status'+prefix).textContent='Recording + live transcription…';$('recBtn'+prefix).textContent='■ STOP RECORDING';audioAnalysis();startRecog();document.getElementById('f2').classList.add('on');tick=setInterval(()=>{$('time'+prefix).textContent=fmt(Math.floor((Date.now()-startAt)/1000));metrics()},500)}catch(e){$('status'+prefix).textContent='Microphone access unavailable. You may still type the transcript.'}}
+ function stop(){if(recorder&&recorder.state==='recording')recorder.stop();clearInterval(tick);recWanted=false;try{recognition?.stop()}catch(e){}}
+ function toggle(){if(recorder&&recorder.state==='recording')stop();else start()}
+ function clear(){if(recorder&&recorder.state==='recording')stop();stopSupport();if(url)URL.revokeObjectURL(url);blob=null;url=null;startAt=0;samples=0;silent=0;confidence=[];$('audio'+prefix).style.display='none';$('time'+prefix).textContent='00:00';$('dur'+prefix).textContent='0s';$('wpm'+prefix).textContent=$('sil'+prefix).textContent=$('conf'+prefix).textContent='—';$(transcriptId).value='';$('wc'+prefix).textContent='0 words';$('status'+prefix).textContent='Ready to record.';$('recBtn'+prefix).textContent='● START RECORDING'}
+ async function b64(){if(!blob)return'';return await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(',')[1]||'');r.onerror=rej;r.readAsDataURL(blob)})}
+ return{toggle,clear,metrics,hasAudio:()=>!!blob,b64,mime:()=>blob?.type||'audio/webm'}
+}
+const RecA=createRecorder('A','transcriptA'),RecB=createRecorder('B','transcriptB');
+['A','B'].forEach(x=>document.getElementById('transcript'+x).oninput=()=>{const txt=document.getElementById('transcript'+x).value.trim();document.getElementById('wc'+x).textContent=(txt?txt.split(/\s+/).filter(Boolean).length:0)+' words'});
+
+function evaluate(text,task,m){
+ const t=text.toLowerCase(),wc=text.trim()?text.trim().split(/\s+/).filter(Boolean).length:0,connectors=(t.match(/\b(because|therefore|however|for example|for instance|moreover|although|in addition|so|thus|in conclusion)\b/g)||[]).length,fillers=(t.match(/\b(um|uh|erm|you know|like)\b/g)||[]).length;
+ let relevance=0;if(task==='A'){(topicKeywords[topicA.value]||[]).forEach(k=>{if(t.includes(k))relevance++})}else['career','clubs','internship','professional courses','adviser','advisers','talks','professionals','university','guidance'].forEach(k=>{if(t.includes(k))relevance++});
+ let tf=1;if(relevance>=1)tf=2;if(relevance>=2&&wc>=35)tf=3;if(relevance>=2&&wc>=50)tf=4;if(relevance>=3&&wc>=70)tf=5;if(relevance>=3&&wc>=90)tf=6;
+ let lg=2;if(wc>=35&&m.wpm>=65)lg=3;if(wc>=50&&connectors>=2&&m.silenceRatio<=45)lg=4;if(wc>=70&&connectors>=3&&m.silenceRatio<=35&&fillers<=4)lg=5;if(wc>=90&&connectors>=4&&m.silenceRatio<=28&&fillers<=2)lg=6;
+ let co=2;if(connectors>=1)co=3;if(connectors>=2&&wc>=45)co=4;if(connectors>=4&&m.silenceRatio<=40)co=5;if(connectors>=5&&m.silenceRatio<=30)co=6;
+ let ir=null;if(task==='B'){const fn=[/i agree|i disagree|i see your point/,/what do you think|how about you|your opinion/,/i would add|another point|in addition/,/we agree|in conclusion|best option|final decision/];ir=Math.max(1,Math.min(6,1+fn.filter(r=>r.test(t)).length))}
+ const strength=tf>=4?'You addressed the assigned task with relevant development.':co>=4?'Your response has a clear progression.':'You completed a full speaking attempt.';
+ const focus=m.silenceRatio>40?'Reduce long pauses and keep your response moving.':lg<4?'Use a wider range of accurate language and linking phrases.':tf<5?'Develop one point with a more specific example.':'Refine delivery and make the ending more decisive.';
+ return{tf,lg,co,ir,strength,focus,wc}
+}
+async function cloudSave(payload){const url=window.SMART_MUET_APPS_SCRIPT_URL||window.SMART_MUET_BACKEND_URL||window.MUET_BACKEND_URL||'';if(!url)return{ok:false,message:'Cloud endpoint not configured'};try{const r=await fetch(url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'saveSpeakingAttempt',...payload})});return await r.json()}catch(e){return{ok:false,message:e.message}}}
+let doneA=false,doneB=false;
+async function submitSpeaking(task){
+ const rec=task==='A'?RecA:RecB,txt=document.getElementById('transcript'+task).value.trim();if(!txt){alert('Record your response or add the transcript first.');return}
+ const m=rec.metrics(),ev=evaluate(txt,task,m),box=document.getElementById('feedback'+task);box.classList.add('show');document.getElementById('f3').classList.add('on');
+ const rows=[['Task Fulfilment',ev.tf,'How fully and relevantly the assigned task was developed.'],['Language Use',ev.lg,'Language range and clarity, supported by transcript and delivery evidence.'],['Coherence & Organisation',ev.co,'Progression, linking and continuity of ideas.']];if(task==='B')rows.push(['Interaction Readiness',ev.ir,'Solo practice indicator only. Full Communicative Ability requires real interaction.']);
+ box.innerHTML=`<div class="criteria">${rows.map(r=>`<div class="crit"><div class="crit-top"><b>${r[0]}</b><span class="score">${r[1]}/6</span></div><p>${r[2]}</p></div>`).join('')}</div><div class="coach"><b>💪 Strength</b><br>${ev.strength}<br><br><b>🎯 Focus Next</b><br>${ev.focus}</div><div class="save-state" id="save${task}">Saving evidence…</div><button class="retry" onclick="retryTask('${task}')">TRY THIS TASK AGAIN</button>`;
+ const profile=(()=>{try{return JSON.parse(localStorage.getItem('smartMuetProfile')||'{}')}catch(e){return{}}})();
+ const payload={studentName:profile.name||'',studentRegNo:profile.regNo||profile.studentRegNo||'',classGroup:profile.group||profile.classGroup||'',vaultId:'VAULT-01',component:'Speaking',taskType:'Task '+task,topicId:task==='A'?topicA.value:'B',topicTitle:task==='A'?topicA.options[topicA.selectedIndex].text:'Career Guidance — Group Discussion',prompt:task==='A'?prompts[topicA.value]:"It is very important for students to choose the right career. Discuss how universities can provide better career guidance for students and decide the best way.",prepNotes:task==='A'?{point:document.getElementById('prepAP').value,reason:document.getElementById('prepAR').value,example:document.getElementById('prepAE').value,close:document.getElementById('prepAC').value}:{discussionPlan:document.getElementById('notesB').value},transcript:txt,wordCount:ev.wc,durationSeconds:m.durationSeconds,wordsPerMinute:m.wpm,silenceRatio:m.silenceRatio,recognitionConfidence:m.recognitionConfidence,taskFulfilment:ev.tf,languageUse:ev.lg,coherenceOrganisation:ev.co,interactionReadiness:ev.ir,rubricRaw:ev.tf+ev.lg+ev.co,rubricMax:18,audioMimeType:rec.mime(),audioBase64:rec.hasAudio()?await rec.b64():'',createdAt:new Date().toISOString()};
+ localStorage.setItem('muet_v1_speaking_task'+task,JSON.stringify({...payload,audioBase64:''}));
+ const saved=await cloudSave(payload);document.getElementById('save'+task).textContent=saved.ok?'☁️ Saved to Google Sheet + Drive':'💾 Saved locally · cloud save pending';if(task==='A')doneA=true;else doneB=true;document.getElementById('f4').classList.add('on');
+}
+function retryTask(task){if(task==='A'){RecA.clear();['prepAP','prepAR','prepAE','prepAC'].forEach(id=>document.getElementById(id).value='');document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
+document.getElementById('finishBtn').onclick=()=>{const b=document.getElementById('finishResult');b.classList.add('show');if(doneA&&doneB){localStorage.setItem('muet_v1_speaking','true');b.innerHTML='<div class="coach"><b>Vault 1 Speaking completed ✓</b><br>Task A and Task B have both been recorded, submitted and reviewed with guided rubric feedback.</div>'}else b.innerHTML='<div class="coach"><b>Submit both Task A and Task B first.</b></div>'};
+</script>
+</body></html>
