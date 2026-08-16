@@ -841,9 +841,504 @@ textarea:focus{
 
 </style>
   <link rel="stylesheet" href="css/responsive-v2.css">
+
+<style id="mock1-part7-responsive">
+/* =========================================================
+   PART 7 · MOCK PRACTICE 1 COMPONENTS
+   Speaking · Listening · Reading · Writing
+   Exam-focused responsive standardisation
+   ========================================================= */
+.page-mock1-component .app{
+  width:min(100%,1240px)!important;
+  max-width:100%!important;
+  margin-inline:auto!important;
+  padding:clamp(14px,2vw,26px) clamp(12px,2vw,28px) 122px!important;
+}
+.page-mock1-component .top,
+.page-mock1-component .brandbar{
+  min-height:62px;
+  gap:12px!important;
+  margin-bottom:clamp(12px,1.5vw,16px)!important;
+}
+.page-mock1-component .brand,
+.page-mock1-component .brandbar>div{min-width:0}
+.page-mock1-component .brand img,
+.page-mock1-component .brandbar img{
+  width:clamp(50px,5vw,64px)!important;
+  height:clamp(50px,5vw,64px)!important;
+  flex:0 0 auto;
+}
+.page-mock1-component .brand small,
+.page-mock1-component .brandbar small{
+  font-size:clamp(.62rem,.28vw + .58rem,.73rem)!important;
+}
+.page-mock1-component .brand b,
+.page-mock1-component .brandbar b{
+  font-size:clamp(1rem,.48vw + .9rem,1.18rem)!important;
+  line-height:1.2!important;
+}
+.page-mock1-component .back{
+  min-height:44px!important;
+  flex:0 0 auto;
+  font-size:clamp(.72rem,.3vw + .66rem,.84rem)!important;
+}
+
+/* Hero */
+.page-mock1-component .hero{
+  padding:clamp(18px,3vw,30px)!important;
+  margin-bottom:clamp(13px,1.5vw,17px)!important;
+}
+.page-mock1-component .hero .tag{
+  font-size:clamp(.64rem,.28vw + .6rem,.76rem)!important;
+}
+.page-mock1-component .hero h1{
+  font-size:clamp(2.35rem,5.1vw,4rem)!important;
+  line-height:.96!important;
+}
+.page-mock1-component .hero p{
+  max-width:66ch!important;
+  font-size:clamp(.96rem,.62vw + .84rem,1.14rem)!important;
+  line-height:1.55!important;
+}
+
+/* Timer/test header */
+.page-mock1-component .exam,
+.page-mock1-component .exam-header,
+.page-mock1-component .paperbar{
+  padding:clamp(11px,1.5vw,16px)!important;
+}
+.page-mock1-component .exam-row{
+  gap:10px!important;
+  align-items:center!important;
+}
+.page-mock1-component .exam h2,
+.page-mock1-component .exam-header h2,
+.page-mock1-component .paperbar h2{
+  font-size:clamp(1.02rem,.65vw + .9rem,1.2rem)!important;
+}
+.page-mock1-component .exam p,
+.page-mock1-component .exam-header p,
+.page-mock1-component .paperbar p{
+  font-size:clamp(.66rem,.28vw + .61rem,.78rem)!important;
+  line-height:1.35!important;
+}
+.page-mock1-component .timer{
+  font-size:clamp(1.55rem,2.2vw,2.05rem)!important;
+  white-space:nowrap;
+}
+.page-mock1-component .start,
+.page-mock1-component .start-btn{
+  min-height:48px!important;
+  font-size:clamp(.74rem,.34vw + .68rem,.86rem)!important;
+}
+
+/* Progress strip */
+.page-mock1-component .progress,
+.page-mock1-component .flow{
+  gap:clamp(5px,.8vw,8px)!important;
+}
+.page-mock1-component .progress div,
+.page-mock1-component .flow div{
+  min-width:0;
+  min-height:36px;
+  display:grid;
+  place-items:center;
+  padding:7px 4px!important;
+  font-size:clamp(.6rem,.24vw + .56rem,.7rem)!important;
+  line-height:1.15!important;
+}
+
+/* Accordion/task headers */
+.page-mock1-component .accordion-task,
+.page-mock1-component .mock-task,
+.page-mock1-component .listen-part,
+.page-mock1-component .part,
+.page-mock1-component .task{
+  border-radius:clamp(16px,1.5vw,20px)!important;
+  margin-bottom:clamp(10px,1.2vw,14px)!important;
+}
+.page-mock1-component .accordion-head,
+.page-mock1-component .mock-task-head,
+.page-mock1-component .listen-part-head,
+.page-mock1-component .part-head,
+.page-mock1-component .task-head{
+  min-height:76px!important;
+  grid-template-columns:clamp(44px,4vw,52px) minmax(0,1fr) auto!important;
+  gap:clamp(8px,1vw,12px)!important;
+  padding:clamp(10px,1.4vw,15px)!important;
+}
+.page-mock1-component .accordion-num,
+.page-mock1-component .mock-task-num,
+.page-mock1-component .listen-part-no,
+.page-mock1-component .part-num,
+.page-mock1-component .num{
+  width:clamp(42px,4vw,50px)!important;
+  height:clamp(42px,4vw,50px)!important;
+  font-size:clamp(1rem,.75vw + .86rem,1.2rem)!important;
+}
+.page-mock1-component .accordion-title,
+.page-mock1-component .mock-task-title,
+.page-mock1-component .listen-part-meta,
+.page-mock1-component .part-title,
+.page-mock1-component .title{min-width:0}
+.page-mock1-component .accordion-title b,
+.page-mock1-component .mock-task-title b,
+.page-mock1-component .listen-part-meta b,
+.page-mock1-component .part-title b,
+.page-mock1-component .title b{
+  font-size:clamp(.98rem,.55vw + .88rem,1.15rem)!important;
+  line-height:1.25!important;
+}
+.page-mock1-component .accordion-title span,
+.page-mock1-component .mock-task-title span,
+.page-mock1-component .listen-part-meta small,
+.page-mock1-component .part-title span,
+.page-mock1-component .title span{
+  font-size:clamp(.73rem,.34vw + .67rem,.86rem)!important;
+  line-height:1.35!important;
+}
+.page-mock1-component .accordion-plus,
+.page-mock1-component .mock-task-plus,
+.page-mock1-component .listen-part-plus,
+.page-mock1-component .chev,
+.page-mock1-component .plus{
+  font-size:clamp(1.3rem,1.4vw,1.65rem)!important;
+}
+.page-mock1-component .accordion-body,
+.page-mock1-component .mock-task-body,
+.page-mock1-component .listen-part-body,
+.page-mock1-component .part-body,
+.page-mock1-component .task-body{
+  padding:clamp(11px,1.6vw,18px)!important;
+}
+
+/* Shared prompt/question styles */
+.page-mock1-component .prompt,
+.page-mock1-component .note,
+.page-mock1-component .instruction-card{
+  padding:clamp(9px,1.3vw,14px)!important;
+  font-size:clamp(.82rem,.42vw + .75rem,.96rem)!important;
+  line-height:1.5!important;
+}
+.page-mock1-component .qcard{
+  min-width:0;
+  padding:clamp(10px,1.3vw,14px)!important;
+  margin-top:clamp(8px,1vw,11px)!important;
+}
+.page-mock1-component .qtag{
+  font-size:clamp(.62rem,.26vw + .58rem,.73rem)!important;
+}
+.page-mock1-component .stem{
+  font-size:clamp(.88rem,.45vw + .8rem,1.02rem)!important;
+  line-height:1.46!important;
+}
+.page-mock1-component .opt{
+  grid-template-columns:22px minmax(0,1fr)!important;
+  gap:8px!important;
+  padding:clamp(9px,1vw,12px)!important;
+  font-size:clamp(.82rem,.4vw + .75rem,.95rem)!important;
+  line-height:1.42!important;
+}
+.page-mock1-component .opt input{width:18px;height:18px}
+
+/* Standard final submit card */
+.page-mock1-component .mock-finish{
+  padding:clamp(13px,1.8vw,20px)!important;
+  margin-top:clamp(13px,1.5vw,17px)!important;
+}
+.page-mock1-component .mock-finish h2{
+  font-size:clamp(1.18rem,1vw,1.45rem)!important;
+}
+.page-mock1-component .mock-finish p{
+  max-width:72ch;
+  font-size:clamp(.84rem,.42vw + .77rem,.97rem)!important;
+  line-height:1.48!important;
+}
+.page-mock1-component .mock-submit-btn{
+  min-height:52px!important;
+  font-size:clamp(.8rem,.4vw + .73rem,.93rem)!important;
+}
+
+/* Reports/rubrics */
+.page-mock1-component .criteria{gap:clamp(6px,.8vw,9px)!important}
+.page-mock1-component .criterion{
+  padding:clamp(9px,1.1vw,12px)!important;
+}
+.page-mock1-component .criterion b{
+  font-size:clamp(.78rem,.38vw + .71rem,.9rem)!important;
+}
+.page-mock1-component .criterion-score{
+  font-size:clamp(1.25rem,1.6vw,1.7rem)!important;
+}
+.page-mock1-component .criterion p,
+.page-mock1-component .coach,
+.page-mock1-component .save-state,
+.page-mock1-component .save-state2{
+  font-size:clamp(.76rem,.35vw + .69rem,.88rem)!important;
+  line-height:1.45!important;
+}
+.page-mock1-component .score-card{
+  gap:10px!important;
+}
+.page-mock1-component .score-card strong{
+  font-size:clamp(1.6rem,2vw,2.2rem)!important;
+}
+
+/* ---------- SPEAKING ---------- */
+.page-mock1-speaking select,
+.page-mock1-speaking textarea,
+.page-mock1-speaking input{
+  font-size:max(16px,1rem)!important;
+}
+.page-mock1-speaking .rec{
+  padding:clamp(10px,1.4vw,15px)!important;
+}
+.page-mock1-speaking .rec h3{
+  font-size:clamp(.98rem,.52vw + .88rem,1.14rem)!important;
+}
+.page-mock1-speaking .rec-time{
+  font-size:clamp(1.35rem,1.8vw,1.8rem)!important;
+}
+.page-mock1-speaking .rec-actions{
+  gap:8px!important;
+}
+.page-mock1-speaking .evidence{
+  gap:clamp(6px,.8vw,9px)!important;
+}
+.page-mock1-speaking .metric{min-width:0}
+.page-mock1-speaking .metric b{
+  font-size:clamp(1rem,.7vw + .88rem,1.2rem)!important;
+}
+.page-mock1-speaking .metric small{
+  font-size:clamp(.58rem,.23vw + .54rem,.68rem)!important;
+}
+.page-mock1-speaking .transcript textarea{
+  min-height:clamp(150px,22vh,230px)!important;
+  line-height:1.55!important;
+}
+.page-mock1-speaking .topic-grid{
+  gap:clamp(6px,.8vw,9px)!important;
+}
+.page-mock1-speaking .topic{
+  min-width:0;
+  font-size:clamp(.78rem,.36vw + .71rem,.9rem)!important;
+}
+
+/* ---------- LISTENING ---------- */
+.page-mock1-listening .audio,
+.page-mock1-listening .audio-card{
+  padding:clamp(10px,1.3vw,14px)!important;
+}
+.page-mock1-listening .audio-head{
+  gap:10px!important;
+}
+.page-mock1-listening .audio-head b{
+  font-size:clamp(.88rem,.45vw + .8rem,1.02rem)!important;
+}
+.page-mock1-listening .audio-pill{
+  max-width:48%;
+  white-space:normal!important;
+  text-align:center;
+  font-size:clamp(.66rem,.28vw + .61rem,.77rem)!important;
+}
+.page-mock1-listening iframe,
+.page-mock1-listening audio{
+  width:100%!important;
+  max-width:100%;
+}
+.page-mock1-listening iframe{
+  height:clamp(84px,8vw,112px)!important;
+}
+
+/* ---------- READING ---------- */
+.page-mock1-reading .passage,
+.page-mock1-reading .passage-card,
+.page-mock1-reading .source-paper{
+  min-width:0;
+}
+.page-mock1-reading .passage-scroll,
+.page-mock1-reading .reading-text,
+.page-mock1-reading .passage{
+  max-width:100%;
+  font-size:clamp(.86rem,.42vw + .79rem,1rem)!important;
+  line-height:1.68!important;
+}
+.page-mock1-reading .passage-scroll{
+  max-height:clamp(320px,48vh,520px)!important;
+  overflow:auto;
+  overscroll-behavior:contain;
+}
+
+/* ---------- WRITING ---------- */
+.page-mock1-writing textarea,
+.page-mock1-writing input,
+.page-mock1-writing select{
+  font-size:max(16px,1rem)!important;
+}
+.page-mock1-writing .answer-box,
+.page-mock1-writing .writing-area,
+.page-mock1-writing .task-body textarea{
+  width:100%!important;
+  min-width:0;
+}
+.page-mock1-writing textarea{
+  min-height:clamp(190px,32vh,380px)!important;
+  line-height:1.62!important;
+}
+.page-mock1-writing .counter,
+.page-mock1-writing .wc,
+.page-mock1-writing .autosave{
+  font-size:clamp(.66rem,.28vw + .61rem,.78rem)!important;
+}
+.page-mock1-writing .task-result,
+.page-mock1-writing .mock-eval{
+  font-size:clamp(.8rem,.38vw + .73rem,.93rem)!important;
+  line-height:1.45!important;
+}
+
+/* TABLET */
+@media (min-width:600px){
+  .page-mock1-component .app{
+    max-width:900px!important;
+    padding:22px 24px 122px!important;
+  }
+  .page-mock1-speaking .evidence{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+}
+
+/* LAPTOP */
+@media (min-width:900px){
+  .page-mock1-component .app{
+    max-width:1120px!important;
+    padding:28px 30px 124px!important;
+  }
+
+  .page-mock1-speaking .accordion-body>*,
+  .page-mock1-writing .mock-task-body>*{
+    max-width:940px;
+    margin-left:auto;
+    margin-right:auto;
+  }
+
+  .page-mock1-speaking .rec,
+  .page-mock1-speaking .transcript,
+  .page-mock1-writing .answer-box,
+  .page-mock1-writing textarea,
+  .page-mock1-listening .audio,
+  .page-mock1-reading .passage,
+  .page-mock1-reading .passage-card{
+    max-width:940px!important;
+    margin-inline:auto;
+  }
+
+  .page-mock1-reading .passage-scroll{
+    max-height:560px!important;
+  }
+}
+
+/* WIDE DESKTOP */
+@media (min-width:1180px){
+  .page-mock1-component .app{
+    max-width:1240px!important;
+  }
+
+  /* Listening: keep audio full-width, questions in two columns. */
+  .page-mock1-listening .listen-part.open .listen-part-body,
+  .page-mock1-listening .part.open .part-body{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+    align-items:start;
+  }
+  .page-mock1-listening .listen-part.open .audio,
+  .page-mock1-listening .listen-part.open .audio-card,
+  .page-mock1-listening .listen-part.open .mock-finish,
+  .page-mock1-listening .part.open .audio,
+  .page-mock1-listening .part.open .audio-card{
+    grid-column:1/-1;
+    width:100%;
+  }
+  .page-mock1-listening .qcard{
+    margin-top:0!important;
+    height:100%;
+  }
+
+  /* Reading: passage full-width, questions in two columns below. */
+  .page-mock1-reading .part.open .part-body{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:12px!important;
+    align-items:start;
+  }
+  .page-mock1-reading .part.open .passage,
+  .page-mock1-reading .part.open .passage-card,
+  .page-mock1-reading .part.open .source-paper,
+  .page-mock1-reading .part.open .mock-finish{
+    grid-column:1/-1;
+    width:100%;
+  }
+  .page-mock1-reading .qcard{
+    margin-top:0!important;
+    height:100%;
+  }
+}
+
+/* MOBILE */
+@media (max-width:599px){
+  .page-mock1-component .exam-row{
+    align-items:flex-start!important;
+  }
+  .page-mock1-component .progress,
+  .page-mock1-component .flow{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+  .page-mock1-listening .audio-head{
+    flex-direction:column;
+  }
+  .page-mock1-listening .audio-pill{
+    max-width:100%;
+  }
+}
+
+/* VERY SMALL PHONE */
+@media (max-width:399px){
+  .page-mock1-component .top{
+    align-items:flex-start;
+  }
+  .page-mock1-component .back{
+    padding:7px 9px!important;
+  }
+  .page-mock1-component .accordion-head,
+  .page-mock1-component .mock-task-head,
+  .page-mock1-component .listen-part-head,
+  .page-mock1-component .part-head,
+  .page-mock1-component .task-head{
+    grid-template-columns:40px minmax(0,1fr) auto!important;
+    gap:7px!important;
+    padding:9px!important;
+  }
+  .page-mock1-component .accordion-num,
+  .page-mock1-component .mock-task-num,
+  .page-mock1-component .listen-part-no,
+  .page-mock1-component .part-num,
+  .page-mock1-component .num{
+    width:40px!important;
+    height:40px!important;
+  }
+  .page-mock1-component .progress,
+  .page-mock1-component .flow{
+    grid-template-columns:1fr!important;
+  }
+  .page-mock1-speaking .rec-actions{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
 </head>
 
-<body>
+<body class="page-mock1-component page-mock1-writing">
 
 <main class="app">
 
