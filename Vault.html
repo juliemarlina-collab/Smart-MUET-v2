@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#00C9C0">
+  <meta name="description" content="Study Vault — Smart MUET Guide">
+  <title>Study Vault · Smart MUET Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111111;
+      --white:#ffffff;
+      --soft:#f4f7f8;
+      --muted:#4f535b;
+
+      --cyan:#12D7D7;
+      --hotpink:#FF4FA3;
+      --azure:#0D78E8;
+      --orange:#FF5A00;
+      --gold:#F4C400;
+      --lime:#48F000;
+      --violet:#7C25DA;
+      --turquoise:#00C9C0;
+      --green:#0DBD79;
+      --red:#ff2525;
+
+      --line:3px solid var(--ink);
+      --shadow:5px 5px 0 var(--ink);
+
+      --font-heading:"Sora",sans-serif;
+      --font-body:"DM Sans",sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;min-height:100%}
+
+    body{
+      font-family:var(--font-body);
+      background:var(--turquoise);
+      color:var(--ink);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .app{
+      width:100%;
+      max-width:520px;
+      min-height:100dvh;
+      margin:auto;
+      background:var(--soft);
+      padding:
+        max(15px,env(safe-area-inset-top))
+        max(14px,env(safe-area-inset-right))
+        max(112px,calc(96px + env(safe-area-inset-bottom)))
+        max(14px,env(safe-area-inset-left));
+    }
+
+    /* HEADER */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .brand img{
+      width:54px;
+      height:54px;
+      object-fit:contain;
+      flex:0 0 auto;
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+
+    .brand strong{
+      display:block;
+      margin-top:3px;
+      font-family:var(--font-heading);
+      font-size:17px;
+    }
+
+    .home-btn{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:var(--white);
+      box-shadow:2px 2px 0 var(--ink);
+      padding:8px 11px;
+      font-size:11px;
+      font-weight:1000;
+    }
+
+    /* HERO */
+    .hero{
+      overflow:hidden;
+      background:var(--white);
+      border:var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      margin-bottom:15px;
+    }
+
+    .hero img{
+      display:block;
+      width:100%;
+      border-bottom:var(--line);
+    }
+
+    .hero-copy{
+      position:relative;
+      padding:18px;
+      overflow:hidden;
+    }
+
+    .hero-copy::after{z-index:-1;
+      content:"";
+      position:absolute;
+      width:78px;
+      height:78px;
+      right:-22px;
+      bottom:-26px;
+      border:var(--line);
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    .eyebrow{
+      position:relative;
+      z-index:2;
+      display:inline-block;
+      background:var(--ink);
+      color:var(--white);
+      border:2px solid var(--ink);
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:10px;
+      font-weight:1000;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1,h2,h3{font-family:var(--font-heading)}
+
+    .hero h1{
+      position:relative;
+      z-index:2;
+      margin-top:10px;
+      font-size:clamp(36px,9vw,50px);
+      line-height:.96;
+      letter-spacing:-.05em;
+    }
+
+    .hero h1 .accent{
+      display:block;
+      color:var(--azure);
+    }
+
+    .hero p{
+      position:relative;
+      z-index:2;
+      margin-top:12px;
+      max-width:470px;
+      color:#343840;
+      font-size:17px;
+      line-height:1.5;
+      font-weight:650;
+    }
+
+    /* TECHNIQUE STRIP */
+    .tech-system{
+      background:var(--ink);
+      color:var(--white);
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-bottom:15px;
+    }
+
+    .tech-system h2{
+      font-size:18px;
+    }
+
+    .tech-system p{
+      margin-top:5px;
+      color:#e6e6e6;
+      font-size:13px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .tech-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:6px;
+      margin-top:11px;
+    }
+
+    .tech{
+      border:2px solid var(--white);
+      border-radius:10px;
+      padding:9px 4px;
+      text-align:center;
+      font-family:var(--font-heading);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .tech:nth-child(1){background:var(--cyan);color:var(--ink)}
+    .tech:nth-child(2){background:var(--hotpink);color:var(--ink)}
+    .tech:nth-child(3){background:var(--azure)}
+    .tech:nth-child(4){background:var(--orange);color:var(--ink)}
+
+    /* PROGRESS */
+    .progress-card{
+      background:var(--white);
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-bottom:15px;
+    }
+
+    .progress-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+
+    .progress-head h2{
+      font-size:19px;
+    }
+
+    .progress-head span{
+      font-family:var(--font-heading);
+      font-size:14px;
+      font-weight:800;
+    }
+
+    .progress-track{
+      height:13px;
+      margin-top:10px;
+      overflow:hidden;
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:#edf0f1;
+    }
+
+    .progress-track i{
+      display:block;
+      width:0;
+      height:100%;
+      background:var(--lime);
+      border-right:2px solid var(--ink);
+      transition:width .25s ease;
+    }
+
+    .progress-note{
+      margin-top:7px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    /* JOURNEY */
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:11px;
+    }
+
+    .section-head h2{
+      font-size:22px;
+    }
+
+    .section-head span{
+      color:var(--muted);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .vault-list{
+      display:grid;
+      gap:12px;
+      margin-bottom:15px;
+    }
+
+    .vault-card{
+      position:relative;
+      overflow:hidden;
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .vault-card.v1{background:var(--cyan)}
+    .vault-card.v2{background:var(--violet);color:var(--white)}
+    .vault-card.mock{background:var(--gold)}
+
+    .vault-card::after{
+      content:"";
+      position:absolute;
+      width:82px;
+      height:82px;
+      right:-24px;
+      top:-25px;
+      border:var(--line);
+      border-radius:50%;
+      background:rgba(255,255,255,.28);
+    }
+
+    .vault-top{
+      position:relative;
+      z-index:2;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:flex-start;
+    }
+
+    .vault-number{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:var(--white);
+      color:var(--ink);
+      box-shadow:2px 2px 0 var(--ink);
+      font-family:var(--font-heading);
+      font-size:18px;
+      font-weight:800;
+    }
+
+    .status{
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:var(--white);
+      color:var(--ink);
+      padding:6px 8px;
+      font-size:9px;
+      font-weight:1000;
+      letter-spacing:.05em;
+    }
+
+    .vault-card h3{
+      position:relative;
+      z-index:2;
+      margin-top:13px;
+      font-size:25px;
+      line-height:1;
+    }
+
+    .vault-card p{
+      position:relative;
+      z-index:2;
+      margin-top:7px;
+      max-width:430px;
+      font-size:14px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .purpose{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:7px;
+      margin-top:12px;
+    }
+
+    .purpose div{
+      min-height:52px;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:rgba(255,255,255,.9);
+      color:var(--ink);
+      padding:8px;
+      font-size:11px;
+      line-height:1.3;
+      font-weight:800;
+    }
+
+    .vault-btn{
+      position:relative;
+      z-index:2;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:54px;
+      margin-top:13px;
+      border:var(--line);
+      border-radius:13px;
+      background:var(--ink);
+      color:var(--white);
+      box-shadow:4px 4px 0 var(--ink);
+      font-size:14px;
+      font-weight:1000;
+    }
+
+    .mock .vault-btn{
+      background:var(--white);
+      color:var(--ink);
+    }
+
+    /* HOW IT WORKS */
+    .how{
+      background:var(--white);
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-bottom:15px;
+    }
+
+    .how h2{
+      font-size:19px;
+    }
+
+    .steps{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:7px;
+      margin-top:10px;
+    }
+
+    .step{
+      text-align:center;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      padding:10px 5px;
+      background:#fafafa;
+      font-size:10px;
+      line-height:1.25;
+      font-weight:850;
+    }
+
+    .step b{
+      display:block;
+      margin-bottom:4px;
+      font-family:var(--font-heading);
+      font-size:15px;
+    }
+
+    /* NAV */
+    .bottom-nav{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:max(10px,env(safe-area-inset-bottom));
+      width:calc(100% - 20px);
+      max-width:500px;
+      z-index:60;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      background:var(--white);
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:5px 5px 0 var(--ink);
+      padding:6px;
+    }
+
+    .bottom-nav a{
+      min-height:58px;
+      display:grid;
+      place-items:center;
+      align-content:center;
+      gap:3px;
+      border-radius:10px;
+      font-size:10px;
+      font-weight:1000;
+    }
+
+    .bottom-nav a.active{
+      background:var(--gold);
+      border:2px solid var(--ink);
+    }
+
+    .bottom-nav img{
+      width:27px;
+      height:27px;
+      object-fit:contain;
+    }
+
+    @media(min-width:700px){
+      .app{
+        max-width:840px;
+        padding:24px 24px 120px;
+      }
+
+      .brand img{width:62px;height:62px}
+      .hero-copy{padding:24px}
+      .hero h1{font-size:56px}
+      .hero p{font-size:19px}
+
+      .vault-list{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .vault-card.mock{
+        grid-column:1 / -1;
+      }
+
+      .bottom-nav{
+        max-width:800px;
+      }
+    }
+
+    @media(min-width:1024px){
+      .app{
+        max-width:1100px;
+        padding:30px 32px 122px;
+      }
+
+      .hero{
+        display:grid;
+        grid-template-columns:1.1fr .9fr;
+      }
+
+      .hero img{
+        height:100%;
+        object-fit:cover;
+        border-bottom:0;
+        border-right:var(--line);
+      }
+
+      .hero-copy{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding:34px;
+      }
+
+      .hero h1{font-size:62px}
+      .hero p{font-size:20px}
+
+      .vault-list{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      .vault-card.mock{
+        grid-column:auto;
+      }
+
+      .bottom-nav{
+        max-width:1040px;
+      }
+    }
+
+    @media(max-width:360px){
+      .app{padding-inline:10px}
+      .brand img{width:48px;height:48px}
+      .hero h1{font-size:34px}
+      .hero p{font-size:15px}
+      .tech-grid{grid-template-columns:1fr 1fr}
+      .purpose{grid-template-columns:1fr}
+    }
+  </style>
+  <link rel="stylesheet" href="css/responsive-v2.css">
+
+<style id="vault-final-standardized-responsive">
+/* =========================================================
+   STUDY VAULT · FINAL STANDARDIZED RESPONSIVE PASS
+   Header · type scale · cards · nav · desktop spacing
+   ========================================================= */
+
+.page-vault-hub{
+  font-size:16px;
+}
+
+/* ---------- App canvas ---------- */
+.page-vault-hub .app{
+  width:min(100%,1240px) !important;
+  max-width:100% !important;
+  margin-inline:auto !important;
+  padding:
+    max(16px,env(safe-area-inset-top))
+    max(14px,env(safe-area-inset-right))
+    max(124px,calc(108px + env(safe-area-inset-bottom)))
+    max(14px,env(safe-area-inset-left)) !important;
+}
+
+/* ---------- Top header ---------- */
+.page-vault-hub .topbar{
+  min-height:68px !important;
+  gap:14px !important;
+  margin-bottom:16px !important;
+}
+.page-vault-hub .brand{
+  gap:12px !important;
+}
+.page-vault-hub .brand img{
+  width:clamp(58px,7vw,70px) !important;
+  height:clamp(58px,7vw,70px) !important;
+}
+.page-vault-hub .brand small{
+  font-size:clamp(.72rem,.28vw + .67rem,.84rem) !important;
+  line-height:1.15 !important;
+  letter-spacing:.075em !important;
+}
+.page-vault-hub .brand strong{
+  margin-top:4px !important;
+  font-size:clamp(1.2rem,.72vw + 1.06rem,1.5rem) !important;
+  line-height:1.12 !important;
+}
+.page-vault-hub .home-btn{
+  min-height:46px !important;
+  min-width:52px !important;
+  padding:9px 14px !important;
+  font-size:clamp(.78rem,.28vw + .73rem,.9rem) !important;
+}
+
+/* ---------- Hero ---------- */
+.page-vault-hub .hero{
+  margin-bottom:18px !important;
+  border-radius:24px !important;
+}
+.page-vault-hub .hero-copy{
+  padding:clamp(20px,3vw,34px) !important;
+}
+.page-vault-hub .eyebrow{
+  padding:7px 10px !important;
+  font-size:clamp(.7rem,.25vw + .65rem,.8rem) !important;
+}
+.page-vault-hub .hero h1{
+  margin-top:12px !important;
+  font-size:clamp(2.65rem,8.5vw,4.75rem) !important;
+  line-height:.94 !important;
+  letter-spacing:-.045em !important;
+}
+.page-vault-hub .hero p{
+  margin-top:14px !important;
+  max-width:60ch !important;
+  font-size:clamp(1rem,.48vw + .91rem,1.18rem) !important;
+  line-height:1.58 !important;
+}
+
+/* ---------- Technique system ---------- */
+.page-vault-hub .tech-system{
+  padding:clamp(16px,2vw,22px) !important;
+  margin-bottom:18px !important;
+}
+.page-vault-hub .tech-system h2{
+  font-size:clamp(1.28rem,.75vw + 1.12rem,1.55rem) !important;
+  line-height:1.15 !important;
+}
+.page-vault-hub .tech-system p{
+  margin-top:7px !important;
+  max-width:68ch;
+  font-size:clamp(.9rem,.3vw + .84rem,1rem) !important;
+  line-height:1.5 !important;
+}
+.page-vault-hub .tech-grid{
+  gap:8px !important;
+  margin-top:13px !important;
+}
+.page-vault-hub .tech{
+  min-height:48px !important;
+  display:grid;
+  place-items:center;
+  padding:9px 5px !important;
+  font-size:clamp(.82rem,.3vw + .76rem,.94rem) !important;
+  line-height:1.2 !important;
+}
+
+/* ---------- How to use ---------- */
+.page-vault-hub .how{
+  padding:clamp(16px,2vw,22px) !important;
+  margin-bottom:18px !important;
+}
+.page-vault-hub .how h2{
+  font-size:clamp(1.28rem,.75vw + 1.12rem,1.55rem) !important;
+}
+.page-vault-hub .steps{
+  gap:9px !important;
+  margin-top:12px !important;
+}
+.page-vault-hub .step{
+  min-height:82px !important;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  padding:11px 7px !important;
+  font-size:clamp(.82rem,.28vw + .77rem,.92rem) !important;
+  line-height:1.3 !important;
+}
+.page-vault-hub .step b{
+  margin-bottom:5px !important;
+  font-size:clamp(1.12rem,.48vw + 1.02rem,1.3rem) !important;
+}
+
+/* ---------- Progress ---------- */
+.page-vault-hub .progress-card{
+  padding:clamp(16px,2vw,22px) !important;
+  margin-bottom:18px !important;
+}
+.page-vault-hub .progress-head h2{
+  font-size:clamp(1.28rem,.75vw + 1.12rem,1.55rem) !important;
+}
+.page-vault-hub .progress-head span{
+  font-size:clamp(.92rem,.34vw + .85rem,1.04rem) !important;
+}
+.page-vault-hub .progress-note{
+  margin-top:9px !important;
+  font-size:clamp(.84rem,.3vw + .78rem,.94rem) !important;
+  line-height:1.45 !important;
+}
+
+/* ---------- Journey section heading ---------- */
+.page-vault-hub .section-head{
+  gap:12px !important;
+  margin-bottom:13px !important;
+}
+.page-vault-hub .section-head h2{
+  font-size:clamp(1.55rem,1vw + 1.3rem,1.95rem) !important;
+  line-height:1.1 !important;
+}
+.page-vault-hub .section-head span{
+  font-size:clamp(.74rem,.25vw + .69rem,.84rem) !important;
+  line-height:1.2 !important;
+}
+
+/* ---------- Vault cards ---------- */
+.page-vault-hub .vault-list{
+  gap:14px !important;
+  margin-bottom:18px !important;
+}
+.page-vault-hub .vault-card{
+  padding:clamp(16px,2vw,22px) !important;
+  border-radius:21px !important;
+}
+.page-vault-hub .vault-number{
+  width:52px !important;
+  height:52px !important;
+  font-size:clamp(1.12rem,.48vw + 1.02rem,1.3rem) !important;
+}
+.page-vault-hub .status{
+  padding:7px 10px !important;
+  font-size:clamp(.68rem,.22vw + .64rem,.78rem) !important;
+  line-height:1.15 !important;
+}
+.page-vault-hub .vault-card h3{
+  margin-top:15px !important;
+  font-size:clamp(1.7rem,1.2vw + 1.42rem,2.15rem) !important;
+  line-height:1.02 !important;
+}
+.page-vault-hub .vault-card p{
+  margin-top:9px !important;
+  max-width:52ch !important;
+  font-size:clamp(.92rem,.32vw + .86rem,1.04rem) !important;
+  line-height:1.5 !important;
+}
+.page-vault-hub .purpose{
+  gap:8px !important;
+  margin-top:14px !important;
+}
+.page-vault-hub .purpose div{
+  min-height:58px !important;
+  display:flex;
+  align-items:center;
+  padding:10px !important;
+  font-size:clamp(.8rem,.28vw + .75rem,.9rem) !important;
+  line-height:1.35 !important;
+}
+.page-vault-hub .vault-btn{
+  min-height:56px !important;
+  margin-top:15px !important;
+  font-size:clamp(.86rem,.32vw + .8rem,.98rem) !important;
+}
+
+/* ---------- Bottom navigation ---------- */
+.page-vault-hub .bottom-nav{
+  width:calc(100% - 18px) !important;
+  max-width:min(760px,calc(100% - 18px)) !important;
+  bottom:max(9px,env(safe-area-inset-bottom)) !important;
+  padding:6px !important;
+  gap:2px !important;
+}
+.page-vault-hub .bottom-nav a{
+  min-width:0 !important;
+  min-height:62px !important;
+  gap:4px !important;
+  padding:5px 2px !important;
+  font-size:clamp(.68rem,.24vw + .63rem,.78rem) !important;
+  line-height:1.05 !important;
+}
+.page-vault-hub .bottom-nav img{
+  width:clamp(29px,3vw,33px) !important;
+  height:clamp(29px,3vw,33px) !important;
+}
+
+/* ---------- Tablet ---------- */
+@media(min-width:600px){
+  .page-vault-hub .app{
+    max-width:900px !important;
+    padding:24px 26px 126px !important;
+  }
+
+  .page-vault-hub .tech-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr)) !important;
+  }
+
+  .page-vault-hub .vault-list{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-vault-hub .vault-card.mock{
+    grid-column:1 / -1 !important;
+  }
+}
+
+/* ---------- Laptop / desktop ---------- */
+@media(min-width:900px){
+  .page-vault-hub .app{
+    max-width:1140px !important;
+    padding:30px 32px 128px !important;
+  }
+
+  .page-vault-hub .hero{
+    display:grid !important;
+    grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr) !important;
+    min-height:390px !important;
+  }
+
+  .page-vault-hub .hero img{
+    width:100% !important;
+    height:100% !important;
+    object-fit:cover !important;
+    border-bottom:0 !important;
+    border-right:var(--line) !important;
+  }
+
+  .page-vault-hub .hero-copy{
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    padding:clamp(30px,3vw,40px) !important;
+  }
+
+  .page-vault-hub .hero h1{
+    font-size:clamp(3.85rem,5.2vw,4.85rem) !important;
+  }
+
+  .page-vault-hub .vault-list{
+    grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  }
+  .page-vault-hub .vault-card.mock{
+    grid-column:auto !important;
+  }
+
+  .page-vault-hub .vault-card{
+    display:flex;
+    flex-direction:column;
+  }
+  .page-vault-hub .vault-btn{
+    margin-top:auto !important;
+  }
+}
+
+/* ---------- Wide desktop ---------- */
+@media(min-width:1200px){
+  .page-vault-hub .app{
+    max-width:1240px !important;
+  }
+}
+
+/* ---------- Small phones ---------- */
+@media(max-width:420px){
+  .page-vault-hub .brand img{
+    width:54px !important;
+    height:54px !important;
+  }
+  .page-vault-hub .brand small{
+    font-size:.68rem !important;
+  }
+  .page-vault-hub .brand strong{
+    font-size:1.08rem !important;
+  }
+  .page-vault-hub .hero h1{
+    font-size:2.4rem !important;
+  }
+  .page-vault-hub .tech-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+  .page-vault-hub .purpose{
+    grid-template-columns:1fr 1fr !important;
+  }
+  .page-vault-hub .bottom-nav{
+    width:calc(100% - 12px) !important;
+    padding:4px !important;
+  }
+  .page-vault-hub .bottom-nav a{
+    min-height:56px !important;
+    font-size:.64rem !important;
+  }
+  .page-vault-hub .bottom-nav img{
+    width:27px !important;
+    height:27px !important;
+  }
+}
+
+@media(max-width:350px){
+  .page-vault-hub .purpose{
+    grid-template-columns:1fr !important;
+  }
+}
+</style>
+
+
+<style id="vault-continue-card-style">
+/* =========================================================
+   CONTINUE MY JOURNEY
+   ========================================================= */
+.page-vault-hub .continue-card{
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr);
+  gap:14px;
+  align-items:start;
+  margin-bottom:20px;
+  padding:clamp(16px,2vw,22px);
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  background:linear-gradient(135deg,#ffffff 0%,#edfff8 100%);
+}
+
+.page-vault-hub .continue-card::after{
+  content:"";
+  position:absolute;
+  width:96px;
+  height:96px;
+  right:-38px;
+  top:-42px;
+  border:var(--line);
+  border-radius:50%;
+  background:var(--lime);
+  opacity:.75;
+}
+
+.page-vault-hub .continue-icon{
+  position:relative;
+  z-index:2;
+  width:56px;
+  height:56px;
+  display:grid;
+  place-items:center;
+  border:var(--line);
+  border-radius:15px;
+  background:var(--white);
+  box-shadow:3px 3px 0 var(--ink);
+  font-family:var(--font-heading);
+  font-size:28px;
+  font-weight:800;
+}
+
+.page-vault-hub .continue-copy{
+  position:relative;
+  z-index:2;
+  min-width:0;
+}
+
+.page-vault-hub .continue-copy small{
+  display:block;
+  color:var(--muted);
+  font-size:clamp(.7rem,.24vw + .65rem,.8rem);
+  line-height:1.15;
+  font-weight:1000;
+  letter-spacing:.075em;
+}
+
+.page-vault-hub .continue-copy h2{
+  margin-top:5px;
+  font-size:clamp(1.35rem,.8vw + 1.18rem,1.68rem);
+  line-height:1.12;
+}
+
+.page-vault-hub .continue-copy p{
+  max-width:66ch;
+  margin-top:7px;
+  color:#343840;
+  font-size:clamp(.88rem,.3vw + .82rem,.98rem);
+  line-height:1.5;
+  font-weight:700;
+}
+
+.page-vault-hub .continue-meta{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+
+.page-vault-hub .continue-meta span{
+  display:inline-flex;
+  align-items:center;
+  min-height:30px;
+  padding:5px 9px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:var(--gold);
+  font-size:clamp(.66rem,.22vw + .62rem,.76rem);
+  line-height:1.15;
+  font-weight:1000;
+  letter-spacing:.04em;
+}
+
+.page-vault-hub .continue-meta b{
+  font-family:var(--font-heading);
+  font-size:clamp(.82rem,.3vw + .76rem,.94rem);
+}
+
+.page-vault-hub .continue-actions{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:8px;
+  margin-top:13px;
+}
+
+.page-vault-hub .continue-primary,
+.page-vault-hub .continue-secondary{
+  min-height:48px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:var(--line);
+  border-radius:12px;
+  font-size:clamp(.78rem,.28vw + .73rem,.9rem);
+  font-weight:1000;
+  text-align:center;
+}
+
+.page-vault-hub .continue-primary{
+  background:var(--ink);
+  color:var(--white);
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+.page-vault-hub .continue-secondary{
+  min-width:132px;
+  background:var(--white);
+  color:var(--ink);
+}
+
+.page-vault-hub .continue-primary:active,
+.page-vault-hub .continue-secondary:active{
+  transform:translate(2px,2px);
+}
+
+@media(min-width:900px){
+  .page-vault-hub .continue-card{
+    grid-template-columns:68px minmax(0,1fr);
+    padding:22px 24px;
+  }
+
+  .page-vault-hub .continue-icon{
+    width:64px;
+    height:64px;
+    font-size:31px;
+  }
+
+  .page-vault-hub .continue-actions{
+    max-width:590px;
+  }
+}
+
+@media(max-width:420px){
+  .page-vault-hub .continue-card{
+    grid-template-columns:50px minmax(0,1fr);
+    gap:11px;
+    padding:14px;
+  }
+
+  .page-vault-hub .continue-icon{
+    width:48px;
+    height:48px;
+    font-size:24px;
+  }
+
+  .page-vault-hub .continue-actions{
+    grid-template-columns:1fr;
+  }
+
+  .page-vault-hub .continue-secondary{
+    min-width:0;
+  }
+}
+</style>
+
+</head>
+
+<body class="page-vault-hub">
+<main class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide">
+      <div>
+        <small>03 · PRACTISE</small>
+        <strong>Study Vault</strong>
+      </div>
+    </div>
+
+    <a class="home-btn" href="muet-hub.html">Home</a>
+  </header>
+
+
+  <section class="hero">
+    <img
+      src="assets/heroes/study-vault-hero.svg"
+      alt="Study Vault"
+    >
+
+    <div class="hero-copy">
+      <span class="eyebrow">PRACTICE JOURNEY</span>
+
+      <h1>
+        Learn it.
+        <span class="accent">Now use it.</span>
+      </h1>
+
+      <p>
+        Apply CLUE, PREP, SCAN and PEEL through three clear practice milestones —
+        from supported practice to exam-style simulation.
+      </p>
+    </div>
+  </section>
+
+
+  <section class="tech-system">
+    <h2>Your 4 Techniques Travel With You</h2>
+
+    <p>
+      Use the same strategies you learned in the Guide while you practise.
+    </p>
+
+    <div class="tech-grid">
+      <div class="tech">🎧 CLUE</div>
+      <div class="tech">🎤 PREP</div>
+      <div class="tech">📖 SCAN</div>
+      <div class="tech">✍️ PEEL</div>
+    </div>
+  </section>
+
+
+
+  <section class="how">
+    <h2>How to Use the Vault</h2>
+
+    <div class="steps">
+      <div class="step">
+        <b>1</b>
+        Practise
+      </div>
+
+      <div class="step">
+        <b>2</b>
+        Review
+      </div>
+
+      <div class="step">
+        <b>3</b>
+        Improve
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="progress-card">
+    <div class="progress-head">
+      <h2>My Vault Progress</h2>
+      <span id="vaultProgressText">0 / 3</span>
+    </div>
+
+    <div class="progress-track">
+      <i id="vaultProgressFill"></i>
+    </div>
+
+    <p class="progress-note" id="vaultProgressNote">
+      Start with Vault 1 and build confidence step by step.
+    </p>
+
+  </section>
+
+  <!-- CONTINUE MY JOURNEY -->
+  <section class="continue-card" id="continueCard">
+    <div class="continue-icon">↗</div>
+
+    <div class="continue-copy">
+      <small>CONTINUE MY JOURNEY</small>
+      <h2 id="continueTitle">Ready to practise?</h2>
+      <p id="continueText">No saved activity yet. Start with Vault 1 and build your confidence step by step.</p>
+
+      <div class="continue-meta" id="continueMeta">
+        <span>START HERE</span>
+        <b>Vault 1</b>
+      </div>
+
+      <div class="continue-actions">
+        <a class="continue-primary" id="continueBtn" href="vault1.html">START VAULT 1 →</a>
+        <a class="continue-secondary" href="progress.html">VIEW PROGRESS</a>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="section-head">
+    <h2>Your Practice Journey</h2>
+    <span>3 milestones</span>
+  </div>
+
+
+  <section class="vault-list">
+
+    <article class="vault-card v1">
+      <div class="vault-top">
+        <div class="vault-number">01</div>
+        <div class="status" id="v1Status">START HERE</div>
+      </div>
+
+      <h3>Vault 1</h3>
+
+      <p>
+        Guided practice with more support. Focus on using the technique correctly
+        before worrying about speed.
+      </p>
+
+      <div class="purpose">
+        <div>🧠 Apply the strategy</div>
+        <div>🪜 Build confidence</div>
+        <div>💡 Learn from feedback</div>
+        <div>⏱️ Gentle timing</div>
+      </div>
+
+      <a class="vault-btn" href="vault1.html">
+        OPEN VAULT 1 →
+      </a>
+    </article>
+
+
+    <article class="vault-card v2">
+      <div class="vault-top">
+        <div class="vault-number">02</div>
+        <div class="status" id="v2Status">NEXT LEVEL</div>
+      </div>
+
+      <h3>Vault 2</h3>
+
+      <p>
+        Less scaffolding and more independent decision-making.
+        Use your strategy with greater speed and confidence.
+      </p>
+
+      <div class="purpose">
+        <div>🎯 Less support</div>
+        <div>⚡ Faster decisions</div>
+        <div>🧩 Stronger application</div>
+        <div>⏱️ Tighter timing</div>
+      </div>
+
+      <a class="vault-btn" href="vault2.html">
+        OPEN VAULT 2 →
+      </a>
+    </article>
+
+
+    <article class="vault-card mock">
+      <div class="vault-top">
+        <div class="vault-number">03</div>
+        <div class="status" id="mockStatus">FINAL CHECK</div>
+      </div>
+
+      <h3>Mock Practice 1</h3>
+
+      <p>
+        Bring all four components together in a more exam-like routine
+        and see how ready you are.
+      </p>
+
+      <div class="purpose">
+        <div>🏁 Exam-style routine</div>
+        <div>⏱️ Timed conditions</div>
+        <div>📊 Check readiness</div>
+        <div>🎯 Find final gaps</div>
+      </div>
+
+      <a class="vault-btn" href="mock1.html">
+        OPEN MOCK PRACTICE →
+      </a>
+    </article>
+
+  </section>
+</main>
+
+
+<nav class="bottom-nav">
+  <a href="muet-hub.html">
+    <img src="assets/heroes/nav-home.svg" alt="">
+    <span>Home</span>
+  </a>
+
+  <a href="guidance.html">
+    <img src="assets/heroes/icon-muet-intro.svg" alt="">
+    <span>Guide</span>
+  </a>
+
+  <a class="active" href="vault.html">
+    <img src="assets/heroes/nav-vault.svg" alt="">
+    <span>Vault</span>
+  </a>
+
+  <a href="progress.html">
+    <img src="assets/heroes/nav-progress.svg" alt="">
+    <span>Progress</span>
+  </a>
+
+  <a href="settings.html">
+    <img src="assets/heroes/nav-profile.svg" alt="">
+    <span>Profile</span>
+  </a>
+</nav>
+
+
+<script>
+  /*
+    Prototype progress reader.
+    It recognises either explicit completion keys or a generic attempt log.
+    Apps Script can replace this later without changing the layout.
+  */
+
+  function readJSON(key,fallback){
+    try{
+      return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback));
+    }catch(_){
+      return fallback;
+    }
+  }
+
+  function vaultComplete(key){
+    return localStorage.getItem(key) === "true";
+  }
+
+  function updateVaultProgress(){
+    const attempts = readJSON("muet_attempt_log",[]);
+
+    const v1 =
+      vaultComplete("muet_vault1_complete") ||
+      attempts.some(x => String(x.vault || x.level || "").toUpperCase().includes("VAULT-01"));
+
+    const v2 =
+      vaultComplete("muet_vault2_complete") ||
+      attempts.some(x => String(x.vault || x.level || "").toUpperCase().includes("VAULT-02"));
+
+    const mock =
+      vaultComplete("muet_mock1_complete") ||
+      attempts.some(x => String(x.vault || x.level || "").toUpperCase().includes("MOCK"));
+
+    const complete = [v1,v2,mock].filter(Boolean).length;
+    const percent = Math.round(complete / 3 * 100);
+
+    document.getElementById("vaultProgressText").textContent =
+      `${complete} / 3`;
+
+    document.getElementById("vaultProgressFill").style.width =
+      percent + "%";
+
+    if(v1){
+      document.getElementById("v1Status").textContent = "COMPLETED ✓";
+    }
+
+    if(v2){
+      document.getElementById("v2Status").textContent = "COMPLETED ✓";
+    }
+
+    if(mock){
+      document.getElementById("mockStatus").textContent = "COMPLETED ✓";
+    }
+
+    let note = "Start with Vault 1 and build confidence step by step.";
+
+    if(v1 && !v2){
+      note = "Vault 1 complete. Move to Vault 2 when you are ready for less support.";
+    }else if(v1 && v2 && !mock){
+      note = "Great progress. Mock Practice 1 is your next readiness check.";
+    }else if(v1 && v2 && mock){
+      note = "Phase 1 practice journey complete. Review your Progress page for the next focus.";
+    }
+
+    document.getElementById("vaultProgressNote").textContent = note;
+  }
+
+
+  function normaliseComponent(value){
+    const s = String(value || "").toLowerCase();
+    if(s.includes("speak")) return "speaking";
+    if(s.includes("read")) return "reading";
+    if(s.includes("listen")) return "listening";
+    if(s.includes("writ")) return "writing";
+    return "";
+  }
+
+  function normaliseStage(value){
+    const s = String(value || "").toUpperCase();
+    if(s.includes("MOCK")) return "MOCK-01";
+    if(s.includes("VAULT-02") || s.includes("VAULT 2") || s.includes("V2")) return "VAULT-02";
+    if(s.includes("VAULT-01") || s.includes("VAULT 1") || s.includes("V1")) return "VAULT-01";
+    return "";
+  }
+
+  function pageFor(stage,component){
+    const map = {
+      "VAULT-01":"vault1",
+      "VAULT-02":"vault2",
+      "MOCK-01":"mock1"
+    };
+    const prefix = map[stage];
+    if(!prefix) return "";
+    return component ? `${prefix}-${component}.html` : `${prefix}.html`;
+  }
+
+  function stageLabel(stage){
+    if(stage==="VAULT-01") return "Vault 1";
+    if(stage==="VAULT-02") return "Vault 2";
+    if(stage==="MOCK-01") return "Mock Practice 1";
+    return "Study Vault";
+  }
+
+  function componentLabel(component){
+    const map={
+      speaking:"Speaking",
+      reading:"Reading",
+      listening:"Listening",
+      writing:"Writing"
+    };
+    return map[component] || "";
+  }
+
+  function updateContinueJourney(){
+    const attempts = readJSON("muet_attempt_log",[]);
+    let latest = null;
+
+    if(Array.isArray(attempts) && attempts.length){
+      const rows = attempts
+        .map((x,i)=>{
+          const rawStage = x.vault || x.level || x.stage || x.vaultId || x.paperId || "";
+          const rawComponent = x.component || x.skill || x.paper || x.type || "";
+          const timestamp = Number(
+            x.timestamp || x.time || x.createdAt || x.updatedAt || x.savedAt || i
+          );
+          return {
+            stage: normaliseStage(rawStage),
+            component: normaliseComponent(rawComponent),
+            timestamp: Number.isFinite(timestamp) ? timestamp : i
+          };
+        })
+        .filter(x=>x.stage);
+
+      if(rows.length){
+        rows.sort((a,b)=>a.timestamp-b.timestamp);
+        latest = rows[rows.length-1];
+      }
+    }
+
+    const btn = document.getElementById("continueBtn");
+    const title = document.getElementById("continueTitle");
+    const copy = document.getElementById("continueText");
+    const meta = document.getElementById("continueMeta");
+
+    if(latest){
+      const stage = stageLabel(latest.stage);
+      const component = componentLabel(latest.component);
+      const destination = pageFor(latest.stage,latest.component);
+
+      title.textContent = component ? `Continue ${component}` : `Continue ${stage}`;
+      copy.textContent = component
+        ? `Your latest saved activity was ${component} in ${stage}. Continue from that practice area when you are ready.`
+        : `Your latest saved activity was in ${stage}. Continue your practice journey from there.`;
+
+      meta.innerHTML = `<span>LAST ACTIVITY</span><b>${stage}${component ? " · "+component : ""}</b>`;
+      btn.href = destination || "vault1.html";
+      btn.textContent = "CONTINUE →";
+      return;
+    }
+
+    const v1 = vaultComplete("muet_vault1_complete");
+    const v2 = vaultComplete("muet_vault2_complete");
+    const mock = vaultComplete("muet_mock1_complete");
+
+    if(v1 && v2 && mock){
+      title.textContent = "Practice journey complete";
+      copy.textContent = "You have completed Vault 1, Vault 2 and Mock Practice 1. Review your Progress page to decide what to practise again.";
+      meta.innerHTML = "<span>COMPLETE ✓</span><b>Review your performance</b>";
+      btn.href = "progress.html";
+      btn.textContent = "VIEW MY PROGRESS →";
+    }else if(v1 && v2){
+      title.textContent = "Your next step: Mock Practice 1";
+      copy.textContent = "Vault 1 and Vault 2 are complete. Move into the full practice test when you are ready.";
+      meta.innerHTML = "<span>NEXT STEP</span><b>Mock Practice 1</b>";
+      btn.href = "mock1.html";
+      btn.textContent = "OPEN MOCK PRACTICE →";
+    }else if(v1){
+      title.textContent = "Your next step: Vault 2";
+      copy.textContent = "Vault 1 is complete. Continue with more independent practice in Vault 2.";
+      meta.innerHTML = "<span>NEXT STEP</span><b>Vault 2</b>";
+      btn.href = "vault2.html";
+      btn.textContent = "OPEN VAULT 2 →";
+    }else{
+      title.textContent = "Ready to practise?";
+      copy.textContent = "No saved activity yet. Start with Vault 1 and build your confidence step by step.";
+      meta.innerHTML = "<span>START HERE</span><b>Vault 1</b>";
+      btn.href = "vault1.html";
+      btn.textContent = "START VAULT 1 →";
+    }
+  }
+
+  updateVaultProgress();
+  updateContinueJourney();
+</script>
+
+</body>
+</html>
