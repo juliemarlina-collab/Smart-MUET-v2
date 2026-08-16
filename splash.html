@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Smart MUET Guide — Your Journey to Exam Ready">
+  <title>Smart MUET Guide</title>
+
+  <!-- Keep existing Smart MUET typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111111;
+      --white:#ffffff;
+      --red:#ff2525;
+      --yellow:#ffd31f;
+      --blue:#1f5eff;
+      --teal:#5bd0c8;
+      --muted:#4f535b;
+
+      --font-heading:"Sora",sans-serif;
+      --font-body:"DM Sans",sans-serif;
+
+      --line:3px solid var(--ink);
+      --shadow:6px 6px 0 var(--ink);
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    html,
+    body{
+      width:100%;
+      min-height:100%;
+    }
+
+    body{
+      font-family:var(--font-body);
+      background:var(--white);
+      color:var(--ink);
+      overflow:hidden;
+    }
+
+    .splash{
+      width:100%;
+      min-height:100vh;
+      min-height:100dvh;
+      position:relative;
+      display:grid;
+      grid-template-rows:1fr auto;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(0,0,0,.09) 1.5px, transparent 1.6px) 0 0/14px 14px,
+        var(--white);
+    }
+
+    /* --- Neo-brutalist decorative shapes --- */
+    .shape{
+      position:absolute;
+      border:var(--line);
+      z-index:0;
+      pointer-events:none;
+    }
+
+    .shape-yellow{
+      width:clamp(82px,12vw,150px);
+      height:clamp(118px,17vw,190px);
+      background:var(--yellow);
+      left:-18px;
+      top:-12px;
+      clip-path:polygon(0 0,100% 0,100% 46%,72% 46%,72% 72%,44% 72%,44% 100%,0 100%);
+    }
+
+    .shape-red{
+      width:clamp(112px,16vw,190px);
+      height:clamp(170px,24vw,260px);
+      background:var(--red);
+      left:-18px;
+      bottom:72px;
+      clip-path:polygon(0 0,38% 0,38% 32%,58% 32%,58% 56%,78% 56%,78% 100%,0 100%);
+    }
+
+    .shape-blue{
+      width:clamp(28px,4vw,52px);
+      height:clamp(150px,24vh,260px);
+      background:var(--blue);
+      right:-8px;
+      top:28%;
+    }
+
+    .shape-teal{
+      width:clamp(92px,15vw,170px);
+      height:clamp(128px,20vw,220px);
+      background:var(--teal);
+      right:-18px;
+      bottom:72px;
+      clip-path:polygon(62% 0,100% 0,100% 100%,0 100%,0 72%,26% 72%,26% 46%,48% 46%,48% 22%,62% 22%);
+    }
+
+    .content{
+      position:relative;
+      z-index:2;
+      width:min(92vw,720px);
+      margin:auto;
+      padding:
+        max(28px,env(safe-area-inset-top))
+        24px
+        30px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+    }
+
+    .logo-wrap{
+      width:clamp(92px,13vw,138px);
+      aspect-ratio:1;
+      display:grid;
+      place-items:center;
+      margin-bottom:22px;
+
+      opacity:0;
+      transform:translateY(-10px) scale(.94);
+      animation:logoIn .65s cubic-bezier(.2,.8,.2,1) .25s forwards;
+    }
+
+    .logo-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .title{
+      font-family:var(--font-heading);
+      font-weight:800;
+      line-height:.90;
+      letter-spacing:-.055em;
+      text-transform:uppercase;
+
+      opacity:0;
+      transform:translateY(18px);
+      animation:titleIn .65s cubic-bezier(.2,.8,.2,1) .7s forwards;
+    }
+
+    .title-line{
+      display:block;
+      font-size:clamp(52px,12vw,122px);
+    }
+
+    .title-line.red{
+      color:var(--red);
+    }
+
+    .divider{
+      margin:24px auto 20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+
+      opacity:0;
+      animation:fadeIn .45s ease 1.25s forwards;
+    }
+
+    .divider::before,
+    .divider::after{
+      content:"";
+      width:clamp(42px,10vw,86px);
+      height:3px;
+      background:var(--ink);
+    }
+
+    .sq{
+      width:13px;
+      height:13px;
+      border:2px solid var(--ink);
+    }
+
+    .sq.yellow{background:var(--yellow)}
+    .sq.blue{background:var(--blue)}
+    .sq.red{background:var(--red)}
+
+    .tagline{
+      font-family:var(--font-heading);
+      font-size:clamp(24px,5vw,46px);
+      font-weight:800;
+      line-height:1.05;
+      letter-spacing:-.035em;
+      text-transform:uppercase;
+
+      opacity:0;
+      transform:translateY(12px);
+      animation:titleIn .55s ease 1.45s forwards;
+    }
+
+    .tagline strong{
+      color:var(--blue);
+    }
+
+    .subline{
+      margin-top:14px;
+      max-width:560px;
+      color:var(--muted);
+      font-size:clamp(15px,2.2vw,20px);
+      line-height:1.45;
+      font-weight:700;
+
+      opacity:0;
+      animation:fadeIn .45s ease 1.85s forwards;
+    }
+
+    .footer{
+      position:relative;
+      z-index:3;
+      min-height:88px;
+      padding:
+        14px
+        max(20px,env(safe-area-inset-right))
+        max(16px,env(safe-area-inset-bottom))
+        max(20px,env(safe-area-inset-left));
+
+      background:var(--ink);
+      color:var(--white);
+
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:7px;
+    }
+
+    .skip-btn{
+      min-width:145px;
+      min-height:48px;
+      padding:10px 20px;
+
+      background:transparent;
+      color:var(--white);
+      border:2px solid var(--white);
+      border-radius:7px;
+
+      font-family:var(--font-heading);
+      font-size:18px;
+      font-weight:800;
+      letter-spacing:.01em;
+
+      cursor:pointer;
+
+      opacity:0;
+      pointer-events:none;
+      transform:translateY(6px);
+      transition:
+        opacity .25s ease,
+        transform .25s ease,
+        background .15s ease,
+        color .15s ease;
+    }
+
+    .skip-btn.show{
+      opacity:1;
+      pointer-events:auto;
+      transform:translateY(0);
+    }
+
+    .skip-btn:hover,
+    .skip-btn:focus-visible{
+      background:var(--white);
+      color:var(--ink);
+      outline:none;
+    }
+
+    .skip-note{
+      font-size:13px;
+      color:#d7d7d7;
+      font-weight:600;
+    }
+
+    .splash.exit{
+      animation:splashOut .35s ease forwards;
+    }
+
+    @keyframes logoIn{
+      to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+      }
+    }
+
+    @keyframes titleIn{
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    @keyframes fadeIn{
+      to{opacity:1}
+    }
+
+    @keyframes splashOut{
+      to{
+        opacity:0;
+        transform:scale(.985);
+      }
+    }
+
+    /* ===== SMALL PHONE ===== */
+    @media (max-width:380px){
+      .content{
+        width:94vw;
+        padding-inline:16px;
+      }
+
+      .logo-wrap{
+        width:84px;
+        margin-bottom:18px;
+      }
+
+      .title-line{
+        font-size:48px;
+      }
+
+      .tagline{
+        font-size:22px;
+      }
+
+      .subline{
+        font-size:14px;
+      }
+
+      .shape-blue{
+        height:132px;
+      }
+
+      .footer{
+        min-height:82px;
+      }
+    }
+
+    /* ===== LARGE MOBILE / TABLET ===== */
+    @media (min-width:600px){
+      .content{
+        width:min(82vw,760px);
+      }
+
+      .logo-wrap{
+        width:120px;
+        margin-bottom:26px;
+      }
+
+      .footer{
+        min-height:100px;
+      }
+    }
+
+    /* ===== DESKTOP ===== */
+    @media (min-width:1024px){
+      .content{
+        width:min(76vw,900px);
+      }
+
+      .logo-wrap{
+        width:138px;
+      }
+
+      .title-line{
+        font-size:112px;
+      }
+
+      .tagline{
+        font-size:42px;
+      }
+
+      .subline{
+        font-size:18px;
+      }
+
+      .footer{
+        min-height:106px;
+      }
+    }
+
+    /* ===== SHORT LANDSCAPE SCREENS ===== */
+    @media (orientation:landscape) and (max-height:600px){
+      .splash{
+        grid-template-rows:1fr 70px;
+      }
+
+      .content{
+        padding-block:18px;
+      }
+
+      .logo-wrap{
+        width:72px;
+        margin-bottom:10px;
+      }
+
+      .title-line{
+        font-size:clamp(42px,8vw,78px);
+      }
+
+      .divider{
+        margin:12px auto;
+      }
+
+      .tagline{
+        font-size:clamp(18px,3vw,30px);
+      }
+
+      .subline{
+        display:none;
+      }
+
+      .footer{
+        min-height:70px;
+        padding-block:8px;
+      }
+
+      .skip-btn{
+        min-height:40px;
+        font-size:15px;
+      }
+
+      .skip-note{
+        display:none;
+      }
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      *,
+      *::before,
+      *::after{
+        animation-duration:.01ms !important;
+        animation-iteration-count:1 !important;
+        transition:none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="splash" id="splash">
+
+    <!-- decorative blocks -->
+    <div class="shape shape-yellow" aria-hidden="true"></div>
+    <div class="shape shape-red" aria-hidden="true"></div>
+    <div class="shape shape-blue" aria-hidden="true"></div>
+    <div class="shape shape-teal" aria-hidden="true"></div>
+
+    <section class="content">
+
+      <!-- Use the SMALL MUET logo from existing assets -->
+      <div class="logo-wrap">
+        <img
+          src="assets/heroes/small-muet-logo.svg"
+          alt="Smart MUET Guide"
+        >
+      </div>
+
+      <h1 class="title" aria-label="Smart MUET Guide">
+        <span class="title-line">SMART</span>
+        <span class="title-line red">MUET</span>
+        <span class="title-line">GUIDE</span>
+      </h1>
+
+      <div class="divider" aria-hidden="true">
+        <span class="sq yellow"></span>
+        <span class="sq blue"></span>
+        <span class="sq red"></span>
+      </div>
+
+      <p class="tagline">
+        Your Journey to
+        <br>
+        <strong>Exam Ready.</strong>
+      </p>
+
+      <p class="subline">
+        Prepare with purpose. Build confidence. Walk into MUET ready.
+      </p>
+
+    </section>
+
+    <footer class="footer">
+      <button
+        class="skip-btn"
+        id="skipBtn"
+        type="button"
+        aria-label="Skip splash screen"
+      >
+        SKIP →
+      </button>
+
+      <div class="skip-note" id="skipNote">
+        Skip available in 2s
+      </div>
+    </footer>
+
+  </main>
+
+  <script>
+    /*
+      SMART MUET SPLASH
+      -----------------
+      Total duration : 6 seconds
+      Skip available : after 2 seconds
+      Next page      : welcome.html
+      No tap-anywhere skip
+    */
+
+    const SPLASH_DURATION = 6000;
+    const SKIP_DELAY = 2000;
+    const NEXT_PAGE = "welcome.html";
+
+    const splash = document.getElementById("splash");
+    const skipBtn = document.getElementById("skipBtn");
+    const skipNote = document.getElementById("skipNote");
+
+    let leaving = false;
+
+    function goNext(){
+      if(leaving) return;
+      leaving = true;
+
+      splash.classList.add("exit");
+
+      setTimeout(() => {
+        window.location.replace(NEXT_PAGE);
+      }, 350);
+    }
+
+    const autoTimer = setTimeout(goNext, SPLASH_DURATION);
+
+    setTimeout(() => {
+      skipBtn.classList.add("show");
+      skipNote.textContent = "Skip anytime";
+    }, SKIP_DELAY);
+
+    skipBtn.addEventListener("click", () => {
+      clearTimeout(autoTimer);
+      goNext();
+    });
+  </script>
+</body>
+</html>

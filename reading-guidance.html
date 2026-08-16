@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0D78E8">
+  <meta name="description" content="Interactive MUET Reading Guide — SCAN Technique">
+  <title>Reading Guide · Smart MUET Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111;--white:#fff;--soft:#f4f7f8;--muted:#4f535b;
+      --main:#0D78E8;--accent:#7C25DA;--gold:#F4C400;--lime:#48F000;
+      --electric:#12D8FF;--hotpink:#FF4FA3;--azure:#0D78E8;--orange:#FF5A00;
+      --green:#0DBD79;--red:#ff2525;--violet:#7C25DA;
+      --line:3px solid var(--ink);--shadow:5px 5px 0 var(--ink);
+      --font-heading:"Sora",sans-serif;--font-body:"DM Sans",sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;min-height:100%}
+    body{font-family:var(--font-body);background:var(--main);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none} button{font:inherit}
+
+    .app{
+      width:100%;max-width:520px;min-height:100dvh;margin:auto;background:var(--soft);
+      padding:max(15px,env(safe-area-inset-top)) max(14px,env(safe-area-inset-right))
+              max(112px,calc(96px + env(safe-area-inset-bottom))) max(14px,env(safe-area-inset-left));
+    }
+
+    .topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+    .brand{display:flex;align-items:center;gap:10px;min-width:0}
+    .brand img{width:54px;height:54px;object-fit:contain}
+    .brand small{display:block;color:var(--muted);font-size:10px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+    .brand strong{display:block;margin-top:3px;font-family:var(--font-heading);font-size:17px}
+    .back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:999px;background:var(--white);box-shadow:2px 2px 0 var(--ink);padding:8px 11px;font-size:11px;font-weight:1000}
+
+    .hero{position:relative;overflow:hidden;background:var(--white);border:var(--line);border-radius:24px;box-shadow:var(--shadow);padding:22px 18px 20px;margin-bottom:15px}
+    .hero::before{z-index:-1;content:"";position:absolute;width:92px;height:92px;right:-22px;top:-28px;border:var(--line);border-radius:50%;background:var(--main)}
+    .hero::after{z-index:-1;content:"";position:absolute;width:40px;height:114px;left:-12px;bottom:-26px;border:var(--line);background:var(--accent)}
+    .eyebrow{position:relative;z-index:2;display:inline-block;background:var(--ink);color:var(--white);border:2px solid var(--ink);border-radius:999px;padding:6px 9px;font-size:10px;font-weight:1000;letter-spacing:.08em;text-transform:uppercase}
+    h1,h2,h3{font-family:var(--font-heading)}
+    .hero h1{position:relative;z-index:2;margin-top:12px;font-size:clamp(36px,9vw,50px);line-height:.96;letter-spacing:-.05em}
+    .hero h1 .accent{display:block;color:var(--main)}
+    .hero p{position:relative;z-index:2;margin-top:13px;color:#343840;font-size:17px;line-height:1.5;font-weight:650}
+
+    .tech-card{background:var(--ink);color:var(--white);border:var(--line);border-radius:20px;box-shadow:var(--shadow);padding:15px;margin-bottom:15px}
+    .tech-card h2{font-size:23px} .tech-card p{margin-top:5px;color:#e7e7e7;font-size:14px;line-height:1.45;font-weight:700}
+    .tech-letters{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}
+    .tech-btn{min-height:88px;border:2px solid var(--white);border-radius:14px;color:var(--ink);cursor:pointer;padding:9px 5px;display:grid;place-items:center;text-align:center;font-weight:1000}
+    .tech-btn:nth-child(1){background:var(--main)} .tech-btn:nth-child(2){background:var(--gold)} .tech-btn:nth-child(3){background:var(--electric)} .tech-btn:nth-child(4){background:var(--lime)}
+    .tech-btn b{display:block;font-family:var(--font-heading);font-size:28px;line-height:1} .tech-btn span{display:block;margin-top:5px;font-size:9px;line-height:1.1}
+    .tech-detail{display:none;margin-top:11px;background:var(--white);color:var(--ink);border:2px solid var(--white);border-radius:12px;padding:12px;font-size:14px;line-height:1.45;font-weight:750}
+    .tech-detail.show{display:block}
+
+    .panel-grid{display:grid;gap:10px;margin-bottom:15px}
+    .panel{overflow:hidden;border:var(--line);border-radius:18px;box-shadow:var(--shadow);background:var(--white)}
+    .panel-toggle{width:100%;min-height:76px;border:0;background:var(--white);cursor:pointer;padding:13px;display:grid;grid-template-columns:48px 1fr auto;gap:11px;align-items:center;text-align:left}
+    .panel:nth-child(1) .panel-toggle{background:#fff7c9}
+    .panel:nth-child(2) .panel-toggle{background:#e7f7ff}
+    .panel:nth-child(3) .panel-toggle{background:#fff0f7}
+    .panel-icon{width:46px;height:46px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:12px;background:var(--white);font-family:var(--font-heading);font-size:19px;font-weight:800}
+    .panel-title b{display:block;font-family:var(--font-heading);font-size:17px}
+    .panel-title span{display:block;margin-top:3px;color:var(--muted);font-size:12px;line-height:1.3;font-weight:700}
+    .plus{font-family:var(--font-heading);font-size:22px;font-weight:800;transition:transform .2s ease}
+    .panel.open .plus{transform:rotate(45deg)} .panel-body{display:none;border-top:2px solid var(--ink);padding:13px;background:var(--white)} .panel.open .panel-body{display:block}
+
+    .mini-list{display:grid;gap:7px;margin-top:8px}
+    .mini{display:grid;grid-template-columns:26px 1fr;gap:8px;align-items:start;font-size:13px;line-height:1.4;font-weight:750}
+    .mini i{width:24px;height:24px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:8px;background:var(--gold);font-style:normal;font-size:11px;font-weight:1000}
+
+    .example-box{border:2px solid var(--ink);border-radius:12px;background:#fffaf0;padding:11px}
+    .example-box h3{font-size:16px} .example-box p{margin-top:5px;font-size:13px;line-height:1.45;font-weight:700;color:#343840}
+    .example-buttons{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
+    .example-btn{min-height:44px;border:2px solid var(--ink);border-radius:10px;background:var(--white);font-family:var(--font-heading);font-size:16px;font-weight:800;cursor:pointer}
+    .example-btn:nth-child(1){background:var(--main)} .example-btn:nth-child(2){background:var(--gold)} .example-btn:nth-child(3){background:var(--electric)} .example-btn:nth-child(4){background:var(--lime)}
+    .example-answer{margin-top:9px;min-height:74px;border:2px dashed var(--ink);border-radius:10px;padding:10px;background:var(--white);font-size:13px;line-height:1.45;font-weight:750}
+
+    .smart-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:10px}
+    .tab-btn{border:2px solid var(--ink);border-radius:10px;background:var(--white);padding:9px 7px;font-size:11px;font-weight:1000;cursor:pointer}
+    .tab-btn.active{background:var(--main)}
+    .tab-content{display:none;border:2px solid var(--ink);border-radius:12px;background:#fafafa;padding:11px} .tab-content.show{display:block}
+    .phrase-list,.do-list,.avoid-list{display:grid;gap:7px}
+    .phrase{border:2px solid var(--ink);border-radius:10px;background:#fafafa;padding:9px;font-size:13px;line-height:1.4;font-weight:700}
+    .do-item,.avoid-item{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:start;font-size:13px;line-height:1.4;font-weight:750}
+    .do-item span:first-child,.avoid-item span:first-child{width:26px;height:26px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:8px;background:var(--white);font-weight:1000}
+
+    .vault{background:var(--main);border:var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px;margin-bottom:15px}
+    .vault h2{font-size:22px} .vault p{margin:7px 0 13px;font-size:15px;line-height:1.45;font-weight:700}
+    .vault-btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;border:var(--line);border-radius:13px;background:var(--ink);color:var(--white);box-shadow:4px 4px 0 var(--ink);font-size:15px;font-weight:1000}
+
+    .bottom-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:max(10px,env(safe-area-inset-bottom));width:calc(100% - 20px);max-width:500px;z-index:60;display:grid;grid-template-columns:repeat(5,1fr);background:var(--white);border:var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:6px}
+    .bottom-nav a{min-height:58px;display:grid;place-items:center;align-content:center;gap:3px;border-radius:10px;font-size:10px;font-weight:1000}
+    .bottom-nav a.active{background:var(--gold);border:2px solid var(--ink)} .bottom-nav img{width:27px;height:27px;object-fit:contain}
+
+    @media(min-width:700px){
+      .app{max-width:820px;padding:24px 24px 120px} .brand img{width:62px;height:62px}
+      .hero{padding:28px 24px 25px} .hero h1{font-size:56px} .hero p{font-size:19px}
+      .panel-grid{grid-template-columns:1fr 1fr 1fr;align-items:start} .bottom-nav{max-width:780px}
+    }
+    @media(min-width:1024px){
+      .app{max-width:1080px;padding:30px 32px 122px}
+      .hero{min-height:310px;display:flex;flex-direction:column;justify-content:center;padding:34px}
+      .hero h1{font-size:66px} .hero p{font-size:20px} .bottom-nav{max-width:1020px}
+    }
+    @media(max-width:360px){
+      .app{padding-inline:10px} .brand img{width:48px;height:48px} .hero h1{font-size:34px} .hero p{font-size:15px}
+      .tech-letters{gap:5px} .tech-btn{min-height:80px;padding:7px 3px} .tech-btn b{font-size:24px} .smart-tabs{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide">
+      <div><small>02 · LEARN · READING</small><strong>Reading Guide</strong></div>
+    </div>
+    <a class="back" href="guidance.html">← Guide</a>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">MUET 800/3 · READING</span>
+    <h1>Question first.<span class="accent">Evidence always.</span></h1>
+    <p>Use SCAN to turn each question into a search target, locate the relevant text and confirm your answer with evidence.</p>
+  </section>
+
+  <section class="tech-card">
+    <h2>Tap SCAN to learn the technique</h2>
+    <p>One memorable technique. Four simple moves.</p>
+    <div class="tech-letters"><button class="tech-btn" data-tech="0">
+              <div><b>S</b><span>STUDY</span></div>
+            </button>
+<button class="tech-btn" data-tech="1">
+              <div><b>C</b><span>CIRCLE</span></div>
+            </button>
+<button class="tech-btn" data-tech="2">
+              <div><b>A</b><span>ANALYSE</span></div>
+            </button>
+<button class="tech-btn" data-tech="3">
+              <div><b>N</b><span>NAIL</span></div>
+            </button></div>
+    <div class="tech-detail show" id="techDetail"><b>S — STUDY:</b> Study the question first so you know exactly what you are looking for.</div>
+  </section>
+
+  <section class="panel-grid">
+    
+        <article class="panel open">
+          <button class="panel-toggle" type="button">
+            <div class="panel-icon">1</div>
+            <div class="panel-title">
+              <b>Know the Test</b>
+              <span>Read with a target</span>
+            </div>
+            <div class="plus">+</div>
+          </button>
+          <div class="panel-body">
+            <div class="mini-list">
+          <div class="mini"><i>1</i><span>Study the question before searching the text.</span></div>
+          <div class="mini"><i>2</i><span>Expect paraphrases rather than exact wording.</span></div>
+          <div class="mini"><i>3</i><span>Choose answers supported by evidence, not assumptions.</span></div>
+        </div>
+          </div>
+        </article>
+        
+        <article class="panel ">
+          <button class="panel-toggle" type="button">
+            <div class="panel-icon">2</div>
+            <div class="panel-title">
+              <b>Find the Evidence</b>
+              <span>Turn a question into a search target</span>
+            </div>
+            <div class="plus">+</div>
+          </button>
+          <div class="panel-body">
+            <div class="example-box">
+          <h3>Mini Reading Situation</h3>
+          <p>Question: Why did the programme expand? Text: “Demand increased sharply, prompting organisers to add two extra sessions.”</p>
+          <div class="example-buttons">
+            <button class="example-btn" data-example="S">S</button><button class="example-btn" data-example="C">C</button>
+            <button class="example-btn" data-example="A">A</button><button class="example-btn" data-example="N">N</button>
+          </div>
+          <div class="example-answer" id="exampleAnswer">Tap S/C/A/N to reveal the reading thought process.</div>
+        </div>
+          </div>
+        </article>
+        
+        <article class="panel ">
+          <button class="panel-toggle" type="button">
+            <div class="panel-icon">3</div>
+            <div class="panel-title">
+              <b>Manage Time</b>
+              <span>Search smart, not line by line</span>
+            </div>
+            <div class="plus">+</div>
+          </button>
+          <div class="panel-body">
+            <div class="mini-list">
+          <div class="mini"><i>✓</i><span>Move on if one item is taking too long.</span></div>
+          <div class="mini"><i>✓</i><span>Scan for names, dates, repeated ideas and synonyms.</span></div>
+          <div class="mini"><i>✓</i><span>Return to difficult questions after securing easier marks.</span></div>
+        </div>
+          </div>
+        </article>
+        
+
+    <article class="panel">
+      <button class="panel-toggle" type="button">
+        <div class="panel-icon">4</div>
+        <div class="panel-title"><b>Reading Smart</b><span>Tips · Do · Avoid</span></div>
+        <div class="plus">+</div>
+      </button>
+      <div class="panel-body">
+        <div class="smart-tabs"><button class="tab-btn active" data-smart="rclues">Evidence</button>
+<button class="tab-btn " data-smart="rdo">Do ✓</button>
+<button class="tab-btn " data-smart="ravoid">Avoid ×</button></div>
+        <div class="tab-content show" id="rclues"><div class="phrase-list">
+      <div class="phrase"><b>Look for:</b> synonyms, cause/effect, contrast, examples, pronoun reference</div>
+      <div class="phrase"><b>Ask:</b> “Which line proves this answer?”</div>
+    </div></div>
+<div class="tab-content " id="rdo"><div class="do-list">
+      <div class="do-item"><span>✓</span><span>Read the question before the relevant section.</span></div>
+      <div class="do-item"><span>✓</span><span>Use text evidence to confirm your choice.</span></div>
+      <div class="do-item"><span>✓</span><span>Notice paraphrases and implied meaning.</span></div>
+    </div></div>
+<div class="tab-content " id="ravoid"><div class="avoid-list">
+      <div class="avoid-item"><span>×</span><span>Reading every word at the same speed.</span></div>
+      <div class="avoid-item"><span>×</span><span>Choosing an answer because it sounds generally true.</span></div>
+      <div class="avoid-item"><span>×</span><span>Ignoring qualifiers such as mainly, most, rarely or except.</span></div>
+    </div></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="vault">
+    <h2>Got it? Use SCAN in the Vault.</h2>
+    <p>Practice belongs in the Study Vault, where you can apply the technique under timed conditions.</p>
+    <a class="vault-btn" href="vault.html">PRACTISE READING IN VAULT →</a>
+  </section>
+</main>
+
+<nav class="bottom-nav">
+  <a href="muet-hub.html"><img src="assets/heroes/nav-home.svg" alt=""><span>Home</span></a>
+  <a class="active" href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg" alt=""><span>Guide</span></a>
+  <a href="vault.html"><img src="assets/heroes/nav-vault.svg" alt=""><span>Vault</span></a>
+  <a href="progress.html"><img src="assets/heroes/nav-progress.svg" alt=""><span>Progress</span></a>
+  <a href="settings.html"><img src="assets/heroes/nav-profile.svg" alt=""><span>Profile</span></a>
+</nav>
+
+<script>
+  const techCopy={ 0:`<b>S — STUDY:</b> Study the question first so you know exactly what you are looking for.`,
+1:`<b>C — CIRCLE:</b> Circle or mentally mark the key idea, qualifier or search word.`,
+2:`<b>A — ANALYSE:</b> Analyse the relevant part of the text for paraphrase, inference and evidence.`,
+3:`<b>N — NAIL:</b> Choose the answer that the text supports best.` };
+  document.querySelectorAll("[data-tech]").forEach(btn=>btn.addEventListener("click",()=>{
+    document.getElementById("techDetail").innerHTML=techCopy[btn.dataset.tech];
+  }));
+
+  document.querySelectorAll(".panel-toggle").forEach(btn=>btn.addEventListener("click",()=>{
+    btn.closest(".panel").classList.toggle("open");
+  }));
+
+  const exampleCopy={ "S":`<b>STUDY:</b> The question asks for a reason — look for cause.`,
+"C":`<b>CIRCLE:</b> Key target: <em>programme expand / why</em>.`,
+"A":`<b>ANALYSE:</b> “Demand increased sharply” is the cause; “add two extra sessions” is the result.`,
+"N":`<b>NAIL:</b> The programme expanded because demand increased sharply.` };
+  document.querySelectorAll("[data-example]").forEach(btn=>btn.addEventListener("click",()=>{
+    document.getElementById("exampleAnswer").innerHTML=exampleCopy[btn.dataset.example];
+  }));
+
+  document.querySelectorAll("[data-smart]").forEach(btn=>btn.addEventListener("click",()=>{
+    const panel=btn.closest(".panel-body");
+    panel.querySelectorAll("[data-smart]").forEach(b=>b.classList.remove("active"));
+    panel.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("show"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.smart).classList.add("show");
+  }));
+
+
+/* Accessibility: keep aria-expanded in sync with the accordion state.
+   Added as a separate listener so the existing toggle logic above is
+   untouched — this only reads the resulting state and reflects it. */
+document.querySelectorAll(".panel-toggle").forEach(btn=>{
+  const panel = btn.closest(".panel");
+  if(!panel) return;
+  btn.setAttribute("aria-expanded", panel.classList.contains("open"));
+  btn.addEventListener("click", () => {
+    setTimeout(() => {
+      btn.setAttribute("aria-expanded", panel.classList.contains("open"));
+    }, 0);
+  });
+});
+
+</script>
+</body>
+</html>

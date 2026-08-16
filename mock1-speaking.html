@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FFC400">
+<title>Mock Practice 1 · Speaking · Smart MUET Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111;--white:#fff;--soft:#f4f7f8;--muted:#4f535b;--gold:#FFC400;--blue:#0D78E8;--cyan:#16D5E8;--pink:#FF4FA3;--lime:#48F000;--red:#ff2525;--line:3px solid var(--ink);--shadow:5px 5px 0 var(--ink);--fh:"Sora",sans-serif;--fb:"DM Sans",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}body{font-family:var(--fb);background:var(--gold);color:var(--ink);overflow-x:hidden}a{color:inherit;text-decoration:none}button,textarea,select{font:inherit}
+.app{width:100%;max-width:590px;min-height:100dvh;margin:auto;background:var(--soft);padding:15px 14px 118px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.brand{display:flex;align-items:center;gap:9px}.brand img{width:54px;height:54px}.brand small{display:block;font-size:9px;font-weight:1000;color:var(--muted);letter-spacing:.08em}.brand b{display:block;margin-top:3px;font-family:var(--fh);font-size:17px}.back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:999px;background:#fff;box-shadow:2px 2px 0 var(--ink);padding:8px 11px;font-size:11px;font-weight:1000}
+.hero{position:relative;overflow:hidden;background:#fff;border:var(--line);border-radius:24px;box-shadow:var(--shadow);padding:20px 18px;margin-bottom:14px}.hero:after{z-index:-1;content:"";position:absolute;right:-28px;top:-28px;width:105px;height:105px;border:var(--line);border-radius:50%;background:var(--blue)}.tag{position:relative;z-index:2;display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 9px;font-size:9px;font-weight:1000;letter-spacing:.08em}.hero h1{position:relative;z-index:2;margin-top:10px;font-family:var(--fh);font-size:clamp(35px,9vw,49px);line-height:.96;letter-spacing:-.05em}.hero h1 span{display:block;color:var(--blue)}.hero p{position:relative;z-index:2;margin-top:10px;color:#3e434a;font-size:15px;line-height:1.48;font-weight:750}
+.exam{position:sticky;top:7px;z-index:50;background:var(--ink);color:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:12px;margin-bottom:14px}.exam-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.exam h2{font-family:var(--fh);font-size:16px}.exam p{margin-top:3px;color:#ddd;font-size:9px;font-weight:750}.timer{font-family:var(--fh);font-size:28px;font-weight:900}.start{width:100%;min-height:44px;margin-top:8px;border:2px solid #fff;border-radius:10px;background:var(--gold);font-size:10px;font-weight:1000;cursor:pointer}
+.progress{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:13px}.progress div{border:2px solid var(--ink);border-radius:9px;background:#fff;padding:7px 4px;text-align:center;font-size:8px;font-weight:1000}.progress .on{background:var(--lime)}
+.note{border:var(--line);border-radius:14px;background:#fff7cc;box-shadow:4px 4px 0 var(--ink);padding:10px;margin-bottom:13px;font-size:11px;line-height:1.45;font-weight:800}
+.task{overflow:hidden;background:#fff;border:var(--line);border-radius:19px;box-shadow:var(--shadow);margin-bottom:12px}.task-head{padding:12px;background:#eef4ff;border-bottom:2px solid var(--ink)}.task-tag{display:inline-block;border:2px solid var(--ink);border-radius:999px;background:var(--cyan);padding:5px 8px;font-size:8px;font-weight:1000}.task-head h2{margin-top:8px;font-family:var(--fh);font-size:19px}.task-head p{margin-top:4px;color:var(--muted);font-size:11px;font-weight:750}
+.task-body{padding:11px}.field-label{display:block;margin:3px 0 6px;font-size:9px;font-weight:1000;color:var(--muted)}select{width:100%;min-height:46px;border:2px solid var(--ink);border-radius:11px;background:#fff;padding:9px;font-size:12px;font-weight:850}.prompt{margin-top:9px;border:2px solid var(--ink);border-radius:12px;background:#fff7cc;padding:10px;font-size:12px;line-height:1.48;font-weight:750}
+.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:9px}.topic{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:9px;text-align:center;font-size:10px;font-weight:900}.topic.main{grid-column:1/-1;background:var(--pink)}
+.rec{margin-top:10px;border:2px solid var(--ink);border-radius:14px;background:#eafdff;padding:10px}.rec-head{display:flex;align-items:center;justify-content:space-between;gap:8px}.rec h3{font-family:var(--fh);font-size:14px}.status{margin-top:3px;color:var(--muted);font-size:9px;font-weight:800}.rec-time{font-family:var(--fh);font-size:21px;font-weight:900}.rec-actions{display:grid;grid-template-columns:1fr auto;gap:7px;margin-top:8px}.rec button{min-height:44px;border:var(--line);border-radius:10px;box-shadow:3px 3px 0 var(--ink);font-size:10px;font-weight:1000;cursor:pointer}.record-btn{background:var(--gold)}.clear-btn{background:#fff}.rec audio{display:none;width:100%;margin-top:9px}
+.evidence{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:8px}.metric{border:2px solid var(--ink);border-radius:9px;background:#fff;padding:7px;text-align:center}.metric b{display:block;font-family:var(--fh);font-size:16px}.metric small{display:block;margin-top:2px;color:var(--muted);font-size:8px;font-weight:900}
+.transcript{margin-top:9px}.transcript label{display:flex;justify-content:space-between;gap:8px;margin-bottom:5px;font-size:9px;font-weight:1000}.transcript textarea{width:100%;min-height:150px;border:2px solid var(--ink);border-radius:11px;background:#fff;padding:10px;font-size:13px;line-height:1.5;resize:vertical}
+.done-btn{width:100%;min-height:46px;margin-top:10px;border:var(--line);border-radius:11px;background:var(--blue);color:#fff;box-shadow:3px 3px 0 var(--ink);font-size:10px;font-weight:1000;cursor:pointer}
+.ready{display:none;margin-top:8px;border:2px solid var(--ink);border-radius:10px;background:#e7fff5;padding:8px;font-size:10px;font-weight:850}.ready.show{display:block}
+.submit-panel{background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:13px;margin-top:14px}.submit-panel h2{font-family:var(--fh);font-size:19px}.submit-panel p{margin-top:5px;color:var(--muted);font-size:11px;line-height:1.4;font-weight:750}.submit-final{width:100%;min-height:50px;margin-top:10px;border:var(--line);border-radius:11px;background:var(--red);color:#fff;box-shadow:4px 4px 0 var(--ink);font-size:11px;font-weight:1000;cursor:pointer}
+.report{display:none;margin-top:10px}.report.show{display:block}.section-report{border:2px solid var(--ink);border-radius:12px;background:#fafafa;padding:10px;margin-top:8px}.section-report h3{font-family:var(--fh);font-size:13px}.criteria{display:grid;gap:6px;margin-top:8px}.criterion{border:2px solid var(--ink);border-radius:10px;background:#fff;padding:8px}.criterion-top{display:flex;justify-content:space-between;gap:8px;align-items:center}.criterion b{font-family:var(--fh);font-size:10px}.criterion-score{font-family:var(--fh);font-size:21px;font-weight:900}.criterion p{margin-top:3px;color:var(--muted);font-size:9px;line-height:1.35;font-weight:750}.score-card{margin-top:9px;border:3px solid var(--ink);border-radius:12px;background:#e7fff5;padding:10px;display:flex;align-items:center;justify-content:space-between;gap:8px}.score-card strong{font-family:var(--fh);font-size:30px}.coach{margin-top:8px;border:2px solid var(--ink);border-radius:10px;background:#fff7cc;padding:9px;font-size:10px;line-height:1.45;font-weight:800}.save-state{margin-top:8px;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:8px;font-size:9px;font-weight:850}
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:calc(100% - 20px);max-width:570px;z-index:70;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border:var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:6px}.nav a{min-height:58px;display:grid;place-items:center;align-content:center;gap:3px;border-radius:10px;font-size:9px;font-weight:1000}.nav a.active{background:var(--gold);border:2px solid var(--ink)}.nav img{width:26px;height:26px}
+@media(min-width:760px){.app{max-width:900px;padding:24px 24px 120px}.nav{max-width:860px}.evidence{grid-template-columns:repeat(4,1fr)}}
+
+.accordion-task{
+  overflow:hidden;
+  background:#fff;
+  border:var(--line);
+  border-radius:19px;
+  box-shadow:var(--shadow);
+  margin-bottom:12px;
+}
+.accordion-head{
+  width:100%;
+  border:0;
+  background:#eef4ff;
+  padding:12px;
+  display:grid;
+  grid-template-columns:46px 1fr auto;
+  gap:10px;
+  align-items:center;
+  text-align:left;
+  cursor:pointer;
+}
+.accordion-num{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#fff;
+  font-family:var(--fh);
+  font-size:16px;
+  font-weight:800;
+}
+.accordion-title b{
+  display:block;
+  font-family:var(--fh);
+  font-size:14px;
+}
+.accordion-title span{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:750;
+}
+.accordion-plus{
+  font-size:24px;
+  font-weight:1000;
+  transition:.15s;
+}
+.accordion-task.open .accordion-plus{transform:rotate(45deg)}
+.accordion-body{
+  display:none;
+  border-top:2px solid var(--ink);
+}
+.accordion-task.open .accordion-body{display:block}
+
+
+/* ===== STANDARD MOCK 1 FINISH / SUBMIT CARD ===== */
+.mock-finish{
+  background:#fff;
+  border:var(--line);
+  border-radius:19px;
+  box-shadow:var(--shadow);
+  padding:13px;
+  margin-top:14px;
+}
+.mock-finish h2{
+  font-family:var(--fh);
+  font-size:20px;
+  line-height:1.15;
+}
+.mock-finish p{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.45;
+  font-weight:750;
+}
+.mock-submit-btn{
+  width:100%;
+  min-height:52px;
+  margin-top:11px;
+  border:var(--line);
+  border-radius:11px;
+  background:var(--gold);
+  color:var(--ink);
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.01em;
+  cursor:pointer;
+}
+.mock-submit-btn:active{
+  transform:translate(2px,2px);
+  box-shadow:2px 2px 0 var(--ink);
+}
+.mock-finish .submit-note{
+  display:block;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.4;
+  font-weight:800;
+}
+
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top"><div class="brand"><img src="assets/heroes/small-muet-logo.svg" alt=""><div><small>MOCK PRACTICE 1 · 800/2</small><b>Speaking</b></div></div><a class="back" href="mock1.html">← Mock 1</a></header>
+
+<section class="hero"><span class="tag">FULL MOCK · NO PREP COACHING</span><h1>Perform first.<span>Evaluate after.</span></h1><p>Complete both speaking tasks under mock conditions. No coaching or rubric feedback is shown until the final submission.</p></section>
+
+<section class="exam"><div class="exam-row"><div><h2>Speaking Paper 800/2</h2><p>Task A + Task B · Mock session</p></div><div class="timer" id="mainTimer">30:00</div></div><button class="start" id="startMock">START 30-MIN MOCK TIMER</button></section>
+
+<div class="progress"><div id="p1" class="on">1 · TASK A</div><div id="p2">2 · TASK B</div><div id="p3">3 · SUBMIT</div><div id="p4">4 · REPORT</div></div>
+<div class="note">For testing, both tasks remain accessible. Starting the timer is optional. The evaluation is revealed only after both recordings are marked ready and the final mock is submitted.</div>
+
+<section class="accordion-task open" id="mockTaskA">
+  <button class="accordion-head" type="button">
+    <div class="accordion-num">A</div>
+    <div class="accordion-title">
+      <b>Task A · Individual Presentation</b>
+      <span>Record your individual response</span>
+    </div>
+    <div class="accordion-plus">+</div>
+  </button>
+  <div class="accordion-body">
+    <div class="task-body">
+
+    <label class="field-label" for="candidate">SELECT YOUR CANDIDATE</label>
+    <select id="candidate">
+      <option value="A">Candidate A · Taking part in sports</option>
+      <option value="B">Candidate B · Camping</option>
+      <option value="C">Candidate C · Gardening</option>
+      <option value="D">Candidate D · Doing recycling projects</option>
+    </select>
+    <div class="prompt" id="candidatePrompt"></div>
+
+    <div class="rec">
+      <div class="rec-head"><div><h3>🎙 Task A Recording</h3><div class="status" id="statusA">Ready to record.</div></div><span class="rec-time" id="timeA">00:00</span></div>
+      <div class="rec-actions"><button class="record-btn" id="recBtnA" onclick="RecA.toggle()">● START RECORDING</button><button class="clear-btn" onclick="RecA.clear()">CLEAR</button></div>
+      <audio id="audioA" controls></audio>
+      <div class="evidence"><div class="metric"><b id="durA">0s</b><small>DURATION</small></div><div class="metric"><b id="wpmA">—</b><small>WORDS/MIN</small></div><div class="metric"><b id="silA">—</b><small>SILENCE</small></div><div class="metric"><b id="confA">—</b><small>TRANSCRIPT CONF.</small></div></div>
+    </div>
+    <div class="transcript"><label><span>LIVE TRANSCRIPT</span><span id="wcA">0 words</span></label><textarea id="transcriptA" placeholder="Your live transcript will appear here. Correct only obvious transcription errors."></textarea></div>
+    <button class="done-btn" id="readyA">MARK TASK A READY →</button>
+    <div class="ready" id="readyMsgA"></div>
+  
+    </div>
+  </div>
+</section>
+
+<section class="accordion-task " id="mockTaskB">
+  <button class="accordion-head" type="button">
+    <div class="accordion-num">B</div>
+    <div class="accordion-title">
+      <b>Task B · Group Discussion</b>
+      <span>Record your discussion contribution</span>
+    </div>
+    <div class="accordion-plus">+</div>
+  </button>
+  <div class="accordion-body">
+    <div class="task-body">
+
+    <div class="prompt"><b>Part 2</b><br><br>It is important to encourage children to be healthy from young. In your group, discuss the factors that influence children's attitudes towards health.<br><br>At the end of the discussion, try to decide the <b>main factor</b> that influences children's attitudes towards health.</div>
+    <div class="topic-grid"><div class="topic">Family members</div><div class="topic">Friends</div><div class="topic main">Media</div><div class="topic">Celebrities</div><div class="topic">Education</div></div>
+
+    <div class="rec">
+      <div class="rec-head"><div><h3>🎙 Task B Recording</h3><div class="status" id="statusB">Record your actual group discussion contribution, or a solo simulation for testing.</div></div><span class="rec-time" id="timeB">00:00</span></div>
+      <div class="rec-actions"><button class="record-btn" id="recBtnB" onclick="RecB.toggle()">● START RECORDING</button><button class="clear-btn" onclick="RecB.clear()">CLEAR</button></div>
+      <audio id="audioB" controls></audio>
+      <div class="evidence"><div class="metric"><b id="durB">0s</b><small>DURATION</small></div><div class="metric"><b id="wpmB">—</b><small>WORDS/MIN</small></div><div class="metric"><b id="silB">—</b><small>SILENCE</small></div><div class="metric"><b id="confB">—</b><small>TRANSCRIPT CONF.</small></div></div>
+    </div>
+    <div class="transcript"><label><span>LIVE TRANSCRIPT</span><span id="wcB">0 words</span></label><textarea id="transcriptB" placeholder="Your live transcript will appear here..."></textarea></div>
+    <button class="done-btn" id="readyB">MARK TASK B READY →</button>
+    <div class="ready" id="readyMsgB"></div>
+  
+    </div>
+  </div>
+</section>
+
+<section class="mock-finish" id="finishSpeaking">
+  <h2>Finish Mock Practice 1 · Speaking</h2>
+  <p>Submit Task A and Task B together for your post-test Speaking rubric evaluation.</p>
+  <button class="mock-submit-btn" id="submitMock">SUBMIT FULL SPEAKING MOCK →</button>
+  <span class="submit-note">Your rubric feedback appears only after final submission.</span>
+  <div class="report" id="report"></div>
+</section>
+</main>
+
+<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
+
+<script src="js/backend-config.js"></script>
+<script>
+const candidatePrompts={
+A:"Your task is to talk about taking part in sports as an outdoor activity for children. Explain why taking part in sports is suitable.",
+B:"Your task is to talk about camping as an outdoor activity for children. Explain why camping is suitable.",
+C:"Your task is to talk about gardening as an outdoor activity for children. Explain why gardening is suitable.",
+D:"Your task is to talk about doing recycling projects as an outdoor activity for children. Explain why doing recycling projects is suitable."
+};
+const candidate=document.getElementById("candidate"),candidatePrompt=document.getElementById("candidatePrompt");
+function renderCandidate(){candidatePrompt.textContent=candidatePrompts[candidate.value]}candidate.onchange=renderCandidate;renderCandidate();
+
+
+document.querySelectorAll(".accordion-head").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const current=btn.closest(".accordion-task");
+    document.querySelectorAll(".accordion-task").forEach(task=>{
+      if(task!==current) task.classList.remove("open");
+    });
+    current.classList.toggle("open");
+    if(current.classList.contains("open")){
+      setTimeout(()=>current.scrollIntoView({behavior:"smooth",block:"start"}),60);
+    }
+  });
+});
+
+let mainLeft=1800,mainTick=null;
+function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0')}
+document.getElementById("startMock").onclick=()=>{if(mainTick)return;document.getElementById("startMock").textContent="TIMER RUNNING";mainTick=setInterval(()=>{mainLeft--;document.getElementById("mainTimer").textContent=fmt(mainLeft);if(mainLeft<=0){clearInterval(mainTick);mainTick=null;alert("Mock speaking time has ended. Your recordings remain available for final submission.")}},1000)};
+
+function createRecorder(prefix, transcriptId){
+ let recorder=null,stream=null,chunks=[],blob=null,url=null,startAt=0,tick=null,ctx=null,analyser=null,sampleTimer=null,samples=0,silent=0,recognition=null,recWanted=false,confidence=[],base='';
+ const $=id=>document.getElementById(id);
+ function metrics(){const sec=startAt?Math.max(0,Math.round((Date.now()-startAt)/1000)):0,text=$(transcriptId).value.trim(),wc=text?text.split(/\s+/).filter(Boolean).length:0,wpm=sec?Math.round(wc/(sec/60)):0,sil=samples?Math.round(silent/samples*100):0,conf=confidence.length?Math.round(confidence.reduce((a,b)=>a+b,0)/confidence.length*100):null;$("dur"+prefix).textContent=sec+"s";$("wpm"+prefix).textContent=wpm||"—";$("sil"+prefix).textContent=samples?sil+"%":"—";$("conf"+prefix).textContent=conf!==null?conf+"%":"—";$("wc"+prefix).textContent=wc+" words";return{durationSeconds:sec,wordCount:wc,wpm,silenceRatio:sil,recognitionConfidence:conf}}
+ function analysis(){try{ctx=new(window.AudioContext||window.webkitAudioContext)();analyser=ctx.createAnalyser();const src=ctx.createMediaStreamSource(stream);src.connect(analyser);const data=new Uint8Array(analyser.fftSize);sampleTimer=setInterval(()=>{analyser.getByteTimeDomainData(data);let sum=0;for(const v of data){const x=(v-128)/128;sum+=x*x}const rms=Math.sqrt(sum/data.length);samples++;if(rms<.018)silent++},120)}catch(e){}}
+ function recognitionStart(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$("status"+prefix).textContent="Recording… live transcription is unavailable in this browser.";return}try{recognition=new SR();recognition.continuous=true;recognition.interimResults=true;recognition.lang="en-MY";recWanted=true;base=$(transcriptId).value.trim();recognition.onresult=e=>{let final="",interim="";for(let i=e.resultIndex;i<e.results.length;i++){const a=e.results[i][0];if(e.results[i].isFinal){final+=a.transcript+" ";if(a.confidence>0)confidence.push(a.confidence)}else interim+=a.transcript}if(final)base=(base+" "+final).trim();$(transcriptId).value=(base+" "+interim).trim();metrics()};recognition.onend=()=>{if(recWanted&&recorder&&recorder.state==="recording")try{recognition.start()}catch(e){}};recognition.start()}catch(e){}}
+ function stopSupport(){clearInterval(sampleTimer);try{ctx?.close()}catch(e){}ctx=null;recWanted=false;try{recognition?.stop()}catch(e){}recognition=null}
+ async function start(){try{stream=await navigator.mediaDevices.getUserMedia({audio:true});chunks=[];blob=null;samples=0;silent=0;confidence=[];recorder=new MediaRecorder(stream);recorder.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};recorder.onstop=()=>{blob=new Blob(chunks,{type:recorder.mimeType||"audio/webm"});if(url)URL.revokeObjectURL(url);url=URL.createObjectURL(blob);const a=$("audio"+prefix);a.src=url;a.style.display="block";stream.getTracks().forEach(t=>t.stop());stopSupport();metrics();$("status"+prefix).textContent="Recording ready. Review transcript, then mark this task ready.";$("recBtn"+prefix).textContent="● RECORD AGAIN"};recorder.start(500);startAt=Date.now();$("status"+prefix).textContent="Recording + live transcription…";$("recBtn"+prefix).textContent="■ STOP RECORDING";analysis();recognitionStart();tick=setInterval(()=>{$("time"+prefix).textContent=fmt(Math.floor((Date.now()-startAt)/1000));metrics()},500)}catch(e){$("status"+prefix).textContent="Microphone access unavailable. You may still type a transcript for testing."}}
+ function stop(){if(recorder&&recorder.state==="recording")recorder.stop();clearInterval(tick);recWanted=false;try{recognition?.stop()}catch(e){}}
+ function toggle(){if(recorder&&recorder.state==="recording")stop();else start()}
+ function clear(){if(recorder&&recorder.state==="recording")stop();stopSupport();if(url)URL.revokeObjectURL(url);blob=null;url=null;startAt=0;samples=0;silent=0;confidence=[];$("audio"+prefix).style.display="none";$("time"+prefix).textContent="00:00";$("dur"+prefix).textContent="0s";$("wpm"+prefix).textContent=$("sil"+prefix).textContent=$("conf"+prefix).textContent="—";$(transcriptId).value="";$("wc"+prefix).textContent="0 words";$("status"+prefix).textContent="Ready to record.";$("recBtn"+prefix).textContent="● START RECORDING"}
+ async function b64(){if(!blob)return"";return await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(String(r.result).split(",")[1]||"");r.onerror=rej;r.readAsDataURL(blob)})}
+ return{toggle,clear,metrics,hasAudio:()=>!!blob,b64,mime:()=>blob?.type||"audio/webm"}
+}
+const RecA=createRecorder("A","transcriptA"),RecB=createRecorder("B","transcriptB");
+["A","B"].forEach(x=>document.getElementById("transcript"+x).oninput=()=>{const t=document.getElementById("transcript"+x).value.trim();document.getElementById("wc"+x).textContent=(t?t.split(/\s+/).filter(Boolean).length:0)+" words"});
+
+let readyA=false,readyB=false;
+document.getElementById("readyA").onclick=()=>{if(!document.getElementById("transcriptA").value.trim()){alert("Record or add the Task A transcript first.");return}readyA=true;document.getElementById("readyMsgA").classList.add("show");document.getElementById("readyMsgA").textContent="Task A ready ✓";document.getElementById("p2").classList.add("on");document.getElementById("mockTaskA").classList.remove("open");document.getElementById("mockTaskB").classList.add("open");setTimeout(()=>document.getElementById("mockTaskB").scrollIntoView({behavior:"smooth",block:"start"}),80)};
+document.getElementById("readyB").onclick=()=>{if(!document.getElementById("transcriptB").value.trim()){alert("Record or add the Task B transcript first.");return}readyB=true;document.getElementById("readyMsgB").classList.add("show");document.getElementById("readyMsgB").textContent="Task B ready ✓";document.getElementById("p3").classList.add("on")};
+
+function evaluate(text,task,m){
+ const t=text.toLowerCase(),wc=text.trim()?text.trim().split(/\s+/).filter(Boolean).length:0,connectors=(t.match(/\b(because|therefore|however|for example|for instance|moreover|although|in addition|so|thus|in conclusion)\b/g)||[]).length,fillers=(t.match(/\b(um|uh|erm|you know|like)\b/g)||[]).length;
+ let relevance=0;
+ if(task==="A"){const p=candidatePrompts[candidate.value].toLowerCase();["sports","camping","gardening","recycling","children","outdoor"].forEach(k=>{if(p.includes(k)&&t.includes(k))relevance++})}
+ else ["family","friends","media","celebrities","education","health","children"].forEach(k=>{if(t.includes(k))relevance++});
+ let tf=1;if(relevance>=1)tf=2;if(relevance>=2&&wc>=35)tf=3;if(relevance>=2&&wc>=50)tf=4;if(relevance>=3&&wc>=70)tf=5;if(relevance>=3&&wc>=90)tf=6;
+ let lg=2;if(wc>=35&&m.wpm>=65)lg=3;if(wc>=50&&connectors>=2&&m.silenceRatio<=45)lg=4;if(wc>=70&&connectors>=3&&m.silenceRatio<=35&&fillers<=4)lg=5;if(wc>=90&&connectors>=4&&m.silenceRatio<=28&&fillers<=2)lg=6;
+ let co=2;if(connectors>=1)co=3;if(connectors>=2&&wc>=45)co=4;if(connectors>=4&&m.silenceRatio<=40)co=5;if(connectors>=5&&m.silenceRatio<=30)co=6;
+ let ir=null;if(task==="B"){const fn=[/i agree|i disagree|i see your point/,/what do you think|how about you|your opinion/,/i would add|another point|in addition/,/we agree|in conclusion|main factor|final decision/];ir=Math.max(1,Math.min(6,1+fn.filter(r=>r.test(t)).length))}
+ const strength=tf>=4?"Relevant task development is evident.":co>=4?"Your response has a clear progression.":"You completed a full speaking attempt.";
+ const focus=m.silenceRatio>40?"Reduce long pauses and maintain continuity.":lg<4?"Use a wider range of accurate language.":tf<5?"Develop one idea with more specific support.":"Refine delivery and conclusion.";
+ return{tf,lg,co,ir,wc,strength,focus}
+}
+async function cloudSave(payload){const url=window.SMART_MUET_APPS_SCRIPT_URL||window.SMART_MUET_BACKEND_URL||window.MUET_BACKEND_URL||"";localStorage.setItem("muet_mock1_speaking_"+payload.taskType.replace(/\s+/g,"_"),JSON.stringify({...payload,audioBase64:""}));if(!url)return{ok:false,message:"Saved locally · cloud endpoint not configured"};try{const r=await fetch(url,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"saveSpeakingAttempt",...payload})});return await r.json()}catch(e){return{ok:false,message:"Saved locally · cloud save pending"}}}
+
+document.getElementById("submitMock").onclick=async()=>{
+ if(!readyA||!readyB){alert("Mark both Task A and Task B ready before final submission.");return}
+ const tA=document.getElementById("transcriptA").value.trim(),tB=document.getElementById("transcriptB").value.trim(),mA=RecA.metrics(),mB=RecB.metrics(),eA=evaluate(tA,"A",mA),eB=evaluate(tB,"B",mB);
+ const profile=(()=>{try{return JSON.parse(localStorage.getItem("smartMuetProfile")||"{}")}catch(e){return{}}})();
+ const payloadA={studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",vaultId:"MOCK-01",component:"Speaking",taskType:"Task A",topicId:candidate.value,topicTitle:candidate.options[candidate.selectedIndex].text,prompt:candidatePrompts[candidate.value],transcript:tA,wordCount:eA.wc,durationSeconds:mA.durationSeconds,wordsPerMinute:mA.wpm,silenceRatio:mA.silenceRatio,recognitionConfidence:mA.recognitionConfidence,taskFulfilment:eA.tf,languageUse:eA.lg,coherenceOrganisation:eA.co,interactionReadiness:null,rubricRaw:eA.tf+eA.lg+eA.co,rubricMax:18,audioMimeType:RecA.mime(),audioBase64:RecA.hasAudio()?await RecA.b64():"",createdAt:new Date().toISOString()};
+ const payloadB={studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",vaultId:"MOCK-01",component:"Speaking",taskType:"Task B",topicId:"health_influence",topicTitle:"Children's attitudes towards health",prompt:"Discuss the factors that influence children's attitudes towards health and decide the main factor.",transcript:tB,wordCount:eB.wc,durationSeconds:mB.durationSeconds,wordsPerMinute:mB.wpm,silenceRatio:mB.silenceRatio,recognitionConfidence:mB.recognitionConfidence,taskFulfilment:eB.tf,languageUse:eB.lg,coherenceOrganisation:eB.co,interactionReadiness:eB.ir,rubricRaw:eB.tf+eB.lg+eB.co,rubricMax:18,audioMimeType:RecB.mime(),audioBase64:RecB.hasAudio()?await RecB.b64():"",createdAt:new Date().toISOString()};
+ const [sA,sB]=await Promise.all([cloudSave(payloadA),cloudSave(payloadB)]);
+ const rawA=eA.tf+eA.lg+eA.co,rawB=eB.tf+eB.lg+eB.co,totalRaw=rawA+rawB,scaled=Math.round(totalRaw/36*90);
+ const rows=(e,task)=>[['Task Fulfilment',e.tf],['Language Use',e.lg],['Coherence & Organisation',e.co]].concat(task==="B"?[['Interaction Readiness',e.ir]]:[]);
+ const section=(name,e,task)=>`<div class="section-report"><h3>${name}</h3><div class="criteria">${rows(e,task).map(r=>`<div class="criterion"><div class="criterion-top"><b>${r[0]}</b><span class="criterion-score">${r[1]}/6</span></div><p>${r[0]==="Interaction Readiness"?"Solo-practice indicator; full Communicative Ability still requires real interaction/examiner judgement.":"Rubric-aligned practice estimate based on the submitted evidence."}</p></div>`).join("")}</div><div class="coach"><b>💪 Strength:</b> ${e.strength}<br><br><b>🎯 Focus:</b> ${e.focus}</div></div>`;
+ const report=document.getElementById("report");report.classList.add("show");report.innerHTML=section("Task A · Individual Presentation",eA,"A")+section("Task B · Group Discussion",eB,"B")+`<div class="score-card"><div><b>Mock 1 Speaking Practice Score</b><br><small>TF/LG/CO only · CA not included in automated total</small></div><strong>${scaled}/90</strong></div><div class="save-state">${sA.ok&&sB.ok?"☁️ Both speaking attempts saved to Google Sheet + Drive":"💾 Mock saved locally; cloud save may still be pending"}</div>`;
+ localStorage.setItem("muet_mock1_speaking","true");localStorage.setItem("muet_mock1_speaking_score90",String(scaled));document.getElementById("p4").classList.add("on");if(mainTick){clearInterval(mainTick);mainTick=null}
+};
+</script>
+</body></html>

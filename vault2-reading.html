@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7C25DA">
+<title>Reading · Vault 2 · Smart MUET Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#111;--white:#fff;--soft:#f4f7f8;--muted:#4f535b;--violet:#7C25DA;--blue:#0D78E8;--gold:#FFC400;--cyan:#18D9FF;--lime:#19EF14;--line:3px solid var(--ink);--shadow:5px 5px 0 var(--ink);--fh:"Sora",sans-serif;--fb:"DM Sans",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--fb);background:var(--violet);color:var(--ink);overflow-x:hidden}a{color:inherit;text-decoration:none}button,input{font:inherit}
+.app{width:100%;max-width:560px;min-height:100dvh;margin:auto;background:var(--soft);padding:15px 14px 112px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.brand{display:flex;align-items:center;gap:9px}.brand img{width:54px;height:54px}.brand small{display:block;font-size:9px;font-weight:1000;color:var(--muted);letter-spacing:.08em}.brand b{display:block;margin-top:3px;font-family:var(--fh);font-size:17px}.back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:999px;background:#fff;box-shadow:2px 2px 0 var(--ink);padding:8px 11px;font-size:11px;font-weight:1000}
+.hero{position:relative;overflow:hidden;background:#fff;border:var(--line);border-radius:24px;box-shadow:var(--shadow);padding:22px 18px 20px;margin-bottom:15px}.hero:after{z-index:-1;content:"";position:absolute;width:96px;height:96px;right:-25px;top:-28px;border:var(--line);border-radius:50%;background:var(--violet)}.tag{position:relative;z-index:2;display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:1000;letter-spacing:.08em}.hero h1{position:relative;z-index:2;margin-top:11px;font-family:var(--fh);font-size:clamp(36px,9vw,52px);line-height:.96;letter-spacing:-.05em}.hero h1 span{display:block;color:var(--violet)}.hero p{position:relative;z-index:2;margin-top:12px;color:#3c4148;font-size:16px;line-height:1.5;font-weight:700}
+.mode{background:var(--ink);color:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:13px;margin-bottom:14px}.mode h2{font-family:var(--fh);font-size:19px}.mode p{margin-top:4px;color:#ddd;font-size:12px;line-height:1.4;font-weight:700}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.stats div{border:2px solid #fff;border-radius:11px;background:#fff;color:#111;padding:8px;text-align:center}.stats b{display:block;font-family:var(--fh);font-size:18px}.stats span{font-size:9px;font-weight:900;color:var(--muted)}
+.part{overflow:hidden;background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);margin-bottom:11px}.part-head{width:100%;min-height:76px;border:0;background:#f3e9ff;padding:12px;display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;text-align:left;cursor:pointer}.num{width:46px;height:46px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:12px;background:#fff;font-family:var(--fh);font-size:18px;font-weight:800}.ptitle b{display:block;font-family:var(--fh);font-size:15px}.ptitle span{display:block;margin-top:3px;color:var(--muted);font-size:11px;font-weight:750}.plus{font-size:24px;font-weight:1000}.part.open .plus{transform:rotate(45deg)}.part-body{display:none;border-top:2px solid var(--ink);padding:12px}.part.open .part-body{display:block}
+.passage{border:2px solid var(--ink);border-radius:14px;background:#eef4ff;padding:10px;margin-bottom:10px}.passage-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;font-family:var(--fh);font-size:11px}.expand{border:2px solid var(--ink);border-radius:9px;background:#fff;padding:5px 8px;font-size:9px;font-weight:1000;cursor:pointer}.passage-text{max-height:300px;overflow:auto;border:2px solid var(--ink);border-radius:11px;background:#fff;padding:11px;font-size:12px;line-height:1.65;font-weight:700}.passage-text.expanded{max-height:72vh}
+.help{border:2px solid var(--ink);border-radius:11px;background:#f5efff;padding:8px;margin-bottom:9px}.help summary{font-family:var(--fh);font-size:11px;font-weight:800;cursor:pointer}.help p{margin-top:5px;font-size:11px;line-height:1.45;font-weight:700}
+.question{border:2px solid var(--ink);border-radius:14px;background:#fafafa;padding:11px;margin-top:9px}.qtag{display:inline-block;border:2px solid var(--ink);border-radius:999px;background:var(--violet);color:#fff;padding:4px 7px;font-size:9px;font-weight:1000}.stem{font-size:13px;line-height:1.4;font-weight:900;margin:8px 0}.option{display:grid;grid-template-columns:20px 1fr;gap:7px;align-items:start;border:2px solid var(--ink);border-radius:11px;background:#fff;padding:9px;margin-top:6px;font-size:12px;line-height:1.35;font-weight:750;cursor:pointer}.option input{margin-top:2px}.option.correct{background:#dcfce7;border-color:#16803c}.option.wrong{background:#ffe4e6;border-color:#d92d20}.explain{display:none;border:2px dashed var(--ink);border-radius:10px;background:#fff7c9;padding:8px;margin-top:7px;font-size:11px;line-height:1.4;font-weight:700}.explain.show{display:block}
+.check-part,.final{display:flex;align-items:center;justify-content:center;width:100%;min-height:50px;border:var(--line);border-radius:12px;box-shadow:4px 4px 0 var(--ink);font-weight:1000;font-size:12px;cursor:pointer;margin-top:11px}.check-part{background:var(--violet);color:#fff}.final{background:var(--gold)}.part-result{display:none;border:2px solid var(--ink);border-radius:11px;background:#e7fff5;padding:9px;margin-top:9px;font-size:12px;font-weight:800}.part-result.show{display:block}
+.finish{background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:14px;margin-top:14px}.finish h2{font-family:var(--fh);font-size:20px}.finish p{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.4;font-weight:700}.summary{display:none;margin-top:10px;border:2px solid var(--ink);border-radius:12px;background:#e7fff5;padding:11px;font-size:13px;font-weight:750}.summary.show{display:block}.big{font-family:var(--fh);font-size:30px;font-weight:800}
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:calc(100% - 20px);max-width:540px;z-index:70;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border:var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:6px}.nav a{min-height:58px;display:grid;place-items:center;align-content:center;gap:3px;border-radius:10px;font-size:9px;font-weight:1000}.nav a.active{background:var(--gold);border:2px solid var(--ink)}.nav img{width:26px;height:26px}
+@media(min-width:700px){.app{max-width:850px;padding:24px 24px 120px}.nav{max-width:810px}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top"><div class="brand"><img src="assets/heroes/small-muet-logo.svg" alt=""><div><small>VAULT 2 · 800/3 · READING</small><b>Independent Reading</b></div></div><a class="back" href="vault2.html">← Vault 2</a></header>
+<section class="hero"><span class="tag">MUET 800/3 · VAULT 2</span><h1>Read. Decide.<span>Trust the evidence.</span></h1><p>Complete the full Session 2 Reading practice inside the app. Each Part contains its passage, questions and answer review.</p></section>
+<section class="mode"><h2>Independent Practice</h2><p>Attempt first. Open SCAN only when needed.</p><div class="stats"><div><b>7</b><span>PARTS</span></div><div><b>40</b><span>QUESTIONS</span></div><div><b>75</b><span>MINUTES</span></div></div></section>
+<section>
+    <article class="part open">
+      <button class="part-head">
+        <div class="num">1</div>
+        <div class="ptitle"><b>Part 1 · Helping Others</b><span>Questions 1–4</span></div>
+        <div class="plus">+</div>
+      </button>
+      <div class="part-body">
+        <div class="passage">
+          <div class="passage-head"><b>PASSAGE</b><button class="expand" type="button">EXPAND</button></div>
+          <div class="passage-text"><b>Part 2 — An Interview with Bill Shapiro</b><br><br><i>Read an interview transcript of a conversation between a journalist and Bill Shapiro.</i><br><br>For Valentine’s Day, we searched the country for inspiring love notes and asked Bill Shapiro, editor of a book of love letters, for advice on writing one that’s a keeper.<br><br><b>Q: You started collecting love letters four years ago. How do you write one that stands out?</b><br>A: A great love letter is personal, with something that refers to your secret history together. If you always go to the same diner on Sunday morning, get one of its paper place mats and write your letter on that; it’s a reminder of a shared moment. You also want unguarded honesty and really let your emotions fly. And maybe this is most important: your letter doesn’t have to be for a particular occasion. It means even more when it’s not expected. Then, it’s an uncontrollable declaration of love.<br><br><b>Q: What if you want to express your feelings but you don’t think you’re a good writer?</b><br>A: People don’t believe this, but it doesn’t matter how well you write. It’s the fact that you committed it to paper. You could draw a picture of a window and write “I love to watch you through this every day as you come home from work.” A love letter is a reflection of the person who wrote it.<br><br><b>Q: Do you have a favourite kind of love letter?</b><br>A: I usually like the ones that are a little complicated, that say we’ve been through something and have come out the other side, because I think that’s what love is about. Many people love the starburst ones, where you feel someone’s heart exploding with joy and passion. They want love to last, and they think it will.<br><br><b>Q: Do you think Twitter and text messages will hurt the writing of love letters?</b><br>A: Not necessarily. You can text someone “I am thinking about your eyes” as you’re on the bus going home. It’s short, but it’s unexpected, and you can string many messages together. It’s so immediate — you’re saying, I am thinking about you right now.<br><br><b>Q: So electronic love letters can be good. But do letters that are handwritten, stamped, and mailed earn extra points?</b><br>A: A letter doesn’t have to compete with email; you can use both, at different moments. But when was the last time you got a letter in the mail? I don’t mean a bill or a catalogue but a letter from a lover. That letter is now more meaningful because it’s so rare.<br><br><i>(Adapted from Reader’s Digest, 2010)</i></div>
+        </div>
+        <details class="help"><summary>Need SCAN?</summary><p><b>S</b> Study the question → <b>C</b> Circle keywords → <b>A</b> Analyse the evidence → <b>N</b> Nail the best-supported answer.</p></details>
+        <div class="question">
+      <div class="qtag">Q1</div>
+      <div class="stem">Which story is about helping a family member?</div>
+      <div><label class="option" id="opt-0-0"><input type="radio" name="q0" value="0"><span>A. “The Man at The Supermarket”</span></label><label class="option" id="opt-0-1"><input type="radio" name="q0" value="1"><span>B. “I Can Still Help”</span></label><label class="option" id="opt-0-2"><input type="radio" name="q0" value="2"><span>C. “How Did He Know?”</span></label></div>
+      <div class="explain" id="exp-0">Story A is driven by family: the man helps a stranger because his sick mother asked him to do something good on her behalf.</div>
+    </div><div class="question">
+      <div class="qtag">Q2</div>
+      <div class="stem">Which story is about helping a neighbour?</div>
+      <div><label class="option" id="opt-1-0"><input type="radio" name="q1" value="0"><span>A. “The Man at The Supermarket”</span></label><label class="option" id="opt-1-1"><input type="radio" name="q1" value="1"><span>B. “I Can Still Help”</span></label><label class="option" id="opt-1-2"><input type="radio" name="q1" value="2"><span>C. “How Did He Know?”</span></label></div>
+      <div class="explain" id="exp-1">Story C involves an old man who lived next door to the narrator.</div>
+    </div><div class="question">
+      <div class="qtag">Q3</div>
+      <div class="stem">Which story is about helping an old man?</div>
+      <div><label class="option" id="opt-2-0"><input type="radio" name="q2" value="0"><span>A. “The Man at The Supermarket”</span></label><label class="option" id="opt-2-1"><input type="radio" name="q2" value="1"><span>B. “I Can Still Help”</span></label><label class="option" id="opt-2-2"><input type="radio" name="q2" value="2"><span>C. “How Did He Know?”</span></label></div>
+      <div class="explain" id="exp-2">In Story B, Jimmy helps an old man whose car has stalled.</div>
+    </div><div class="question">
+      <div class="qtag">Q4</div>
+      <div class="stem">Which story is about helping a shopper?</div>
+      <div><label class="option" id="opt-3-0"><input type="radio" name="q3" value="0"><span>A. “The Man at The Supermarket”</span></label><label class="option" id="opt-3-1"><input type="radio" name="q3" value="1"><span>B. “I Can Still Help”</span></label><label class="option" id="opt-3-2"><input type="radio" name="q3" value="2"><span>C. “How Did He Know?”</span></label></div>
+      <div class="explain" id="exp-3">Story A takes place at a supermarket checkout where a shopper is short of money.</div>
+    </div>
+        <button class="check-part" data-part="Part 1" data-result="r1">CHECK PART 1</button>
+        <div class="part-result" id="r1"></div>
+      </div>
+    </article>
+    <article class="part ">
+      <button class="part-head">
+        <div class="num">2</div>
+        <div class="ptitle"><b>Part 2 · Bill Shapiro · Love Letters</b><span>Questions 5–9</span></div>
+        <div class="plus">+</div>
+      </button>
+      <div class="part-body">
+        <div class="passage">
+          <div class="passage-head"><b>PASSAGE</b><button class="expand" type="button">EXPAND</button></div>
+          <div class="passage-text"><b>Part 3 — How Hindbad Met Sindbad</b><br><br><i>Read a short story about how Hindbad met Sindbad.</i><br><br>Long, long ago during the reign of Caliph Harun-Al-Rashid, there lived a poor porter in the city of Baghdad. The porter’s name was Hindbad. Despite his hard life, he was happy and satisfied.<br><br>One day, Hindbad was going with a big load on his head. Suddenly the rain lashed and Hindbad rushed to a nearby house to take shelter. It was a sprawling beautiful house. Hindbad sat in a shed and waited for the rain to stop. While sitting there, he was enchanted by the soft melodious music and the rich soothing fragrance of perfume coming from inside.<br><br>The beautiful house and its visible luxury caused a tinge of sadness in the heart of the poor porter. He exclaimed loudly, “Why am I poor and why do I lead such a hard life? Whereas, a few others are rolling in wealth. Why is this discrepancy? Am I not a good person?”<br><br>The owner of the house, whose name was Sindbad, overheard the poor porter’s disappointed utterances. He at once sent his maid to call Hindbad inside. When the porter came in, Sindbad offered him a seat with a kind smile.<br><br>The house was much more luxurious from inside. Sindbad offered a rich meal to the poor porter. After the meal, Sindbad asked pointedly, “Now tell me, why were you expressing resentment at your fate?”<br><br>“Sir, when I saw your splendid life, I felt dejected. My poor fate annoyed me and so I expressed my resentment,” said Hindbad.<br><br>Sindbad said, “You have every right to think like this at this moment. However, I would like to tell you the story of my adventurous life. The dangers I faced during my bold and dreaded acts. The gravest risk I undertook to earn so much wealth.”<br><br>Sindbad then narrated to Hindbad his various adventurous trips through which he could heap up enormous wealth.<br><br><i>(Adapted from Maryan Dingle’s Sindbad the Sailor, 1974)</i></div>
+        </div>
+        <details class="help"><summary>Need SCAN?</summary><p><b>S</b> Study the question → <b>C</b> Circle keywords → <b>A</b> Analyse the evidence → <b>N</b> Nail the best-supported answer.</p></details>
+        <div class="question">
+      <div class="qtag">Q5</div>
+      <div class="stem">What does Bill Shapiro do?</div>
+      <div><label class="option" id="opt-4-0"><input type="radio" name="q4" value="0"><span>A. He keeps love letters.</span></label><label class="option" id="opt-4-1"><input type="radio" name="q4" value="1"><span>B. He collects love stories.</span></label><label class="option" id="opt-4-2"><input type="radio" name="q4" value="2"><span>C. He writes books about Valentine’s Day.</span></label></div>
+      <div class="explain" id="exp-4">He is the editor of a book of love letters and has been collecting love letters for years.</div>
+    </div><div class="question">
+      <div class="qtag">Q6</div>
+      <div class="stem">What is Bill Shapiro’s advice on writing special love letters?</div>
+      <div><label class="option" id="opt-5-0"><input type="radio" name="q5" value="0"><span>A. Write at any time to show how you feel.</span></label><label class="option" id="opt-5-1"><input type="radio" name="q5" value="1"><span>B. Write about places you visited together.</span></label><label class="option" id="opt-5-2"><input type="radio" name="q5" value="2"><span>C. Write on your favourite writing paper.</span></label></div>
+      <div class="explain" id="exp-5">He says a love letter can mean even more when it is unexpected.</div>
+    </div><div class="question">
+      <div class="qtag">Q7</div>
+      <div class="stem">When writing a love letter, it is important to</div>
+      <div><label class="option" id="opt-6-0"><input type="radio" name="q6" value="0"><span>A. draw pictures in the letter</span></label><label class="option" id="opt-6-1"><input type="radio" name="q6" value="1"><span>B. use good language</span></label><label class="option" id="opt-6-2"><input type="radio" name="q6" value="2"><span>C. be yourself</span></label></div>
+      <div class="explain" id="exp-6">Shapiro says the letter reflects the person who wrote it; authenticity matters more than perfect writing.</div>
+    </div><div class="question">
+      <div class="qtag">Q8</div>
+      <div class="stem">Bill Shapiro prefers love letters that</div>
+      <div><label class="option" id="opt-7-0"><input type="radio" name="q7" value="0"><span>A. use loving words and phrases</span></label><label class="option" id="opt-7-1"><input type="radio" name="q7" value="1"><span>B. are about love that never ends</span></label><label class="option" id="opt-7-2"><input type="radio" name="q7" value="2"><span>C. describe lovely times spent together</span></label></div>
+      <div class="explain" id="exp-7">He likes letters that refer to meaningful shared experiences.</div>
+    </div><div class="question">
+      <div class="qtag">Q9</div>
+      <div class="stem">People hold dear to letters because</div>
+      <div><label class="option" id="opt-8-0"><input type="radio" name="q8" value="0"><span>A. letters come from their loved ones</span></label><label class="option" id="opt-8-1"><input type="radio" name="q8" value="1"><span>B. letters can be used with emails</span></label><label class="option" id="opt-8-2"><input type="radio" name="q8" value="2"><span>C. letters are used only by a few</span></label></div>
+      <div class="explain" id="exp-8">A mailed personal letter feels more meaningful because it has become rare.</div>
+    </div>
+        <button class="check-part" data-part="Part 2" data-result="r2">CHECK PART 2</button>
+        <div class="part-result" id="r2"></div>
+      </div>
+    </article>
+    <article class="part ">
+      <button class="part-head">
+        <div class="num">3</div>
+        <div class="ptitle"><b>Part 3 · Hindbad & Sindbad</b><span>Questions 10–14</span></div>
+        <div class="plus">+</div>
+      </button>
+      <div class="part-body">
+        <div class="passage">
+          <div class="passage-head"><b>PASSAGE</b><button class="expand" type="button">EXPAND</button></div>
+          <div class="passage-text"><b>Part 4 — The Internet and Young People</b><br><br><i>Read two texts about the internet.</i><br><br><b>Text 1 — Are You an Internet Addict?</b><br>Experts say that millions of people around the world are one click away from ‘online’ addiction.<br><br>The internet is where we spend more and more of our time. But for a growing number of people, it’s an out-of-control habit that interferes with normal living and causes severe stress on family, friends, loved ones, and work.<br><br>Kimberly Young, clinical director of the Centre for Internet Addiction Recovery and author of the book Caught in the Net, says that about 5% to 10% of Americans — 15 to 30 million people — may suffer from internet addiction, and the problem may be even greater in countries like China, South Korea, and Taiwan. It’s a global problem.<br><br>Coleen Moore, coordinator of resource development at the Illinois Institute for Addiction Recovery, says she has clients from college age to early adulthood who spend 14 to 18 hours a day online. But Kimberly Young notes that it’s not just how long people spend using a computer; it’s what they’re doing online.<br><br>To help people with their diagnosis, Kimberly Young developed a test that uses a 20-question survey to measure levels of internet addiction. “There are no real drugs for this yet,” she says. “It’s not about medication, it’s more about therapy.” The estimated recovery time varies. At the Illinois Institute for Addiction Recovery, some patients need 30 to 90 days of in-patient treatment, followed by a continuing care programme. But internet addiction recovery, like any other addiction, requires lifelong treatment, experts say.<br><br>Online gaming is the form of internet addiction most rapidly growing among young people. “Initially we primarily had people addicted to surfing the Web, chat rooms, virtual communities, and things like that. Now we are looking more to gaming,” Coleen Moore says. “Gaming is certainly one of the things that could get people addicted to the internet, because it has such interesting content. But I don’t think games are any more likely to cause internet addiction than any of the other forms of online entertainment.”<br><br><i>(Adapted from HuffPost, 2011)</i><br><br><b>Text 2 — Is Internet Addiction Real?</b><br>The amount of time teenagers typically spend on phones and other devices can be misleading as a measure of whether they are unhealthily engaged. That’s because many of the things teenagers do on those devices are age-appropriate activities that in the past have been done offline: socialising with peers, exploring personal interests, shopping, listening to music, doing schoolwork, watching movies or TV.<br><br>Texting and use of social media sites, for instance, have become important channels for teenagers connecting to others and being validated. Role-playing games allow teenagers to interact not only with friends, but also with people around the world. A 2016 report by Common Sense Media concluded: “What looks like excessive use and distraction is actually a reflection of new ways of maintaining peer relations and engaging in communities that are relevant to them.”<br><br>Is it masking a mental health disorder? When a teenager seems unhealthily focused on video games, to the point of social isolation, the behaviour may be, rather than addiction, a product of other mental health problems. Dr Anderson reports that he finds himself saying to parents, “We understand your hypothesis that your teenager is addicted to games, but it may be that he is socially anxious. It may be that he is depressed. It may be that he has a learning disorder.”<br><br>Dr Anderson recalls treating a 16-year-old whose mother was adamant that he was addicted to video games. “I was doing in-home sessions with him, and it was, indeed, very hard to get him off playing Call of Duty to even have the session. But what I realised very quickly was that he had both ADHD and depression, and he had been failing school for as long as he could remember.”<br><br>Call of Duty was actually a positive in his life, Dr Anderson said, “the only thing that provided solace, a sense of belonging. He had joined a crew of people who play Call of Duty and post YouTube videos of them playing.” Once his ADHD and depression got appropriate treatment, he was able to cut back on Call of Duty, and make offline friends. “He joined the football team at school. His grades improved,” said Dr Anderson. “In that sense, it was treatment of ‘internet addiction’ through treatment of the actual underlying conditions.”<br><br><i>(Adapted from Child Mind Institute, 2019)</i></div>
+        </div>
+        <details class="help"><summary>Need SCAN?</summary><p><b>S</b> Study the question → <b>C</b> Circle keywords → <b>A</b> Analyse the evidence → <b>N</b> Nail the best-supported answer.</p></details>
+        <div class="question">
+      <div class="qtag">Q10</div>
+      <div class="stem">Who is Hindbad?</div>
+      <div><label class="option" id="opt-9-0"><input type="radio" name="q9" value="0"><span>A. He is a person who has a difficult life.</span></label><label class="option" id="opt-9-1"><input type="radio" name="q9" value="1"><span>B. He is a person who is mad with his own life.</span></label><label class="option" id="opt-9-2"><input type="radio" name="q9" value="2"><span>C. He is a person who is unhappy with Caliph Harun-Al-Rashid.</span></label></div>
+      <div class="explain" id="exp-9">Hindbad is introduced as a poor porter who has a hard life.</div>
+    </div><div class="question">
+      <div class="qtag">Q11</div>
+      <div class="stem">Hindbad hurried himself to a nearby house because</div>
+      <div><label class="option" id="opt-10-0"><input type="radio" name="q10" value="0"><span>A. he liked the beautiful house</span></label><label class="option" id="opt-10-1"><input type="radio" name="q10" value="1"><span>B. he wanted to cover himself from the rain</span></label><label class="option" id="opt-10-2"><input type="radio" name="q10" value="2"><span>C. he heard pleasant music coming from the house</span></label></div>
+      <div class="explain" id="exp-10">The rain suddenly became heavy, so Hindbad rushed to a nearby house for shelter.</div>
+    </div><div class="question">
+      <div class="qtag">Q12</div>
+      <div class="stem">When Hindbad saw the house, he felt</div>
+      <div><label class="option" id="opt-11-0"><input type="radio" name="q11" value="0"><span>A. life is not fair</span></label><label class="option" id="opt-11-1"><input type="radio" name="q11" value="1"><span>B. he is a good man</span></label><label class="option" id="opt-11-2"><input type="radio" name="q11" value="2"><span>C. rich people are bad</span></label></div>
+      <div class="explain" id="exp-11">Seeing the luxurious house made him question why he was poor while others were wealthy.</div>
+    </div><div class="question">
+      <div class="qtag">Q13</div>
+      <div class="stem">What did Sindbad do when he heard Hindbad talking to himself?</div>
+      <div><label class="option" id="opt-12-0"><input type="radio" name="q12" value="0"><span>A. He asked Hindbad to come inside his house together with his porter.</span></label><label class="option" id="opt-12-1"><input type="radio" name="q12" value="1"><span>B. He sent his worker to get Hindbad to come inside his house.</span></label><label class="option" id="opt-12-2"><input type="radio" name="q12" value="2"><span>C. He went to get Hindbad to come inside his house himself.</span></label></div>
+      <div class="explain" id="exp-12">Sindbad sent his maid to call Hindbad inside.</div>
+    </div><div class="question">
+      <div class="qtag">Q14</div>
+      <div class="stem">Why did Sindbad become rich?</div>
+      <div><label class="option" id="opt-13-0"><input type="radio" name="q13" value="0"><span>A. He was fated to become rich.</span></label><label class="option" id="opt-13-1"><input type="radio" name="q13" value="1"><span>B. He had many exciting journeys.</span></label><label class="option" id="opt-13-2"><input type="radio" name="q13" value="2"><span>C. He was strong enough to face his trips.</span></label></div>
+      <div class="explain" id="exp-13">Sindbad explains that his wealth came through his adventurous journeys.</div>
+    </div>
+        <button class="check-part" data-part="Part 3" data-result="r3">CHECK PART 3</button>
+        <div class="part-result" id="r3"></div>
+      </div>
+    </article>
+    <article class="part ">
+      <button class="part-head">
+        <div class="num">4</div>
+        <div class="ptitle"><b>Part 4 · Internet & Young People</b><span>Questions 15–20</span></div>
+        <div class="plus">+</div>
+      </button>
+      <div class="part-body">
+        <div class="passage">
+          <div class="passage-head"><b>PASSAGE</b><button class="expand" type="button">EXPAND</button></div>
+          <div class="passage-text"><b>Part 5 — Christmas Cards in Britain</b><br><br><i>Read a text about the tradition of Christmas cards in Britain. Six sentences have been removed from the text. Choose from the sentences A to G the one which fits each gap (21 to 26). There is one extra sentence which you do not need to use.</i><br><br>The tradition of Christmas cards began in Britain in the time of Queen Victoria — over 170 years ago; it is still going well today, even if the number of cards sent each year in Britain is a lot less than it was before the age of mobile phones, email, and instant messaging.<br><br>In 2017 alone, people in Britain sent and received about 900 million cards. The number of cards that are sent around Britain causes an annual headache for the postal service. <b>[Gap 21]</b> (In 1994, the service handled about 1.6 billion cards!) In spite of advertisements telling people to “Post Early for Christmas”, few people get round to sending off their cards before December 10th; and from that point on, the postal service slows down.<br><br>Until the age of faxes, emails, and social media, the pre-Christmas period often caused a lot of problems for firms and industries, as “urgent” letters and documents took several days to reach their destination by post, slowed down by the mass of Christmas mail! <b>[Gap 22]</b> For the most part, however, people of all faiths and of no faith join in the tradition of celebrating Christmas as a festival, whether they do so for religious reasons or not.<br><br>Christmas cards are an important part of the celebrations. Any British home one goes into around Christmas time is well decorated not just with holly and mistletoe and paper decorations, but also with a display of Christmas cards, received from friends, family, neighbours, employers, and a variety of other people. <b>[Gap 23]</b><br><br>“Look at them, Cynthia dear,” says Norma Jones. “How many have you got so far? We’ve got a hundred and three already.” “Oh my darling,” replies Cynthia, “Is that all? We’ve got over a hundred and fifty!”<br><br>The first cards are usually put up on the mantelpiece above the fire in the lounge; then as more come in, any available flat surface is put to use: bookshelves, the top of the TV, window-sills, the top of any cupboard. If the living room fills up, more cards are hung or placed in other rooms and in the hall. <b>[Gap 24]</b> While cheap Christmas cards can be bought from any supermarket, cards have recently become a major source of income for all sorts of charities.<br><br>As for the subjects of Christmas cards, the range, today, is enormous. <b>[Gap 25]</b> Today, while the traditional themes are still popular, there is no limit to the variety of pictures on cards.<br><br>Now, people are sending online greetings. However, you can’t hang an e-card on the wall, and you can’t decorate a room with rows of e-cards. <b>[Gap 26]</b> But sending and receiving Christmas cards is still best done and much more fun by “snail mail”, using a real card and a real envelope.<br><br><b>Sentence options:</b><br>A. At one time, Christmas cards show the religious Christmas story and winter scenes.<br>B. Thanks to phones and tablets, we can do lots of things better than we could do them before.<br>C. In some places, the number of Christmas cards people receive is seen as a sign of their social class.<br>D. Each year, part-time staff are employed to help with the extra mail, and everyone has to work extra hours.<br>E. By Christmas time, the main rooms in almost any house are colourfully decorated with cards of all shapes and sizes.<br>F. During the month of December in Britain, a house with no Christmas cards is like a library with no books; it just does not exist.<br>G. Today, almost 200 years later, Christmas cards — sometimes known as New Year cards — are a tradition all over the world, and not only in Christian countries.<br><br><i>(Adapted from Linguapress, 2018)</i></div>
+        </div>
+        <details class="help"><summary>Need SCAN?</summary><p><b>S</b> Study the question → <b>C</b> Circle keywords → <b>A</b> Analyse the evidence → <b>N</b> Nail the best-supported answer.</p></details>
+        <div class="question">
+      <div class="qtag">Q15</div>
+      <div class="stem">The experts are most interested in the</div>
+      <div><label class="option" id="opt-14-0"><input type="radio" name="q14" value="0"><span>A. age of internet users</span></label><label class="option" id="opt-14-1"><input type="radio" name="q14" value="1"><span>B. activities people do online</span></label><label class="option" id="opt-14-2"><input type="radio" name="q14" value="2"><span>C. amount of time people spend on computers</span></label></div>
+      <div class="explain" id="exp-14">The text stresses that what people do online matters more than simply how long they are online.</div>
+    </div><div class="question">
+      <div class="qtag">Q16</div>
+      <div class="stem">Coleen Moore believes that</div>
+      <div><label class="option" id="opt-15-0"><input type="radio" name="q15" value="0"><span>A. people spend too much time on online gaming</span></label><label class="option" id="opt-15-1"><input type="radio" name="q15" value="1"><span>B. people spend too much time on online entertainment</span></label><label class="option" id="opt-15-2"><input type="radio" name="q15" value="2"><span>C. people spend more time on online gaming than other types of entertainment</span></label></div>
+      <div class="explain" id="exp-15">She says gaming is not more likely to cause addiction than other forms of online entertainment.</div>
+    </div><div class="question">
+      <div class="qtag">Q17</div>
+      <div class="stem">It is wrong to say that today’s teenagers are involved in negative online activities because</div>
+      <div><label class="option" id="opt-16-0"><input type="radio" name="q16" value="0"><span>A. the amount of time the teenagers spend is the same as teenagers in the past</span></label><label class="option" id="opt-16-1"><input type="radio" name="q16" value="1"><span>B. the activities done by the teenagers are the same as teenagers in the past</span></label><label class="option" id="opt-16-2"><input type="radio" name="q16" value="2"><span>C. the age of the teenagers involved is the same as teenagers in the past</span></label></div>
+      <div class="explain" id="exp-16">Many online activities are age-appropriate activities that teenagers previously did offline.</div>
+    </div><div class="question">
+      <div class="qtag">Q18</div>
+      <div class="stem">Dr Anderson’s patient has improved, as the patient is now able to</div>
+      <div><label class="option" id="opt-17-0"><input type="radio" name="q17" value="0"><span>A. post videos on YouTube</span></label><label class="option" id="opt-17-1"><input type="radio" name="q17" value="1"><span>B. play more online games</span></label><label class="option" id="opt-17-2"><input type="radio" name="q17" value="2"><span>C. make more real friends</span></label></div>
+      <div class="explain" id="exp-17">After appropriate treatment, the teenager made offline friends and joined the football team.</div>
+    </div><div class="question">
+      <div class="qtag">Q19</div>
+      <div class="stem">How are Text 1 and Text 2 similar?</div>
+      <div><label class="option" id="opt-18-0"><input type="radio" name="q18" value="0"><span>A. They both show that surfing the internet is bad for health.</span></label><label class="option" id="opt-18-1"><input type="radio" name="q18" value="1"><span>B. They both mention that the time spent online is not important.</span></label><label class="option" id="opt-18-2"><input type="radio" name="q18" value="2"><span>C. They both say that too much social networking is a problem all over the world.</span></label></div>
+      <div class="explain" id="exp-18">Both texts explain that time spent online alone is not the best measure of a problem.</div>
+    </div><div class="question">
+      <div class="qtag">Q20</div>
+      <div class="stem">Experts in both Text 1 and Text 2 agree that the problem discussed can be solved by</div>
+      <div><label class="option" id="opt-19-0"><input type="radio" name="q19" value="0"><span>A. using therapy</span></label><label class="option" id="opt-19-1"><input type="radio" name="q19" value="1"><span>B. providing the right treatment</span></label><label class="option" id="opt-19-2"><input type="radio" name="q19" value="2"><span>C. continuing a care programme</span></label></div>
+      <div class="explain" id="exp-19">Both texts point toward appropriate treatment rather than simply restricting time online.</div>
+    </div>
+        <button class="check-part" data-part="Part 4" data-result="r4">CHECK PART 4</button>
+        <div class="part-result" id="r4"></div>
+      </div>
+    </article>
+    <article class="part ">
+      <button class="part-head">
+        <div class="num">5</div>
+        <div class="ptitle"><b>Part 5 · Christmas Cards</b><span>Questions 21–26</span></div>
+        <div class="plus">+</div>
+      </button>
+      <div class="part-body">
+        <div class="passage">
+          <div class="passage-head"><b>PASSAGE</b><button class="expand" type="button">EXPAND</button></div>
+          <div class="passage-text"><b>Part 6 — The Bond between Dogs and Humans</b><br><br><i>Read a text about dogs.</i><br><br>Through the ages, people have claimed dogs as one of their closest, and best, companions. Of all the domesticated animals, dogs serve the widest array of roles: protector, helper, lifesaver, and companion. Dogs and people began living together 15 000 years ago when dogs followed people’s migration throughout East Asia. The connection was natural because both people and dogs are social beings. Neither can thrive when alone, and both benefit mentally (and often physically) from strong social bonds.<br><br>Though domestic dogs share 99% of their DNA with wolves, dogs exude warmth to other dogs and humans that contrasts greatly with a wolf’s sceptical and defensive reaction to others. Dogs are social pack animals that thrive off attention and affection, making them a prime candidate for a person’s best friend.<br><br>Since dogs have been domesticated to a point where they need us to survive, and we tend to find that we need them almost as much, people and dogs developed a symbiotic relationship — a term describing any relationship or interaction between two dissimilar organisms. Most dog owners will tell you that their dog is a family member. And having a faithful and loveable dog at home gives us a listening ear, a warm paw to hold, and even strong legs to run beside.<br><br>In fact, the phrase “man’s best friend” originated in the American Supreme Court in 1870 when a talented lawyer named George Graham Vest defended Charles Burden, who deeply loved his coonhound named Old Drum. Vest argued that when a neighbour killed Old Drum for trespassing, the neighbour took the life of more than just a pet — he killed an important family member. Vest famously stated, “The one absolute, unselfish friend that man can have in this selfish world — the one that never proves ungrateful or treacherous — is his dog.”<br><br>Dogs have proven themselves time and again to be loyal, kind, understanding, and have an indomitable spirit. They greet us happily after what may have been the worst day of our lives and make us feel better with a wag of their tail and a playful grin. Whether they’re herding sheep, hunting game, supporting people with disabilities, or simply acting as a companion unlike any other, dogs help humans with day-to-day tasks, many of which may not be possible without them. Dating back to the 16th century, dogs have served as service helpers for the blind, and by the 1970s, dog trainers developed techniques for dogs to assist people with disabilities. As if those duties aren’t enough, dogs also help prevent possible crimes and save lives, as in the cases of drug-sniffing and bomb-sniffing canines. German shepherds, a 200-year-old breed, are most commonly seen serving as canine police all around the world.<br><br>Beyond companionship, the health benefits of living with a dog have been well documented in scientific studies. As reported in a recent Time Magazine article, benefits of living with a dog include links to a longer life span, reduced risk of cardiovascular disease, reduced allergies and asthma in children, and increased opportunities for socialisation. The study’s author emphasised that these health benefits are only applicable if the dog is well-exercised and cared for. Even if dogs didn’t provide direct health benefits, the unconditional love and companionship they offer is invaluable. They’re at our sides when we’re sick, sad, and lonely. They love us even when we are grumpy, rude, or downright bummers. Dogs are the ones who seem to understand us on a level even we cannot fathom.<br><br>The truth is: we call dogs our best friends because, in most of the ways that matter, they are. As dogs and humans have developed a deep relationship over thousands of years, dogs have become part of our families. We take pride in our dogs, and sometimes show them off to others as we would our children. We play with them, hold them close, and rely on them for services they have evolved to provide and enjoy doing.<br><br>Often, dogs truly deserve their status as a person’s best friend.<br><br><i>(Adapted from Rover, 2020)</i></div>
+        </div>
+        <details class="help"><summary>Need SCAN?</summary><p><b>S</b> Study the question → <b>C</b> Circle keywords → <b>A</b> Analyse the evidence → <b>N</b> Nail the best-supported answer.</p></details>
+        <div class="question">
+      <div class="qtag">Q21</div>
+      <div class="stem">Choose the sentence which best fits Gap 21.</div>
+      <div><label class="option" id="opt-20-0"><input type="radio" name="q20" value="0"><span>A. At one time, Christmas cards show the religious Christmas story and winter scenes.</span></label><label class="option" id="opt-20-1"><input type="radio" name="q20" value="1"><span>B. Thanks to phones and tablets, we can do lots of things better than we could do them before.</span></label><label class="option" id="opt-20-2"><input type="radio" name="q20" value="2"><span>C. In some places, the number of Christmas cards people receive is seen as a sign of their social class.</span></label><label class="option" id="opt-20-3"><input type="radio" name="q20" value="3"><span>D. Each year, part-time staff are employed to help with the extra mail, and everyone has to work extra hours.</span></label><label class="option" id="opt-20-4"><input type="radio" name="q20" value="4"><span>E. By Christmas time, the main rooms in almost any house are colourfully decorated with cards of all shapes and sizes.</span></label><label class="option" id="opt-20-5"><input type="radio" name="q20" value="5"><span>F. During the month of December in Britain, a house with no Christmas cards is like a library with no books; it just does not exist.</span></label><label class="option" id="opt-20-6"><input type="radio" name="q20" value="6"><span>G. Today, almost 200 years later, Christmas cards — sometimes known as New Year cards — are a tradition all over the world, and not only in Christian countries.</span></label></div>
+      <div class="explain" id="exp-20">Sentence D explains why the large volume of Christmas mail creates an annual headache for the postal service.</div>
+    </div><div class="question">
+      <div class="qtag">Q22</div>
+      <div class="stem">Choose the sentence which best fits Gap 22.</div>
+      <div><label class="option" id="opt-21-0"><input type="radio" name="q21" value="0"><span>A. At one time, Christmas cards show the religious Christmas story and winter scenes.</span></label><label class="option" id="opt-21-1"><input type="radio" name="q21" value="1"><span>B. Thanks to phones and tablets, we can do lots of things better than we could do them before.</span></label><label class="option" id="opt-21-2"><input type="radio" name="q21" value="2"><span>C. In some places, the number of Christmas cards people receive is seen as a sign of their social class.</span></label><label class="option" id="opt-21-3"><input type="radio" name="q21" value="3"><span>D. Each year, part-time staff are employed to help with the extra mail, and everyone has to work extra hours.</span></label><label class="option" id="opt-21-4"><input type="radio" name="q21" value="4"><span>E. By Christmas time, the main rooms in almost any house are colourfully decorated with cards of all shapes and sizes.</span></label><label class="option" id="opt-21-5"><input type="radio" name="q21" value="5"><span>F. During the month of December in Britain, a house with no Christmas cards is like a library with no books; it just does not exist.</span></label><label class="option" id="opt-21-6"><input type="radio" name="q21" value="6"><span>G. Today, almost 200 years later, Christmas cards — sometimes known as New Year cards — are a tradition all over the world, and not only in Christian countries.</span></label></div>
+      <div class="explain" id="exp-21">Sentence G introduces the worldwide, non-exclusively-Christian nature of the tradition before the next sentence.</div>
+    </div><div class="question">
+      <div class="qtag">Q23</div>
+      <div class="stem">Choose the sentence which best fits Gap 23.</div>
+      <div><label class="option" id="opt-22-0"><input type="radio" name="q22" value="0"><span>A. At one time, Christmas cards show the religious Christmas story and winter scenes.</span></label><label class="option" id="opt-22-1"><input type="radio" name="q22" value="1"><span>B. Thanks to phones and tablets, we can do lots of things better than we could do them before.</span></label><label class="option" id="opt-22-2"><input type="radio" name="q22" value="2"><span>C. In some places, the number of Christmas cards people receive is seen as a sign of their social class.</span></label><label class="option" id="opt-22-3"><input type="radio" name="q22" value="3"><span>D. Each year, part-time staff are employed to help with the extra mail, and everyone has to work extra hours.</span></label><label class="option" id="opt-22-4"><input type="radio" name="q22" value="4"><span>E. By Christmas time, the main rooms in almost any house are colourfully decorated with cards of all shapes and sizes.</span></label><label class="option" id="opt-22-5"><input type="radio" name="q22" value="5"><span>F. During the month of December in Britain, a house with no Christmas cards is like a library with no books; it just does not exist.</span></label><label class="option" id="opt-22-6"><input type="radio" name="q22" value="6"><span>G. Today, almost 200 years later, Christmas cards — sometimes known as New Year cards — are a tradition all over the world, and not only in Christian countries.</span></label></div>
+      <div class="explain" id="exp-22">Sentence C links the display of cards to the following dialogue about comparing how many cards people received.</div>
+    </div><div class="question">
+      <div class="qtag">Q24</div>
+      <div class="stem">Choose the sentence which best fits Gap 24.</div>
+      <div><label class="option" id="opt-23-0"><input type="radio" name="q23" value="0"><span>A. At one time, Christmas cards show the religious Christmas story and winter scenes.</span></label><label class="option" id="opt-23-1"><input type="radio" name="q23" value="1"><span>B. Thanks to phones and tablets, we can do lots of things better than we could do them before.</span></label><label class="option" id="opt-23-2"><input type="radio" name="q23" value="2"><span>C. In some places, the number of Christmas cards people receive is seen as a sign of their social class.</span></label><label class="option" id="opt-23-3"><input type="radio" name="q23" value="3"><span>D. Each year, part-time staff are employed to help with the extra mail, and everyone has to work extra hours.</span></label><label class="option" id="opt-23-4"><input type="radio" name="q23" value="4"><span>E. By Christmas time, the main rooms in almost any house are colourfully decorated with cards of all shapes and sizes.</span></label><label class="option" id="opt-23-5"><input type="radio" name="q23" value="5"><span>F. During the month of December in Britain, a house with no Christmas cards is like a library with no books; it just does not exist.</span></label><label class="option" id="opt-23-6"><input type="radio" name="q23" value="6"><span>G. Today, almost 200 years later, Christmas cards — sometimes known as New Year cards — are a tradition all over the world, and not only in Christian countries.</span></label></div>
+      <div class="explain" id="exp-23">Sentence E continues the description of cards spreading through different rooms in the house.</div>
+    </div><div class="question">
+      <div class="qtag">Q25</div>
+      <div class="stem">Choose the sentence which best fits Gap 25.</div>
+      <div><label class="option" id="opt-24-0"><input type="radio" name="q24" value="0"><span>A. At one time, Christmas cards show the religious Christmas story and winter scenes.</span></label><label class="option" id="opt-24-1"><input type="radio" name="q24" value="1"><span>B. Thanks to phones and tablets, we can do lots of things better than we could do them before.</span></label><label class="option" id="opt-24-2"><input type="radio" name="q24" value="2"><span>C. In some places, the number of Christmas cards people receive is seen as a sign of their social class.</span></label><label class="option" id="opt-24-3"><input type="radio" name="q24" value="3"><span>D. Each year, part-time staff are employed to help with the extra mail, and everyone has to work extra hours.</span></label><label class="option" id="opt-24-4"><input type="radio" name="q24" value="4"><span>E. By Christmas time, the main rooms in almost any house are colourfully decorated with cards of all shapes and sizes.</span></label><label class="option" id="opt-24-5"><input type="radio" name="q24" value="5"><span>F. During the month of December in Britain, a house with no Christmas cards is like a library with no books; it just does not exist.</span></label><label class="option" id="opt-24-6"><input type="radio" name="q24" value="6"><span>G. Today, almost 200 years later, Christmas cards — sometimes known as New Year cards — are a tradition all over the world, and not only in Christian countries.</span></label></div>
+      <div class="explain" id="exp-24">Sentence A introduces the traditional card themes before the passage contrasts them with today&#x27;s wider range.</div>
+    </div><div class="question">
+      <div class="qtag">Q26</div>
+      <div class="stem">Choose the sentence which best fits Gap 26.</div>
+      <div><label class="option" id="opt-25-0"><input type="radio" name="q25" value="0"><span>A. At one time, Christmas cards show the religious Christmas story and winter scenes.</span></label><label class="option" id="opt-25-1"><input type="radio" name="q25" value="1"><span>B. Thanks to phones and tablets, we can do lots of things better than we could do them before.</span></label><label class="option" id="opt-25-2"><input type="radio" name="q25" value="2"><span>C. In some places, the number of Christmas cards people receive is seen as a sign of their social class.</span></label><label class="option" id="opt-25-3"><input type="radio" name="q25" value="3"><span>D. Each year, part-time staff are employed to help with the extra mail, and everyone has to work extra hours.</span></label><label class="option" id="opt-25-4"><input type="radio" name="q25" value="4"><span>E. By Christmas time, the main rooms in almost any house are colourfully decorated with cards of all shapes and sizes.</span></label><label class="option" id="opt-25-5"><input type="radio" name="q25" value="5"><span>F. During the month of December in Britain, a house with no Christmas cards is like a library with no books; it just does not exist.</span></label><label class="option" id="opt-25-6"><input type="radio" name="q25" value="6"><span>G. Today, almost 200 years later, Christmas cards — sometimes known as New Year cards — are a tradition all over the world, and not only in Christian countries.</span></label></div>
+      <div class="explain" id="exp-25">Sentence B acknowledges the usefulness of modern devices before the text returns to the appeal of physical cards.</div>
+    </div>
+        <button class="check-part" data-part="Part 5" data-result="r5">CHECK PART 5</button>
+        <div class="part-result" id="r5"></div>
+      </div>
+    </article>
+    <article class="part ">
+      <button class="part-head">
+        <div class="num">6</div>
+        <div class="ptitle"><b>Part 6 · Dogs & Humans</b><span>Questions 27–33</span></div>
+        <div class="plus">+</div>
+      </button>
+      <div class="part-body">
+        <div class="passage">
+          <div class="passage-head"><b>PASSAGE</b><button class="expand" type="button">EXPAND</button></div>
+          <div class="passage-text"><b>Part 7 — Acne and Its Impact on Teens and Young Adults</b><br><br><i>Read a text about the impact of acne on teens and young adults.</i><br><br>Acne is a skin disease experienced mostly by teens and young people. For most people, the skin disorder would clear after a couple of years — usually by their early 20s. However, what you may not know is that aside from the scarred face — which hopefully clears after a while — acne has a deeper impact on the sufferer. Its effects are not only skin deep, as most people would believe. Cases of severe acne can have a devastating, non-physical impact.<br><br><b>Acne can trigger depressive tendencies</b><br>When you consider that over 80% of acne sufferers are impressionable teens and young adults who are at the verge of discovering themselves, building self-esteem, and developing vital social skills necessary to function effectively in society, you will appreciate just how much psychological damage acne can do to the sufferer.<br><br>Researchers have found that teens, especially girls, experiencing an acne outbreak are more likely to become depressed. At the root of this depression, according to the study, is teens’ need to be accepted. During this stage, they are under intense pressure to gain the approval of their peers. And as study after study has shown, there is a strong connection between attractiveness, physical appearance, and peer status.<br><br>So you can imagine what it’s like for the impressionable teen, eager to feel accepted by his or her friends, whose skin is suddenly ridden with acne. Dermatologists understand the immense pressure these teens are under and the risk for them to get depressed. If the outbreak is severe, they may recommend mental health therapy in addition to treating the skin condition. This way, the acne sufferers get an all-encompassing integrated treatment that involves getting rid of blemishes on their skin plus guidance to a healthier mental state.<br><br><b>Acne can lead to low self-esteem</b><br>Depression is just one of several adverse effects of acne. Teens suffering from a severe outbreak also struggle with low self-esteem and poor body image. You are attached to your face, your looks, and even if you don’t acknowledge it, at some subconscious level, you are concerned about how others perceive you. And it doesn’t help to have spotty, scarred, dark blemishes scattered across your face.<br><br>It is not surprising then to see many acne patients suffer from chronic low self-esteem. Their poor body image manifests in different forms. For instance, an embarrassed acne sufferer could develop the habit of avoiding eye contact, or grow long hair just to hide their skin condition. Girls often use heavy makeup to cover up their acne breakouts even when they know it could aggravate the problem. And in certain situations the skin disorder prevents teens from playing sports like swimming since it would mean exposing their skin in public.<br><br><b>Acne can cause social withdrawal</b><br>Social withdrawal is another adverse effect of acne on teens. Often, especially in middle and high school, students with acne are exposed to cruel body shaming from others. These taunts, if not nipped in the bud, could ultimately lead a person with acne to withdraw from all forms of social interaction. Also, the individual may find it difficult to develop new relationships with others, especially with the opposite sex, as a result of a lack of self-confidence. A young adult might also become shy, reclusive, and in extreme cases, develop a social anxiety disorder.<br><br><b>Acne can impact negatively on education and work</b><br>Not only do teens and young adults with acne have to struggle with the physical and psychological effects of the skin ailment, but the impact often spills over into their academics and/or work. It is common to see teens with the skin condition skip school as a result of bullying and bad jokes from their peers. Some take time off from work for days, even when they know it could mean losing their source of livelihood.<br><br>And for some young adults, their career choices are limited. For instance, those experiencing acne breakouts can’t take up a modelling career since the job depends largely on their appearance. Also, research has found that acne sufferers are less successful with job hunting compared to young adults who do not have acne, in part due to a lack of self-confidence among some sufferers. Potential employers can often tell whether applicants are confident in their ability to get the job done.<br><br>In conclusion, acne, though a physical ailment, can cause far-reaching emotional damage to a teen. These effects, if not identified early on, can stay with the individual for a long time even after the breakout has been treated. Early treatment, for the skin disorder and its secondary emotional impact, can help minimise the damage to teens’ self-esteem and mental health.<br><br><i>(Adapted from Resources to Recover, 2019)</i></div>
+        </div>
+        <details class="help"><summary>Need SCAN?</summary><p><b>S</b> Study the question → <b>C</b> Circle keywords → <b>A</b> Analyse the evidence → <b>N</b> Nail the best-supported answer.</p></details>
+        <div class="question">
+      <div class="qtag">Q27</div>
+      <div class="stem">The natural connection between humans and dogs exists because</div>
+      <div><label class="option" id="opt-26-0"><input type="radio" name="q26" value="0"><span>A. both always protect and help each other</span></label><label class="option" id="opt-26-1"><input type="radio" name="q26" value="1"><span>B. both migrated throughout East Asia together</span></label><label class="option" id="opt-26-2"><input type="radio" name="q26" value="2"><span>C. both are social creatures that live well together</span></label><label class="option" id="opt-26-3"><input type="radio" name="q26" value="3"><span>D. both have been living together since 15 000 years ago</span></label></div>
+      <div class="explain" id="exp-26">The text explicitly says the connection is natural because both people and dogs are social beings.</div>
+    </div><div class="question">
+      <div class="qtag">Q28</div>
+      <div class="stem">Dogs are humans’ best friends because</div>
+      <div><label class="option" id="opt-27-0"><input type="radio" name="q27" value="0"><span>A. dogs live with humans at home</span></label><label class="option" id="opt-27-1"><input type="radio" name="q27" value="1"><span>B. dogs live for human love and care</span></label><label class="option" id="opt-27-2"><input type="radio" name="q27" value="2"><span>C. dogs love to pass their warmth to humans</span></label><label class="option" id="opt-27-3"><input type="radio" name="q27" value="3"><span>D. dogs have a strong desire to protect humans</span></label></div>
+      <div class="explain" id="exp-27">Dogs are described as social pack animals that thrive on attention and affection.</div>
+    </div><div class="question">
+      <div class="qtag">Q29</div>
+      <div class="stem">How did the phrase “man’s best friend” first appear?</div>
+      <div><label class="option" id="opt-28-0"><input type="radio" name="q28" value="0"><span>A. George Graham Vest created the phrase to defend his client.</span></label><label class="option" id="opt-28-1"><input type="radio" name="q28" value="1"><span>B. American Supreme Court created the phrase for a public hearing.</span></label><label class="option" id="opt-28-2"><input type="radio" name="q28" value="2"><span>C. Charles Burden created the phrase to describe his dog in a court case.</span></label><label class="option" id="opt-28-3"><input type="radio" name="q28" value="3"><span>D. American Supreme Court created the phrase to describe Old Drum in court.</span></label></div>
+      <div class="explain" id="exp-28">Lawyer George Graham Vest used the famous description while defending Charles Burden&#x27;s case.</div>
+    </div><div class="question">
+      <div class="qtag">Q30</div>
+      <div class="stem">Paragraph 5 is mainly about</div>
+      <div><label class="option" id="opt-29-0"><input type="radio" name="q29" value="0"><span>A. the loyalty of dogs</span></label><label class="option" id="opt-29-1"><input type="radio" name="q29" value="1"><span>B. how dogs are treated by humans</span></label><label class="option" id="opt-29-2"><input type="radio" name="q29" value="2"><span>C. the importance of dogs in our lives</span></label><label class="option" id="opt-29-3"><input type="radio" name="q29" value="3"><span>D. how dogs assist people with disabilities</span></label></div>
+      <div class="explain" id="exp-29">The paragraph gives several examples of how dogs support and improve human life.</div>
+    </div><div class="question">
+      <div class="qtag">Q31</div>
+      <div class="stem">The study reported in a Time Magazine article highlights that</div>
+      <div><label class="option" id="opt-30-0"><input type="radio" name="q30" value="0"><span>A. humans are healthier when they live with loved and healthy dogs</span></label><label class="option" id="opt-30-1"><input type="radio" name="q30" value="1"><span>B. living alone gives the same health benefits as living with a dog</span></label><label class="option" id="opt-30-2"><input type="radio" name="q30" value="2"><span>C. children who live with dogs can make friends more easily</span></label><label class="option" id="opt-30-3"><input type="radio" name="q30" value="3"><span>D. dogs live longer when they live with humans</span></label></div>
+      <div class="explain" id="exp-30">The health benefits apply when the dog is exercised and properly cared for.</div>
+    </div><div class="question">
+      <div class="qtag">Q32</div>
+      <div class="stem">In paragraph 7, the writer’s intention is to</div>
+      <div><label class="option" id="opt-31-0"><input type="radio" name="q31" value="0"><span>A. explain how humans interact with dogs</span></label><label class="option" id="opt-31-1"><input type="radio" name="q31" value="1"><span>B. describe how proud humans are of their dogs</span></label><label class="option" id="opt-31-2"><input type="radio" name="q31" value="2"><span>C. show the services provided by dogs to humans</span></label><label class="option" id="opt-31-3"><input type="radio" name="q31" value="3"><span>D. highlight the close relationship between humans and dogs</span></label></div>
+      <div class="explain" id="exp-31">The paragraph focuses on dogs becoming part of human families and the deep relationship that has developed.</div>
+    </div><div class="question">
+      <div class="qtag">Q33</div>
+      <div class="stem">Which of the following can be a suitable title for the text?</div>
+      <div><label class="option" id="opt-32-0"><input type="radio" name="q32" value="0"><span>A. Unique Characteristics of Dogs</span></label><label class="option" id="opt-32-1"><input type="radio" name="q32" value="1"><span>B. How Should Humans Treat Dogs</span></label><label class="option" id="opt-32-2"><input type="radio" name="q32" value="2"><span>C. 15 000-year History of Men and Dogs</span></label><label class="option" id="opt-32-3"><input type="radio" name="q32" value="3"><span>D. The Bond between Humans and Dogs</span></label></div>
+      <div class="explain" id="exp-32">The entire passage centres on the long and close bond between dogs and humans.</div>
+    </div>
+        <button class="check-part" data-part="Part 6" data-result="r6">CHECK PART 6</button>
+        <div class="part-result" id="r6"></div>
+      </div>
+    </article>
+    <article class="part ">
+      <button class="part-head">
+        <div class="num">7</div>
+        <div class="ptitle"><b>Part 7 · Acne & Young People</b><span>Questions 34–40</span></div>
+        <div class="plus">+</div>
+      </button>
+      <div class="part-body">
+        <div class="passage">
+          <div class="passage-head"><b>PASSAGE</b><button class="expand" type="button">EXPAND</button></div>
+          <div class="passage-text"><b>Part 7 — Acne and Its Impact on Teens and Young Adults</b><br><br>Acne mainly affects teenagers and young adults, but its impact can go far beyond the skin. Severe acne may contribute to depression, low self-esteem, poor body image, social withdrawal and anxiety.<br><br>Teenagers often feel strong pressure to be accepted by their peers. Because appearance can influence confidence and social acceptance, serious acne may make sufferers feel rejected or embarrassed. Some may avoid eye contact, grow long hair to hide their skin, or use heavy makeup.<br><br>Bullying and body shaming can further damage confidence and cause sufferers to withdraw socially. Acne may also affect education and employment because some sufferers skip school, take time off work or struggle during job interviews.<br><br>The writer concludes that treating severe acne should address both the physical condition and its emotional effects. Psychological damage can remain long after the visible breakout has disappeared.</div>
+        </div>
+        <details class="help"><summary>Need SCAN?</summary><p><b>S</b> Study the question → <b>C</b> Circle keywords → <b>A</b> Analyse the evidence → <b>N</b> Nail the best-supported answer.</p></details>
+        <div class="question">
+      <div class="qtag">Q34</div>
+      <div class="stem">What is the main idea of paragraph 1?</div>
+      <div><label class="option" id="opt-33-0"><input type="radio" name="q33" value="0"><span>A. Teens are the most susceptible groups to be the victims of acne.</span></label><label class="option" id="opt-33-1"><input type="radio" name="q33" value="1"><span>B. Teens with severe acne might have more than just a skin-problem.</span></label><label class="option" id="opt-33-2"><input type="radio" name="q33" value="2"><span>C. Young adults with severe acne would have permanent scars on their faces.</span></label><label class="option" id="opt-33-3"><input type="radio" name="q33" value="3"><span>D. Young adults who are in their early 20s usually do not become the victims of acne.</span></label></div>
+      <div class="explain" id="exp-33">The opening explains that acne can have effects that go much deeper than the skin.</div>
+    </div><div class="question">
+      <div class="qtag">Q35</div>
+      <div class="stem">Teens, especially girls, often become the victims of acne because</div>
+      <div><label class="option" id="opt-34-0"><input type="radio" name="q34" value="0"><span>A. they feel that they are being disliked by their friends</span></label><label class="option" id="opt-34-1"><input type="radio" name="q34" value="1"><span>B. they worry that they do not have strong physiques</span></label><label class="option" id="opt-34-2"><input type="radio" name="q34" value="2"><span>C. they fail to function effectively in society</span></label><label class="option" id="opt-34-3"><input type="radio" name="q34" value="3"><span>D. they try hard to build their confidence</span></label></div>
+      <div class="explain" id="exp-34">The passage links depression to teenagers&#x27; need for acceptance and peer approval.</div>
+    </div><div class="question">
+      <div class="qtag">Q36</div>
+      <div class="stem">According to the writer, what is the best treatment for teens with severe acne?</div>
+      <div><label class="option" id="opt-35-0"><input type="radio" name="q35" value="0"><span>A. Skin treatment</span></label><label class="option" id="opt-35-1"><input type="radio" name="q35" value="1"><span>B. Mental treatment</span></label><label class="option" id="opt-35-2"><input type="radio" name="q35" value="2"><span>C. Combined treatment</span></label><label class="option" id="opt-35-3"><input type="radio" name="q35" value="3"><span>D. Social anxiety treatment</span></label></div>
+      <div class="explain" id="exp-35">The writer recommends treating both the skin condition and the psychological effects.</div>
+    </div><div class="question">
+      <div class="qtag">Q37</div>
+      <div class="stem">Which of the following is true about teens with severe acne?</div>
+      <div><label class="option" id="opt-36-0"><input type="radio" name="q36" value="0"><span>A. They usually accept that they have spotty dark marks and blemishes all over their faces.</span></label><label class="option" id="opt-36-1"><input type="radio" name="q36" value="1"><span>B. They typically keep their hair long to keep their skin problem out of sight.</span></label><label class="option" id="opt-36-2"><input type="radio" name="q36" value="2"><span>C. They often practise eye contact when communicating with their friends.</span></label><label class="option" id="opt-36-3"><input type="radio" name="q36" value="3"><span>D. They seldom touch up their makeup to stay radiant.</span></label></div>
+      <div class="explain" id="exp-36">The passage states that some sufferers grow long hair to hide their skin condition.</div>
+    </div><div class="question">
+      <div class="qtag">Q38</div>
+      <div class="stem">Teens with severe acne in middle and high schools will probably</div>
+      <div><label class="option" id="opt-37-0"><input type="radio" name="q37" value="0"><span>A. boost their confidence by socialising with others</span></label><label class="option" id="opt-37-1"><input type="radio" name="q37" value="1"><span>B. develop new relationships with others</span></label><label class="option" id="opt-37-2"><input type="radio" name="q37" value="2"><span>C. be physically abused by others</span></label><label class="option" id="opt-37-3"><input type="radio" name="q37" value="3"><span>D. be verbally abused by others</span></label></div>
+      <div class="explain" id="exp-37">The text refers to body shaming and taunts, which are forms of verbal abuse.</div>
+    </div><div class="question">
+      <div class="qtag">Q39</div>
+      <div class="stem">What do young adults with severe acne have in common?</div>
+      <div><label class="option" id="opt-38-0"><input type="radio" name="q38" value="0"><span>A. They seldom take their time off from work.</span></label><label class="option" id="opt-38-1"><input type="radio" name="q38" value="1"><span>B. They normally have few chances to get jobs.</span></label><label class="option" id="opt-38-2"><input type="radio" name="q38" value="2"><span>C. They often become potential employers’ first choice.</span></label><label class="option" id="opt-38-3"><input type="radio" name="q38" value="3"><span>D. They always become good examples to their colleagues.</span></label></div>
+      <div class="explain" id="exp-38">The passage says acne sufferers are less successful in job hunting than young adults without acne.</div>
+    </div><div class="question">
+      <div class="qtag">Q40</div>
+      <div class="stem">“...can stay with the individual for a long time even after the breakout has been treated” suggests</div>
+      <div><label class="option" id="opt-39-0"><input type="radio" name="q39" value="0"><span>A. cost of life-long treatment will become a problem to the individual with severe acne</span></label><label class="option" id="opt-39-1"><input type="radio" name="q39" value="1"><span>B. high level of confidence will never be a part of the individual with severe acne</span></label><label class="option" id="opt-39-2"><input type="radio" name="q39" value="2"><span>C. acne marks will be permanent on the face of individual with severe acne</span></label><label class="option" id="opt-39-3"><input type="radio" name="q39" value="3"><span>D. emotional damage will always haunt the individual with severe acne</span></label></div>
+      <div class="explain" id="exp-39">The sentence refers to the long-lasting emotional and psychological damage caused by acne.</div>
+    </div>
+        <button class="check-part" data-part="Part 7" data-result="r7">CHECK PART 7</button>
+        <div class="part-result" id="r7"></div>
+      </div>
+    </article></section>
+<section class="finish"><h2>Finish Vault 2 Reading</h2><p>Submit the complete 40-question set for your overall score and completion record.</p><button class="final" id="finalSubmit">SUBMIT FULL READING PRACTICE →</button><div class="summary" id="summary"></div></section>
+</main>
+<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
+<script>
+const answers=[0, 2, 1, 0, 0, 0, 2, 2, 2, 0, 1, 0, 1, 1, 1, 1, 1, 2, 1, 1, 3, 6, 2, 4, 0, 1, 2, 1, 0, 2, 0, 3, 3, 1, 0, 2, 1, 3, 1, 3];
+const partMap={"Part 1": [0, 1, 2, 3], "Part 2": [4, 5, 6, 7, 8], "Part 3": [9, 10, 11, 12, 13], "Part 4": [14, 15, 16, 17, 18, 19], "Part 5": [20, 21, 22, 23, 24, 25], "Part 6": [26, 27, 28, 29, 30, 31, 32], "Part 7": [33, 34, 35, 36, 37, 38, 39]};
+
+document.querySelectorAll(".part-head").forEach(btn=>btn.addEventListener("click",()=>{
+ const current=btn.closest(".part");
+ document.querySelectorAll(".part").forEach(p=>{if(p!==current)p.classList.remove("open");});
+ current.classList.toggle("open");
+ if(current.classList.contains("open"))setTimeout(()=>current.scrollIntoView({behavior:"smooth",block:"start"}),80);
+}));
+
+document.querySelectorAll(".expand").forEach(btn=>btn.addEventListener("click",()=>{
+ const box=btn.closest(".passage").querySelector(".passage-text");
+ const open=box.classList.toggle("expanded");
+ btn.textContent=open?"COLLAPSE":"EXPAND";
+}));
+
+function check(indexes){
+ let correct=0,answered=0;
+ indexes.forEach(i=>{
+   const sel=document.querySelector(`input[name="q${i}"]:checked`);
+   const val=sel?Number(sel.value):-1;
+   if(sel)answered++;
+   if(val===answers[i])correct++;
+   document.querySelectorAll(`input[name="q${i}"]`).forEach(r=>{
+     const oi=Number(r.value),lab=document.getElementById(`opt-${i}-${oi}`);
+     lab.classList.remove("correct","wrong");
+     if(oi===answers[i])lab.classList.add("correct");
+     else if(oi===val)lab.classList.add("wrong");
+   });
+   document.getElementById(`exp-${i}`).classList.add("show");
+ });
+ return {correct,answered,total:indexes.length};
+}
+
+document.querySelectorAll(".check-part").forEach(btn=>btn.addEventListener("click",()=>{
+ const r=check(partMap[btn.dataset.part]);
+ const box=document.getElementById(btn.dataset.result);
+ box.classList.add("show");
+ box.textContent=`${r.correct}/${r.total} correct · ${r.answered} answered`;
+}));
+
+document.getElementById("finalSubmit").addEventListener("click",()=>{
+ const r=check([...Array(40).keys()]);
+ const score90=Math.round(r.correct/40*90);
+ const box=document.getElementById("summary");
+ box.classList.add("show");
+ box.innerHTML=`<div class="big">${r.correct}/40</div><div>${score90}/90 equivalent practice score</div><div style="margin-top:6px">${r.answered===40?"All 40 questions completed.":`You answered ${r.answered} of 40 questions.`}</div>`;
+ if(r.answered===40)localStorage.setItem("muet_v2_reading","true");
+});
+
+
+/* Accessibility: keep aria-expanded in sync with the accordion state.
+   Added as a separate listener so the existing toggle logic above is
+   untouched — this only reads the resulting state and reflects it. */
+document.querySelectorAll(".part-head").forEach(btn=>{
+  const part = btn.closest(".part");
+  if(!part) return;
+  btn.setAttribute("aria-expanded", part.classList.contains("open"));
+  btn.addEventListener("click", () => {
+    setTimeout(() => {
+      btn.setAttribute("aria-expanded", part.classList.contains("open"));
+    }, 0);
+  });
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Create your Smart MUET Guide profile">
+  <title>Register · Smart MUET Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  
+<style>
+:root{
+  --ink:#111111;
+  --white:#ffffff;
+  --paper:#fffdf8;
+  --red:#ff2525;
+  --yellow:#ffd31f;
+  --blue:#1f5eff;
+  --teal:#5bd0c8;
+  --green:#39d99a;
+  --pink:#ff77b7;
+  --muted:#4f535b;
+
+  --font-heading:"Sora",sans-serif;
+  --font-body:"DM Sans",sans-serif;
+
+  --line:3px solid var(--ink);
+  --shadow:5px 5px 0 var(--ink);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;width:100%}
+
+body{
+  font-family:var(--font-body);
+  background:#f4f7f8;
+  color:var(--ink);
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+a{text-decoration:none;color:inherit}
+button,input,select{font:inherit}
+
+.page{
+  width:100%;
+  max-width:520px;
+  min-height:100dvh;
+  margin:auto;
+  padding:
+    max(16px,env(safe-area-inset-top))
+    max(14px,env(safe-area-inset-right))
+    max(28px,env(safe-area-inset-bottom))
+    max(14px,env(safe-area-inset-left));
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+}
+
+.brand img{
+  width:54px;
+  height:54px;
+  object-fit:contain;
+  flex:0 0 auto;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.2;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.brand b{
+  display:block;
+  margin-top:3px;
+  font-family:var(--font-heading);
+  font-size:17px;
+  line-height:1.15;
+}
+
+.back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  flex:0 0 auto;
+  background:var(--white);
+  border:2px solid var(--ink);
+  border-radius:999px;
+  box-shadow:2px 2px 0 var(--ink);
+  padding:8px 11px;
+  font-size:11px;
+  font-weight:900;
+}
+
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:var(--white);
+  border:var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  padding:22px 18px 20px;
+  margin-bottom:16px;
+}
+
+.hero::before{z-index:-1;
+  content:"";
+  position:absolute;
+  width:86px;height:86px;
+  right:-26px;top:-28px;
+  background:var(--yellow);
+  border:var(--line);
+  border-radius:50%;
+}
+
+.hero::after{z-index:-1;
+  content:"";
+  position:absolute;
+  width:36px;height:96px;
+  left:-12px;bottom:-20px;
+  background:var(--blue);
+  border:var(--line);
+}
+
+.label{
+  position:relative;
+  z-index:2;
+  display:inline-block;
+  background:var(--red);
+  color:white;
+  border:2px solid var(--ink);
+  border-radius:8px;
+  box-shadow:2px 2px 0 var(--ink);
+  padding:6px 9px;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+
+.label.blue{background:var(--blue)}
+
+h1,h2{font-family:var(--font-heading)}
+
+h1{
+  position:relative;
+  z-index:2;
+  margin-top:13px;
+  font-size:clamp(36px,9vw,50px);
+  line-height:.96;
+  letter-spacing:-.05em;
+}
+
+.hero p{
+  position:relative;
+  z-index:2;
+  margin-top:14px;
+  color:#343840;
+  font-size:17px;
+  line-height:1.5;
+  font-weight:650;
+  max-width:440px;
+}
+
+.card{
+  background:var(--white);
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:17px;
+  margin-bottom:15px;
+}
+
+.stephead{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.stepnum{
+  width:34px;height:34px;
+  display:grid;
+  place-items:center;
+  flex:0 0 auto;
+  border:2px solid var(--ink);
+  border-radius:10px;
+  background:var(--yellow);
+  box-shadow:2px 2px 0 var(--ink);
+  font-family:var(--font-heading);
+  font-size:14px;
+  font-weight:800;
+}
+
+.stephead h2{
+  font-size:22px;
+  line-height:1.15;
+}
+
+.form-grid{
+  display:grid;
+  gap:14px;
+}
+
+.field{
+  display:block;
+  font-size:14px;
+  font-weight:850;
+}
+
+.field input,
+.field select{
+  width:100%;
+  min-height:52px;
+  margin-top:6px;
+  padding:13px 14px;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:var(--white);
+  color:var(--ink);
+  font-size:16px;
+  font-weight:650;
+  outline:none;
+}
+
+.field input::placeholder{
+  color:#92959b;
+}
+
+.field input:focus,
+.field select:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(31,94,255,.16);
+}
+
+.help{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+  font-weight:650;
+}
+
+.summary{
+  margin-top:12px;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#fff8c9;
+  padding:11px;
+  font-size:13px;
+  font-weight:750;
+  line-height:1.45;
+}
+
+.notice{
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#e9fff5;
+  padding:12px;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:700;
+}
+
+.consent{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  margin-top:12px;
+  font-size:13px;
+  line-height:1.45;
+  font-weight:750;
+}
+
+.consent input{
+  width:20px;
+  height:20px;
+  flex:0 0 auto;
+  margin-top:1px;
+}
+
+.btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:56px;
+  padding:13px 16px;
+  border:var(--line);
+  border-radius:13px;
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:15px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+.btn.red{background:var(--red);color:white}
+.btn.blue{background:var(--blue);color:white}
+.btn.white{background:var(--white)}
+.btn.yellow{background:var(--yellow)}
+.btn.green{background:var(--green)}
+
+.btn:active{
+  transform:translate(3px,3px);
+  box-shadow:1px 1px 0 var(--ink);
+}
+
+.error,
+.success{
+  display:none;
+  margin-top:12px;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  padding:10px;
+  font-size:13px;
+  font-weight:850;
+  line-height:1.4;
+}
+
+.error{background:#ffe4e4}
+.success{background:var(--green)}
+.error.show,.success.show{display:block}
+
+.divider{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:14px 0;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+}
+
+.divider::before,
+.divider::after{
+  content:"";
+  flex:1;
+  height:2px;
+  background:var(--ink);
+}
+
+.welcome-card{
+  display:none;
+  background:var(--white);
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:18px;
+  margin-top:15px;
+}
+
+.welcome-card.show{display:block}
+
+.found-tag{
+  display:inline-block;
+  background:var(--blue);
+  color:white;
+  border:2px solid var(--ink);
+  border-radius:8px;
+  box-shadow:2px 2px 0 var(--ink);
+  padding:5px 8px;
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.06em;
+}
+
+.welcome-card h2{
+  margin-top:11px;
+  font-size:28px;
+  letter-spacing:-.035em;
+}
+
+.welcome-card p{
+  margin-top:8px;
+  color:#44484f;
+  font-size:15px;
+  line-height:1.45;
+  font-weight:700;
+}
+
+.meta-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+  margin-top:14px;
+}
+
+.meta{
+  background:#f8fafb;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  padding:10px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:800;
+}
+
+.meta b{
+  display:block;
+  margin-top:3px;
+  color:var(--ink);
+  font-family:var(--font-heading);
+  font-size:14px;
+}
+
+.footer-note{
+  margin-top:14px;
+  text-align:center;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.4;
+  font-weight:700;
+}
+
+@media(min-width:700px){
+  .page{
+    max-width:780px;
+    padding:26px;
+  }
+
+  .brand img{width:62px;height:62px}
+  .brand small{font-size:11px}
+  .brand b{font-size:19px}
+
+  .hero{
+    padding:28px 24px 25px;
+  }
+
+  h1{font-size:56px}
+  .hero p{font-size:19px}
+
+  .card{padding:22px}
+
+  .form-grid.two{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .field{
+    font-size:15px;
+  }
+
+  .field input,
+  .field select{
+    font-size:17px;
+    min-height:54px;
+  }
+
+  .help{font-size:13px}
+
+  .btn{
+    min-height:60px;
+    font-size:17px;
+  }
+}
+
+@media(min-width:1024px){
+  .page{
+    max-width:1080px;
+    padding:30px 32px;
+  }
+
+  .layout-two{
+    display:grid;
+    grid-template-columns:.9fr 1.1fr;
+    gap:20px;
+    align-items:start;
+  }
+
+  .layout-two > .hero{
+    position:sticky;
+    top:24px;
+    min-height:420px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+
+  h1{font-size:64px}
+}
+
+@media(max-width:360px){
+  .page{padding-inline:10px}
+  .brand img{width:48px;height:48px}
+  h1{font-size:34px}
+  .hero p{font-size:15px}
+  .meta-grid{grid-template-columns:1fr}
+}
+</style>
+
+</head>
+
+<body>
+<main class="page">
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide">
+      <div>
+        <small>SMART MUET GUIDE</small>
+        <b>Create Your Profile</b>
+      </div>
+    </div>
+
+    <a class="back" href="welcome.html">← Back</a>
+  </header>
+
+  <div class="layout-two">
+
+    <section class="hero">
+      <span class="label">NEW USER</span>
+
+      <h1>
+        Let’s build your
+        MUET journey.
+      </h1>
+
+      <p>
+        Create your profile once, choose your MUET session,
+        and Smart MUET will personalise your countdown,
+        target and progress journey.
+      </p>
+    </section>
+
+    <form id="registerForm">
+
+      <section class="card">
+        <div class="stephead">
+          <div class="stepnum">1</div>
+          <h2>About You</h2>
+        </div>
+
+        <div class="form-grid two">
+          <label class="field">
+            Full name
+            <input id="name" type="text" autocomplete="name"
+              placeholder="e.g. Aisyah Ahmad" required>
+          </label>
+
+          <label class="field">
+            Email address
+            <input id="email" type="email" autocomplete="email"
+              placeholder="student@example.com" required>
+            <span class="help">
+              Use an email you can access again. This will later restore your progress.
+            </span>
+          </label>
+
+          <label class="field">
+            Institution
+            <input id="institution" type="text"
+              placeholder="e.g. Politeknik / Matriculation College" required>
+          </label>
+
+          <label class="field">
+            Class / Group
+            <input id="group" type="text"
+              placeholder="e.g. DPR3A">
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="stephead">
+          <div class="stepnum" style="background:var(--green)">2</div>
+          <h2>Your MUET Goal</h2>
+        </div>
+
+        <div class="form-grid two">
+          <label class="field">
+            MUET exam session
+            <select id="examSession" required>
+              <option value="">Choose your session</option>
+              <option value="S1-2026">MUET Session 1 · 2026</option>
+              <option value="S2-2026">MUET Session 2 · 2026</option>
+              <option value="S3-2026">MUET Session 3 · 2026</option>
+            </select>
+            <span class="help">
+              Your Home countdown follows this selected session.
+            </span>
+          </label>
+
+          <label class="field">
+            Target band
+            <select id="targetBand">
+              <option value="3.5">Band 3.5</option>
+              <option value="4.0" selected>Band 4.0</option>
+              <option value="4.5">Band 4.5</option>
+              <option value="5.0">Band 5.0</option>
+              <option value="5+">Band 5+</option>
+            </select>
+          </label>
+
+          <label class="field">
+            Speaking date
+            <input id="speakingDate" type="date">
+            <span class="help">
+              Optional. Add it later from your MUET/D slip.
+            </span>
+          </label>
+        </div>
+
+        <div class="summary" id="sessionSummary">
+          Choose your session to preview your main written-test date.
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="notice">
+          Your profile and learning activity may be stored for progress tracking
+          and pilot testing. No password is stored in this prototype.
+          <strong>Right now your progress is saved on this device only</strong> —
+          clearing your browser data or switching devices will lose it until
+          cloud sync is enabled. Use the same device and browser to continue
+          your journey.
+        </div>
+
+        <label class="consent">
+          <input id="consent" type="checkbox" required>
+          <span>
+            I agree to personalised progress tracking in Smart MUET Guide.
+          </span>
+        </label>
+
+        <button class="btn red" type="submit" style="margin-top:14px">
+          CREATE MY SMART MUET PROFILE →
+        </button>
+
+        <div class="error" id="errorBox"></div>
+        <div class="success" id="successBox">
+          Profile created ✓ Taking you to your Home...
+        </div>
+      </section>
+
+    </form>
+  </div>
+
+  <p class="footer-note">
+    You can update your MUET session, target band and Speaking date later in Profile.
+  </p>
+
+</main>
+
+<script>
+const EXAMS = {
+  "S1-2026":{label:"MUET Session 1 · 2026",written:"25 April 2026"},
+  "S2-2026":{label:"MUET Session 2 · 2026",written:"27 June 2026"},
+  "S3-2026":{label:"MUET Session 3 · 2026",written:"17 October 2026"}
+};
+
+const examSession = document.getElementById("examSession");
+const sessionSummary = document.getElementById("sessionSummary");
+
+examSession.addEventListener("change",()=>{
+  const cfg = EXAMS[examSession.value];
+
+  sessionSummary.textContent = cfg
+    ? `${cfg.label} · Main written test: ${cfg.written}`
+    : "Choose your session to preview your main written-test date.";
+});
+
+document.getElementById("registerForm").addEventListener("submit",e=>{
+  e.preventDefault();
+
+  const error = document.getElementById("errorBox");
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const session = document.getElementById("examSession").value;
+  const consent = document.getElementById("consent").checked;
+
+  if(!email || !session || !consent){
+    error.textContent =
+      "Please complete all required fields and agree to progress tracking.";
+    error.classList.add("show");
+    return;
+  }
+
+  error.classList.remove("show");
+
+  const profile = {
+    name:document.getElementById("name").value.trim(),
+    email,
+    institution:document.getElementById("institution").value.trim(),
+    group:document.getElementById("group").value.trim(),
+    examSession:session,
+    targetBand:document.getElementById("targetBand").value,
+    speakingDate:document.getElementById("speakingDate").value,
+    consent:true,
+    createdAt:new Date().toISOString(),
+    lastLogin:new Date().toISOString()
+  };
+
+  localStorage.setItem("muet_profile",JSON.stringify(profile));
+  localStorage.setItem("muet_registered_email",email);
+
+  document.getElementById("successBox").classList.add("show");
+
+  setTimeout(()=>{
+    window.location.href="muet-hub.html";
+  },900);
+});
+</script>
+</body>
+</html>

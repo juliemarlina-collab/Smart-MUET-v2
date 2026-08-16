@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#18c7b5">
+<title>Progress · Smart MUET Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/phase1-clean.css">
+
+<style>
+/* =========================================================
+   SMART MUET GUIDE · PROGRESS DASHBOARD
+   Extends phase1-clean.css
+   ========================================================= */
+:root{
+  --spk:#ff4fa3;
+  --read:#0d78e8;
+  --listen:#16cfd6;
+  --write:#ff6236;
+  --purple:#8b28e8;
+}
+
+.progress-hero{
+  position:relative;
+  overflow:hidden;
+  background:#fff;
+  border:var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:18px;
+  margin-bottom:14px;
+}
+.progress-hero:after{z-index:-1;
+  content:"";
+  position:absolute;
+  width:110px;height:110px;
+  right:-28px;top:-30px;
+  border:var(--line);
+  border-radius:50%;
+  background:var(--teal);
+}
+.progress-hero .kicker,
+.progress-hero h1,
+.progress-hero p{position:relative;z-index:2}
+.progress-hero h1{
+  font-size:clamp(36px,9vw,50px);
+  line-height:.96;
+  margin-top:9px;
+}
+.progress-hero h1 span{display:block;color:var(--blue)}
+.progress-hero p{
+  max-width:88%;
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.5;
+  font-weight:800;
+}
+
+.snapshot{
+  background:var(--ink);
+  color:#fff;
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:14px;
+  margin-bottom:14px;
+}
+.snapshot-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+.snapshot small{
+  color:#d6d7db;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+.total-score{
+  font-family:"Sora";
+  font-size:42px;
+  line-height:.95;
+  font-weight:800;
+}
+.total-score span{font-size:17px;color:#ddd}
+.band-pill{
+  border:2px solid #fff;
+  border-radius:13px;
+  background:var(--yellow);
+  color:var(--ink);
+  padding:8px 10px;
+  text-align:center;
+  min-width:88px;
+}
+.band-pill small{display:block;color:#34363e;font-size:10px}
+.band-pill b{display:block;font-family:"Sora";font-size:22px}
+.snapshot-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-top:11px;
+}
+.snap-mini{
+  border:2px solid #fff;
+  border-radius:11px;
+  background:#fff;
+  color:var(--ink);
+  padding:8px;
+}
+.snap-mini span{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:900;
+}
+.snap-mini b{
+  display:block;
+  margin-top:2px;
+  font-family:"Sora";
+  font-size:15px;
+}
+.progress-track{
+  height:13px;
+  margin-top:11px;
+  border:2px solid #fff;
+  border-radius:999px;
+  background:#34343a;
+  overflow:hidden;
+}
+.progress-track div{
+  width:0;
+  height:100%;
+  background:var(--lime);
+  transition:width .35s ease;
+}
+.snapshot-note{
+  margin-top:7px;
+  color:#d5d6da;
+  font-size:9px;
+  line-height:1.4;
+  font-weight:750;
+}
+
+.dashboard-section{
+  margin-bottom:14px;
+}
+.dashboard-title{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:10px;
+  margin:0 2px 8px;
+}
+.dashboard-title h2{font-size:18px}
+.dashboard-title span{
+  color:var(--muted);
+  font-size:9px;
+  font-weight:900;
+}
+
+.component-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+.component-card{
+  position:relative;
+  overflow:hidden;
+  min-height:128px;
+  border:var(--line);
+  border-radius:16px;
+  box-shadow:4px 4px 0 var(--ink);
+  padding:11px;
+  background:#fff;
+}
+.component-card.speaking{background:#fff0f8}
+.component-card.reading{background:#edf4ff}
+.component-card.listening{background:#eaffff}
+.component-card.writing{background:#fff1e9}
+.component-icon{font-size:23px}
+.component-card h3{font-size:13px;margin-top:4px}
+.component-score{
+  margin-top:7px;
+  font-family:"Sora";
+  font-size:28px;
+  line-height:1;
+  font-weight:800;
+}
+.component-score span{font-size:12px}
+.component-source{
+  margin-top:5px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.3;
+  font-weight:900;
+}
+.score-bar{
+  height:8px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#fff;
+  overflow:hidden;
+  margin-top:7px;
+}
+.score-bar i{display:block;height:100%;width:0;background:var(--ink)}
+.no-score .component-score{color:#888}
+
+.stage-stack{
+  display:grid;
+  gap:9px;
+}
+.stage{
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:4px 4px 0 var(--ink);
+  background:#fff;
+  overflow:hidden;
+}
+.stage summary{
+  list-style:none;
+  cursor:pointer;
+  display:grid;
+  grid-template-columns:42px 1fr auto;
+  gap:9px;
+  align-items:center;
+  padding:11px;
+}
+.stage summary::-webkit-details-marker{display:none}
+.stage:nth-child(1) summary{background:#fff7bf}
+.stage:nth-child(2) summary{background:#f2e8ff}
+.stage:nth-child(3) summary{background:#e7fff5}
+.stage-num{
+  width:40px;height:40px;
+  display:grid;place-items:center;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#fff;
+  font-family:"Sora";
+  font-weight:800;
+}
+.stage-head b{display:block;font-family:"Sora";font-size:13px}
+.stage-head span{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:800}
+.stage-total{
+  text-align:right;
+  font-family:"Sora";
+  font-size:18px;
+  font-weight:800;
+}
+.stage-total small{display:block;font-family:"DM Sans";font-size:10px;color:var(--muted)}
+.stage-body{
+  padding:0 10px 11px;
+  border-top:2px solid var(--ink);
+}
+.stage-scores{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  padding-top:9px;
+}
+.stage-score{
+  border:2px solid var(--ink);
+  border-radius:9px;
+  background:#fff;
+  padding:7px 3px;
+  text-align:center;
+}
+.stage-score span{display:block;font-size:10px;font-weight:900;color:var(--muted)}
+.stage-score b{display:block;margin-top:2px;font-family:"Sora";font-size:13px}
+.stage-foot{
+  margin-top:7px;
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  font-size:9px;
+  font-weight:850;
+}
+.stage-status{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  padding:4px 7px;
+  background:#fff;
+}
+.stage-status.complete{background:var(--lime)}
+.stage-delta{padding:4px 0}
+
+.trend-card{
+  background:#fff;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:12px;
+}
+.trend-row{
+  display:grid;
+  grid-template-columns:66px 1fr 44px;
+  gap:8px;
+  align-items:center;
+  margin-top:8px;
+}
+.trend-row:first-child{margin-top:0}
+.trend-name{font-size:9px;font-weight:1000}
+.trend-line{
+  height:15px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#f0f0f0;
+  overflow:hidden;
+}
+.trend-line i{display:block;height:100%;width:0;background:var(--blue)}
+.trend-score{text-align:right;font-family:"Sora";font-size:11px;font-weight:800}
+
+.insight-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:9px;
+}
+.insight{
+  border:var(--line);
+  border-radius:16px;
+  box-shadow:4px 4px 0 var(--ink);
+  padding:11px;
+  background:#fff;
+  min-height:125px;
+}
+.insight.strong{background:#e7fff5}
+.insight.focus{background:#fff1e9}
+.insight .emoji{font-size:24px}
+.insight small{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:1000;
+  letter-spacing:.06em;
+}
+.insight h3{font-size:15px;margin-top:3px}
+.insight p{margin:5px 0 0;font-size:10px;line-height:1.4;font-weight:750}
+
+.feedback-card{
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  background:#fff;
+  padding:12px;
+}
+.feedback-item{
+  display:grid;
+  grid-template-columns:38px 1fr;
+  gap:8px;
+  align-items:start;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#fafafa;
+  padding:8px;
+  margin-top:7px;
+}
+.feedback-item:first-child{margin-top:0}
+.feedback-badge{
+  width:36px;height:36px;
+  display:grid;place-items:center;
+  border:2px solid var(--ink);
+  border-radius:10px;
+  background:var(--yellow);
+  font-size:17px;
+}
+.feedback-item b{font-size:10px}
+.feedback-item p{margin:2px 0 0;color:var(--muted);font-size:9px;line-height:1.4;font-weight:750}
+
+.badge-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+.badge{
+  min-height:102px;
+  border:2px solid var(--ink);
+  border-radius:14px;
+  background:#fff;
+  padding:8px 4px;
+  text-align:center;
+}
+.badge.locked{
+  opacity:.42;
+  filter:grayscale(1);
+}
+.badge-icon{font-size:27px}
+.badge b{
+  display:block;
+  margin-top:4px;
+  font-family:"Sora";
+  font-size:9px;
+  line-height:1.15;
+}
+.badge span{
+  display:block;
+  margin-top:3px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.25;
+  font-weight:800;
+}
+
+.next-card{
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  background:var(--yellow);
+  padding:13px;
+  margin-bottom:13px;
+}
+.next-card small{font-size:10px;font-weight:1000;letter-spacing:.07em}
+.next-card h2{font-size:18px;margin-top:4px}
+.next-card p{margin:5px 0 10px;font-size:11px;line-height:1.45;font-weight:800}
+.action-row{display:grid;grid-template-columns:1fr auto;gap:7px}
+.refresh{
+  min-width:48px;
+  border:var(--line);
+  border-radius:12px;
+  background:#fff;
+  box-shadow:3px 3px 0 var(--ink);
+  font-weight:1000;
+  cursor:pointer;
+}
+.empty{
+  border:2px dashed var(--ink);
+  border-radius:12px;
+  padding:10px;
+  color:var(--muted);
+  background:#fff;
+  font-size:10px;
+  line-height:1.45;
+  font-weight:800;
+}
+
+@media(min-width:700px){
+  .component-grid{grid-template-columns:repeat(4,1fr)}
+  .snapshot-grid{grid-template-columns:repeat(4,1fr)}
+  .badge-grid{grid-template-columns:repeat(8,1fr)}
+  .insight-grid{grid-template-columns:1fr 1fr}
+}
+
+/* ===== CLEAN DEFAULT / EMPTY STATE ===== */
+[data-requires-data].is-empty{
+  display:none !important;
+}
+.snapshot.empty-snapshot .total-score,
+.snapshot.empty-snapshot .band-pill,
+.snapshot.empty-snapshot .progress-track,
+.snapshot.empty-snapshot .snapshot-note{
+  display:none;
+}
+.snapshot-empty{
+  display:none;
+  margin-top:10px;
+  border:2px dashed #fff;
+  border-radius:12px;
+  padding:11px;
+  color:#fff;
+  font-size:10px;
+  line-height:1.45;
+  font-weight:800;
+}
+.snapshot.empty-snapshot .snapshot-empty{display:block}
+.empty-components{
+  border:var(--line);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:4px 4px 0 var(--ink);
+  padding:12px;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:800;
+  color:var(--muted);
+}
+
+</style>
+</head>
+
+<body>
+<main class="app">
+
+<div class="brandbar">
+  <img src="assets/heroes/small-muet-logo.svg" alt="">
+  <div>
+    <small>SMART MUET GUIDE · ANALYTICS</small>
+    <b>Progress</b>
+  </div>
+  <a class="back" href="muet-hub.html">Home</a>
+</div>
+
+<section class="progress-hero">
+  <span class="kicker">03 · TRACK YOUR READINESS</span>
+  <h1>See your progress.<span>Know what to improve.</span></h1>
+  <p>Compare your Vault practice, Mock performance, component scores and earned badges from one dashboard.</p>
+</section>
+
+<section class="snapshot">
+  <div class="snapshot-top">
+    <div>
+      <small>LATEST COMPLETE CHECKPOINT</small>
+      <div class="total-score"><span id="totalScore">—</span><span>/360</span></div>
+    </div>
+    <div class="band-pill">
+      <small>PRACTICE ESTIMATE</small>
+      <b id="bandEstimate">—</b>
+    </div>
+  </div>
+
+  <div class="snapshot-grid">
+    <div class="snap-mini"><span>SOURCE</span><b id="latestStage">No complete set</b></div>
+    <div class="snap-mini"><span>TARGET BAND</span><b id="targetBand">—</b></div>
+    <div class="snap-mini"><span>TARGET GAP</span><b id="targetGap">—</b></div>
+    <div class="snap-mini"><span>BADGES</span><b id="badgeCount">0 / 8</b></div>
+  </div>
+
+  <div class="progress-track"><div id="targetProgress"></div></div>
+  <div class="snapshot-note">Practice estimate only — not an official MUET result.</div>
+  <div class="snapshot-empty">
+    No marks yet. Complete a Vault or Mock component and submit it to start building your progress dashboard.
+  </div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-title">
+    <h2>Component Performance</h2>
+    <span>LATEST AVAILABLE SCORE</span>
+  </div>
+  <div class="component-grid" id="componentGrid"></div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-title">
+    <h2>Vault & Mock History</h2>
+    <span>VAULT 1 → VAULT 2 → MOCK 1</span>
+  </div>
+  <div class="stage-stack" id="stageStack"></div>
+</section>
+
+<section class="dashboard-section" id="trendSection" data-requires-data>
+  <div class="dashboard-title">
+    <h2>Performance Trend</h2>
+    <span>TOTAL / 360</span>
+  </div>
+  <div class="trend-card" id="trendCard"></div>
+</section>
+
+<section class="dashboard-section" id="focusSection" data-requires-data>
+  <div class="dashboard-title">
+    <h2>Your Learning Focus</h2>
+    <span>AUTO SUMMARY</span>
+  </div>
+  <div class="insight-grid">
+    <div class="insight strong">
+      <div class="emoji">💪</div>
+      <small>STRONGEST COMPONENT</small>
+      <h3 id="strongestSkill">—</h3>
+      <p id="strongestText"></p>
+    </div>
+    <div class="insight focus">
+      <div class="emoji">🎯</div>
+      <small>FOCUS NEXT</small>
+      <h3 id="focusSkill">—</h3>
+      <p id="focusText"></p>
+    </div>
+  </div>
+</section>
+
+<section class="dashboard-section" id="feedbackSection" data-requires-data>
+  <div class="dashboard-title">
+    <h2>Latest Feedback</h2>
+    <span>SPEAKING + WRITING</span>
+  </div>
+  <div class="feedback-card" id="feedbackCard"></div>
+</section>
+
+<section class="dashboard-section">
+  <div class="dashboard-title">
+    <h2>Badges</h2>
+    <span>LEARNING MILESTONES</span>
+  </div>
+  <div class="badge-grid" id="badgeGrid"></div>
+</section>
+
+<section class="next-card">
+  <small>YOUR NEXT ACTION</small>
+  <h2 id="nextTitle">Continue your practice</h2>
+  <p id="nextText">Complete another component to strengthen your progress dashboard.</p>
+  <div class="action-row">
+    <a class="btn black" id="nextLink" href="vault.html">CONTINUE PRACTICE →</a>
+    <button class="refresh" id="refreshBtn" type="button" title="Refresh progress" aria-label="Refresh progress">↻</button>
+  </div>
+</section>
+
+</main>
+
+<nav class="nav">
+  <a href="muet-hub.html"><img src="assets/heroes/nav-home.svg" alt=""><span>Home</span></a>
+  <a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg" alt=""><span>Guide</span></a>
+  <a href="vault.html"><img src="assets/heroes/nav-vault.svg" alt=""><span>Vault</span></a>
+  <a href="progress.html" class="active"><img src="assets/heroes/nav-progress.svg" alt=""><span>Progress</span></a>
+  <a href="settings.html"><img src="assets/heroes/nav-profile.svg" alt=""><span>Profile</span></a>
+</nav>
+
+<script src="js/phase1-state.js"></script>
+<script>
+/* =========================================================
+   SMART MUET PROGRESS AGGREGATOR
+   Reads current + legacy browser storage keys so existing
+   Vault / Mock pages can feed this dashboard immediately.
+   ========================================================= */
+
+const COMPONENTS = [
+  {id:"Speaking", emoji:"🎤", cls:"speaking"},
+  {id:"Reading", emoji:"📖", cls:"reading"},
+  {id:"Listening", emoji:"🎧", cls:"listening"},
+  {id:"Writing", emoji:"✍️", cls:"writing"}
+];
+
+const STAGES = [
+  {id:"VAULT-01", label:"Vault 1", sub:"Guided Practice", number:"1", prefix:["muet_v1_","vault1","VAULT-01"]},
+  {id:"VAULT-02", label:"Vault 2", sub:"Independent Practice", number:"2", prefix:["muet_v2_","vault2","VAULT-02"]},
+  {id:"MOCK-01",  label:"Mock 1",  sub:"Full Practice Test", number:"M", prefix:["muet_mock1_","mock1","MOCK-01"]}
+];
+
+/* Current MPM aggregated-score thresholds. */
+const BANDS = [
+  {min:331, band:"5+"},
+  {min:294, band:"5.0"},
+  {min:258, band:"4.5"},
+  {min:211, band:"4.0"},
+  {min:164, band:"3.5"},
+  {min:123, band:"3.0"},
+  {min:82,  band:"2.5"},
+  {min:36,  band:"2.0"},
+  {min:1,   band:"1.0"},
+  {min:0,   band:"—"}
+];
+
+const TARGET_MIN = {
+  "5+":331, "5.0":294, "5":294,
+  "4.5":258, "4.0":211, "4":211,
+  "3.5":164, "3.0":123, "3":123,
+  "2.5":82, "2.0":36, "2":36,
+  "1.0":1, "1":1
+};
+
+function safeJSON(value){
+  if(value===null || value===undefined)return null;
+  try{return JSON.parse(value)}catch{return value}
+}
+
+function clamp90(n){
+  n=Number(n);
+  if(!Number.isFinite(n))return null;
+  return Math.max(0,Math.min(90,Math.round(n)));
+}
+
+function scoreFromObject(obj){
+  if(obj===null || obj===undefined)return null;
+  if(typeof obj==="number")return clamp90(obj);
+  if(typeof obj==="string" && !isNaN(Number(obj)))return clamp90(Number(obj));
+  if(Array.isArray(obj)){
+    for(let i=obj.length-1;i>=0;i--){
+      const s=scoreFromObject(obj[i]);
+      if(s!==null)return s;
+    }
+    return null;
+  }
+  if(typeof obj!=="object")return null;
+
+  for(const k of ["score90","scaledScore90","finalScore90","score_90"]){
+    if(obj[k]!==undefined){
+      const s=clamp90(obj[k]);
+      if(s!==null)return s;
+    }
+  }
+
+  /* A component result may already be /90. */
+  if(obj.score!==undefined && Number(obj.score)>=0 && Number(obj.score)<=90){
+    return clamp90(obj.score);
+  }
+
+  /* Convert generic raw result only if a clear denominator exists. */
+  const raw = obj.rawScore ?? obj.raw ?? obj.correct ?? null;
+  const max = obj.totalItems ?? obj.rawMax ?? obj.max ?? null;
+  if(raw!==null && max!==null && Number(max)>0){
+    return clamp90(Number(raw)/Number(max)*90);
+  }
+
+  return null;
+}
+
+function allStorage(){
+  const rows=[];
+  for(let i=0;i<localStorage.length;i++){
+    const key=localStorage.key(i);
+    rows.push({key,value:safeJSON(localStorage.getItem(key))});
+  }
+  return rows;
+}
+
+function keyMatchesStage(key,stage){
+  const k=key.toLowerCase();
+  return stage.prefix.some(p=>k.includes(String(p).toLowerCase()));
+}
+function keyMatchesComponent(key,component){
+  return key.toLowerCase().includes(component.toLowerCase());
+}
+
+function explicitScore(stage,component){
+  const c=component.toLowerCase();
+  const stageKey=stage.id==="VAULT-01"?"v1":stage.id==="VAULT-02"?"v2":"mock1";
+  const candidates=[
+    `muet_${stageKey}_${c}_score90`,
+    `muet_${stageKey}_${c}_score_90`,
+    `muet_${stageKey}_${c}_final_score`,
+    `muet_${stageKey}_${c}_score`
+  ];
+  for(const key of candidates){
+    if(localStorage.getItem(key)!==null){
+      const s=scoreFromObject(safeJSON(localStorage.getItem(key)));
+      if(s!==null)return {score:s,source:key};
+    }
+  }
+  return null;
+}
+
+function writingScore(stage,rows){
+  const relevant=rows.filter(r=>keyMatchesStage(r.key,stage)&&keyMatchesComponent(r.key,"writing"));
+  let t1=null,t2=null;
+  for(const r of relevant){
+    const k=r.key.toLowerCase();
+    if(k.includes("task1") || k.includes("task_1")){
+      const o=r.value;
+      if(o && typeof o==="object" && Number.isFinite(Number(o.scaledScore))){
+        const max=Number(o.scaledMax||30);
+        t1={points:Number(o.scaledScore),max,source:r.key,obj:o};
+      }
+    }
+    if(k.includes("task2") || k.includes("task_2")){
+      const o=r.value;
+      if(o && typeof o==="object" && Number.isFinite(Number(o.scaledScore))){
+        const max=Number(o.scaledMax||60);
+        t2={points:Number(o.scaledScore),max,source:r.key,obj:o};
+      }
+    }
+  }
+  if(t1&&t2){
+    const score=clamp90((t1.points+t2.points)/(t1.max+t2.max)*90);
+    return {score,source:"Task 1 + Task 2",objects:[t1.obj,t2.obj]};
+  }
+  return null;
+}
+
+function speakingScore(stage,rows){
+  const relevant=rows.filter(r=>keyMatchesStage(r.key,stage)&&keyMatchesComponent(r.key,"speaking"));
+  const taskObjects=[];
+  for(const r of relevant){
+    const o=r.value;
+    if(!o || typeof o!=="object")continue;
+    const raw=Number(o.rubricRaw ?? o.rawScore);
+    const max=Number(o.rubricMax ?? o.rawMax);
+    if(Number.isFinite(raw)&&Number.isFinite(max)&&max>0){
+      taskObjects.push({raw,max,obj:o,key:r.key});
+    }
+  }
+  /* Deduplicate likely Task A/B records by task label. */
+  const byTask={};
+  taskObjects.forEach(x=>{
+    const label=String(x.obj.taskType||x.key).toLowerCase();
+    const id=label.includes("task b")||label.includes("task_b")?"B":
+             label.includes("task a")||label.includes("task_a")?"A":x.key;
+    byTask[id]=x;
+  });
+  const vals=Object.values(byTask);
+  if(vals.length>=2){
+    const raw=vals.reduce((a,b)=>a+b.raw,0);
+    const max=vals.reduce((a,b)=>a+b.max,0);
+    return {score:clamp90(raw/max*90),source:"Task A + Task B",objects:vals.map(x=>x.obj)};
+  }
+  return null;
+}
+
+function genericComponentScore(stage,component,rows){
+  const explicit=explicitScore(stage,component);
+  if(explicit)return explicit;
+
+  if(component==="Writing"){
+    const combined=writingScore(stage,rows);
+    if(combined)return combined;
+  }
+  if(component==="Speaking"){
+    const combined=speakingScore(stage,rows);
+    if(combined)return combined;
+  }
+
+  const matches=rows.filter(r=>keyMatchesStage(r.key,stage)&&keyMatchesComponent(r.key,component));
+  /* Prefer keys that explicitly look like final / score / summary. */
+  matches.sort((a,b)=>{
+    const rank=k=>/score90|final|summary|result|complete/.test(k.toLowerCase())?2:1;
+    return rank(b.key)-rank(a.key);
+  });
+
+  for(const r of matches){
+    const s=scoreFromObject(r.value);
+    if(s!==null)return {score:s,source:r.key,obj:r.value};
+  }
+  return {score:null,source:null};
+}
+
+function buildModel(){
+  const rows=allStorage();
+  const stages={};
+
+  STAGES.forEach(stage=>{
+    stages[stage.id]={...stage,scores:{},complete:false,total:null,band:"—"};
+    COMPONENTS.forEach(c=>{
+      stages[stage.id].scores[c.id]=genericComponentScore(stage,c.id,rows);
+    });
+
+    const vals=COMPONENTS.map(c=>stages[stage.id].scores[c.id].score);
+    stages[stage.id].complete=vals.every(v=>v!==null);
+    if(stages[stage.id].complete){
+      stages[stage.id].total=vals.reduce((a,b)=>a+b,0);
+      stages[stage.id].band=bandFor(stages[stage.id].total);
+    }
+  });
+
+  return {rows,stages};
+}
+
+function bandFor(total){
+  if(total===null || total===undefined)return "—";
+  return BANDS.find(b=>total>=b.min)?.band || "—";
+}
+
+function getProfile(){
+  const candidates=[
+    safeJSON(localStorage.getItem("muet_profile")),
+    safeJSON(localStorage.getItem("smartMuetProfile")),
+    window.SmartMUET && typeof SmartMUET.loadProfile==="function" ? SmartMUET.loadProfile() : null
+  ].filter(Boolean);
+  return candidates.find(x=>typeof x==="object")||{};
+}
+
+function getTargetBand(){
+  const p=getProfile();
+  const raw=p.targetBand ?? p.target_band ?? p.target ?? p.muetTarget ?? "";
+  const str=String(raw).replace(/band/i,"").replace("+","+" ).trim();
+  return str || "—";
+}
+
+function latestCompleteStage(stages){
+  return [stages["MOCK-01"],stages["VAULT-02"],stages["VAULT-01"]].find(s=>s.complete)||null;
+}
+
+function latestScoreForComponent(model,component){
+  for(const id of ["MOCK-01","VAULT-02","VAULT-01"]){
+    const item=model.stages[id].scores[component];
+    if(item && item.score!==null)return {...item,stage:model.stages[id]};
+  }
+  return {score:null,source:null,stage:null};
+}
+
+function criterionFocus(rows){
+  const candidates=[];
+  rows.forEach(r=>{
+    const o=r.value;
+    if(!o||typeof o!=="object")return;
+    const rubric=o.rubric||{};
+    const entries=[
+      ["Task Fulfilment",rubric.taskFulfilment ?? o.taskFulfilment],
+      ["Organisation & Coherence",rubric.organisationCoherence ?? o.coherenceOrganisation],
+      ["Language",rubric.language ?? o.languageUse],
+      ["Register & Style",rubric.registerStyle],
+      ["Interaction Readiness",o.interactionReadiness]
+    ];
+    entries.forEach(([name,val])=>{
+      if(val!==null&&val!==undefined&&Number.isFinite(Number(val))){
+        candidates.push({name,value:Number(val),key:r.key});
+      }
+    });
+  });
+  candidates.sort((a,b)=>a.value-b.value);
+  return candidates[0]||null;
+}
+
+function hasKeyLike(...parts){
+  return allStorage().some(r=>parts.every(p=>r.key.toLowerCase().includes(p.toLowerCase())));
+}
+
+function computeBadges(model){
+  const anyAttempt=model.rows.some(r=>{
+    const k=r.key.toLowerCase();
+    return /^muet_(v1|v2|mock1)_/.test(k) &&
+           /(task|score|result|reading|writing|listening|speaking)/.test(k);
+  });
+  const v1=model.stages["VAULT-01"],v2=model.stages["VAULT-02"],mock=model.stages["MOCK-01"];
+  const totals=[v1,v2,mock].filter(x=>x.complete).map(x=>x.total);
+
+  const badges=[
+    {id:"first",icon:"🚀",name:"First Step",desc:"First practice attempt",earned:anyAttempt},
+    {id:"prep",icon:"🎤",name:"PREP Starter",desc:"Speaking Task A",earned:hasKeyLike("speaking","task","a") || v1.scores.Speaking.score!==null},
+    {id:"discussion",icon:"💬",name:"Discussion Builder",desc:"Speaking Task B",earned:hasKeyLike("speaking","task","b")},
+    {id:"passage",icon:"🔎",name:"Passage Hunter",desc:"Reading practice",earned:[v1,v2,mock].some(s=>s.scores.Reading.score!==null)},
+    {id:"audio",icon:"🎧",name:"Audio Focus",desc:"Listening practice",earned:[v1,v2,mock].some(s=>s.scores.Listening.score!==null)},
+    {id:"essay",icon:"✍️",name:"Essay Builder",desc:"Writing Task 2",earned:hasKeyLike("writing","task2")||hasKeyLike("writing","task_2")},
+    {id:"vault",icon:"🏆",name:"Vault Finisher",desc:"Complete 4 skills",earned:v1.complete||v2.complete},
+    {id:"climber",icon:"📈",name:"Band Climber",desc:"Improve a checkpoint",earned:totals.length>=2 && totals.some((t,i)=>i>0&&t>totals[i-1])}
+  ];
+  return badges;
+}
+
+
+function hasAnyRealScore(model){
+  return STAGES.some(def =>
+    COMPONENTS.some(c => model.stages[def.id].scores[c.id].score !== null)
+  );
+}
+
+function setDataSectionState(id, show){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.classList.toggle("is-empty", !show);
+}
+
+function render(){
+  const model=buildModel();
+  const latest=latestCompleteStage(model.stages);
+  const target=getTargetBand();
+  const hasData=hasAnyRealScore(model);
+
+  document.querySelector(".snapshot").classList.toggle("empty-snapshot", !hasData);
+  setDataSectionState("trendSection", hasData);
+  setDataSectionState("focusSection", hasData);
+  setDataSectionState("feedbackSection", hasData);
+
+  /* Snapshot */
+  document.getElementById("totalScore").textContent=latest?latest.total:"—";
+  document.getElementById("bandEstimate").textContent=latest?latest.band:"—";
+  document.getElementById("latestStage").textContent=latest?latest.label:"—";
+  document.getElementById("targetBand").textContent=target==="—"?"—":`Band ${target}`;
+
+  const targetMin=TARGET_MIN[target] ?? null;
+  let gapText="—",pct=0;
+  if(latest && targetMin!==null){
+    const gap=Math.max(0,targetMin-latest.total);
+    gapText=gap===0?"Target reached":`${gap} pts`;
+    pct=Math.min(100,Math.round(latest.total/targetMin*100));
+  }else if(latest){
+    pct=Math.round(latest.total/360*100);
+    gapText="—";
+  }
+  document.getElementById("targetGap").textContent=gapText;
+  document.getElementById("targetProgress").style.width=pct+"%";
+
+  /* Components */
+  const componentGrid=document.getElementById("componentGrid");
+  componentGrid.innerHTML=COMPONENTS.map(c=>{
+    const item=latestScoreForComponent(model,c.id);
+    const score=item.score;
+    return `<div class="component-card ${c.cls} ${score===null?"no-score":""}">
+      <div class="component-icon">${c.emoji}</div>
+      <h3>${c.id}</h3>
+      <div class="component-score">${score===null?"—":score}<span>/90</span></div>
+      <div class="component-source">${item.stage?item.stage.label:"Not submitted"}</div>
+      <div class="score-bar"><i style="width:${score===null?0:Math.round(score/90*100)}%"></i></div>
+    </div>`;
+  }).join("");
+
+  /* Stages */
+  const stageStack=document.getElementById("stageStack");
+  stageStack.innerHTML=STAGES.map((def,index)=>{
+    const s=model.stages[def.id];
+    const vals=COMPONENTS.map(c=>s.scores[c.id].score);
+    const count=vals.filter(v=>v!==null).length;
+    return `<details class="stage" ${index===0?"open":""}>
+      <summary>
+        <div class="stage-num">${def.number}</div>
+        <div class="stage-head"><b>${def.label}</b><span>${def.sub} · ${count}/4 components</span></div>
+        <div class="stage-total">${s.total===null?"—":s.total}<small>/360</small></div>
+      </summary>
+      <div class="stage-body">
+        <div class="stage-scores">
+          ${COMPONENTS.map(c=>`<div class="stage-score"><span>${c.id.slice(0,3).toUpperCase()}</span><b>${s.scores[c.id].score===null?"—":s.scores[c.id].score}</b></div>`).join("")}
+        </div>
+        <div class="stage-foot">
+          <span class="stage-status ${s.complete?"complete":""}">${s.complete?"COMPLETE ✓":`${count}/4 DONE`}</span>
+          <span class="stage-delta">${s.complete?`Practice Band ${s.band}`:(count===0?"No results yet":"Complete all 4 for total")}</span>
+        </div>
+      </div>
+    </details>`;
+  }).join("");
+
+  /* Trend */
+  const completeTotals=STAGES.filter(def=>model.stages[def.id].total!==null);
+  setDataSectionState("trendSection", completeTotals.length>0);
+  document.getElementById("trendCard").innerHTML=STAGES.map(def=>{
+    const s=model.stages[def.id];
+    const pct=s.total===null?0:Math.round(s.total/360*100);
+    return `<div class="trend-row">
+      <div class="trend-name">${def.label}</div>
+      <div class="trend-line"><i style="width:${pct}%"></i></div>
+      <div class="trend-score">${s.total===null?"—":s.total}</div>
+    </div>`;
+  }).join("");
+
+  /* Strongest / focus */
+  const available=COMPONENTS.map(c=>{
+    const x=latestScoreForComponent(model,c.id);
+    return {component:c.id,score:x.score};
+  }).filter(x=>x.score!==null);
+
+  setDataSectionState("focusSection", available.length>0);
+  if(available.length){
+    const strong=[...available].sort((a,b)=>b.score-a.score)[0];
+    const focus=[...available].sort((a,b)=>a.score-b.score)[0];
+    document.getElementById("strongestSkill").textContent=`${strong.component} · ${strong.score}/90`;
+    document.getElementById("strongestText").textContent="This is your highest latest available component score.";
+    document.getElementById("focusSkill").textContent=`${focus.component} · ${focus.score}/90`;
+    document.getElementById("focusText").textContent=`Prioritise ${focus.component} in your next practice cycle.`;
+  }
+
+  /* Feedback */
+  const focusCriterion=criterionFocus(model.rows);
+  const feedback=[];
+  const latestWriting=latestScoreForComponent(model,"Writing");
+  const latestSpeaking=latestScoreForComponent(model,"Speaking");
+
+  if(latestSpeaking.score!==null){
+    feedback.push({icon:"🎤",title:"Speaking",text:`Latest score ${latestSpeaking.score}/90. ${focusCriterion&&/speaking/i.test(focusCriterion.key)?`Focus criterion: ${focusCriterion.name} (${focusCriterion.value}/6).`:"Review your latest speaking rubric before the next attempt."}`});
+  }
+  if(latestWriting.score!==null){
+    feedback.push({icon:"✍️",title:"Writing",text:`Latest score ${latestWriting.score}/90. ${focusCriterion&&/writing/i.test(focusCriterion.key)?`Focus criterion: ${focusCriterion.name} (${focusCriterion.value}/6).`:"Use your last rubric feedback when revising."}`});
+  }
+
+  const feedbackCard=document.getElementById("feedbackCard");
+  feedbackCard.innerHTML=feedback.length
+    ? feedback.map(f=>`<div class="feedback-item"><div class="feedback-badge">${f.icon}</div><div><b>${f.title}</b><p>${f.text}</p></div></div>`).join("")
+    : "";
+  setDataSectionState("feedbackSection", feedback.length>0);
+
+  /* Badges */
+  const badges=computeBadges(model);
+  const earned=badges.filter(b=>b.earned).length;
+  document.getElementById("badgeCount").textContent=`${earned} / ${badges.length}`;
+  document.getElementById("badgeGrid").innerHTML=badges.map(b=>`<div class="badge ${b.earned?"":"locked"}"><div class="badge-icon">${b.icon}</div><b>${b.name}</b><span>${b.earned?"EARNED ✓":b.desc}</span></div>`).join("");
+
+  /* Next action */
+  const incompleteStage=[model.stages["VAULT-01"],model.stages["VAULT-02"],model.stages["MOCK-01"]].find(s=>!s.complete);
+  const focusAvailable=available.length?[...available].sort((a,b)=>a.score-b.score)[0]:null;
+  if(!hasData){
+    document.getElementById("nextTitle").textContent="Start your first practice";
+    document.getElementById("nextText").textContent="Open the Vault and choose any MUET component to begin.";
+    document.getElementById("nextLink").href="vault.html";
+    document.getElementById("nextLink").textContent="OPEN STUDY VAULT →";
+  }else if(incompleteStage){
+    const missing=COMPONENTS.filter(c=>incompleteStage.scores[c.id].score===null).map(c=>c.id);
+    document.getElementById("nextTitle").textContent=`Continue ${incompleteStage.label}`;
+    document.getElementById("nextText").textContent=missing.length?`Still to complete: ${missing.join(", ")}.`:"Complete the remaining practice.";
+    document.getElementById("nextLink").href="vault.html";
+    document.getElementById("nextLink").textContent="CONTINUE PRACTICE →";
+  }else if(focusAvailable){
+    document.getElementById("nextTitle").textContent=`Strengthen ${focusAvailable.component}`;
+    document.getElementById("nextText").textContent=`Your latest ${focusAvailable.component} score is ${focusAvailable.score}/90. Use the Guide or Vault for another focused attempt.`;
+    document.getElementById("nextLink").href="guidance.html";
+    document.getElementById("nextLink").textContent="OPEN GUIDE →";
+  }else{
+    document.getElementById("nextTitle").textContent="Start Vault 1";
+    document.getElementById("nextText").textContent="Complete your first component practice to activate the dashboard.";
+    document.getElementById("nextLink").href="vault.html";
+  }
+}
+
+document.getElementById("refreshBtn").addEventListener("click",render);
+window.addEventListener("storage",render);
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#7C25DA">
+<title>Writing · Vault 2 · Smart MUET Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+--ink:#111;--white:#fff;--soft:#f4f7f8;--muted:#4f535b;
+--violet:#7C25DA;--orange:#FF5A00;--gold:#FFC400;--cyan:#18D9FF;--lime:#19EF14;
+--line:3px solid var(--ink);--shadow:5px 5px 0 var(--ink);--fh:"Sora",sans-serif;--fb:"DM Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}body{font-family:var(--fb);background:var(--violet);color:var(--ink);overflow-x:hidden}a{color:inherit;text-decoration:none}button,textarea,input{font:inherit}
+.app{width:100%;max-width:560px;min-height:100dvh;margin:auto;background:var(--soft);padding:15px 14px 112px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.brand{display:flex;align-items:center;gap:9px}.brand img{width:54px;height:54px}.brand small{display:block;font-size:9px;font-weight:1000;color:var(--muted);letter-spacing:.08em}.brand b{display:block;margin-top:3px;font-family:var(--fh);font-size:17px}.back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:999px;background:#fff;box-shadow:2px 2px 0 var(--ink);padding:8px 11px;font-size:11px;font-weight:1000}
+.hero{position:relative;overflow:hidden;background:#fff;border:var(--line);border-radius:24px;box-shadow:var(--shadow);padding:22px 18px 20px;margin-bottom:15px}.hero:after{z-index:-1;content:"";position:absolute;width:96px;height:96px;right:-25px;top:-28px;border:var(--line);border-radius:50%;background:var(--violet)}.tag{position:relative;z-index:2;display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 9px;font-size:10px;font-weight:1000;letter-spacing:.08em}.hero h1{position:relative;z-index:2;margin-top:11px;font-family:var(--fh);font-size:clamp(36px,9vw,52px);line-height:.96;letter-spacing:-.05em}.hero h1 span{display:block;color:var(--violet)}.hero p{position:relative;z-index:2;margin-top:12px;color:#3c4148;font-size:16px;line-height:1.5;font-weight:700}
+.mode{background:var(--ink);color:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:13px;margin-bottom:14px}.mode h2{font-family:var(--fh);font-size:19px}.mode p{margin-top:4px;color:#ddd;font-size:12px;line-height:1.4;font-weight:700}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:10px}.stats div{border:2px solid #fff;border-radius:11px;background:#fff;color:#111;padding:8px;text-align:center}.stats b{display:block;font-family:var(--fh);font-size:18px}.stats span{font-size:9px;font-weight:900;color:var(--muted)}
+.task{overflow:hidden;background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);margin-bottom:11px}.task-head{width:100%;min-height:76px;border:0;background:#f3e9ff;padding:12px;display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;text-align:left;cursor:pointer}.num{width:46px;height:46px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:12px;background:#fff;font-family:var(--fh);font-size:18px;font-weight:800}.title b{display:block;font-family:var(--fh);font-size:15px}.title span{display:block;margin-top:3px;color:var(--muted);font-size:11px;font-weight:750}.plus{font-size:24px;font-weight:1000}.task.open .plus{transform:rotate(45deg)}.task-body{display:none;border-top:2px solid var(--ink);padding:12px}.task.open .task-body{display:block}
+.prompt{border:2px solid var(--ink);border-radius:12px;background:#fff7c9;padding:10px;font-size:12px;line-height:1.5;font-weight:750}.prompt ul{margin:8px 0 0 18px}.help{border:2px solid var(--ink);border-radius:11px;background:#fff4ec;padding:8px;margin-top:9px}.help summary{font-family:var(--fh);font-size:11px;font-weight:800;cursor:pointer}.help p{margin-top:6px;font-size:11px;line-height:1.45;font-weight:700}
+.answer{margin-top:10px;border:2px solid var(--ink);border-radius:13px;background:#fafafa;padding:10px}.answer-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}.answer-head h3{font-family:var(--fh);font-size:15px}.wc{border:2px solid var(--ink);border-radius:999px;background:#fff;padding:4px 8px;font-size:10px;font-weight:1000}textarea{width:100%;border:2px solid var(--ink);border-radius:11px;background:#fff;padding:10px;font-size:13px;line-height:1.45;resize:vertical}
+.checks{display:grid;gap:7px;margin-top:10px}.check{display:grid;grid-template-columns:20px 1fr;gap:8px;align-items:start;border:2px solid var(--ink);border-radius:11px;background:#fff;padding:9px;font-size:12px;line-height:1.35;font-weight:750}.check input{width:18px;height:18px}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:50px;margin-top:10px;border:var(--line);border-radius:12px;background:var(--violet);color:#fff;box-shadow:4px 4px 0 var(--ink);font-size:12px;font-weight:1000;cursor:pointer}.result{display:none;margin-top:9px;border:2px solid var(--ink);border-radius:11px;background:#e7fff5;padding:9px;font-size:12px;line-height:1.45;font-weight:800}.result.show{display:block}
+.finish{background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:14px;margin-top:14px}.finish h2{font-family:var(--fh);font-size:20px}.finish p{margin-top:5px;color:var(--muted);font-size:13px;line-height:1.4;font-weight:700}
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:calc(100% - 20px);max-width:540px;z-index:70;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border:var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:6px}.nav a{min-height:58px;display:grid;place-items:center;align-content:center;gap:3px;border-radius:10px;font-size:9px;font-weight:1000}.nav a.active{background:var(--gold);border:2px solid var(--ink)}.nav img{width:26px;height:26px}
+@media(min-width:700px){.app{max-width:850px;padding:24px 24px 120px}.nav{max-width:810px}}
+
+/* ===== Writing evaluation upgrade ===== */
+.stimulus{
+  margin-top:10px;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#fff;
+  overflow:hidden;
+}
+.stimulus summary{
+  list-style:none;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  background:var(--ink);
+  color:#fff;
+  padding:9px 10px;
+  font-family:var(--fh);
+  font-size:10px;
+  font-weight:800;
+}
+.stimulus summary::-webkit-details-marker{display:none}
+.stimulus summary:after{
+  content:"+";
+  width:24px;height:24px;
+  display:grid;place-items:center;
+  border:2px solid #fff;
+  border-radius:7px;
+  font-size:16px;
+}
+.stimulus[open] summary:after{content:"−"}
+.email-body{padding:10px;font-size:12px;line-height:1.55}
+.email-meta{
+  display:grid;
+  grid-template-columns:72px 1fr;
+  border:2px solid var(--ink);
+  margin-bottom:10px;
+}
+.email-meta div{padding:6px;border-bottom:1px solid #bbb}
+.email-meta div:nth-last-child(-n+2){border-bottom:0}
+.email-meta .label{font-weight:900;background:#f0f0f0;border-right:1px solid #bbb}
+.email-line{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  align-items:start;
+  margin-top:9px;
+}
+.note-chip{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#FF4FA3;
+  padding:4px 7px;
+  font-size:8px;
+  font-weight:1000;
+  white-space:nowrap;
+}
+.question-picker{
+  margin-top:10px;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#eef4ff;
+  padding:9px;
+}
+.question-picker label{
+  display:block;
+  font-family:var(--fh);
+  font-size:10px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+.question-picker select{
+  width:100%;
+  min-height:45px;
+  border:2px solid var(--ink);
+  border-radius:9px;
+  background:#fff;
+  padding:8px;
+  font-size:11px;
+  font-weight:850;
+}
+.question-meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:5px;
+  margin-top:7px;
+}
+.question-meta span{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#fff;
+  padding:4px 7px;
+  font-size:8px;
+  font-weight:1000;
+}
+.statement{
+  margin-top:9px;
+  border:3px solid var(--ink);
+  border-radius:13px;
+  background:#fff;
+  padding:15px 11px;
+  text-align:center;
+  font-family:Georgia,serif;
+  font-size:18px;
+  line-height:1.4;
+  font-style:italic;
+  font-weight:700;
+}
+.autosave{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:850;
+}
+.wc.ok{background:var(--lime)}
+.rubric{
+  display:none;
+  margin-top:10px;
+}
+.rubric.show{display:block}
+.criteria{
+  display:grid;
+  gap:7px;
+}
+.criterion{
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#fff;
+  padding:9px;
+}
+.criterion-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.criterion b{
+  font-family:var(--fh);
+  font-size:11px;
+}
+.criterion-score{
+  font-family:var(--fh);
+  font-size:22px;
+  font-weight:900;
+}
+.criterion p{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:10px;
+  line-height:1.4;
+  font-weight:750;
+}
+.score-card{
+  margin-top:8px;
+  border:3px solid var(--ink);
+  border-radius:12px;
+  background:#e7fff5;
+  padding:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+.score-card b{font-family:var(--fh);font-size:12px}
+.score-card strong{font-family:var(--fh);font-size:28px}
+.coach{
+  margin-top:8px;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#fff7cc;
+  padding:9px;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:800;
+}
+.save-state{
+  margin-top:8px;
+  border:2px solid var(--ink);
+  border-radius:10px;
+  background:#fff;
+  padding:8px;
+  font-size:10px;
+  font-weight:850;
+}
+.secondary-btn{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:100%;
+  min-height:46px;
+  margin-top:8px;
+  border:var(--line);
+  border-radius:11px;
+  background:#fff;
+  color:var(--ink);
+  box-shadow:3px 3px 0 var(--ink);
+  font-size:11px;
+  font-weight:1000;
+  cursor:pointer;
+}
+
+</style>
+</head>
+<body>
+<main class="app">
+<header class="top">
+<div class="brand"><img src="assets/heroes/small-muet-logo.svg" alt=""><div><small>VAULT 2 · 800/4 · WRITING</small><b>Independent Writing</b></div></div>
+<a class="back" href="vault2.html">← Vault 2</a>
+</header>
+
+<section class="hero">
+<span class="tag">MUET 800/4 · VAULT 2</span>
+<h1>Plan independently.<span>Write with control.</span></h1>
+<p>Complete Vault 2 Writing with less scaffolding. Support stays optional, and rubric feedback appears only after you submit.</p>
+</section>
+
+<section class="mode">
+<h2>Independent Practice</h2>
+<p>Attempt the writing first. Use support only when you need it.</p>
+<div class="stats"><div><b>2</b><span>TASKS</span></div><div><b>75</b><span>MINUTES</span></div><div><b>PEEL</b><span>OPTIONAL</span></div></div>
+</section>
+
+<!-- TASK 1 -->
+<article class="task open">
+<button class="task-head">
+<div class="num">1</div>
+<div class="title"><b>Task 1 · Email Reply</b><span>100+ words · respond to all notes</span></div>
+<div class="plus">+</div>
+</button>
+
+<div class="task-body">
+<div class="prompt">
+<b>Situation:</b><br><br>
+Your coursemate, Linda, attended a talk on online business last week. Read her email and write a reply using all the notes provided.
+
+<ul>
+<li>Agree that online business is becoming more popular than traditional business.</li>
+<li>Agree to join Linda in setting up an online business.</li>
+<li>Suggest <b>two products</b> you could sell.</li>
+<li>Explain why you cannot start immediately and suggest a better time.</li>
+</ul>
+
+</div>
+
+<details class="stimulus">
+  <summary>VIEW / HIDE LINDA'S ORIGINAL EMAIL</summary>
+  <div class="email-body">
+    <div class="email-meta">
+      <div class="label">From:</div><div>Linda &lt;linda@zmail.com&gt;</div>
+      <div class="label">Subject:</div><div>Online Business</div>
+    </div>
+
+    <div class="email-line">
+      <div><i>Hi, how are you? Hope you are doing great.</i></div>
+      <span class="note-chip">Yes, ...</span>
+    </div>
+
+    <div class="email-line">
+      <div><i>Sorry that you have missed the online business talk last week. I really enjoyed it. It was by a famous and successful business woman. The speaker stated that online business is more popular than the traditional way of doing business.</i></div>
+      <span class="note-chip">Agree! ...</span>
+    </div>
+
+    <div class="email-line">
+      <div><i>After listening to the talk, I am interested to start my own online business. I hope to do this after finishing my studies but I am not sure what kind of product to sell online. Do you have any suggestions?</i></div>
+      <span class="note-chip">Suggest two</span>
+    </div>
+
+    <div class="email-line">
+      <div><i>Would you like to join me in setting up an online business?</i></div>
+      <span class="note-chip">No, because...</span>
+    </div>
+
+    <p style="margin-top:10px"><i>I hope to hear from you soon.</i></p>
+    <p style="margin-top:8px"><i>Linda</i></p>
+  </div>
+</details>
+
+<details class="help">
+<summary>Need Task 1 language support?</summary>
+<p><b>Open:</b> “Thanks for telling me about the talk…”<br>
+<b>Agree:</b> “I completely agree that…”<br>
+<b>Suggest:</b> “We could consider selling…”<br>
+<b>Delay:</b> “I don’t think we should start immediately because…”<br>
+<b>Close:</b> “Let me know what you think.”</p>
+</details>
+
+<div class="answer">
+<div class="answer-head"><h3>Your Task 1 Reply</h3><div class="wc"><span id="wc1">0</span> words</div></div>
+<textarea id="answer1" rows="11" placeholder="Write your email reply here..."></textarea>
+<div class="autosave" id="save1">Autosave ready</div>
+</div>
+
+<button class="btn" id="check1">SUBMIT TASK 1 →</button>
+<div class="rubric" id="result1"></div>
+</div>
+</article>
+
+<!-- TASK 2 -->
+<article class="task">
+<button class="task-head">
+<div class="num">2</div>
+<div class="title"><b>Task 2 · Academic Essay</b><span>250+ words · clear opinion</span></div>
+<div class="plus">+</div>
+</button>
+
+<div class="task-body">
+<div class="prompt">
+<b>Task 2</b><br><br>
+Choose a practice question below. Write an essay expressing your opinion. Aim for <b>at least 250 words</b>.
+</div>
+
+<div class="question-picker">
+  <label for="task2Question">CHOOSE TASK 2 QUESTION</label>
+  <select id="task2Question">
+    <option value="culture">Session 2 2022 · Culture & Malaysian Identity</option>
+    <option value="modernisation">Modernisation & Peace of Mind</option>
+    <option value="beauty">Young Generation & Beauty Standards</option>
+    <option value="social">Social Media & People's Lives</option>
+    <option value="kindness">Kindness in Today's Society</option>
+    <option value="survival">Young Adults & Survival Skills</option>
+  </select>
+  <div class="question-meta">
+    <span>250+ WORDS</span>
+    <span>OPINION ESSAY</span>
+    <span>60 MARKS</span>
+  </div>
+</div>
+
+<div class="prompt" id="task2Context" style="margin-top:10px"></div>
+<div class="statement" id="task2Statement"></div>
+
+<details class="help">
+<summary>Need PEEL support?</summary>
+<p>Use PEEL for your body paragraphs only:<br>
+<b>P</b> Point → <b>E</b> Explain → <b>E</b> Example → <b>L</b> Link.<br><br>
+Your introduction should state your stand clearly, and your conclusion should return to the question.</p>
+</details>
+
+<details class="help">
+<summary>Need essay language support?</summary>
+<p><b>Position:</b> “I strongly believe that…” / “I partially agree that…”<br>
+<b>Add:</b> “Furthermore…” / “In addition…”<br>
+<b>Contrast:</b> “However…” / “On the other hand…”<br>
+<b>Conclude:</b> “In conclusion…” / “Therefore, it is evident that…”</p>
+</details>
+
+<div class="answer">
+<div class="answer-head"><h3>Your Task 2 Essay</h3><div class="wc"><span id="wc2">0</span> words</div></div>
+<textarea id="answer2" rows="16" placeholder="Write your essay here..."></textarea>
+<div class="autosave" id="save2">Autosave ready</div>
+</div>
+
+<button class="btn" id="check2">SUBMIT TASK 2 →</button>
+<div class="rubric" id="result2"></div>
+</div>
+</article>
+
+<section class="finish">
+<h2>Finish Vault 2 Writing</h2>
+<p>Submit both writing tasks and review the rubric feedback before saving Vault 2 Writing.</p>
+<button class="btn" id="finish">SAVE WRITING PRACTICE →</button>
+<div class="result" id="finishResult"></div>
+</section>
+</main>
+
+<nav class="nav">
+<a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a>
+<a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a>
+<a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a>
+<a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a>
+<a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a>
+</nav>
+
+<script src="js/backend-config.js"></script>
+<script>
+/* =====================================================
+   VAULT 2 WRITING — rubric-based post-submit evaluation
+   ===================================================== */
+
+const TASK2_BANK = {
+  culture: {
+    context: "You attended a talk at school in conjunction with Malaysia's Independence Day. During the talk, the guest speaker made the following statement:",
+    statement: "“The lack of appreciation for our culture has caused Malaysians to lose their true identity.”"
+  },
+  modernisation: {
+    context: "You have been asked by the school editorial board to write for the school bulletin. You have decided to write on the following topic:",
+    statement: "“Modernisation has robbed us of our peace of mind.”"
+  },
+  beauty: {
+    context: "You attended a seminar which discussed the issue of people paying too much attention to their appearance. The following statement was made by the guest speaker:",
+    statement: "“Young generation today is obsessed with beauty standards.”"
+  },
+  social: {
+    context: "You attended a talk by a YouTuber during your school's IT Fair. One participant made the following comment:",
+    statement: "“Social media has affected people's lives negatively.”"
+  },
+  kindness: {
+    context: "You read an article in a newspaper about the importance of building a caring society. The following statement was made in the article:",
+    statement: "“Kindness is a quality that is gradually disappearing among us today.”"
+  },
+  survival: {
+    context: "During a recent forum in school, one guest speaker claimed that today's young adults lead a protected and pampered life. The following comment was made:",
+    statement: "“Young adults today lack survival skills.”"
+  }
+};
+
+const a1 = document.getElementById("answer1");
+const a2 = document.getElementById("answer2");
+const q2 = document.getElementById("task2Question");
+
+function words(v){
+  const t=(v||"").trim();
+  return t ? t.split(/\s+/).filter(Boolean).length : 0;
+}
+
+function renderTask2(){
+  const q = TASK2_BANK[q2.value];
+  document.getElementById("task2Context").innerHTML = "<b>Question context:</b><br><br>" + q.context;
+  document.getElementById("task2Statement").textContent = q.statement;
+  localStorage.setItem("muet_v2_writing_q2", q2.value);
+}
+
+q2.value = localStorage.getItem("muet_v2_writing_q2") || "culture";
+q2.addEventListener("change", renderTask2);
+renderTask2();
+
+document.querySelectorAll(".task-head").forEach(btn=>{
+  btn.onclick=()=>{
+    const current=btn.closest(".task");
+    document.querySelectorAll(".task").forEach(t=>{
+      if(t!==current)t.classList.remove("open");
+    });
+    current.classList.toggle("open");
+    if(current.classList.contains("open")){
+      setTimeout(()=>current.scrollIntoView({behavior:"smooth",block:"start"}),80);
+    }
+  };
+});
+
+function updateWC(task){
+  const el = task===1 ? a1 : a2;
+  const wc = words(el.value);
+  document.getElementById("wc"+task).textContent = wc;
+  const box = document.getElementById("wc"+task).parentElement;
+  box.classList.toggle("ok", wc >= (task===1 ? 100 : 250));
+}
+
+let saveTimer1=null, saveTimer2=null;
+
+a1.value = localStorage.getItem("muet_v2_writing_draft1") || "";
+a2.value = localStorage.getItem("muet_v2_writing_draft2") || "";
+updateWC(1); updateWC(2);
+
+a1.addEventListener("input",()=>{
+  updateWC(1);
+  document.getElementById("save1").textContent="Saving...";
+  clearTimeout(saveTimer1);
+  saveTimer1=setTimeout(()=>{
+    localStorage.setItem("muet_v2_writing_draft1",a1.value);
+    document.getElementById("save1").textContent="Saved locally ✓";
+  },350);
+});
+
+a2.addEventListener("input",()=>{
+  updateWC(2);
+  document.getElementById("save2").textContent="Saving...";
+  clearTimeout(saveTimer2);
+  saveTimer2=setTimeout(()=>{
+    localStorage.setItem("muet_v2_writing_draft2",a2.value);
+    document.getElementById("save2").textContent="Saved locally ✓";
+  },350);
+});
+
+function evaluateWriting(text, task){
+  const lower=text.toLowerCase();
+  const wc=words(text);
+  const paragraphs=text.split(/\n\s*\n|\n/).filter(p=>p.trim().length>20).length;
+  const connectors=(lower.match(/\b(firstly|secondly|however|therefore|moreover|furthermore|in addition|on the other hand|because|although|for example|for instance|as a result|consequently|in conclusion)\b/g)||[]).length;
+  const sentences=Math.max(1,(text.match(/[.!?]+/g)||[]).length);
+  const avgSentence=wc/sentences;
+  const longWords=lower.match(/\b[a-z]{4,}\b/g)||[];
+  const uniqueRatio=longWords.length ? new Set(longWords).size/longWords.length : 0;
+
+  let tf=1;
+  if(task===1){
+    // Four actual notes: Yes / Agree / Suggest two / No because
+    const note1=/\b(i am|i'm|doing|fine|great|well|good)\b/i.test(text);
+    const note2=/\b(agree|popular|traditional|online business)\b/i.test(text);
+    const productTerms=(lower.match(/\b(product|products|sell|selling|clothes|food|snacks|accessories|books|cosmetics|crafts|stationery|shoes|bags|cookies)\b/g)||[]).length;
+    const note3=productTerms>=2;
+    const note4=/\b(no|cannot|can't|unable|not able|because|busy|studies|study|commitment|time)\b/i.test(text);
+    const hits=[note1,note2,note3,note4].filter(Boolean).length;
+
+    tf = hits===4 ? 5 : hits===3 ? 4 : hits===2 ? 3 : hits===1 ? 2 : 1;
+    if(hits===4 && wc>=120) tf=6;
+    if(wc<80) tf=Math.min(tf,3);
+  } else {
+    const stand=/\b(i agree|i disagree|in my opinion|i believe|i strongly|i partially|from my perspective|although|while some)\b/i.test(text);
+    const support=(lower.match(/\b(for example|for instance|because|therefore|as a result|this shows|this means|one reason)\b/g)||[]).length;
+
+    tf=stand?3:2;
+    if(stand&&support>=2)tf=4;
+    if(stand&&support>=3&&wc>=250)tf=5;
+    if(stand&&support>=4&&wc>=300)tf=6;
+  }
+
+  let co=1;
+  if(paragraphs>=2)co=3;
+  if(paragraphs>=3&&connectors>=2)co=4;
+  if(paragraphs>=4&&connectors>=4)co=5;
+  if(paragraphs>=5&&connectors>=6)co=6;
+
+  let lg=2;
+  if(avgSentence>=8&&avgSentence<=30)lg=3;
+  if(uniqueRatio>=0.48&&wc>=(task===1?80:200))lg=4;
+  if(uniqueRatio>=0.55&&wc>=(task===1?100:250)&&connectors>=3)lg=5;
+  if(uniqueRatio>=0.62&&wc>=(task===1?120:300)&&connectors>=5)lg=6;
+
+  let rs=null;
+  if(task===2){
+    const informal=(lower.match(/\b(gonna|wanna|kinda|lol|btw|yeah|stuff|u|ur)\b/g)||[]).length;
+    rs=informal>=4?2:informal>=2?3:4;
+    if(informal===0&&wc>=250)rs=5;
+    if(informal===0&&wc>=300&&connectors>=4)rs=6;
+  }
+
+  const raw = task===1 ? tf+co+lg : tf+co+lg+rs;
+  const rawMax = task===1 ? 18 : 24;
+  const scaledMax = task===1 ? 30 : 60;
+  const scaled = Math.round((raw/rawMax)*scaledMax);
+
+  let strength;
+  if(tf>=5) strength="You covered the task requirements well.";
+  else if(co>=4) strength="Your response shows a generally clear organisation.";
+  else strength="You completed a substantial writing attempt.";
+
+  let focus;
+  if(tf<4) focus = task===1
+    ? "Make sure all four notes are answered clearly: Yes, Agree, Suggest two, and No because."
+    : "State a clear position and develop each main idea with explanation or example.";
+  else if(co<4) focus="Improve paragraph progression and linking between ideas.";
+  else if(lg<4) focus="Improve grammatical control and vocabulary range.";
+  else if(task===2 && rs<4) focus="Keep the essay register consistently formal.";
+  else focus="Refine precision, depth and language control.";
+
+  return {tf,co,lg,rs,raw,rawMax,scaled,scaledMax,wc,strength,focus};
+}
+
+function renderRubric(task, ev){
+  const rows=[
+    ["Task Fulfilment",ev.tf,"Coverage and development of the task requirements."],
+    ["Organisation & Coherence",ev.co,"Paragraphing, progression and cohesion."],
+    ["Language",ev.lg,"Control, range and clarity of language."]
+  ];
+  if(task===2){
+    rows.push(["Register & Style",ev.rs,"Suitability of formal academic register."]);
+  }
+
+  const box=document.getElementById("result"+task);
+  box.classList.add("show");
+  box.innerHTML=`
+    <div class="criteria">
+      ${rows.map(r=>`
+        <div class="criterion">
+          <div class="criterion-top">
+            <b>${r[0]}</b>
+            <span class="criterion-score">${r[1]}/6</span>
+          </div>
+          <p>${r[2]}</p>
+        </div>`).join("")}
+    </div>
+
+    <div class="score-card">
+      <div>
+        <b>Rubric Practice Evaluation</b><br>
+        <small>Raw ${ev.raw}/${ev.rawMax}</small>
+      </div>
+      <strong>${ev.scaled}/${ev.scaledMax}</strong>
+    </div>
+
+    <div class="coach">
+      <b>💪 Strength</b><br>${ev.strength}
+      <br><br>
+      <b>🎯 Focus Next</b><br>${ev.focus}
+    </div>
+
+    <div class="save-state" id="cloudState${task}">Saving attempt…</div>
+    <button class="secondary-btn" type="button" onclick="reviseTask(${task})">REVISE THIS RESPONSE</button>
+  `;
+}
+
+async function saveToBackend(payload){
+  // Existing local save always works.
+  localStorage.setItem(
+    "muet_v2_writing_task"+payload.taskNumber,
+    JSON.stringify(payload)
+  );
+
+  // Existing app helper, if present.
+  if(typeof window.saveSmartMuetAttempt==="function"){
+    try{ window.saveSmartMuetAttempt(payload); }catch(e){}
+  }
+
+  // Optional Apps Script endpoint.
+  const endpoint =
+    window.SMART_MUET_APPS_SCRIPT_URL ||
+    window.SMART_MUET_BACKEND_URL ||
+    window.MUET_BACKEND_URL ||
+    "";
+
+  if(!endpoint){
+    return {ok:false,message:"Saved locally · cloud endpoint not configured"};
+  }
+
+  try{
+    const response=await fetch(endpoint,{
+      method:"POST",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify({action:"saveWritingAttempt",...payload})
+    });
+    const data=await response.json();
+    return data;
+  }catch(err){
+    return {ok:false,message:"Saved locally · cloud save pending"};
+  }
+}
+
+let done1=false,done2=false;
+
+async function submitTask(task){
+  const answer = task===1 ? a1.value.trim() : a2.value.trim();
+  const min = task===1 ? 100 : 250;
+  const wc = words(answer);
+
+  if(wc<50){
+    alert("Please develop your response further before submitting.");
+    return;
+  }
+
+  if(wc<min){
+    const go=confirm(`Your response has ${wc} words. The task requires at least ${min} words. Submit anyway?`);
+    if(!go)return;
+  }
+
+  const ev=evaluateWriting(answer,task);
+  renderRubric(task,ev);
+
+  const profile=(()=>{
+    try{return JSON.parse(localStorage.getItem("smartMuetProfile")||"{}")}
+    catch(e){return{}}
+  })();
+
+  const payload={
+    vaultId:"VAULT-02",
+    component:"Writing",
+    taskNumber:task,
+    taskType:"Task "+task,
+    questionId:task===1 ? "session2_linda_online_business" : q2.value,
+    questionText:task===1 ? "Linda — Online Business" : TASK2_BANK[q2.value].statement,
+    studentName:profile.name||"",
+    studentRegNo:profile.regNo||"",
+    classGroup:profile.group||"",
+    answerText:answer,
+    wordCount:ev.wc,
+    rubric:{
+      taskFulfilment:ev.tf,
+      organisationCoherence:ev.co,
+      language:ev.lg,
+      registerStyle:ev.rs
+    },
+    rawScore:ev.raw,
+    rawMax:ev.rawMax,
+    scaledScore:ev.scaled,
+    scaledMax:ev.scaledMax,
+    status:"Rubric-aligned practice evaluation",
+    createdAt:new Date().toISOString()
+  };
+
+  const saved=await saveToBackend(payload);
+  const state=document.getElementById("cloudState"+task);
+  state.textContent = saved && saved.ok
+    ? "☁️ Saved to Google Sheet"
+    : "💾 " + ((saved&&saved.message)||"Saved locally");
+
+  if(task===1)done1=true;
+  else done2=true;
+}
+
+function reviseTask(task){
+  document.getElementById("result"+task).classList.remove("show");
+  const field=task===1?a1:a2;
+  field.focus();
+  if(task===1)done1=false;
+  else done2=false;
+}
+
+document.getElementById("check1").onclick=()=>submitTask(1);
+document.getElementById("check2").onclick=()=>submitTask(2);
+
+document.getElementById("finish").onclick=()=>{
+  const box=document.getElementById("finishResult");
+  box.classList.add("show");
+
+  if(done1&&done2){
+    localStorage.setItem("muet_v2_writing","true");
+    box.innerHTML="<b>Vault 2 Writing completed ✓</b><br>Both writing tasks were submitted and reviewed using the rubric.";
+  }else{
+    box.innerHTML="<b>Submit both tasks first.</b><br>Task 1 and Task 2 must both receive rubric feedback before completion.";
+  }
+};
+</script>
+</body>
+</html>

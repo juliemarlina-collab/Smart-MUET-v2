@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FFC400">
+<meta name="description" content="Mock Practice 1 — MUET Exam-Style Practice">
+<title>Mock Practice 1 · Smart MUET Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#111;
+  --white:#fff;
+  --soft:#f4f7f8;
+  --muted:#4f535b;
+
+  --gold:#FFC400;
+  --pink:#FF4FA3;
+  --blue:#0D78E8;
+  --cyan:#12D7D7;
+  --orange:#FF5A00;
+  --lime:#48F000;
+
+  --line:3px solid var(--ink);
+  --shadow:5px 5px 0 var(--ink);
+
+  --fh:"Sora",sans-serif;
+  --fb:"DM Sans",sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  font-family:var(--fb);
+  background:var(--gold);
+  color:var(--ink);
+  overflow-x:hidden;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.app{
+  width:100%;
+  max-width:560px;
+  min-height:100dvh;
+  margin:auto;
+  background:var(--soft);
+  padding:15px 14px 112px;
+}
+
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:14px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.brand img{
+  width:54px;
+  height:54px;
+}
+
+.brand small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.08em;
+}
+
+.brand b{
+  display:block;
+  margin-top:3px;
+  font-family:var(--fh);
+  font-size:17px;
+}
+
+.back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#fff;
+  box-shadow:2px 2px 0 var(--ink);
+  padding:8px 11px;
+  font-size:11px;
+  font-weight:1000;
+}
+
+.hero{
+  overflow:hidden;
+  background:#fff;
+  border:var(--line);
+  border-radius:24px;
+  box-shadow:var(--shadow);
+  margin-bottom:15px;
+}
+
+.hero-art{
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  background:#fff;
+}
+
+.hero-copy{
+  padding:16px 17px 18px;
+  border-top:2px solid var(--ink);
+}
+
+.tag{
+  display:inline-block;
+  background:var(--ink);
+  color:#fff;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:9px;
+  font-weight:1000;
+  letter-spacing:.08em;
+}
+
+.hero h1{
+  margin-top:9px;
+  font-family:var(--fh);
+  font-size:clamp(31px,8vw,45px);
+  line-height:.98;
+  letter-spacing:-.045em;
+}
+
+.hero h1 span{
+  display:block;
+  color:#E19B00;
+}
+
+.hero p{
+  margin-top:9px;
+  color:#3c4148;
+  font-size:15px;
+  line-height:1.48;
+  font-weight:700;
+}
+
+.exam-mode{
+  background:var(--ink);
+  color:#fff;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:14px;
+  margin-bottom:15px;
+}
+
+.exam-mode h2{
+  font-family:var(--fh);
+  font-size:19px;
+}
+
+.exam-mode p{
+  margin-top:5px;
+  color:#ddd;
+  font-size:12px;
+  line-height:1.45;
+  font-weight:700;
+}
+
+.rules{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:7px;
+  margin-top:10px;
+}
+
+.rule{
+  border:2px solid #fff;
+  border-radius:11px;
+  padding:9px 5px;
+  text-align:center;
+  color:#111;
+  font-size:9px;
+  line-height:1.25;
+  font-weight:1000;
+}
+
+.rule:nth-child(1){background:var(--gold)}
+.rule:nth-child(2){background:var(--cyan)}
+.rule:nth-child(3){background:var(--lime)}
+
+.rule b{
+  display:block;
+  font-family:var(--fh);
+  font-size:17px;
+  margin-bottom:2px;
+}
+
+.progress{
+  background:#fff;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  padding:13px;
+  margin-bottom:15px;
+}
+
+.progress-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.progress h2{
+  font-family:var(--fh);
+  font-size:18px;
+}
+
+.progress-head b{
+  font-family:var(--fh);
+  font-size:13px;
+}
+
+.track{
+  height:12px;
+  margin-top:9px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#e7ecef;
+  overflow:hidden;
+}
+
+.track i{
+  display:block;
+  width:0;
+  height:100%;
+  background:var(--lime);
+  transition:width .2s ease;
+}
+
+.progress p{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.4;
+  font-weight:700;
+}
+
+.section-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.section-head h2{
+  font-family:var(--fh);
+  font-size:21px;
+}
+
+.section-head span{
+  color:var(--muted);
+  font-size:10px;
+  font-weight:900;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:15px;
+}
+
+.comp{
+  min-height:236px;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:4px 4px 0 var(--ink);
+  padding:12px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+}
+
+.speaking{background:var(--pink)}
+.reading{background:var(--blue);color:#fff}
+.listening{background:var(--cyan)}
+.writing{background:var(--orange)}
+
+.icon{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--ink);
+  border-radius:11px;
+  background:#fff;
+  color:#111;
+  box-shadow:2px 2px 0 var(--ink);
+  font-size:23px;
+}
+
+.comp h3{
+  margin-top:9px;
+  font-family:var(--fh);
+  font-size:18px;
+}
+
+.paper{
+  display:inline-block;
+  width:max-content;
+  max-width:100%;
+  margin-top:7px;
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#fff;
+  color:#111;
+  padding:5px 7px;
+  font-size:8px;
+  font-family:var(--fh);
+  font-weight:800;
+}
+
+.comp p{
+  margin-top:6px;
+  font-size:11px;
+  line-height:1.38;
+  font-weight:750;
+}
+
+.start{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  margin-top:10px;
+  border:2px solid var(--ink);
+  border-radius:10px;
+  background:var(--ink);
+  color:#fff;
+  font-size:10px;
+  font-weight:1000;
+}
+
+.reading .start{
+  border-color:#fff;
+}
+
+.notice{
+  background:#fff7cc;
+  border:var(--line);
+  border-radius:16px;
+  box-shadow:4px 4px 0 var(--ink);
+  padding:12px;
+  margin-bottom:15px;
+}
+
+.notice b{
+  display:block;
+  font-family:var(--fh);
+  font-size:13px;
+}
+
+.notice p{
+  margin-top:4px;
+  font-size:11px;
+  line-height:1.45;
+  font-weight:700;
+}
+
+.backvault{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:50px;
+  border:var(--line);
+  border-radius:12px;
+  background:#fff;
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:12px;
+  font-weight:1000;
+}
+
+.nav{
+  position:fixed;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:10px;
+  width:calc(100% - 20px);
+  max-width:540px;
+  z-index:70;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  background:#fff;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:5px 5px 0 var(--ink);
+  padding:6px;
+}
+
+.nav a{
+  min-height:58px;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:3px;
+  border-radius:10px;
+  font-size:9px;
+  font-weight:1000;
+}
+
+.nav a.active{
+  background:var(--gold);
+  border:2px solid var(--ink);
+}
+
+.nav img{
+  width:26px;
+  height:26px;
+}
+
+@media(min-width:700px){
+  .app{
+    max-width:850px;
+    padding:24px 24px 120px;
+  }
+
+  .nav{max-width:810px}
+
+  .grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+
+  .comp{
+    min-height:255px;
+  }
+}
+
+@media(max-width:360px){
+  .app{padding-inline:10px}
+  .grid{gap:7px}
+  .comp{padding:10px;min-height:225px}
+}
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+<header class="top">
+  <div class="brand">
+    <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET">
+    <div>
+      <small>03 · PRACTISE · MOCK 1</small>
+      <b>Mock Practice 1</b>
+    </div>
+  </div>
+
+  <a class="back" href="vault.html">← Vault</a>
+</header>
+
+
+<section class="hero">
+  <img
+    class="hero-art"
+    src="assets/heroes/mock exam 01-hero.svg"
+    alt="Mock Practice 1"
+  >
+
+  <div class="hero-copy">
+    <span class="tag">MOCK 01 · EXAM-STYLE PERFORMANCE</span>
+
+    <h1>
+      No coaching.
+      <span>Perform independently.</span>
+    </h1>
+
+    <p>
+      Use Mock Practice 1 after Vault 1 and Vault 2.
+      Work under component-specific exam conditions and review your result only after submission.
+    </p>
+  </div>
+</section>
+
+
+<section class="exam-mode">
+
+  <h2>Mock Mode</h2>
+
+  <p>
+    This is the closest stage to exam performance. Technique reminders are removed from the main task.
+  </p>
+
+  <div class="rules">
+    <div class="rule">
+      <b>1</b>
+      Start timer
+    </div>
+
+    <div class="rule">
+      <b>2</b>
+      Complete paper
+    </div>
+
+    <div class="rule">
+      <b>3</b>
+      Review score
+    </div>
+  </div>
+
+</section>
+
+
+<section class="progress">
+
+  <div class="progress-head">
+    <h2>Mock 1 Progress</h2>
+    <b id="progressLabel">0 / 4</b>
+  </div>
+
+  <div class="track">
+    <i id="progressFill"></i>
+  </div>
+
+  <p id="progressNote">
+    Complete each component under its own exam conditions.
+  </p>
+
+</section>
+
+
+<div class="section-head">
+  <h2>Choose a Component</h2>
+  <span>4 papers</span>
+</div>
+
+
+<section class="grid">
+
+  <a class="comp speaking" href="mock1-speaking.html">
+
+    <div>
+
+      <div class="icon">🎤</div>
+
+      <h3>Speaking</h3>
+
+      <span class="paper">
+        800/2 · 30 MIN
+      </span>
+
+      <p>
+        Complete Task A and Task B without guided PREP prompts.
+      </p>
+
+    </div>
+
+    <span class="start">
+      START SPEAKING →
+    </span>
+
+  </a>
+
+
+  <a class="comp reading" href="mock1-reading.html">
+
+    <div>
+
+      <div class="icon">📖</div>
+
+      <h3>Reading</h3>
+
+      <span class="paper">
+        800/3 · 75 MIN
+      </span>
+
+      <p>
+        Complete the full reading paper before seeing answer feedback.
+      </p>
+
+    </div>
+
+    <span class="start">
+      START READING →
+    </span>
+
+  </a>
+
+
+  <a class="comp listening" href="mock1-listening.html">
+
+    <div>
+
+      <div class="icon">🎧</div>
+
+      <h3>Listening</h3>
+
+      <span class="paper">
+        800/1 · 50 MIN
+      </span>
+
+      <p>
+        Play the assigned tracks and complete the listening paper independently.
+      </p>
+
+    </div>
+
+    <span class="start">
+      START LISTENING →
+    </span>
+
+  </a>
+
+
+  <a class="comp writing" href="mock1-writing.html">
+
+    <div>
+
+      <div class="icon">✍️</div>
+
+      <h3>Writing</h3>
+
+      <span class="paper">
+        800/4 · 75 MIN
+      </span>
+
+      <p>
+        Complete both writing tasks without guided PEEL scaffolding.
+      </p>
+
+    </div>
+
+    <span class="start">
+      START WRITING →
+    </span>
+
+  </a>
+
+</section>
+
+
+<section class="notice">
+  <b>Exam-condition rule</b>
+
+  <p>
+    The countdown belongs inside each component page, not on this hub.
+    Start a paper only when you are ready to complete that component.
+  </p>
+</section>
+
+
+<a class="backvault" href="vault.html">
+  ← BACK TO STUDY VAULT
+</a>
+
+</main>
+
+
+<nav class="nav">
+
+<a href="muet-hub.html">
+  <img src="assets/heroes/nav-home.svg" alt="">
+  <span>Home</span>
+</a>
+
+<a href="guidance.html">
+  <img src="assets/heroes/icon-muet-intro.svg" alt="">
+  <span>Guide</span>
+</a>
+
+<a class="active" href="vault.html">
+  <img src="assets/heroes/nav-vault.svg" alt="">
+  <span>Vault</span>
+</a>
+
+<a href="progress.html">
+  <img src="assets/heroes/nav-progress.svg" alt="">
+  <span>Progress</span>
+</a>
+
+<a href="settings.html">
+  <img src="assets/heroes/nav-profile.svg" alt="">
+  <span>Profile</span>
+</a>
+
+</nav>
+
+
+<script>
+(function(){
+
+  const keys = [
+    "muet_mock1_speaking",
+    "muet_mock1_reading",
+    "muet_mock1_listening",
+    "muet_mock1_writing"
+  ];
+
+  const done =
+    keys.filter(key =>
+      localStorage.getItem(key) === "true"
+    ).length;
+
+  const pct =
+    Math.round(done / 4 * 100);
+
+  document.getElementById("progressLabel").textContent =
+    done + " / 4";
+
+  document.getElementById("progressFill").style.width =
+    pct + "%";
+
+  const note =
+    document.getElementById("progressNote");
+
+  if(done === 0){
+    note.textContent =
+      "Complete each component under its own exam conditions.";
+  }
+
+  if(done === 1){
+    note.textContent =
+      "One Mock 1 component completed. Continue when you are ready.";
+  }
+
+  if(done === 2){
+    note.textContent =
+      "Halfway through Mock Practice 1.";
+  }
+
+  if(done === 3){
+    note.textContent =
+      "Three papers completed. One component remains.";
+  }
+
+  if(done === 4){
+    note.textContent =
+      "Mock Practice 1 complete ✓ Review your overall progress and feedback.";
+  }
+
+})();
+</script>
+
+</body>
+</html>

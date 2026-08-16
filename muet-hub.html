@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#18C7B5">
+  <meta name="description" content="Smart MUET Guide — Home Dashboard">
+  <title>Home · Smart MUET Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111111;
+      --white:#ffffff;
+      --paper:#fffdf8;
+      --soft:#f4f7f8;
+
+      --red:#ff2525;
+      --yellow:#ffd31f;
+      --blue:#1f5eff;
+      --teal:#5bd0c8;
+      --green:#39d99a;
+      --pink:#ff77b7;
+
+      --muted:#4f535b;
+      --line:3px solid var(--ink);
+      --shadow:5px 5px 0 var(--ink);
+
+      --font-heading:"Sora",sans-serif;
+      --font-body:"DM Sans",sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;min-height:100%}
+
+    body{
+      font-family:var(--font-body);
+      background:var(--teal);
+      color:var(--ink);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+
+    .app{
+      width:100%;
+      max-width:520px;
+      min-height:100vh;
+      min-height:100dvh;
+      margin:0 auto;
+      padding:
+        max(15px,env(safe-area-inset-top))
+        max(14px,env(safe-area-inset-right))
+        max(112px,calc(96px + env(safe-area-inset-bottom)))
+        max(14px,env(safe-area-inset-left));
+      background:var(--soft);
+    }
+
+    /* =========================================================
+       1. HEADER
+       ========================================================= */
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .identity{
+      min-width:0;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .identity img.logo{
+      width:54px;
+      height:54px;
+      object-fit:contain;
+      flex:0 0 auto;
+    }
+
+    .identity small{
+      display:block;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.15;
+      font-weight:900;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+
+    .identity strong{
+      display:block;
+      margin-top:3px;
+      max-width:260px;
+      font-family:var(--font-heading);
+      font-size:18px;
+      line-height:1.15;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .profile-btn{
+      width:50px;
+      height:50px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      background:var(--yellow);
+      border:var(--line);
+      border-radius:13px;
+      box-shadow:3px 3px 0 var(--ink);
+    }
+
+    .profile-btn img{
+      width:29px;
+      height:29px;
+      object-fit:contain;
+    }
+
+    /* =========================================================
+       2. HERO — ONE MESSAGE ONLY
+       ========================================================= */
+    .hero{
+      background:var(--white);
+      border:var(--line);
+      border-radius:23px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      margin-bottom:15px;
+    }
+
+    .hero img{
+      width:100%;
+      display:block;
+      border-bottom:var(--line);
+    }
+
+    .hero-copy{
+      padding:17px 17px 18px;
+    }
+
+    .eyebrow{
+      display:inline-block;
+      background:var(--ink);
+      color:var(--white);
+      border:2px solid var(--ink);
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:10px;
+      font-weight:1000;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    .hero h1{
+      margin-top:10px;
+      font-family:var(--font-heading);
+      font-size:clamp(31px,8.7vw,44px);
+      line-height:.98;
+      letter-spacing:-.05em;
+    }
+
+    .hero p{
+      margin-top:9px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.48;
+      font-weight:650;
+    }
+
+    /* =========================================================
+       3. COUNTDOWN — PRIMARY DASHBOARD ACTION
+       ========================================================= */
+    .countdown{
+      background:var(--yellow);
+      border:var(--line);
+      border-radius:21px;
+      box-shadow:var(--shadow);
+      padding:16px;
+      margin-bottom:15px;
+    }
+
+    .countdown-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .countdown h2{
+      margin-top:8px;
+      font-family:var(--font-heading);
+      font-size:21px;
+      line-height:1.1;
+    }
+
+    .exam-date{
+      margin-top:5px;
+      font-size:14px;
+      line-height:1.35;
+      font-weight:850;
+    }
+
+    .edit{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
+      background:var(--white);
+      border:2px solid var(--ink);
+      border-radius:999px;
+      box-shadow:2px 2px 0 var(--ink);
+      padding:7px 10px;
+      font-size:11px;
+      font-weight:1000;
+    }
+
+    .time-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:7px;
+      margin-top:13px;
+    }
+
+    .time{
+      min-width:0;
+      background:var(--white);
+      border:2px solid var(--ink);
+      border-radius:12px;
+      box-shadow:2px 2px 0 var(--ink);
+      padding:10px 3px 8px;
+      text-align:center;
+    }
+
+    .time b{
+      display:block;
+      font-family:var(--font-heading);
+      font-size:clamp(22px,6vw,30px);
+      line-height:1;
+      letter-spacing:-.05em;
+    }
+
+    .time span{
+      display:block;
+      margin-top:5px;
+      font-size:9px;
+      font-weight:1000;
+      letter-spacing:.06em;
+    }
+
+    .speaking{
+      margin-top:11px;
+      padding-top:10px;
+      border-top:2px dashed var(--ink);
+      font-size:13px;
+      line-height:1.4;
+      font-weight:850;
+    }
+
+    /* =========================================================
+       4. READINESS + NEXT STEP — GROUPED
+       ========================================================= */
+    .progress-block{
+      display:grid;
+      gap:12px;
+      margin-bottom:15px;
+    }
+
+    .readiness{
+      background:var(--white);
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .readiness-top{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:14px;
+      align-items:center;
+    }
+
+    .readiness h2{
+      margin-top:7px;
+      font-family:var(--font-heading);
+      font-size:21px;
+    }
+
+    .readiness p{
+      margin-top:6px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .ring{
+      --score:0;
+      width:84px;
+      height:84px;
+      display:grid;
+      place-items:center;
+      border:var(--line);
+      border-radius:50%;
+      box-shadow:3px 3px 0 var(--ink);
+      background:conic-gradient(var(--green) calc(var(--score)*1%),var(--white) 0);
+    }
+
+    .ring span{
+      width:56px;
+      height:56px;
+      display:grid;
+      place-items:center;
+      background:var(--white);
+      border:2px solid var(--ink);
+      border-radius:50%;
+      font-family:var(--font-heading);
+      font-size:16px;
+      font-weight:800;
+    }
+
+    .bar{
+      height:12px;
+      margin-top:12px;
+      overflow:hidden;
+      background:#eef1f2;
+      border:2px solid var(--ink);
+      border-radius:999px;
+    }
+
+    .bar i{
+      display:block;
+      height:100%;
+      width:0;
+      background:var(--green);
+      border-right:2px solid var(--ink);
+    }
+
+    .next-step{
+      background:#dce7ff;
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:16px;
+    }
+
+    .next-step h2{
+      margin-top:7px;
+      font-family:var(--font-heading);
+      font-size:22px;
+    }
+
+    .next-step p{
+      margin:7px 0 13px;
+      color:#353940;
+      font-size:15px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .primary-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:54px;
+      background:var(--red);
+      color:var(--white);
+      border:var(--line);
+      border-radius:13px;
+      box-shadow:4px 4px 0 var(--ink);
+      font-size:15px;
+      font-weight:1000;
+    }
+
+    /* =========================================================
+       5. JOURNEY — 4 CHOICES MAX, LARGE TARGETS
+       ========================================================= */
+    .section{
+      background:var(--white);
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:16px;
+      margin-bottom:15px;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:10px;
+      margin-bottom:11px;
+    }
+
+    .section h2{
+      font-family:var(--font-heading);
+      font-size:21px;
+    }
+
+    .section-head small{
+      color:var(--muted);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .journey-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+
+    .journey-card{
+      min-height:128px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      border:2px solid var(--ink);
+      border-radius:15px;
+      box-shadow:3px 3px 0 var(--ink);
+      padding:13px;
+    }
+
+    .journey-card:nth-child(1){background:var(--yellow)}
+    .journey-card:nth-child(2){background:#e5fff4}
+    .journey-card:nth-child(3){background:#fff0f7}
+    .journey-card:nth-child(4){background:#e8efff}
+
+    .journey-icon{
+      font-size:27px;
+      line-height:1;
+    }
+
+    .journey-card b{
+      display:block;
+      margin-top:10px;
+      font-family:var(--font-heading);
+      font-size:16px;
+      line-height:1.15;
+    }
+
+    .journey-card span{
+      display:block;
+      margin-top:5px;
+      color:#3f434a;
+      font-size:13px;
+      line-height:1.3;
+      font-weight:700;
+    }
+
+    /* =========================================================
+       6. OFFICIAL MUET — GROUP RELATED ITEMS
+       ========================================================= */
+    .official-grid{
+      display:grid;
+      gap:9px;
+    }
+
+    .official-link{
+      min-height:62px;
+      display:grid;
+      grid-template-columns:42px 1fr auto;
+      align-items:center;
+      gap:10px;
+      border:2px solid var(--ink);
+      border-radius:13px;
+      box-shadow:2px 2px 0 var(--ink);
+      background:var(--white);
+      padding:9px 11px;
+    }
+
+    .official-link .icon{
+      width:40px;
+      height:40px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:10px;
+      background:var(--yellow);
+      font-size:20px;
+    }
+
+    .official-link:nth-child(1) .icon{background:var(--blue);color:white}
+    .official-link:nth-child(3) .icon{background:var(--green)}
+
+    .official-link b{
+      display:block;
+      font-family:var(--font-heading);
+      font-size:14px;
+    }
+
+    .official-link span{
+      display:block;
+      margin-top:2px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.3;
+      font-weight:700;
+    }
+
+    .official-link .arrow{
+      font-family:var(--font-heading);
+      font-weight:800;
+      font-size:18px;
+    }
+
+    /* =========================================================
+       7. BOTTOM NAV — LARGE TAP TARGETS
+       ========================================================= */
+    .bottom-nav{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:max(10px,env(safe-area-inset-bottom));
+      width:calc(100% - 20px);
+      max-width:500px;
+      z-index:60;
+
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+
+      background:var(--white);
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:5px 5px 0 var(--ink);
+      padding:6px;
+    }
+
+    .bottom-nav a{
+      min-height:58px;
+      display:grid;
+      place-items:center;
+      align-content:center;
+      gap:3px;
+      border-radius:10px;
+      font-size:10px;
+      font-weight:1000;
+    }
+
+    .bottom-nav a.active{
+      background:var(--yellow);
+      border:2px solid var(--ink);
+    }
+
+    .bottom-nav img{
+      width:27px;
+      height:27px;
+      object-fit:contain;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+    @media(min-width:700px){
+      .app{
+        max-width:820px;
+        padding:24px 24px 120px;
+      }
+
+      .identity img.logo{width:62px;height:62px}
+      .identity small{font-size:12px}
+      .identity strong{font-size:20px}
+
+      .hero-copy{padding:22px}
+      .hero h1{font-size:48px}
+      .hero p{font-size:18px}
+
+      .progress-block{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .journey-grid{
+        grid-template-columns:repeat(4,1fr);
+      }
+
+      .bottom-nav{
+        max-width:780px;
+      }
+    }
+
+    @media(min-width:1024px){
+      .app{
+        max-width:1120px;
+        padding:28px 30px 122px;
+      }
+
+      .hero{
+        display:grid;
+        grid-template-columns:1.1fr .9fr;
+        align-items:stretch;
+      }
+
+      .hero img{
+        height:100%;
+        object-fit:cover;
+        border-bottom:0;
+        border-right:var(--line);
+      }
+
+      .hero-copy{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding:30px;
+      }
+
+      .hero h1{font-size:54px}
+      .hero p{font-size:19px}
+
+      .dashboard-grid{
+        display:grid;
+        grid-template-columns:1.05fr .95fr;
+        gap:15px;
+        align-items:start;
+      }
+
+      .countdown{
+        margin-bottom:0;
+      }
+
+      .bottom-nav{
+        max-width:1040px;
+      }
+    }
+
+    @media(max-width:360px){
+      .app{padding-inline:10px}
+      .identity img.logo{width:48px;height:48px}
+      .identity strong{font-size:16px}
+      .hero h1{font-size:29px}
+      .hero p{font-size:15px}
+      .time-grid{gap:5px}
+      .time b{font-size:20px}
+      .journey-grid{gap:7px}
+      .journey-card{padding:10px;min-height:118px}
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="app">
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="identity">
+      <img
+        class="logo"
+        src="assets/heroes/small-muet-logo.svg"
+        alt="Smart MUET Guide"
+      >
+      <div>
+        <small>Welcome back</small>
+        <strong id="studentName">MUET Candidate</strong>
+      </div>
+    </div>
+
+    <a
+      class="profile-btn"
+      href="settings.html"
+      aria-label="Open Profile"
+    >
+      <img src="assets/heroes/nav-profile.svg" alt="">
+    </a>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <img
+      src="assets/heroes/home-hero-banner-main.svg"
+      alt="Smart MUET Guide"
+    >
+
+    <div class="hero-copy">
+      <span class="eyebrow">YOUR MUET JOURNEY</span>
+
+      <h1 id="greeting">
+        Good morning 👋
+      </h1>
+
+      <p>
+        Focus on your next best step.
+        Smart MUET will help you prepare, practise and stay exam ready.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- TOP DASHBOARD -->
+  <div class="dashboard-grid">
+
+    <!-- COUNTDOWN -->
+    <section class="countdown">
+      <div class="countdown-head">
+        <div>
+          <span class="eyebrow">⏱️ MY EXAM COUNTDOWN</span>
+
+          <h2 id="sessionLabel">
+            MUET Session 3 · 2026
+          </h2>
+
+          <div class="exam-date" id="writtenLabel">
+            Written Test · 17 October 2026
+          </div>
+        </div>
+
+        <a class="edit" href="settings.html">
+          Edit
+        </a>
+      </div>
+
+      <div class="time-grid">
+        <div class="time">
+          <b id="days">--</b>
+          <span>DAYS</span>
+        </div>
+
+        <div class="time">
+          <b id="hours">--</b>
+          <span>HRS</span>
+        </div>
+
+        <div class="time">
+          <b id="minutes">--</b>
+          <span>MIN</span>
+        </div>
+
+        <div class="time">
+          <b id="seconds">--</b>
+          <span>SEC</span>
+        </div>
+      </div>
+
+      <div class="speaking" id="speakingLabel">
+        Speaking date: check your MUET/D slip.
+      </div>
+    </section>
+
+
+    <!-- READINESS / NEXT -->
+    <div class="progress-block">
+
+      <section class="readiness">
+        <div class="readiness-top">
+
+          <div>
+            <span class="eyebrow">🎯 EXAM READINESS</span>
+
+            <h2>
+              How ready are you?
+            </h2>
+
+            <p id="readinessText">
+              Start your journey to build your readiness score.
+            </p>
+          </div>
+
+          <div
+            class="ring"
+            id="readinessRing"
+          >
+            <span id="readinessScore">
+              0%
+            </span>
+          </div>
+        </div>
+
+        <div class="bar">
+          <i id="readinessFill"></i>
+        </div>
+      </section>
+
+
+      <section class="next-step">
+        <span class="eyebrow">
+          NEXT BEST STEP
+        </span>
+
+        <h2 id="nextTitle">
+          Know Your Exam
+        </h2>
+
+        <p id="nextText">
+          Start with MUET General Info before moving into
+          component strategies and practice.
+        </p>
+
+        <a
+          class="primary-btn"
+          id="nextBtn"
+          href="intro-guidance.html"
+        >
+          CONTINUE →
+        </a>
+      </section>
+
+    </div>
+  </div>
+
+
+  <!-- JOURNEY -->
+  <section class="section">
+    <div class="section-head">
+      <h2>Your Exam Ready Journey</h2>
+      <small>Choose one</small>
+    </div>
+
+    <div class="journey-grid">
+
+      <a
+        class="journey-card"
+        href="intro-guidance.html"
+      >
+        <div>
+          <div class="journey-icon">📘</div>
+          <b>01 · KNOW</b>
+        </div>
+
+        <span>
+          MUET General Info
+        </span>
+      </a>
+
+
+      <a
+        class="journey-card"
+        href="guidance.html"
+      >
+        <div>
+          <div class="journey-icon">💡</div>
+          <b>02 · LEARN</b>
+        </div>
+
+        <span>
+          4 Component Guides
+        </span>
+      </a>
+
+
+      <a
+        class="journey-card"
+        href="vault.html"
+      >
+        <div>
+          <div class="journey-icon">✏️</div>
+          <b>03 · PRACTISE</b>
+        </div>
+
+        <span>
+          Vault 1 · Vault 2 · Mock 1
+        </span>
+      </a>
+
+
+      <a
+        class="journey-card"
+        href="progress.html"
+      >
+        <div>
+          <div class="journey-icon">📊</div>
+          <b>04 · TRACK</b>
+        </div>
+
+        <span>
+          Progress & Readiness
+        </span>
+      </a>
+
+    </div>
+  </section>
+
+
+  <!-- OFFICIAL MUET TOOLS -->
+  <section class="section">
+
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">
+          OFFICIAL MUET
+        </span>
+        <h2 style="margin-top:8px">
+          Exam Tools
+        </h2>
+      </div>
+    </div>
+
+    <div class="official-grid">
+
+      <!-- USER-PROVIDED MUET/D LINK — moved first: this is the link students
+           need most urgently before exam day, and first position is the one
+           most reliably remembered (Serial Position Effect). -->
+      <a
+        class="official-link"
+        href="https://mecea.mpm.edu.my/MUETD/index.php"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="icon">🎫</div>
+
+        <div>
+          <b>MUET/D Exam Slip</b>
+          <span>
+            Check your exam centre, date and candidate details.
+          </span>
+        </div>
+
+        <div class="arrow">↗</div>
+      </a>
+
+
+      <!-- USER-PROVIDED 2026 CALENDAR LINK -->
+      <a
+        class="official-link"
+        href="https://docs.google.com/viewerng/viewer?url=https://www.mpm.edu.my/images/dokumen/kalendar/2026/Kalendar_MUET_Tahun_2026_-_Edisi__BM_kemaskini_25_Feb_2026.pdf"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="icon">📅</div>
+
+        <div>
+          <b>MUET 2026 Calendar</b>
+          <span>
+            Check official test dates and sessions.
+          </span>
+        </div>
+
+        <div class="arrow">↗</div>
+      </a>
+
+
+      <a
+        class="official-link"
+        href="https://mecea.mpm.edu.my/MUETR"
+        target="_blank"
+        rel="noopener"
+      >
+        <div class="icon">📊</div>
+
+        <div>
+          <b>MUET Results</b>
+          <span>
+            Open the official MPM result service.
+          </span>
+        </div>
+
+        <div class="arrow">↗</div>
+      </a>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+
+  <a
+    class="active"
+    href="muet-hub.html"
+  >
+    <img
+      src="assets/heroes/nav-home.svg"
+      alt=""
+    >
+    <span>Home</span>
+  </a>
+
+
+  <a href="guidance.html">
+    <img
+      src="assets/heroes/icon-muet-intro.svg"
+      alt=""
+    >
+    <span>Guide</span>
+  </a>
+
+
+  <a href="vault.html">
+    <img
+      src="assets/heroes/nav-vault.svg"
+      alt=""
+    >
+    <span>Vault</span>
+  </a>
+
+
+  <a href="progress.html">
+    <img
+      src="assets/heroes/nav-progress.svg"
+      alt=""
+    >
+    <span>Progress</span>
+  </a>
+
+
+  <a href="settings.html">
+    <img
+      src="assets/heroes/nav-profile.svg"
+      alt=""
+    >
+    <span>Profile</span>
+  </a>
+
+</nav>
+
+
+<script>
+  const EXAM_SESSIONS = {
+    "S1-2026":{
+      label:"MUET Session 1 · 2026",
+      target:"2026-04-25T08:00:00+08:00",
+      written:"25 April 2026",
+      speaking:"Speaking date: refer to your MUET/D slip."
+    },
+
+    "S2-2026":{
+      label:"MUET Session 2 · 2026",
+      target:"2026-06-27T08:00:00+08:00",
+      written:"27 June 2026",
+      speaking:"Speaking date: refer to your MUET/D slip."
+    },
+
+    "S3-2026":{
+      label:"MUET Session 3 · 2026",
+      target:"2026-10-17T08:00:00+08:00",
+      written:"17 October 2026",
+      speaking:"Speaking window: 6, 7, 8, 12, 13 & 14 October 2026."
+    }
+  };
+
+
+  function loadProfile(){
+    try{
+      return JSON.parse(
+        localStorage.getItem("muet_profile") || "{}"
+      );
+    }catch(_){
+      return {};
+    }
+  }
+
+
+  function greeting(){
+    const hour = new Date().getHours();
+
+    if(hour < 12) return "Good morning";
+    if(hour < 18) return "Good afternoon";
+
+    return "Good evening";
+  }
+
+
+  function initialiseHome(){
+
+    const profile = loadProfile();
+
+    const firstName =
+      profile.name
+        ? profile.name.trim().split(/\s+/)[0]
+        : "MUET Candidate";
+
+
+    document.getElementById("studentName").textContent =
+      profile.name || "MUET Candidate";
+
+
+    document.getElementById("greeting").textContent =
+      `${greeting()}, ${firstName} 👋`;
+
+
+    const sessionID =
+      profile.examSession || "S3-2026";
+
+
+    const session =
+      EXAM_SESSIONS[sessionID] ||
+      EXAM_SESSIONS["S3-2026"];
+
+
+    document.getElementById("sessionLabel").textContent =
+      session.label;
+
+
+    document.getElementById("writtenLabel").textContent =
+      `Written Test · ${session.written}`;
+
+
+    if(profile.speakingDate){
+
+      const speakingDate =
+        new Date(
+          profile.speakingDate +
+          "T12:00:00+08:00"
+        );
+
+      document.getElementById("speakingLabel").textContent =
+        "My Speaking Date · " +
+        speakingDate.toLocaleDateString(
+          "en-MY",
+          {
+            day:"numeric",
+            month:"short",
+            year:"numeric"
+          }
+        );
+
+    }else{
+
+      document.getElementById("speakingLabel").textContent =
+        session.speaking;
+    }
+
+
+    startCountdown(session.target);
+    updateReadiness(profile);
+  }
+
+
+  function startCountdown(targetValue){
+
+    const target =
+      new Date(targetValue).getTime();
+
+
+    function tick(){
+
+      let diff =
+        Math.max(
+          0,
+          target - Date.now()
+        );
+
+
+      const days =
+        Math.floor(
+          diff / 86400000
+        );
+
+      diff %= 86400000;
+
+
+      const hours =
+        Math.floor(
+          diff / 3600000
+        );
+
+      diff %= 3600000;
+
+
+      const minutes =
+        Math.floor(
+          diff / 60000
+        );
+
+
+      const seconds =
+        Math.floor(
+          (diff % 60000) / 1000
+        );
+
+
+      document.getElementById("days").textContent =
+        String(days).padStart(2,"0");
+
+      document.getElementById("hours").textContent =
+        String(hours).padStart(2,"0");
+
+      document.getElementById("minutes").textContent =
+        String(minutes).padStart(2,"0");
+
+      document.getElementById("seconds").textContent =
+        String(seconds).padStart(2,"0");
+    }
+
+
+    tick();
+
+    setInterval(
+      tick,
+      1000
+    );
+  }
+
+
+  function updateReadiness(profile){
+
+    /*
+      Prototype readiness scoring.
+      Later replace with Apps Script / real progress data.
+
+      Point budget (must sum to 100 so the ring/percent can actually
+      reach 100%): profile 10 + session 10 + target band 5 +
+      speaking date 5 + practice attempts up to 70.
+    */
+
+    let score = 0;
+
+
+    if(profile.name && profile.email){
+      score += 10;
+    }
+
+
+    if(profile.examSession){
+      score += 10;
+    }
+
+
+    if(profile.targetBand){
+      score += 5;
+    }
+
+
+    if(profile.speakingDate){
+      score += 5;
+    }
+
+
+    try{
+
+      const attempts =
+        JSON.parse(
+          localStorage.getItem("muet_attempt_log") ||
+          "[]"
+        );
+
+      score +=
+        Math.min(
+          70,
+          attempts.length * 5
+        );
+
+    }catch(_){}
+
+
+    score =
+      Math.min(
+        100,
+        score
+      );
+
+
+    document.getElementById("readinessScore").textContent =
+      score + "%";
+
+
+    document.getElementById("readinessRing").style.setProperty(
+      "--score",
+      score
+    );
+
+
+    document.getElementById("readinessFill").style.width =
+      score + "%";
+
+
+    let message =
+      "Start with the basics and build your Exam Readiness step by step.";
+
+    let title =
+      "Know Your Exam";
+
+    let text =
+      "Start with MUET General Info before moving into component strategies and practice.";
+
+    let href =
+      "intro-guidance.html";
+
+
+    if(score >= 70){
+
+      message =
+        "Strong progress. Focus next on your weakest component.";
+
+      title =
+        "Continue Practice";
+
+      text =
+        "Move into the Study Vault and strengthen the component that needs the most attention.";
+
+      href =
+        "vault.html";
+
+    }else if(score >= 35){
+
+      message =
+        "Good progress. Keep building consistency across all four MUET components.";
+
+      title =
+        "Continue Your Guide";
+
+      text =
+        "Review your component strategies before your next practice attempt.";
+
+      href =
+        "guidance.html";
+    }
+
+
+    document.getElementById("readinessText").textContent =
+      message;
+
+    document.getElementById("nextTitle").textContent =
+      title;
+
+    document.getElementById("nextText").textContent =
+      text;
+
+    document.getElementById("nextBtn").href =
+      href;
+  }
+
+
+  initialiseHome();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FF4FA3">
+  <meta name="description" content="Interactive MUET Speaking Guide — PREP Technique">
+  <title>Speaking Guide · Smart MUET Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111111;
+      --white:#ffffff;
+      --soft:#f4f7f8;
+
+      --hotpink:#FF4FA3;
+      --gold:#F4C400;
+      --electric:#12D8FF;
+      --lime:#48F000;
+      --azure:#0D78E8;
+      --scarlet:#ff2525;
+      --green:#0DBD79;
+      --muted:#4f535b;
+
+      --line:3px solid var(--ink);
+      --shadow:5px 5px 0 var(--ink);
+
+      --font-heading:"Sora",sans-serif;
+      --font-body:"DM Sans",sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;min-height:100%}
+
+    body{
+      font-family:var(--font-body);
+      background:var(--hotpink);
+      color:var(--ink);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+
+    .app{
+      width:100%;
+      max-width:520px;
+      min-height:100dvh;
+      margin:auto;
+      padding:
+        max(15px,env(safe-area-inset-top))
+        max(14px,env(safe-area-inset-right))
+        max(112px,calc(96px + env(safe-area-inset-bottom)))
+        max(14px,env(safe-area-inset-left));
+      background:var(--soft);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .brand img{
+      width:54px;
+      height:54px;
+      object-fit:contain;
+      flex:0 0 auto;
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:10px;
+      font-weight:900;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+
+    .brand strong{
+      display:block;
+      margin-top:3px;
+      font-family:var(--font-heading);
+      font-size:17px;
+    }
+
+    .back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:var(--white);
+      box-shadow:2px 2px 0 var(--ink);
+      padding:8px 11px;
+      font-size:11px;
+      font-weight:1000;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:var(--white);
+      border:var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:22px 18px 20px;
+      margin-bottom:15px;
+    }
+
+    .hero::before{z-index:-1;
+      content:"";
+      position:absolute;
+      width:92px;height:92px;
+      right:-22px;top:-28px;
+      border:var(--line);
+      border-radius:50%;
+      background:var(--hotpink);
+    }
+
+    .hero::after{z-index:-1;
+      content:"";
+      position:absolute;
+      width:40px;height:114px;
+      left:-12px;bottom:-26px;
+      border:var(--line);
+      background:var(--gold);
+    }
+
+    .eyebrow{
+      position:relative;
+      z-index:2;
+      display:inline-block;
+      background:var(--ink);
+      color:var(--white);
+      border:2px solid var(--ink);
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:10px;
+      font-weight:1000;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    h1,h2,h3{font-family:var(--font-heading)}
+
+    .hero h1{
+      position:relative;
+      z-index:2;
+      margin-top:12px;
+      font-size:clamp(36px,9vw,50px);
+      line-height:.96;
+      letter-spacing:-.05em;
+    }
+
+    .hero h1 .pink{
+      display:block;
+      color:var(--hotpink);
+    }
+
+    .hero p{
+      position:relative;
+      z-index:2;
+      margin-top:13px;
+      color:#343840;
+      font-size:17px;
+      line-height:1.5;
+      font-weight:650;
+    }
+
+    /* PREP INFOGRAPHIC */
+    .prep-card{
+      background:var(--ink);
+      color:var(--white);
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:15px;
+      margin-bottom:15px;
+    }
+
+    .prep-card h2{
+      font-size:23px;
+    }
+
+    .prep-card p{
+      margin-top:5px;
+      color:#e7e7e7;
+      font-size:14px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .prep-letters{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:7px;
+      margin-top:12px;
+    }
+
+    .prep-btn{
+      min-height:88px;
+      border:2px solid var(--white);
+      border-radius:14px;
+      color:var(--ink);
+      cursor:pointer;
+      padding:9px 5px;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      font-weight:1000;
+    }
+
+    .prep-btn:nth-child(1){background:var(--hotpink)}
+    .prep-btn:nth-child(2){background:var(--gold)}
+    .prep-btn:nth-child(3){background:var(--electric)}
+    .prep-btn:nth-child(4){background:var(--lime)}
+
+    .prep-btn b{
+      display:block;
+      font-family:var(--font-heading);
+      font-size:28px;
+      line-height:1;
+    }
+
+    .prep-btn span{
+      display:block;
+      margin-top:5px;
+      font-size:9px;
+      line-height:1.1;
+    }
+
+    .prep-detail{
+      display:none;
+      margin-top:11px;
+      background:var(--white);
+      color:var(--ink);
+      border:2px solid var(--white);
+      border-radius:12px;
+      padding:12px;
+      font-size:14px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .prep-detail.show{display:block}
+
+    /* 3 MAIN INTERACTIVE BLOCKS */
+    .panel-grid{
+      display:grid;
+      gap:10px;
+      margin-bottom:15px;
+    }
+
+    .panel{
+      overflow:hidden;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      background:var(--white);
+    }
+
+    .panel-toggle{
+      width:100%;
+      min-height:76px;
+      border:0;
+      border-bottom:0;
+      background:var(--white);
+      cursor:pointer;
+      padding:13px;
+      display:grid;
+      grid-template-columns:48px 1fr auto;
+      gap:11px;
+      align-items:center;
+      text-align:left;
+    }
+
+    .panel:nth-child(1) .panel-toggle{background:#fff0f7}
+    .panel:nth-child(2) .panel-toggle{background:#fff7c9}
+    .panel:nth-child(3) .panel-toggle{background:#e7eeff}
+
+    .panel-icon{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:var(--white);
+      font-size:24px;
+    }
+
+    .panel-title b{
+      display:block;
+      font-family:var(--font-heading);
+      font-size:17px;
+    }
+
+    .panel-title span{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.3;
+      font-weight:700;
+    }
+
+    .plus{
+      font-family:var(--font-heading);
+      font-size:22px;
+      font-weight:800;
+      transition:transform .2s ease;
+    }
+
+    .panel.open .plus{
+      transform:rotate(45deg);
+    }
+
+    .panel-body{
+      display:none;
+      border-top:2px solid var(--ink);
+      padding:13px;
+      background:var(--white);
+    }
+
+    .panel.open .panel-body{
+      display:block;
+    }
+
+    .task-tabs,
+    .smart-tabs{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:7px;
+      margin-bottom:10px;
+    }
+
+    .smart-tabs{
+      grid-template-columns:repeat(3,1fr);
+    }
+
+    .tab-btn{
+      border:2px solid var(--ink);
+      border-radius:10px;
+      background:var(--white);
+      padding:9px 7px;
+      font-size:11px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+
+    .tab-btn.active{
+      background:var(--hotpink);
+    }
+
+    .tab-content{
+      display:none;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:#fafafa;
+      padding:11px;
+    }
+
+    .tab-content.show{
+      display:block;
+    }
+
+    .tab-content h3{
+      font-size:16px;
+    }
+
+    .tab-content p{
+      margin-top:5px;
+      color:#343840;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .mini-list{
+      display:grid;
+      gap:7px;
+      margin-top:9px;
+    }
+
+    .mini{
+      display:grid;
+      grid-template-columns:26px 1fr;
+      gap:8px;
+      align-items:start;
+      font-size:13px;
+      line-height:1.4;
+      font-weight:750;
+    }
+
+    .mini i{
+      width:24px;height:24px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:8px;
+      background:var(--gold);
+      font-style:normal;
+      font-size:11px;
+      font-weight:1000;
+    }
+
+    /* INTERACTIVE EXAMPLE */
+    .example-box{
+      margin-top:10px;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:#fffaf0;
+      padding:11px;
+    }
+
+    .example-box h3{
+      font-size:16px;
+    }
+
+    .example-box p{
+      margin-top:5px;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:700;
+      color:#343840;
+    }
+
+    .example-buttons{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:6px;
+      margin-top:10px;
+    }
+
+    .example-btn{
+      min-height:44px;
+      border:2px solid var(--ink);
+      border-radius:10px;
+      background:var(--white);
+      font-family:var(--font-heading);
+      font-size:16px;
+      font-weight:800;
+      cursor:pointer;
+    }
+
+    .example-btn:nth-child(1){background:var(--hotpink)}
+    .example-btn:nth-child(2){background:var(--gold)}
+    .example-btn:nth-child(3){background:var(--electric)}
+    .example-btn:nth-child(4){background:var(--lime)}
+
+    .example-answer{
+      margin-top:9px;
+      min-height:74px;
+      border:2px dashed var(--ink);
+      border-radius:10px;
+      padding:10px;
+      background:var(--white);
+      font-size:13px;
+      line-height:1.45;
+      font-weight:750;
+    }
+
+    .phrase-list{
+      display:grid;
+      gap:7px;
+    }
+
+    .phrase{
+      border:2px solid var(--ink);
+      border-radius:10px;
+      background:#fafafa;
+      padding:9px;
+      font-size:13px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .do-list,
+    .avoid-list{
+      display:grid;
+      gap:7px;
+    }
+
+    .do-item,
+    .avoid-item{
+      display:grid;
+      grid-template-columns:28px 1fr;
+      gap:8px;
+      align-items:start;
+      font-size:13px;
+      line-height:1.4;
+      font-weight:750;
+    }
+
+    .do-item span:first-child,
+    .avoid-item span:first-child{
+      width:26px;height:26px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:8px;
+      background:var(--white);
+      font-weight:1000;
+    }
+
+    .vault{
+      background:var(--hotpink);
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:16px;
+      margin-bottom:15px;
+    }
+
+    .vault h2{
+      font-size:22px;
+    }
+
+    .vault p{
+      margin:7px 0 13px;
+      font-size:15px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .vault-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:56px;
+      border:var(--line);
+      border-radius:13px;
+      background:var(--ink);
+      color:var(--white);
+      box-shadow:4px 4px 0 var(--ink);
+      font-size:15px;
+      font-weight:1000;
+    }
+
+    .bottom-nav{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:max(10px,env(safe-area-inset-bottom));
+      width:calc(100% - 20px);
+      max-width:500px;
+      z-index:60;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      background:var(--white);
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:5px 5px 0 var(--ink);
+      padding:6px;
+    }
+
+    .bottom-nav a{
+      min-height:58px;
+      display:grid;
+      place-items:center;
+      align-content:center;
+      gap:3px;
+      border-radius:10px;
+      font-size:10px;
+      font-weight:1000;
+    }
+
+    .bottom-nav a.active{
+      background:var(--gold);
+      border:2px solid var(--ink);
+    }
+
+    .bottom-nav img{
+      width:27px;
+      height:27px;
+      object-fit:contain;
+    }
+
+    @media(min-width:700px){
+      .app{
+        max-width:820px;
+        padding:24px 24px 120px;
+      }
+
+      .brand img{width:62px;height:62px}
+      .hero{padding:28px 24px 25px}
+      .hero h1{font-size:56px}
+      .hero p{font-size:19px}
+
+      .panel-grid{
+        grid-template-columns:1fr 1fr 1fr;
+        align-items:start;
+      }
+
+      .panel{
+        min-height:100%;
+      }
+
+      .panel-toggle{
+        grid-template-columns:48px 1fr;
+      }
+
+      .plus{
+        grid-column:1 / -1;
+        justify-self:end;
+        margin-top:-30px;
+      }
+
+      .bottom-nav{
+        max-width:780px;
+      }
+    }
+
+    @media(min-width:1024px){
+      .app{
+        max-width:1080px;
+        padding:30px 32px 122px;
+      }
+
+      .hero{
+        min-height:310px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding:34px;
+      }
+
+      .hero h1{font-size:66px}
+      .hero p{font-size:20px}
+
+      .bottom-nav{
+        max-width:1020px;
+      }
+    }
+
+    @media(max-width:360px){
+      .app{padding-inline:10px}
+      .brand img{width:48px;height:48px}
+      .hero h1{font-size:34px}
+      .hero p{font-size:15px}
+      .prep-letters{gap:5px}
+      .prep-btn{min-height:80px;padding:7px 3px}
+      .prep-btn b{font-size:24px}
+      .smart-tabs{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+<main class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide">
+      <div>
+        <small>02 · LEARN · SPEAKING</small>
+        <strong>Speaking Guide</strong>
+      </div>
+    </div>
+
+    <a class="back" href="guidance.html">← Guide</a>
+  </header>
+
+
+  <section class="hero">
+    <span class="eyebrow">MUET 800/2 · SPEAKING</span>
+
+    <h1>
+      PREP your way to a
+      <span class="pink">stronger response.</span>
+    </h1>
+
+    <p>
+      See it. Tap it. Learn it. Use PREP to organise ideas quickly
+      before you move into speaking practice.
+    </p>
+  </section>
+
+
+  <!-- PREP VISUAL -->
+  <section class="prep-card">
+    <h2>Tap PREP to learn the structure</h2>
+
+    <p>
+      One memorable technique. Four simple moves.
+    </p>
+
+    <div class="prep-letters">
+      <button class="prep-btn" data-prep="P1">
+        <div><b>P</b><span>POINT</span></div>
+      </button>
+
+      <button class="prep-btn" data-prep="R">
+        <div><b>R</b><span>REASON</span></div>
+      </button>
+
+      <button class="prep-btn" data-prep="E">
+        <div><b>E</b><span>EXAMPLE</span></div>
+      </button>
+
+      <button class="prep-btn" data-prep="P2">
+        <div><b>P</b><span>POINT AGAIN</span></div>
+      </button>
+    </div>
+
+    <div class="prep-detail show" id="prepDetail">
+      <b>POINT:</b> State your main idea clearly and directly.
+    </div>
+  </section>
+
+
+  <!-- THREE MAIN BLOCKS -->
+  <section class="panel-grid">
+
+    <!-- KNOW THE TEST -->
+    <article class="panel open">
+      <button class="panel-toggle" type="button">
+        <div class="panel-icon">①</div>
+        <div class="panel-title">
+          <b>Know the Test</b>
+          <span>Task A vs Task B</span>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="panel-body">
+        <div class="task-tabs">
+          <button class="tab-btn active" data-task="taskA">Task A</button>
+          <button class="tab-btn" data-task="taskB">Task B</button>
+        </div>
+
+        <div class="tab-content show" id="taskA">
+          <h3>Individual Presentation</h3>
+          <p>
+            Organise one clear idea and develop it logically.
+          </p>
+
+          <div class="mini-list">
+            <div class="mini"><i>1</i><span>Read the task carefully.</span></div>
+            <div class="mini"><i>2</i><span>Plan keywords, not a script.</span></div>
+            <div class="mini"><i>3</i><span>Use PREP to develop your idea.</span></div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="taskB">
+          <h3>Group Discussion</h3>
+          <p>
+            Use shorter PREP turns and interact naturally with others.
+          </p>
+
+          <div class="mini-list">
+            <div class="mini"><i>1</i><span>Listen before responding.</span></div>
+            <div class="mini"><i>2</i><span>Build on or challenge ideas politely.</span></div>
+            <div class="mini"><i>3</i><span>Help the group reach a conclusion.</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- MASTER PREP -->
+    <article class="panel">
+      <button class="panel-toggle" type="button">
+        <div class="panel-icon">②</div>
+        <div class="panel-title">
+          <b>Master PREP</b>
+          <span>See a response build itself</span>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="panel-body">
+        <div class="example-box">
+          <h3>Example Topic</h3>
+          <p>
+            Universities should encourage students to join volunteer activities.
+          </p>
+
+          <div class="example-buttons">
+            <button class="example-btn" data-example="P1">P</button>
+            <button class="example-btn" data-example="R">R</button>
+            <button class="example-btn" data-example="E">E</button>
+            <button class="example-btn" data-example="P2">P</button>
+          </div>
+
+          <div class="example-answer" id="exampleAnswer">
+            Tap a PREP letter to reveal that part of the answer.
+          </div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- SPEAK SMART -->
+    <article class="panel">
+      <button class="panel-toggle" type="button">
+        <div class="panel-icon">③</div>
+        <div class="panel-title">
+          <b>Speak Smart</b>
+          <span>Phrases · Do · Avoid</span>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="panel-body">
+        <div class="smart-tabs">
+          <button class="tab-btn active" data-smart="phrases">Phrases</button>
+          <button class="tab-btn" data-smart="do">Do ✓</button>
+          <button class="tab-btn" data-smart="avoid">Avoid ×</button>
+        </div>
+
+        <div class="tab-content show" id="phrases">
+          <div class="phrase-list">
+            <div class="phrase"><b>Opinion:</b> In my opinion… / I believe that…</div>
+            <div class="phrase"><b>Reason:</b> This is because… / One important reason is…</div>
+            <div class="phrase"><b>Example:</b> For example… / For instance…</div>
+            <div class="phrase"><b>Interact:</b> Building on that point… / I see your point, however…</div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="do">
+          <div class="do-list">
+            <div class="do-item"><span>✓</span><span>Plan keywords, not full sentences.</span></div>
+            <div class="do-item"><span>✓</span><span>Use one strong example.</span></div>
+            <div class="do-item"><span>✓</span><span>Pause briefly when thinking.</span></div>
+            <div class="do-item"><span>✓</span><span>Interact during Task B.</span></div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="avoid">
+          <div class="avoid-list">
+            <div class="avoid-item"><span>×</span><span>Memorising a full script.</span></div>
+            <div class="avoid-item"><span>×</span><span>Giving many undeveloped points.</span></div>
+            <div class="avoid-item"><span>×</span><span>Ignoring other candidates.</span></div>
+            <div class="avoid-item"><span>×</span><span>Using difficult words inaccurately.</span></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+
+  <section class="vault">
+    <h2>Got it? Put PREP into action.</h2>
+
+    <p>
+      Practice belongs in the Study Vault, where you can use the technique
+      under timed conditions.
+    </p>
+
+    <a class="vault-btn" href="vault.html">
+      PRACTISE SPEAKING IN VAULT →
+    </a>
+  </section>
+
+</main>
+
+
+<nav class="bottom-nav">
+  <a href="muet-hub.html">
+    <img src="assets/heroes/nav-home.svg" alt="">
+    <span>Home</span>
+  </a>
+
+  <a class="active" href="guidance.html">
+    <img src="assets/heroes/icon-muet-intro.svg" alt="">
+    <span>Guide</span>
+  </a>
+
+  <a href="vault.html">
+    <img src="assets/heroes/nav-vault.svg" alt="">
+    <span>Vault</span>
+  </a>
+
+  <a href="progress.html">
+    <img src="assets/heroes/nav-progress.svg" alt="">
+    <span>Progress</span>
+  </a>
+
+  <a href="settings.html">
+    <img src="assets/heroes/nav-profile.svg" alt="">
+    <span>Profile</span>
+  </a>
+</nav>
+
+
+<script>
+  const prepCopy = {
+    P1:"<b>POINT:</b> State your main idea clearly and directly.",
+    R:"<b>REASON:</b> Explain why your point makes sense.",
+    E:"<b>EXAMPLE:</b> Support your reason with one relevant example.",
+    P2:"<b>POINT AGAIN:</b> Reconnect your example to your main idea."
+  };
+
+  document.querySelectorAll("[data-prep]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.getElementById("prepDetail").innerHTML =
+        prepCopy[btn.dataset.prep];
+    });
+  });
+
+
+  document.querySelectorAll(".panel-toggle").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      btn.closest(".panel").classList.toggle("open");
+    });
+  });
+
+
+  document.querySelectorAll("[data-task]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll("[data-task]").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll("#taskA,#taskB").forEach(c=>c.classList.remove("show"));
+
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.task).classList.add("show");
+    });
+  });
+
+
+  const exampleCopy = {
+    P1:"<b>POINT:</b> I believe universities should encourage students to join volunteer activities.",
+    R:"<b>REASON:</b> This is because volunteering helps students develop teamwork and communication skills.",
+    E:"<b>EXAMPLE:</b> For example, organising a community programme requires students to work with different people and solve practical problems.",
+    P2:"<b>POINT AGAIN:</b> Therefore, volunteer activities can prepare students with useful skills beyond the classroom."
+  };
+
+  document.querySelectorAll("[data-example]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.getElementById("exampleAnswer").innerHTML =
+        exampleCopy[btn.dataset.example];
+    });
+  });
+
+
+  document.querySelectorAll("[data-smart]").forEach(btn=>{
+    btn.addEventListener("click",()=>{
+      document.querySelectorAll("[data-smart]").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll("#phrases,#do,#avoid").forEach(c=>c.classList.remove("show"));
+
+      btn.classList.add("active");
+      document.getElementById(btn.dataset.smart).classList.add("show");
+    });
+  });
+
+
+/* Accessibility: keep aria-expanded in sync with the accordion state.
+   Added as a separate listener so the existing toggle logic above is
+   untouched — this only reads the resulting state and reflects it. */
+document.querySelectorAll(".panel-toggle").forEach(btn=>{
+  const panel = btn.closest(".panel");
+  if(!panel) return;
+  btn.setAttribute("aria-expanded", panel.classList.contains("open"));
+  btn.addEventListener("click", () => {
+    setTimeout(() => {
+      btn.setAttribute("aria-expanded", panel.classList.contains("open"));
+    }, 0);
+  });
+});
+
+</script>
+
+</body>
+</html>

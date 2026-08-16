@@ -1,0 +1,31 @@
+{
+  "base_repo": "juliemarlina-collab/Smart-MUET-Guide",
+  "update_type": "drop-in original-style enhancement",
+  "replace": [
+    "js/backend-config.js"
+  ],
+  "add": [
+    "js/exam-ready.js",
+    "css/exam-ready.css",
+    "apps-script/Code.gs",
+    "README_PHASE1_UPDATE.md",
+    "index.html",
+    "splash.html",
+    "css/splash.css"
+  ],
+  "preserve": [
+    "index.html",
+    "css/muet-guide.css",
+    "css/responsive-fix.css",
+    "js/muet-shared.js",
+    "assets/"
+  ],
+  "splash_flow": {
+    "rename_original": "index.html -> app.html",
+    "new_entry": "index.html",
+    "splash": "splash.html",
+    "add": [
+      "css/splash.css"
+    ]
+  }
+}

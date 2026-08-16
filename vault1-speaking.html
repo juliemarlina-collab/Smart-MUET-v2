@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#FF4FA3">
+  <title>Speaking · Vault 1 · Smart MUET Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111;
+      --white:#fff;
+      --soft:#f4f7f8;
+      --muted:#4f535b;
+
+      --pink:#FF4FA3;
+      --gold:#FFC400;
+      --cyan:#18D9FF;
+      --lime:#19EF14;
+      --blue:#1186F2;
+      --orange:#FF5A00;
+
+      --line:3px solid var(--ink);
+      --shadow:5px 5px 0 var(--ink);
+
+      --fh:"Sora",sans-serif;
+      --fb:"DM Sans",sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:var(--fb);
+      background:var(--pink);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button,textarea,select,input{font:inherit}
+
+    .app{
+      width:100%;
+      max-width:560px;
+      min-height:100dvh;
+      margin:auto;
+      background:var(--soft);
+      padding:15px 14px 112px;
+    }
+
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:9px;
+    }
+
+    .brand img{
+      width:54px;
+      height:54px;
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:9px;
+      font-weight:1000;
+      letter-spacing:.08em;
+    }
+
+    .brand b{
+      display:block;
+      margin-top:3px;
+      font-family:var(--fh);
+      font-size:17px;
+    }
+
+    .back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:#fff;
+      box-shadow:2px 2px 0 var(--ink);
+      padding:8px 11px;
+      font-size:11px;
+      font-weight:1000;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:#fff;
+      border:var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:22px 18px 20px;
+      margin-bottom:15px;
+    }
+
+    .hero::after{z-index:-1;
+      content:"";
+      position:absolute;
+      width:96px;
+      height:96px;
+      right:-25px;
+      top:-28px;
+      border:var(--line);
+      border-radius:50%;
+      background:var(--pink);
+    }
+
+    .tag{
+      position:relative;
+      z-index:2;
+      display:inline-block;
+      background:var(--ink);
+      color:#fff;
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:10px;
+      font-weight:1000;
+      letter-spacing:.08em;
+    }
+
+    .hero h1{
+      position:relative;
+      z-index:2;
+      margin-top:11px;
+      font-family:var(--fh);
+      font-size:clamp(36px,9vw,52px);
+      line-height:.96;
+      letter-spacing:-.05em;
+    }
+
+    .hero h1 span{
+      display:block;
+      color:var(--pink);
+    }
+
+    .hero p{
+      position:relative;
+      z-index:2;
+      margin-top:12px;
+      color:#3c4148;
+      font-size:16px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .tech{
+      background:var(--ink);
+      color:#fff;
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-bottom:15px;
+    }
+
+    .tech h2{
+      font-family:var(--fh);
+      font-size:20px;
+    }
+
+    .tech p{
+      margin-top:4px;
+      color:#ddd;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .techgrid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:7px;
+      margin-top:10px;
+    }
+
+    .techgrid div{
+      border:2px solid #fff;
+      border-radius:12px;
+      padding:9px 4px;
+      text-align:center;
+      color:#111;
+      font-size:9px;
+      font-weight:1000;
+    }
+
+    .techgrid div:nth-child(1){background:var(--pink)}
+    .techgrid div:nth-child(2){background:var(--gold)}
+    .techgrid div:nth-child(3){background:var(--cyan)}
+    .techgrid div:nth-child(4){background:var(--lime)}
+
+    .techgrid b{
+      display:block;
+      font-family:var(--fh);
+      font-size:22px;
+    }
+
+    .paperbar{
+      background:#fff;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:13px;
+      margin-bottom:14px;
+    }
+
+    .paperbar h2{
+      font-family:var(--fh);
+      font-size:19px;
+    }
+
+    .paperstats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:7px;
+      margin-top:9px;
+    }
+
+    .paperstats div{
+      border:2px solid var(--ink);
+      border-radius:11px;
+      padding:8px;
+      text-align:center;
+      background:#fafafa;
+    }
+
+    .paperstats b{
+      display:block;
+      font-family:var(--fh);
+      font-size:18px;
+    }
+
+    .paperstats span{
+      font-size:9px;
+      font-weight:900;
+      color:var(--muted);
+    }
+
+    .task{
+      overflow:hidden;
+      background:#fff;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      margin-bottom:11px;
+    }
+
+    .task-head{
+      width:100%;
+      min-height:76px;
+      border:0;
+      background:#fff1f7;
+      padding:12px;
+      display:grid;
+      grid-template-columns:48px 1fr auto;
+      gap:10px;
+      align-items:center;
+      text-align:left;
+      cursor:pointer;
+    }
+
+    .task-num{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:#fff;
+      font-family:var(--fh);
+      font-size:18px;
+      font-weight:800;
+    }
+
+    .task-title b{
+      display:block;
+      font-family:var(--fh);
+      font-size:16px;
+    }
+
+    .task-title span{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:750;
+    }
+
+    .chev{
+      font-size:24px;
+      font-weight:1000;
+    }
+
+    .task.open .chev{
+      transform:rotate(45deg);
+    }
+
+    .task-body{
+      display:none;
+      border-top:2px solid var(--ink);
+      padding:12px;
+      background:#fff;
+    }
+
+    .task.open .task-body{
+      display:block;
+    }
+
+    .prompt{
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:#fff7c9;
+      padding:10px;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:750;
+      margin-bottom:10px;
+    }
+
+    .topic{
+      width:100%;
+      min-height:48px;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:#fff;
+      padding:9px 10px;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .support{
+      margin-top:10px;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:#fff0f7;
+      padding:9px;
+    }
+
+    .support summary{
+      cursor:pointer;
+      font-family:var(--fh);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .support p{
+      margin-top:7px;
+      color:#43474e;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .prep{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .prep-row{
+      display:grid;
+      grid-template-columns:32px 1fr;
+      gap:8px;
+      align-items:start;
+    }
+
+    .letter{
+      width:30px;
+      height:30px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:9px;
+      background:var(--gold);
+      font-family:var(--fh);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    textarea{
+      width:100%;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:#fff;
+      padding:10px;
+      font-size:13px;
+      line-height:1.45;
+      resize:vertical;
+    }
+
+    .practice-box{
+      margin-top:10px;
+      border:2px solid var(--ink);
+      border-radius:13px;
+      background:#fafafa;
+      padding:10px;
+    }
+
+    .practice-box h3{
+      font-family:var(--fh);
+      font-size:15px;
+    }
+
+    .practice-box p{
+      margin-top:4px;
+      color:#4a4f56;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .checks{
+      display:grid;
+      gap:7px;
+      margin-top:10px;
+    }
+
+    .check{
+      display:grid;
+      grid-template-columns:20px 1fr;
+      gap:8px;
+      align-items:start;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:#fff;
+      padding:9px;
+      font-size:12px;
+      line-height:1.35;
+      font-weight:750;
+    }
+
+    .check input{
+      width:18px;
+      height:18px;
+    }
+
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:50px;
+      margin-top:10px;
+      border:var(--line);
+      border-radius:12px;
+      background:var(--pink);
+      box-shadow:4px 4px 0 var(--ink);
+      font-size:12px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+
+    .result{
+      display:none;
+      margin-top:10px;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:#e7fff5;
+      padding:9px;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:800;
+    }
+
+    .result.show{display:block}
+
+    .finish{
+      background:#fff;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-top:14px;
+    }
+
+    .finish h2{
+      font-family:var(--fh);
+      font-size:20px;
+    }
+
+    .finish p{
+      margin-top:5px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .nav{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:10px;
+      width:calc(100% - 20px);
+      max-width:540px;
+      z-index:70;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      background:#fff;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:5px 5px 0 var(--ink);
+      padding:6px;
+    }
+
+    .nav a{
+      min-height:58px;
+      display:grid;
+      place-items:center;
+      align-content:center;
+      gap:3px;
+      border-radius:10px;
+      font-size:9px;
+      font-weight:1000;
+    }
+
+    .nav a.active{
+      background:var(--gold);
+      border:2px solid var(--ink);
+    }
+
+    .nav img{
+      width:26px;
+      height:26px;
+    }
+
+    @media(min-width:700px){
+      .app{max-width:850px;padding:24px 24px 120px}
+      .nav{max-width:810px}
+      .task-body{padding:16px}
+    }
+  </style>
+</head>
+
+<body>
+<main class="app">
+
+  <header class="top">
+    <div class="brand">
+      <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET">
+      <div>
+        <small>VAULT 1 · 800/2 · SPEAKING</small>
+        <b>Speaking Practice</b>
+      </div>
+    </div>
+
+    <a class="back" href="vault1.html">← Vault 1</a>
+  </header>
+
+
+  <section class="hero">
+    <span class="tag">MUET 800/2 · SPEAKING</span>
+
+    <h1>
+      Speak with structure.
+      <span>Use PREP confidently.</span>
+    </h1>
+
+    <p>
+      Complete both speaking tasks. PREP stays available as support,
+      but the speaking task remains the main activity.
+    </p>
+  </section>
+
+
+  <section class="tech">
+    <h2>Use PREP while you practise</h2>
+    <p>Plan the idea quickly, then speak naturally rather than reading a script.</p>
+
+    <div class="techgrid">
+      <div><b>P</b>POINT</div>
+      <div><b>R</b>REASON</div>
+      <div><b>E</b>EXAMPLE</div>
+      <div><b>P</b>POINT AGAIN</div>
+    </div>
+  </section>
+
+
+  <section class="paperbar">
+    <h2>Complete Speaking Practice</h2>
+
+    <div class="paperstats">
+      <div><b>2</b><span>TASKS</span></div>
+      <div><b>30</b><span>MINUTES</span></div>
+      <div><b>PREP</b><span>SUPPORT</span></div>
+    </div>
+  </section>
+
+
+  <!-- TASK A -->
+  <article class="task open">
+    <button class="task-head">
+      <div class="task-num">A</div>
+      <div class="task-title">
+        <b>Task A · Individual Presentation</b>
+        <span>Plan → Speak → Self-check</span>
+      </div>
+      <div class="chev">+</div>
+    </button>
+
+    <div class="task-body">
+
+      <select class="topic" id="topicA">
+        <option value="community">Community Service</option>
+        <option value="technology">Technology in Learning</option>
+        <option value="parttime">Part-time Work for Students</option>
+      </select>
+
+      <div class="prompt" id="promptA">
+        Young people should participate in community service.
+        Explain one main benefit.
+      </div>
+
+      <details class="support">
+        <summary>Need PREP support?</summary>
+        <p>
+          Point → state your stand. Reason → explain why.
+          Example → give one specific example. Point Again → close confidently.
+        </p>
+      </details>
+
+      <div class="prep">
+        <div class="prep-row">
+          <div class="letter">P</div>
+          <textarea id="aP" rows="2" placeholder="My point..."></textarea>
+        </div>
+
+        <div class="prep-row">
+          <div class="letter">R</div>
+          <textarea id="aR" rows="2" placeholder="My reason..."></textarea>
+        </div>
+
+        <div class="prep-row">
+          <div class="letter">E</div>
+          <textarea id="aE" rows="2" placeholder="My example..."></textarea>
+        </div>
+
+        <div class="prep-row">
+          <div class="letter">P</div>
+          <textarea id="aP2" rows="2" placeholder="My closing point..."></textarea>
+        </div>
+      </div>
+
+      <div class="practice-box">
+        <h3>🎤 Your Speaking Response</h3>
+        <p>
+          Use your PREP notes as prompts. Speak aloud naturally.
+          Do not read the notes word-for-word.
+        </p>
+      </div>
+
+      <div class="checks">
+        <label class="check">
+          <input type="checkbox" class="aCheck">
+          <span>I stated my opinion clearly.</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" class="aCheck">
+          <span>I developed one strong reason.</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" class="aCheck">
+          <span>I gave a relevant example.</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" class="aCheck">
+          <span>I closed my response clearly.</span>
+        </label>
+      </div>
+
+      <button class="btn" id="checkA">CHECK TASK A →</button>
+      <div class="result" id="resultA"></div>
+
+    </div>
+  </article>
+
+
+  <!-- TASK B -->
+  <article class="task">
+    <button class="task-head">
+      <div class="task-num">B</div>
+
+      <div class="task-title">
+        <b>Task B · Group Discussion</b>
+        <span>Contribute → Respond → Build → Conclude</span>
+      </div>
+
+      <div class="chev">+</div>
+    </button>
+
+    <div class="task-body">
+
+      <select class="topic" id="topicB">
+        <option value="responsible">Making Young People More Responsible</option>
+        <option value="campus">Improving Campus Life</option>
+        <option value="health">Encouraging a Healthier Lifestyle</option>
+      </select>
+
+      <div class="prompt" id="promptB">
+        Your group is discussing ways to help young people become more responsible.
+        Discuss the options and respond naturally to other candidates.
+      </div>
+
+      <details class="support">
+        <summary>Need Task B phrases?</summary>
+
+        <p>
+          <b>Agree:</b> “I agree with that point because…”<br>
+          <b>Build:</b> “I would also add that…”<br>
+          <b>Disagree:</b> “I see your point, however…”<br>
+          <b>Invite:</b> “What do you think about this?”<br>
+          <b>Conclude:</b> “Based on our discussion…”
+        </p>
+      </details>
+
+      <div class="prep">
+        <div class="prep-row">
+          <div class="letter">P</div>
+          <textarea id="bPoint" rows="2" placeholder="My main contribution..."></textarea>
+        </div>
+
+        <div class="prep-row">
+          <div class="letter">R</div>
+          <textarea id="bReason" rows="2" placeholder="Why I support it..."></textarea>
+        </div>
+
+        <div class="prep-row">
+          <div class="letter">E</div>
+          <textarea id="bExample" rows="2" placeholder="Example / evidence..."></textarea>
+        </div>
+
+        <div class="prep-row">
+          <div class="letter">↔</div>
+          <textarea id="bInteract" rows="2" placeholder="How I will respond to another candidate..."></textarea>
+        </div>
+      </div>
+
+      <div class="practice-box">
+        <h3>👥 Group Discussion Practice</h3>
+        <p>
+          Speak in shorter turns. React to another person’s idea,
+          add your own contribution and help the group reach a conclusion.
+        </p>
+      </div>
+
+      <div class="checks">
+        <label class="check">
+          <input type="checkbox" class="bCheck">
+          <span>I contributed a clear idea.</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" class="bCheck">
+          <span>I gave a reason or example.</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" class="bCheck">
+          <span>I responded to another candidate.</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" class="bCheck">
+          <span>I helped move the discussion towards a conclusion.</span>
+        </label>
+      </div>
+
+      <button class="btn" id="checkB">CHECK TASK B →</button>
+      <div class="result" id="resultB"></div>
+
+    </div>
+  </article>
+
+
+  <section class="finish">
+    <h2>Complete Speaking Vault 1</h2>
+
+    <p>
+      Finish both Task A and Task B checks. Your completion will then be
+      recorded in the Vault 1 progress.
+    </p>
+
+    <button class="btn" id="finishSpeaking">
+      SAVE SPEAKING PRACTICE →
+    </button>
+
+    <div class="result" id="finishResult"></div>
+  </section>
+
+</main>
+
+
+<nav class="nav">
+  <a href="muet-hub.html">
+    <img src="assets/heroes/nav-home.svg" alt="">
+    <span>Home</span>
+  </a>
+
+  <a href="guidance.html">
+    <img src="assets/heroes/icon-muet-intro.svg" alt="">
+    <span>Guide</span>
+  </a>
+
+  <a class="active" href="vault.html">
+    <img src="assets/heroes/nav-vault.svg" alt="">
+    <span>Vault</span>
+  </a>
+
+  <a href="progress.html">
+    <img src="assets/heroes/nav-progress.svg" alt="">
+    <span>Progress</span>
+  </a>
+
+  <a href="settings.html">
+    <img src="assets/heroes/nav-profile.svg" alt="">
+    <span>Profile</span>
+  </a>
+</nav>
+
+
+<script>
+  const topicsA = {
+    community:
+      "Young people should participate in community service. Explain one main benefit.",
+
+    technology:
+      "Technology should be used more widely in education. Explain one main advantage.",
+
+    parttime:
+      "Students should be encouraged to take part-time jobs. Explain one main benefit."
+  };
+
+  const topicsB = {
+    responsible:
+      "Your group is discussing ways to help young people become more responsible. Discuss the options and respond naturally to other candidates.",
+
+    campus:
+      "Your group is discussing ways to improve students' campus experience. Discuss the options and decide which improvement would be most useful.",
+
+    health:
+      "Your group is discussing ways to encourage young people to live a healthier lifestyle. Discuss the options and reach a group decision."
+  };
+
+
+  document.getElementById("topicA").addEventListener("change", e => {
+    document.getElementById("promptA").textContent =
+      topicsA[e.target.value];
+  });
+
+  document.getElementById("topicB").addEventListener("change", e => {
+    document.getElementById("promptB").textContent =
+      topicsB[e.target.value];
+  });
+
+
+  document.querySelectorAll(".task-head").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+      const current = btn.closest(".task");
+
+      document.querySelectorAll(".task").forEach(task => {
+        if(task !== current){
+          task.classList.remove("open");
+        }
+      });
+
+      current.classList.toggle("open");
+
+      if(current.classList.contains("open")){
+        setTimeout(() => {
+          current.scrollIntoView({
+            behavior:"smooth",
+            block:"start"
+          });
+        },80);
+      }
+
+    });
+
+  });
+
+
+  let taskAComplete = false;
+  let taskBComplete = false;
+
+
+  document.getElementById("checkA").addEventListener("click", () => {
+
+    const checks =
+      [...document.querySelectorAll(".aCheck")]
+      .filter(x => x.checked).length;
+
+    const prep =
+      ["aP","aR","aE","aP2"]
+      .filter(id =>
+        document.getElementById(id).value.trim()
+      ).length;
+
+    const result =
+      document.getElementById("resultA");
+
+    result.classList.add("show");
+
+    taskAComplete =
+      checks >= 3 &&
+      prep >= 3;
+
+    result.innerHTML =
+      taskAComplete
+      ? "<b>Task A ready ✓</b><br>Your PREP plan and self-check show a well-developed individual response."
+      : "<b>Keep building Task A.</b><br>Complete at least three PREP sections and three self-check items.";
+
+  });
+
+
+  document.getElementById("checkB").addEventListener("click", () => {
+
+    const checks =
+      [...document.querySelectorAll(".bCheck")]
+      .filter(x => x.checked).length;
+
+    const prep =
+      ["bPoint","bReason","bExample","bInteract"]
+      .filter(id =>
+        document.getElementById(id).value.trim()
+      ).length;
+
+    const result =
+      document.getElementById("resultB");
+
+    result.classList.add("show");
+
+    taskBComplete =
+      checks >= 3 &&
+      prep >= 3;
+
+    result.innerHTML =
+      taskBComplete
+      ? "<b>Task B ready ✓</b><br>You have planned a contribution and interaction for the group discussion."
+      : "<b>Keep building Task B.</b><br>Include your idea, support and interaction before completing the task.";
+
+  });
+
+
+  document.getElementById("finishSpeaking").addEventListener("click", () => {
+
+    const box =
+      document.getElementById("finishResult");
+
+    box.classList.add("show");
+
+    if(taskAComplete && taskBComplete){
+
+      localStorage.setItem(
+        "muet_v1_speaking",
+        "true"
+      );
+
+      box.innerHTML =
+        "<b>Speaking Vault 1 completed ✓</b><br>Both Task A and Task B have been checked.";
+
+    }else{
+
+      box.innerHTML =
+        "<b>Complete both speaking tasks first.</b><br>Check Task A and Task B before saving your Vault 1 completion.";
+
+    }
+
+  });
+</script>
+
+</body>
+</html>

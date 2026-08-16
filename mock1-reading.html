@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#FFC400">
+<title>Mock Practice 1 · Reading · Smart MUET Guide</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+--ink:#111;--white:#fff;--soft:#f3f7f8;--muted:#4f535b;
+--gold:#FFC400;--blue:#0D78E8;--cyan:#16D5E8;--pink:#FF4FA3;
+--lime:#48F000;--red:#ff2525;--purple:#8B28E8;
+--line:3px solid var(--ink);--shadow:5px 5px 0 var(--ink);
+--fh:"Sora",sans-serif;--fb:"DM Sans",sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--gold);color:var(--ink);overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button,input{font:inherit}
+
+.app{width:100%;max-width:580px;min-height:100dvh;margin:auto;background:var(--soft);padding:15px 14px 118px}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:9px}
+.brand img{width:54px;height:54px}
+.brand small{display:block;font-size:9px;font-weight:1000;color:var(--muted);letter-spacing:.08em}
+.brand b{display:block;margin-top:3px;font-family:var(--fh);font-size:17px}
+.back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;border:2px solid var(--ink);border-radius:999px;background:#fff;box-shadow:2px 2px 0 var(--ink);padding:8px 11px;font-size:11px;font-weight:1000}
+
+.hero{position:relative;overflow:hidden;background:#fff;border:var(--line);border-radius:24px;box-shadow:var(--shadow);padding:20px 18px;margin-bottom:14px}
+.hero:after{z-index:-1;content:"";position:absolute;right:-30px;top:-30px;width:110px;height:110px;border:var(--line);border-radius:50%;background:var(--blue)}
+.tag{position:relative;z-index:2;display:inline-block;background:var(--ink);color:#fff;border-radius:999px;padding:6px 9px;font-size:9px;font-weight:1000;letter-spacing:.08em}
+.hero h1{position:relative;z-index:2;margin-top:10px;font-family:var(--fh);font-size:clamp(35px,9vw,49px);line-height:.96;letter-spacing:-.05em}
+.hero h1 span{display:block;color:var(--blue)}
+.hero p{position:relative;z-index:2;margin-top:11px;color:#3e434a;font-size:15px;line-height:1.48;font-weight:750}
+
+.exam-card{position:sticky;top:7px;z-index:50;background:var(--ink);color:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:12px;margin-bottom:14px}
+.exam-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.exam-card h2{font-family:var(--fh);font-size:16px}
+.exam-card p{margin-top:3px;color:#ddd;font-size:9px;font-weight:750}
+.timer{font-family:var(--fh);font-size:29px;font-weight:800;white-space:nowrap}
+.start{width:100%;min-height:45px;margin-top:9px;border:2px solid #fff;border-radius:10px;background:var(--gold);color:#111;font-size:10px;font-weight:1000;cursor:pointer}
+
+.progress{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:13px}
+.progress i{height:8px;border:2px solid var(--ink);border-radius:999px;background:#fff}
+.progress i.on{background:var(--lime)}
+
+.mock-note{border:var(--line);border-radius:14px;background:#fff7cc;box-shadow:4px 4px 0 var(--ink);padding:10px;margin-bottom:13px;font-size:11px;line-height:1.45;font-weight:800}
+
+.part{overflow:hidden;background:#fff;border:var(--line);border-radius:19px;box-shadow:var(--shadow);margin-bottom:11px}
+.part-head{width:100%;min-height:76px;border:0;background:#eef4ff;padding:11px;display:grid;grid-template-columns:48px 1fr auto;gap:9px;align-items:center;text-align:left;cursor:pointer}
+.part-no{width:46px;height:46px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:12px;background:#fff;font-family:var(--fh);font-size:18px;font-weight:800}
+.part-meta small{display:block;font-size:9px;color:var(--muted);font-weight:900;letter-spacing:.05em}
+.part-meta b{display:block;margin-top:3px;font-family:var(--fh);font-size:14px;line-height:1.24}
+.plus{font-size:25px;font-weight:1000;transition:.15s}
+.part.open .plus{transform:rotate(45deg)}
+.part-body{display:none;border-top:2px solid var(--ink);padding:11px}
+.part.open .part-body{display:block}
+
+.passage{border:2px solid var(--ink);border-radius:15px;background:#f8fbff;overflow:hidden}
+.passage-top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 9px;background:var(--ink);color:#fff}
+.passage-top span{font-family:var(--fh);font-size:10px;font-weight:800;letter-spacing:.07em}
+.expand{border:2px solid #fff;border-radius:8px;background:#fff;color:#111;padding:5px 8px;font-size:8px;font-weight:1000;cursor:pointer}
+.passage-text{max-height:370px;overflow:auto;padding:12px;font-size:13px;line-height:1.66;font-weight:650}
+.passage-text.expanded{max-height:none}
+.passage-text p+p{margin-top:13px}
+.letter{border-left:4px solid var(--gold);padding-left:10px}
+.text-label{display:inline-block;margin:12px 0 5px;border:2px solid var(--ink);border-radius:999px;background:var(--cyan);padding:5px 8px;font-family:var(--fh);font-size:9px;font-weight:800}
+.mini-grid{display:grid;gap:9px;margin-top:9px}
+.mini-card{border:2px solid var(--ink);border-radius:12px;background:#fff;padding:10px}
+.mini-card>b{display:grid;place-items:center;width:30px;height:30px;border:2px solid var(--ink);border-radius:8px;background:var(--gold);font-family:var(--fh);margin-bottom:7px}
+.gap{display:inline-block;background:#fff0b8;border-bottom:3px solid var(--ink);padding:0 3px;font-weight:900}
+.sentence-bank{margin-top:13px;border:2px solid var(--ink);border-radius:12px;background:#fff7cc;padding:10px}
+.sentence-bank>b{font-family:var(--fh)}
+.sentence-bank p{margin-top:7px!important}
+
+.question-set{margin-top:12px}
+.set-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
+.set-head h3{font-family:var(--fh);font-size:16px}
+.set-head span{border:2px solid var(--ink);border-radius:999px;background:#fff;padding:4px 7px;font-size:8px;font-weight:1000}
+
+.question{border:2px solid var(--ink);border-radius:14px;background:#fafafa;padding:10px;margin-top:8px}
+.q-head{display:grid;grid-template-columns:34px 1fr;gap:8px;align-items:start}
+.q-num{width:32px;height:32px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:9px;background:var(--gold);font-family:var(--fh);font-size:11px;font-weight:800}
+.q-head p{font-size:13px;line-height:1.4;font-weight:900;padding-top:5px}
+.options{display:grid;gap:6px;margin-top:8px}
+.option{display:grid;grid-template-columns:31px 1fr;gap:8px;align-items:center;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:8px;font-size:12px;line-height:1.35;font-weight:750;cursor:pointer}
+.option input{position:absolute;opacity:0;pointer-events:none}
+.letter{width:29px;height:29px;display:grid;place-items:center;border:2px solid var(--ink);border-radius:8px;background:#f3f5f7;font-family:var(--fh);font-size:10px;font-weight:800}
+.option:has(input:checked){background:#eaf3ff;border-color:#0D78E8}
+.option:has(input:checked) .letter{background:var(--blue);color:#fff}
+.option.correct{background:#dcfce7!important;border-color:#16803c!important}
+.option.correct .letter{background:var(--lime)!important;color:#111!important}
+.option.wrong{background:#ffe4e6!important;border-color:#d92d20!important}
+.option.wrong .letter{background:var(--red)!important;color:#fff!important}
+
+.next-btn{width:100%;min-height:46px;margin-top:11px;border:var(--line);border-radius:11px;background:var(--gold);box-shadow:3px 3px 0 var(--ink);font-size:10px;font-weight:1000;cursor:pointer}
+
+.submit{display:none;background:#fff;border:var(--line);border-radius:19px;box-shadow:var(--shadow);padding:14px;margin-top:14px}
+.submit.show{display:block}
+.submit h2{font-family:var(--fh);font-size:20px}
+.submit p{margin-top:5px;color:var(--muted);font-size:11px;line-height:1.45;font-weight:750}
+.submit button{width:100%;min-height:50px;margin-top:10px;border:var(--line);border-radius:11px;background:var(--red);color:#fff;box-shadow:4px 4px 0 var(--ink);font-size:11px;font-weight:1000;cursor:pointer}
+.result{display:none;margin-top:10px;border:2px solid var(--ink);border-radius:12px;background:#e7fff5;padding:11px;font-size:12px;line-height:1.45;font-weight:750}
+.result.show{display:block}
+.big{font-family:var(--fh);font-size:35px;font-weight:800}
+
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:calc(100% - 20px);max-width:560px;z-index:80;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border:var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:6px}
+.nav a{min-height:58px;display:grid;place-items:center;align-content:center;gap:3px;border-radius:10px;font-size:9px;font-weight:1000}
+.nav a.active{background:var(--gold);border:2px solid var(--ink)}
+.nav img{width:26px;height:26px}
+
+@media(min-width:760px){
+.app{max-width:900px;padding:24px 24px 120px}
+.nav{max-width:860px}
+.passage-text{max-height:520px;font-size:14px}
+.mini-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ===== STANDARD MOCK 1 FINISH / SUBMIT CARD ===== */
+.mock-finish{
+  background:#fff;
+  border:var(--line);
+  border-radius:19px;
+  box-shadow:var(--shadow);
+  padding:13px;
+  margin-top:14px;
+}
+.mock-finish h2{
+  font-family:var(--fh);
+  font-size:20px;
+  line-height:1.15;
+}
+.mock-finish p{
+  margin-top:6px;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.45;
+  font-weight:750;
+}
+.mock-submit-btn{
+  width:100%;
+  min-height:52px;
+  margin-top:11px;
+  border:var(--line);
+  border-radius:11px;
+  background:var(--gold);
+  color:var(--ink);
+  box-shadow:4px 4px 0 var(--ink);
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.01em;
+  cursor:pointer;
+}
+.mock-submit-btn:active{
+  transform:translate(2px,2px);
+  box-shadow:2px 2px 0 var(--ink);
+}
+.mock-finish .submit-note{
+  display:block;
+  margin-top:7px;
+  color:var(--muted);
+  font-size:9px;
+  line-height:1.4;
+  font-weight:800;
+}
+
+</style>
+</head>
+
+<body>
+<main class="app">
+
+<header class="top">
+  <div class="brand">
+    <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET">
+    <div>
+      <small>MOCK PRACTICE 1 · 800/3</small>
+      <b>Reading</b>
+    </div>
+  </div>
+  <a class="back" href="mock1.html">← Mock 1</a>
+</header>
+
+<section class="hero">
+  <span class="tag">FULL MOCK · NO SCAN COACHING</span>
+  <h1>Read independently.<span>Trust your evidence.</span></h1>
+  <p>Complete all 7 Parts and 40 questions under timed mock conditions. Correct answers appear only after final submission.</p>
+</section>
+
+<section class="exam-card">
+  <div class="exam-row">
+    <div>
+      <h2>Reading Paper 800/3</h2>
+      <p>7 Parts · 40 Questions · 75 Minutes</p>
+    </div>
+    <div class="timer" id="timer">75:00</div>
+  </div>
+  <button class="start" id="startExam">START 75-MIN TIMER</button>
+</section>
+
+<div class="progress">
+<i id="prog-1" class="on"></i><i id="prog-2" class=""></i><i id="prog-3" class=""></i><i id="prog-4" class=""></i><i id="prog-5" class=""></i><i id="prog-6" class=""></i><i id="prog-7" class=""></i>
+</div>
+
+<div class="mock-note" id="mockNote">
+  <b>TESTING MODE:</b> The full Reading paper is open immediately. The 75-minute timer is optional. Read each Part, select your answers, then submit the full paper when ready.
+</div>
+
+<div id="paper" style="pointer-events:auto;opacity:1">
+
+    <article class="part open" id="part-1">
+      <button class="part-head" type="button">
+        <div class="part-no">1</div>
+        <div class="part-meta">
+          <small>Questions 1–4</small>
+          <b>Part 1 · Three short texts about restaurants</b>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="part-body">
+        <section class="passage">
+          <div class="passage-top">
+            <span>READING TEXT</span>
+            <button class="expand" type="button">EXPAND</button>
+          </div>
+          <div class="passage-text">
+<p><em>Read three short texts about restaurants.</em></p>
+<p><em>Answer questions 1 to 4 based on the short texts about restaurants (A to C).</em></p>
+
+<div class="mini-grid">
+<div class="mini-card"><b>A</b><p>It sells original Malay food. The food is mostly sweet and tasty. The price ranges from RM15 to RM40. The food is cooked by Chef Kadir, a popular chef from Kelantan. Free parking is available for customers. Special desserts such as <em>Ais Kacang</em> and <em>Cendol</em> are given for free with every meal ordered.</p></div>
+<div class="mini-card"><b>B</b><p>Cannot live without curry? This restaurant is popular for its curry. The price ranges from RM20 to RM50. The food is prepared by an Indian chef from Mumbai. 50% off for your lunch if you come with your school uniform. Getting here by MRT is better because there are not many parking spaces.</p></div>
+<div class="mini-card"><b>C</b><p>A restaurant in a garden. Popular for its chicken chop and steak. The price is quite expensive, but the taste is worth your money! The food is prepared by Chef James from Australia. 50% off if you come with more than 5 people. Parking rate is RM5 per hour.</p></div>
+</div>
+</div>
+        </section>
+
+        <section class="question-set">
+          <div class="set-head">
+            <h3>Questions 1–4</h3>
+            <span id="count-1">0 answered</span>
+          </div>
+          
+        <div class="question" id="question-1">
+          <div class="q-head"><span class="q-num">1</span><p>Which restaurant is best for students?</p></div>
+          <div class="options"><label class="option" id="q1-A"><input type="radio" name="q1" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q1-B"><input type="radio" name="q1" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q1-C"><input type="radio" name="q1" value="C"><span class="letter">C</span><span>C</span></label></div>
+        </div>
+        
+        <div class="question" id="question-2">
+          <div class="q-head"><span class="q-num">2</span><p>Which restaurant is best for people who drive cars?</p></div>
+          <div class="options"><label class="option" id="q2-A"><input type="radio" name="q2" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q2-B"><input type="radio" name="q2" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q2-C"><input type="radio" name="q2" value="C"><span class="letter">C</span><span>C</span></label></div>
+        </div>
+        
+        <div class="question" id="question-3">
+          <div class="q-head"><span class="q-num">3</span><p>Which restaurant is best for people who love plants?</p></div>
+          <div class="options"><label class="option" id="q3-A"><input type="radio" name="q3" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q3-B"><input type="radio" name="q3" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q3-C"><input type="radio" name="q3" value="C"><span class="letter">C</span><span>C</span></label></div>
+        </div>
+        
+        <div class="question" id="question-4">
+          <div class="q-head"><span class="q-num">4</span><p>Which restaurant is best for people who like cheap food?</p></div>
+          <div class="options"><label class="option" id="q4-A"><input type="radio" name="q4" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q4-B"><input type="radio" name="q4" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q4-C"><input type="radio" name="q4" value="C"><span class="letter">C</span><span>C</span></label></div>
+        </div>
+        
+        </section>
+
+        <button class="next-btn" data-next="2">
+          NEXT PART →
+        </button>
+      </div>
+    </article>
+    
+    <article class="part " id="part-2">
+      <button class="part-head" type="button">
+        <div class="part-no">2</div>
+        <div class="part-meta">
+          <small>Questions 5–9</small>
+          <b>Part 2 · A letter from Vijay Pillai to Classico Hotel</b>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="part-body">
+        <section class="passage">
+          <div class="passage-top">
+            <span>READING TEXT</span>
+            <button class="expand" type="button">EXPAND</button>
+          </div>
+          <div class="passage-text">
+<p><em>Read a letter from Vijay Pillai to Classico Hotel.</em></p>
+<p><em>Answer questions 5 to 9 based on the letter.</em></p>
+
+<div class="letter">
+<p><b>Vijay Pillai</b><br>17, Durian Road<br>11800 PULAU PINANG</p>
+<p>The General Manager<br>Classico Hotel<br>120, Bintang Road<br>50300 KUALA LUMPUR</p>
+<p><b>21 February 2022</b></p>
+<p>Dear Sir/Madam,</p>
+<p><b>Concern with check-in services and facilities at Classico Hotel</b></p>
+
+<p>I would like to inform you of my concerns with check-in services and facilities at Classico Hotel.</p>
+
+<p>On 19 February 2022, and on another occasion in 2021, I stayed at Classico Hotel when I was in Kuala Lumpur for business trips. In my 2021 trip, I looked forward to staying at your hotel because it was new. I reached the hotel at 2:00 p.m. and was shocked to find out that the check-in time was 3:00 p.m. I filled up my time by walking around the different areas in the big hotel, including the garden.</p>
+
+<p>My second stay at Classico Hotel was two days ago. I was prepared to wait till 3:00 p.m. to check in but when I went to the counter, the receptionist told me to be patient and wait for my room to be ready. I requested to see the manager but was told that he was not available, leaving me no choice but to wait in the long queue. When it was finally my turn, the receptionist on duty took ages to find the room booking documents, and asked me for a copy. She finally found the booking documents in the office behind the reception counter. I was only able to enter my room at 4:00 p.m.</p>
+
+<p>If the check-in time is 3:00 p.m., then the rooms should be ready by 3:00 p.m. Guests should not be told to wait for the rooms to be cleaned. If there are problems such as delays in previous guests checking out, and lack of staff to clean up the rooms after guests have checked out at 12 noon, then perhaps the hotel should employ more staff. Your check-in time is already later than most other hotels, which they have it at 2:00 p.m.</p>
+
+<p>In addition to this, I would also like to report that Room 1505 has a bathroom that has no hot water. There was moss on the tiles, causing them to look greenish and blackish. The carpet outside the toilet was worn out. I hope that the hotel will carry out the necessary repairs for the benefit of future guests. As for me, I am not sure if I would like to come back to Classico Hotel again.</p>
+
+<p>If further details are needed, please do not hesitate to contact me at vijayP@zmail.com. Thank you.</p>
+<p>Sincerely,</p>
+<p><em>Vijay</em></p>
+</div>
+</div>
+        </section>
+
+        <section class="question-set">
+          <div class="set-head">
+            <h3>Questions 5–9</h3>
+            <span id="count-2">0 answered</span>
+          </div>
+          
+        <div class="question" id="question-5">
+          <div class="q-head"><span class="q-num">5</span><p>The first time Vijay stayed at Classico Hotel, he was</p></div>
+          <div class="options"><label class="option" id="q5-A"><input type="radio" name="q5" value="A"><span class="letter">A</span><span>surprised that he had to wait for a long time</span></label><label class="option" id="q5-B"><input type="radio" name="q5" value="B"><span class="letter">B</span><span>excited to visit different parts of the hotel</span></label><label class="option" id="q5-C"><input type="radio" name="q5" value="C"><span class="letter">C</span><span>happy with the garden</span></label></div>
+        </div>
+        
+        <div class="question" id="question-6">
+          <div class="q-head"><span class="q-num">6</span><p>The second time Vijay stayed at Classico Hotel, the hotel staff</p></div>
+          <div class="options"><label class="option" id="q6-A"><input type="radio" name="q6" value="A"><span class="letter">A</span><span>told him to wait till 3:00 p.m.</span></label><label class="option" id="q6-B"><input type="radio" name="q6" value="B"><span class="letter">B</span><span>asked him about his booking</span></label><label class="option" id="q6-C"><input type="radio" name="q6" value="C"><span class="letter">C</span><span>called the hotel manager to talk to him</span></label></div>
+        </div>
+        
+        <div class="question" id="question-7">
+          <div class="q-head"><span class="q-num">7</span><p>Vijay is asking the hotel to</p></div>
+          <div class="options"><label class="option" id="q7-A"><input type="radio" name="q7" value="A"><span class="letter">A</span><span>prepare a waiting room for guests</span></label><label class="option" id="q7-B"><input type="radio" name="q7" value="B"><span class="letter">B</span><span>make sure guests leave at 12 noon</span></label><label class="option" id="q7-C"><input type="radio" name="q7" value="C"><span class="letter">C</span><span>get more staff to clean up the rooms</span></label></div>
+        </div>
+        
+        <div class="question" id="question-8">
+          <div class="q-head"><span class="q-num">8</span><p>Vijay is unhappy with Room 1505 because</p></div>
+          <div class="options"><label class="option" id="q8-A"><input type="radio" name="q8" value="A"><span class="letter">A</span><span>the bathroom has no water</span></label><label class="option" id="q8-B"><input type="radio" name="q8" value="B"><span class="letter">B</span><span>the room is dirty</span></label><label class="option" id="q8-C"><input type="radio" name="q8" value="C"><span class="letter">C</span><span>the carpet is old</span></label></div>
+        </div>
+        
+        <div class="question" id="question-9">
+          <div class="q-head"><span class="q-num">9</span><p>What will Vijay do in the future?</p></div>
+          <div class="options"><label class="option" id="q9-A"><input type="radio" name="q9" value="A"><span class="letter">A</span><span>He will call the manager to describe the details of the problems.</span></label><label class="option" id="q9-B"><input type="radio" name="q9" value="B"><span class="letter">B</span><span>He will stay at other hotels during his business trips.</span></label><label class="option" id="q9-C"><input type="radio" name="q9" value="C"><span class="letter">C</span><span>He will give advice on how to repair the bathroom.</span></label></div>
+        </div>
+        
+        </section>
+
+        <button class="next-btn" data-next="3">
+          NEXT PART →
+        </button>
+      </div>
+    </article>
+    
+    <article class="part " id="part-3">
+      <button class="part-head" type="button">
+        <div class="part-no">3</div>
+        <div class="part-meta">
+          <small>Questions 10–14</small>
+          <b>Part 3 · Rajkumar and Dolly’s journey to Malaya</b>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="part-body">
+        <section class="passage">
+          <div class="passage-top">
+            <span>READING TEXT</span>
+            <button class="expand" type="button">EXPAND</button>
+          </div>
+          <div class="passage-text">
+<p><em>Read a story about Rajkumar and Dolly’s journey to Malaya.</em></p>
+<p><em>Answer questions 10 to 14 based on the story.</em></p>
+
+<p>Since John’s departure from Rangoon, Rajkumar had spent a great deal of his time travelling between Burma, Malaya, and India. As one of the plantation owners, he had been responsible for making sure that they had enough workers. Many of them were from Madras in southern India. Rajkumar had been informing Dolly on any of his trips to Malaya since they got married. She was not a good traveller, she had said. It had been hard enough to leave India for Burma. So, she was not in a hurry to go anywhere else. As a result, Dolly had never met Rajkumar’s friends, Matthew and Elsa.</p>
+
+<p>Rajkumar showed John’s letter to Dolly and said, “If you’re ever going to go there, then this is the time.”</p>
+
+<p>After she’d read the letter Dolly agreed, “All right, let us go.”</p>
+
+<p>From Rangoon, it was a three-day journey to the island of Penang in northern Malaya. On their last day at sea, Rajkumar showed Dolly a distant blue blur on the horizon. “That’s Gunung Jerai,” Rajkumar said. “That’s where the plantation is.” In years past, he said, when the forest was being cleared, the mountain had seemed to come alive. Travelling to Penang, Rajkumar would see great black smoke rising skywards from the mountain. “But that was a long time ago. The place is quite changed now.”</p>
+
+<p>The ship docked at Georgetown, the main port on the island of Penang. From there it was a journey of several hours to the plantation. They took a ferry to Butterworth, across a narrow channel from Penang. Then they boarded a train that took them northwards through a landscape of lush green paddy fields and coconut plantations.</p>
+
+<p>Along the journey, Dolly could see through the windows of the train the soaring mass of Gunung Jerai, its peak hidden by a cloudy haze rising steeply out of the plain. Its western slopes descending directly into the sparkling blue waters of the Andaman Sea. Dolly, now used to the riverine landscapes of southern Burma, was struck by the lush beauty of the paddy fields. She was reminded of India. For the first time in many years, she missed her drawing book.</p>
+
+<p><em>(Adapted from Amitav Ghosh’s The Glass Palace: A Novel, 2001)</em></p>
+</div>
+        </section>
+
+        <section class="question-set">
+          <div class="set-head">
+            <h3>Questions 10–14</h3>
+            <span id="count-3">0 answered</span>
+          </div>
+          
+        <div class="question" id="question-10">
+          <div class="q-head"><span class="q-num">10</span><p>What is true about Rajkumar?</p></div>
+          <div class="options"><label class="option" id="q10-A"><input type="radio" name="q10" value="A"><span class="letter">A</span><span>He has a plantation in India.</span></label><label class="option" id="q10-B"><input type="radio" name="q10" value="B"><span class="letter">B</span><span>He left Rangoon with John.</span></label><label class="option" id="q10-C"><input type="radio" name="q10" value="C"><span class="letter">C</span><span>He is Dolly’s husband.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-11">
+          <div class="q-head"><span class="q-num">11</span><p>Why did Dolly visit Malaya?</p></div>
+          <div class="options"><label class="option" id="q11-A"><input type="radio" name="q11" value="A"><span class="letter">A</span><span>She wanted to meet the plantation workers.</span></label><label class="option" id="q11-B"><input type="radio" name="q11" value="B"><span class="letter">B</span><span>She read what was written in John’s letter.</span></label><label class="option" id="q11-C"><input type="radio" name="q11" value="C"><span class="letter">C</span><span>She needed to leave Burma.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-12">
+          <div class="q-head"><span class="q-num">12</span><p>What did Dolly see on the last day at sea?</p></div>
+          <div class="options"><label class="option" id="q12-A"><input type="radio" name="q12" value="A"><span class="letter">A</span><span>Rajkumar’s plantation</span></label><label class="option" id="q12-B"><input type="radio" name="q12" value="B"><span class="letter">B</span><span>Gunung Jerai</span></label><label class="option" id="q12-C"><input type="radio" name="q12" value="C"><span class="letter">C</span><span>Black smoke</span></label></div>
+        </div>
+        
+        <div class="question" id="question-13">
+          <div class="q-head"><span class="q-num">13</span><p>How did Dolly get from Burma to the plantation?</p></div>
+          <div class="options"><label class="option" id="q13-A"><input type="radio" name="q13" value="A"><span class="letter">A</span><span>Ship → Ferry → Train</span></label><label class="option" id="q13-B"><input type="radio" name="q13" value="B"><span class="letter">B</span><span>Train → Ship → Ferry</span></label><label class="option" id="q13-C"><input type="radio" name="q13" value="C"><span class="letter">C</span><span>Ferry → Train → Ship</span></label></div>
+        </div>
+        
+        <div class="question" id="question-14">
+          <div class="q-head"><span class="q-num">14</span><p>Dolly wanted her drawing book because</p></div>
+          <div class="options"><label class="option" id="q14-A"><input type="radio" name="q14" value="A"><span class="letter">A</span><span>she had not drawn for a long time</span></label><label class="option" id="q14-B"><input type="radio" name="q14" value="B"><span class="letter">B</span><span>she wanted to remember the beautiful views</span></label><label class="option" id="q14-C"><input type="radio" name="q14" value="C"><span class="letter">C</span><span>she needed to look at her pictures of southern Burma</span></label></div>
+        </div>
+        
+        </section>
+
+        <button class="next-btn" data-next="4">
+          NEXT PART →
+        </button>
+      </div>
+    </article>
+    
+    <article class="part " id="part-4">
+      <button class="part-head" type="button">
+        <div class="part-no">4</div>
+        <div class="part-meta">
+          <small>Questions 15–20</small>
+          <b>Part 4 · Two texts about music</b>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="part-body">
+        <section class="passage">
+          <div class="passage-top">
+            <span>READING TEXT</span>
+            <button class="expand" type="button">EXPAND</button>
+          </div>
+          <div class="passage-text">
+<p><em>Read two texts about music.</em></p>
+
+<div class="text-label">TEXT 1</div>
+
+<p>I believe that everyone should learn to play a musical instrument, as music has always been a part of human history. From the beginning, there were people singing, banging on drums, and blowing on pipes and horns. Feeling and enjoying the rhythm of music is part of being human and being able to produce the music yourself is something even more fulfilling. There are three different parts of being a musician that I think that everyone should enjoy: Playing by yourself, playing in a group, and playing for an audience.</p>
+
+<p>First, playing by yourself gives you freedom. When I take out my French horn to practise, I can play whatever I want, I can create any rhythm I feel, and I can let my emotions out. In my little practice room, it is just myself and my music. The music that the lone players produce is for themselves and no one else. It is a relaxing and rewarding activity that any person living in this stress filled world could use.</p>
+
+<p>Second, being a part of a group of people who also take pleasure in what you love makes playing music even more fun and enjoyable. I love playing with the community bands in my area and meeting friends who have the same interests as me. Putting the harmonies of a band together adds to what a single musician can create. You are able to play more complex and challenging music because you have other musicians and a director to help. A group of people can accomplish something that one person alone cannot.</p>
+
+<p>Third, playing for an audience lets you bring pleasure to others. There are many people who do not play an instrument but still love music. Concerts and recitals are ways to bring music to these people. The final product of putting together the complexities within the song, orchestrating the little details, and practising that then come together into a wonderful piece of music can be a great gift to many people. I love getting a piece of music and after weeks of practice and rehearsal to bring the journey to an end and perform for an audience. The encouragement and thanks from these people show me that music is still important.</p>
+
+<p>In the long run, learning to play a musical instrument brings benefits not only to yourself but others in your community. Music is a universal language that can help people learn about themselves and bring people closer together. As such, music can create better understanding within communities and with this comes awareness and compassion for others. I believe learning to play a musical instrument is an experience everyone should have.</p>
+
+<p><em>(Adapted from This I Believe, 2009)</em></p>
+
+<div class="text-label">TEXT 2</div>
+
+<p>“Music helps the mind develop and grow,” my dad often says, and I have found this to be very true. It is a proven fact that participating in a music program in school will help develop your brain to a higher level and faster than other students. Music actually improves communication between the right and left sides of the brain, allowing you to gain better comprehension and memorisation skills.</p>
+
+<p>So, why do we need music in our schools? Well, because music is everything.</p>
+
+<p>Music is science. It is exact and demands acoustics. The conductor’s score is a graph that contains volume changes, melody and harmony, all the while keeping the group at a constant pace.</p>
+
+<p>Music is math. It is based on the rhythmic subdivisions of time, done in a split second.</p>
+
+<p>Music is history. The music you hear or play is usually an indication of the time and environment in which it was created.</p>
+
+<p>Music is physical education. It requires an immense amount of coordination of fingers, hands, arms, lips, cheeks and facial muscles. Not to mention control of your diaphragm, back, stomach, and chest muscles to make sure every note comes out clearly and in pitch.</p>
+
+<p>Music is a foreign language. Its terms are usually in Italian and the music is not in any language known to man. It is its own language and uses symbols to represent ideas.</p>
+
+<p>Music is the universal language that everyone understands and can relate to. Music is what brings everything together. It is something that everyone knows.</p>
+
+<p>Most of all, music is art. It is the greatest form of art that allows a human to take boring notes on a page, and transform them into an emotion and feeling you cannot measure.</p>
+
+<p>Music is just as important as all the classes you are required to take, and it is critical that music classes remain in schools. Not only to provide a place for students to belong, but also something that will help their minds develop and grow like no other class. Music is a very important part of our life, and if we take it away, who knows what the world would be like.</p>
+
+<p><em>(Adapted from Teen Ink, 2008)</em></p>
+</div>
+        </section>
+
+        <section class="question-set">
+          <div class="set-head">
+            <h3>Questions 15–20</h3>
+            <span id="count-4">0 answered</span>
+          </div>
+          
+        <div class="question" id="question-15">
+          <div class="q-head"><span class="q-num">15</span><p>As a musician, the writer enjoys more when he is able to</p></div>
+          <div class="options"><label class="option" id="q15-A"><input type="radio" name="q15" value="A"><span class="letter">A</span><span>play all the musical instruments</span></label><label class="option" id="q15-B"><input type="radio" name="q15" value="B"><span class="letter">B</span><span>create his own music</span></label><label class="option" id="q15-C"><input type="radio" name="q15" value="C"><span class="letter">C</span><span>perform on stage</span></label></div>
+        </div>
+        
+        <div class="question" id="question-16">
+          <div class="q-head"><span class="q-num">16</span><p>Which of the following is true of Text 1?</p></div>
+          <div class="options"><label class="option" id="q16-A"><input type="radio" name="q16" value="A"><span class="letter">A</span><span>Musical instruments can be played solo or in-groups.</span></label><label class="option" id="q16-B"><input type="radio" name="q16" value="B"><span class="letter">B</span><span>People who play musical instruments are usually friendly.</span></label><label class="option" id="q16-C"><input type="radio" name="q16" value="C"><span class="letter">C</span><span>You have to learn to play a musical instrument to love music.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-17">
+          <div class="q-head"><span class="q-num">17</span><p>What is the main idea of Text 2?</p></div>
+          <div class="options"><label class="option" id="q17-A"><input type="radio" name="q17" value="A"><span class="letter">A</span><span>Music develops well-rounded students.</span></label><label class="option" id="q17-B"><input type="radio" name="q17" value="B"><span class="letter">B</span><span>Music helps students to learn about their past.</span></label><label class="option" id="q17-C"><input type="radio" name="q17" value="C"><span class="letter">C</span><span>Music improves students’ ability to move different parts of their body.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-18">
+          <div class="q-head"><span class="q-num">18</span><p>The writer believes that music classes should be</p></div>
+          <div class="options"><label class="option" id="q18-A"><input type="radio" name="q18" value="A"><span class="letter">A</span><span>included in other subjects in schools</span></label><label class="option" id="q18-B"><input type="radio" name="q18" value="B"><span class="letter">B</span><span>replaced by other subjects in schools</span></label><label class="option" id="q18-C"><input type="radio" name="q18" value="C"><span class="letter">C</span><span>continued as other subjects in schools</span></label></div>
+        </div>
+        
+        <div class="question" id="question-19">
+          <div class="q-head"><span class="q-num">19</span><p>Which of the following are the correct and incorrect details discussed in Text 1 and Text 2?</p></div>
+          <div class="options"><label class="option" id="q19-A"><input type="radio" name="q19" value="A"><span class="letter">A</span><span>Music reduces stress — Text 1 ✗ · Text 2 ✓</span></label><label class="option" id="q19-B"><input type="radio" name="q19" value="B"><span class="letter">B</span><span>Music makes you healthy — Text 1 ✓ · Text 2 ✗</span></label><label class="option" id="q19-C"><input type="radio" name="q19" value="C"><span class="letter">C</span><span>Music helps the mind to grow — Text 1 ✗ · Text 2 ✓</span></label></div>
+        </div>
+        
+        <div class="question" id="question-20">
+          <div class="q-head"><span class="q-num">20</span><p>Both Text 1 and Text 2 agree that music</p></div>
+          <div class="options"><label class="option" id="q20-A"><input type="radio" name="q20" value="A"><span class="letter">A</span><span>brings people together</span></label><label class="option" id="q20-B"><input type="radio" name="q20" value="B"><span class="letter">B</span><span>makes people at peace</span></label><label class="option" id="q20-C"><input type="radio" name="q20" value="C"><span class="letter">C</span><span>allows people to free themselves</span></label></div>
+        </div>
+        
+        </section>
+
+        <button class="next-btn" data-next="5">
+          NEXT PART →
+        </button>
+      </div>
+    </article>
+    
+    <article class="part " id="part-5">
+      <button class="part-head" type="button">
+        <div class="part-no">5</div>
+        <div class="part-meta">
+          <small>Questions 21–26</small>
+          <b>Part 5 · Rolls-Royce and Cambridge partnership</b>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="part-body">
+        <section class="passage">
+          <div class="passage-top">
+            <span>READING TEXT</span>
+            <button class="expand" type="button">EXPAND</button>
+          </div>
+          <div class="passage-text">
+<p><em>Read a text about the partnership between Rolls-Royce and Cambridge. Six sentences have been removed from the text. Choose from the sentences A to G the one which fits each gap (21 to 26). There is one extra sentence which you do not need to use.</em></p>
+
+<p>Getting planes in the air and keeping them there is a complex and expensive business. It is also responsible for more than two percent of the world’s fossil fuel-based CO₂ emissions.</p>
+
+<p>For world-leading aeroengine manufacturer, Rolls-Royce, reducing CO₂ emissions by making its planes more efficient is a critical task. <span class="gap">21 ________</span>. Year on year, Rolls-Royce continues to push the design of its engines and the materials they are made from to the limits of possibility.</p>
+
+<p>Cambridge has been playing an important part in this process for more than 40 years. From the moment the Whittle Laboratory first opened its doors in 1973, it became an invaluable research partner for Rolls-Royce. They embark on a shared quest to improve the efficiency of turbomachinery.</p>
+
+<p>Rolls-Royce was quick to see the advantages of this way of working, and the relationship between it. The Whittle team helped to define a model for the University Technology Centre (UTC) network that Rolls-Royce went on to establish in the 1990s. <span class="gap">22 ________</span>. This gives Rolls-Royce access to new thinking, state-of-the-art laboratory equipment and, critically, to a steady supply of young engineering talent.</p>
+
+<p><span class="gap">23 ________</span>. The University Gas Turbine Partnership is based at the Whittle and Hopkinson Laboratories, and the Materials UTC is based at the Department of Materials Science and Metallurgy. In 2009, the relationship with the Materials Department was further cemented when it became the lead partner in the Rolls-Royce University Technology Partnership (UTP) in materials research, combining its expertise with that of the Universities of Swansea and Birmingham.</p>
+
+<p>Over the years, the Whittle Lab has contributed to many breakthroughs in Rolls-Royce engines. This includes switching from a “two-dimensional” (2D) to a “three-dimensional” (3D) compressor blade. Now the industry standard, the design reduces fuel consumption by nearly one percent. <span class="gap">24 ________</span>.</p>
+
+<p>For each aircraft, that could equate to a reduction in CO₂ emissions of up to 765 tonnes annually. <span class="gap">25 ________</span>. Director of the Whittle, Professor Rob Miller together with Dr James Taylor, Rolls-Royce Fellow in Compressor Aerodynamics, is developing the next generation of 3D blade designs to lower cost.</p>
+
+<p>What is it about the UTC model that makes these kinds of game-changing achievements possible? Malcolm Hillel of Rolls-Royce believes that it is the ability to look beyond the immediate pressures faced by all organisations. Then Rolls-Royce can come up with completely new ways of doing things. For Miller, the longevity of the relationship and having a framework in place for sharing IP are also critical factors in its success.</p>
+
+<p>“We’ve been working with Rolls-Royce for more than 50 years and that gives both parties a whole host of benefits. It means Rolls-Royce can be completely open with us about its plans. We will always be ahead of the curve in researching the areas that industry is most interested in.” <span class="gap">26 ________</span>.</p>
+
+<p>In the end, a successful partnership is all about the people. The UTC structure creates the conditions in which long-term, open working relationships between Cambridge and Rolls-Royce can flourish to achieve real technological breakthroughs.</p>
+
+<p><em>(Adapted from Sarah Fell’s Strategic Partner: Rolls-Royce reaching for the skies, 2019)</em></p>
+
+<div class="sentence-bank">
+<b>Sentence Bank</b>
+<p><b>A</b> That could save up to a quarter of a million annually.</p>
+<p><b>B</b> Much has already been achieved but there is more to be done.</p>
+<p><b>C</b> And that sharing means technology transfer is just so much easier.</p>
+<p><b>D</b> Although it may sound like a small gain, it is still a huge achievement.</p>
+<p><b>E</b> Today, Cambridge is one of only a handful of Rolls-Royce’s partner universities to have two UTCs.</p>
+<p><b>F</b> Working with Cambridge helps us to think about how we can do things differently in the future.</p>
+<p><b>G</b> The group now consists of approximately 30 UTCs based at some of the world’s leading universities.</p>
+</div>
+</div>
+        </section>
+
+        <section class="question-set">
+          <div class="set-head">
+            <h3>Questions 21–26</h3>
+            <span id="count-5">0 answered</span>
+          </div>
+          
+        <div class="question" id="question-21">
+          <div class="q-head"><span class="q-num">21</span><p>Choose the sentence which best fits Gap 21.</p></div>
+          <div class="options"><label class="option" id="q21-A"><input type="radio" name="q21" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q21-B"><input type="radio" name="q21" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q21-C"><input type="radio" name="q21" value="C"><span class="letter">C</span><span>C</span></label><label class="option" id="q21-D"><input type="radio" name="q21" value="D"><span class="letter">D</span><span>D</span></label><label class="option" id="q21-E"><input type="radio" name="q21" value="E"><span class="letter">E</span><span>E</span></label><label class="option" id="q21-F"><input type="radio" name="q21" value="F"><span class="letter">F</span><span>F</span></label><label class="option" id="q21-G"><input type="radio" name="q21" value="G"><span class="letter">G</span><span>G</span></label></div>
+        </div>
+        
+        <div class="question" id="question-22">
+          <div class="q-head"><span class="q-num">22</span><p>Choose the sentence which best fits Gap 22.</p></div>
+          <div class="options"><label class="option" id="q22-A"><input type="radio" name="q22" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q22-B"><input type="radio" name="q22" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q22-C"><input type="radio" name="q22" value="C"><span class="letter">C</span><span>C</span></label><label class="option" id="q22-D"><input type="radio" name="q22" value="D"><span class="letter">D</span><span>D</span></label><label class="option" id="q22-E"><input type="radio" name="q22" value="E"><span class="letter">E</span><span>E</span></label><label class="option" id="q22-F"><input type="radio" name="q22" value="F"><span class="letter">F</span><span>F</span></label><label class="option" id="q22-G"><input type="radio" name="q22" value="G"><span class="letter">G</span><span>G</span></label></div>
+        </div>
+        
+        <div class="question" id="question-23">
+          <div class="q-head"><span class="q-num">23</span><p>Choose the sentence which best fits Gap 23.</p></div>
+          <div class="options"><label class="option" id="q23-A"><input type="radio" name="q23" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q23-B"><input type="radio" name="q23" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q23-C"><input type="radio" name="q23" value="C"><span class="letter">C</span><span>C</span></label><label class="option" id="q23-D"><input type="radio" name="q23" value="D"><span class="letter">D</span><span>D</span></label><label class="option" id="q23-E"><input type="radio" name="q23" value="E"><span class="letter">E</span><span>E</span></label><label class="option" id="q23-F"><input type="radio" name="q23" value="F"><span class="letter">F</span><span>F</span></label><label class="option" id="q23-G"><input type="radio" name="q23" value="G"><span class="letter">G</span><span>G</span></label></div>
+        </div>
+        
+        <div class="question" id="question-24">
+          <div class="q-head"><span class="q-num">24</span><p>Choose the sentence which best fits Gap 24.</p></div>
+          <div class="options"><label class="option" id="q24-A"><input type="radio" name="q24" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q24-B"><input type="radio" name="q24" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q24-C"><input type="radio" name="q24" value="C"><span class="letter">C</span><span>C</span></label><label class="option" id="q24-D"><input type="radio" name="q24" value="D"><span class="letter">D</span><span>D</span></label><label class="option" id="q24-E"><input type="radio" name="q24" value="E"><span class="letter">E</span><span>E</span></label><label class="option" id="q24-F"><input type="radio" name="q24" value="F"><span class="letter">F</span><span>F</span></label><label class="option" id="q24-G"><input type="radio" name="q24" value="G"><span class="letter">G</span><span>G</span></label></div>
+        </div>
+        
+        <div class="question" id="question-25">
+          <div class="q-head"><span class="q-num">25</span><p>Choose the sentence which best fits Gap 25.</p></div>
+          <div class="options"><label class="option" id="q25-A"><input type="radio" name="q25" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q25-B"><input type="radio" name="q25" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q25-C"><input type="radio" name="q25" value="C"><span class="letter">C</span><span>C</span></label><label class="option" id="q25-D"><input type="radio" name="q25" value="D"><span class="letter">D</span><span>D</span></label><label class="option" id="q25-E"><input type="radio" name="q25" value="E"><span class="letter">E</span><span>E</span></label><label class="option" id="q25-F"><input type="radio" name="q25" value="F"><span class="letter">F</span><span>F</span></label><label class="option" id="q25-G"><input type="radio" name="q25" value="G"><span class="letter">G</span><span>G</span></label></div>
+        </div>
+        
+        <div class="question" id="question-26">
+          <div class="q-head"><span class="q-num">26</span><p>Choose the sentence which best fits Gap 26.</p></div>
+          <div class="options"><label class="option" id="q26-A"><input type="radio" name="q26" value="A"><span class="letter">A</span><span>A</span></label><label class="option" id="q26-B"><input type="radio" name="q26" value="B"><span class="letter">B</span><span>B</span></label><label class="option" id="q26-C"><input type="radio" name="q26" value="C"><span class="letter">C</span><span>C</span></label><label class="option" id="q26-D"><input type="radio" name="q26" value="D"><span class="letter">D</span><span>D</span></label><label class="option" id="q26-E"><input type="radio" name="q26" value="E"><span class="letter">E</span><span>E</span></label><label class="option" id="q26-F"><input type="radio" name="q26" value="F"><span class="letter">F</span><span>F</span></label><label class="option" id="q26-G"><input type="radio" name="q26" value="G"><span class="letter">G</span><span>G</span></label></div>
+        </div>
+        
+        </section>
+
+        <button class="next-btn" data-next="6">
+          NEXT PART →
+        </button>
+      </div>
+    </article>
+    
+    <article class="part " id="part-6">
+      <button class="part-head" type="button">
+        <div class="part-no">6</div>
+        <div class="part-meta">
+          <small>Questions 27–33</small>
+          <b>Part 6 · Gig work</b>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="part-body">
+        <section class="passage">
+          <div class="passage-top">
+            <span>READING TEXT</span>
+            <button class="expand" type="button">EXPAND</button>
+          </div>
+          <div class="passage-text">
+<p><em>Read a text about gig work.</em></p>
+<p><em>Answer questions 27 to 33 based on the text.</em></p>
+
+<p>Before the coronavirus pandemic started to hit the United States (US), on-demand companies were grappling with how to provide more benefits for workers. Now, as more people adjust to staying indoors to reduce the spread of coronavirus, demand for delivery services has started to rise and with it – opportunities for gig work.</p>
+
+<p>Amazon announced this week that it will hire another 100 000 workers in the US and raise pay for workers in the US, Canada, and Europe. Delivery food services Postmates, Grubhub, Uber Eats, and DoorDash are seeing higher demand for their services. A banner atop DoorDash’s site reads: “We appreciate your patience as we are experiencing long-wait times due to COVID-19.”</p>
+
+<p>With restaurant workers finding themselves with fewer hours and lost wages, DoorDash stated yesterday that it will be creating a Priority Access Program (PAP) to help workers at their restaurant partners sign up as delivery workers, “enabling them to make ends meet until their jobs return to normal.”</p>
+
+<p>“This crisis is really a breakout moment for gig companies and for delivery companies in particular,” says Julia Pollak, an economist at ZipRecruiter. “That shift to e-commerce, which was already happening very rapidly, is just going to accelerate.”</p>
+
+<p>Demand for workers in transportation and storage in the US appears to be holding strong so far amid the pandemic. Food delivery and package delivery driver jobs rose in the second week of March and are likely to rise further as people shift more of their shopping online, according to Pollak. Job postings in the US related to food delivery have risen 78% from 2017, and for transportation and storage 36%, ZipRecruiter data shows. Overall, the largest share of the gig economy is in the transportation industry.</p>
+
+<p>Gig work, with its lack of benefits like health insurance, is often perceived as being precarious. But this public health crisis has forced companies to address the well-being of workers across its ranks. Amazon has established a relief fund to provide its Flex drivers with two weeks of pay if they’re quarantined or diagnosed with COVID-19. Uber has expanded sick pay to drivers who are diagnosed or quarantined. Similar policies have been announced by DoorDash. Postmates, DoorDash, and Uber Eats are offering “contactless” delivery to help mitigate the spread of coronavirus, about a month after KFC and Pizza Hut launched contactless delivery service in China. “In short, gig jobs are becoming relatively more attractive and secure in some ways,” says Pollak.</p>
+
+<p>About a third of roughly 200 drivers surveyed by the Rideshare Guy blog found that drivers are considering shifting to driving for a food delivery service, as demand for food delivery continues to rise. Still, unemployment is already starting to rise. The left-leaning Economic Policy Institute estimates that at least three million US jobs may be lost by summer. The US Travel Association estimates that the US economy is projected to lose 4.5 million jobs due to travel declines this year, pushing the unemployment rate to 6.3% in the second quarter.</p>
+
+<p>Gracie Lifschutz, a sales associate at a retail store in downtown Manhattan, received a call from her manager last Friday saying that she did not need to come for her shifts at least until the end of March. Although she has some savings that can cover her expenses for the next few months, she is not planning to use it so soon. Alternatively, she was thinking of signing up on the gig platform, Fiverr, seeking writing and consulting services. The current climate has made her see how the “pros of gig work stand out even more,” she told Quartz. “At a time like this where everyone is working from home, it’s far easier to work from home if you have steady gig work depending on your industry,” she says. “Others who do digital work that is remote-based have no problem continuing with their lives as it existed before.” While Fiverr won’t comment on exact numbers given that they are changing constantly, the company says it has started seeing an “uptick in people around the world opening gigs on the platform.”</p>
+
+<p>It’s hard to say when the growth of gig work will slow down, or whether these benefits for these workers will continue to be provided post-crisis. But the crisis may put the gig economy in a different lens. Most full-time employees in the US are at-will employees and can be laid off with little notice and no severance pay for any reason or none at all. By contrast, gig workers are typically fired only for workplace violations. In regard to it being harder to lose a gig job, “many workers will discover that now,” says Pollak. But the crisis may also motivate risk-averse workers to seek roles that provide a steady income with employer-sponsored benefits, says Dave Berndt, a senior human resources advisor at HR outsourcing services G&A Partners. “It could create this impetus for people to say, you know, I really want to get back into that corporate environment or where my benefits give me more of a safety net,” he says.</p>
+
+<p><em>(Adapted from Quartz, 2020)</em></p>
+</div>
+        </section>
+
+        <section class="question-set">
+          <div class="set-head">
+            <h3>Questions 27–33</h3>
+            <span id="count-6">0 answered</span>
+          </div>
+          
+        <div class="question" id="question-27">
+          <div class="q-head"><span class="q-num">27</span><p>In paragraph 1, gig work is a kind of job</p></div>
+          <div class="options"><label class="option" id="q27-A"><input type="radio" name="q27" value="A"><span class="letter">A</span><span>in the US on-demand companies</span></label><label class="option" id="q27-B"><input type="radio" name="q27" value="B"><span class="letter">B</span><span>that requires people to stay indoors</span></label><label class="option" id="q27-C"><input type="radio" name="q27" value="C"><span class="letter">C</span><span>to handle the spread of coronavirus</span></label><label class="option" id="q27-D"><input type="radio" name="q27" value="D"><span class="letter">D</span><span>that is associated with delivery services</span></label></div>
+        </div>
+        
+        <div class="question" id="question-28">
+          <div class="q-head"><span class="q-num">28</span><p>“We appreciate your patience as we are experiencing long-wait times due to COVID-19” (lines 8 and 9) suggests that</p></div>
+          <div class="options"><label class="option" id="q28-A"><input type="radio" name="q28" value="A"><span class="letter">A</span><span>it is clear that the demand for food delivery services has increased</span></label><label class="option" id="q28-B"><input type="radio" name="q28" value="B"><span class="letter">B</span><span>it is evident that a pandemic has resulted in a hike in food delivery fee</span></label><label class="option" id="q28-C"><input type="radio" name="q28" value="C"><span class="letter">C</span><span>it is apparent that more new food delivery companies have to be set up</span></label><label class="option" id="q28-D"><input type="radio" name="q28" value="D"><span class="letter">D</span><span>it is crucial that food delivery companies have to increase their workers’ salary</span></label></div>
+        </div>
+        
+        <div class="question" id="question-29">
+          <div class="q-head"><span class="q-num">29</span><p>What is the objective of PAP?</p></div>
+          <div class="options"><label class="option" id="q29-A"><input type="radio" name="q29" value="A"><span class="letter">A</span><span>It aims to get more new workers.</span></label><label class="option" id="q29-B"><input type="radio" name="q29" value="B"><span class="letter">B</span><span>It aims to help workers financially.</span></label><label class="option" id="q29-C"><input type="radio" name="q29" value="C"><span class="letter">C</span><span>It aims to reduce workers’ working hours.</span></label><label class="option" id="q29-D"><input type="radio" name="q29" value="D"><span class="letter">D</span><span>It aims to assist workers to return to their jobs.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-30">
+          <div class="q-head"><span class="q-num">30</span><p>In paragraph 6, how does the writer explain on the positive impact of COVID-19 to the well-being of gig workers?</p></div>
+          <div class="options"><label class="option" id="q30-A"><input type="radio" name="q30" value="A"><span class="letter">A</span><span>The writer uses listing.</span></label><label class="option" id="q30-B"><input type="radio" name="q30" value="B"><span class="letter">B</span><span>The writer uses narration.</span></label><label class="option" id="q30-C"><input type="radio" name="q30" value="C"><span class="letter">C</span><span>The writer uses examples.</span></label><label class="option" id="q30-D"><input type="radio" name="q30" value="D"><span class="letter">D</span><span>The writer uses definitions.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-31">
+          <div class="q-head"><span class="q-num">31</span><p>What is the main idea of paragraph 7?</p></div>
+          <div class="options"><label class="option" id="q31-A"><input type="radio" name="q31" value="A"><span class="letter">A</span><span>There will be a large number of jobless Americans.</span></label><label class="option" id="q31-B"><input type="radio" name="q31" value="B"><span class="letter">B</span><span>There will be 3 million jobless Americans by summer.</span></label><label class="option" id="q31-C"><input type="radio" name="q31" value="C"><span class="letter">C</span><span>There will be 200 American drivers working for food delivery services.</span></label><label class="option" id="q31-D"><input type="radio" name="q31" value="D"><span class="letter">D</span><span>There will be a high number of unemployed Americans in travel-related industry.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-32">
+          <div class="q-head"><span class="q-num">32</span><p>Which of the following is true about Gracie Lifschutz?</p></div>
+          <div class="options"><label class="option" id="q32-A"><input type="radio" name="q32" value="A"><span class="letter">A</span><span>She has done some digital works from home.</span></label><label class="option" id="q32-B"><input type="radio" name="q32" value="B"><span class="letter">B</span><span>She has planned to use her talent on a gig platform.</span></label><label class="option" id="q32-C"><input type="radio" name="q32" value="C"><span class="letter">C</span><span>She has used some of her savings to support her life.</span></label><label class="option" id="q32-D"><input type="radio" name="q32" value="D"><span class="letter">D</span><span>She has just been fired as sales associate of a retail store in Manhattan.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-33">
+          <div class="q-head"><span class="q-num">33</span><p>“safety net” (line 64) refers to</p></div>
+          <div class="options"><label class="option" id="q33-A"><input type="radio" name="q33" value="A"><span class="letter">A</span><span>growth of gig work (line 54)</span></label><label class="option" id="q33-B"><input type="radio" name="q33" value="B"><span class="letter">B</span><span>gig economy in a different lens (line 56)</span></label><label class="option" id="q33-C"><input type="radio" name="q33" value="C"><span class="letter">C</span><span>steady income with employer-sponsored benefits (line 61)</span></label><label class="option" id="q33-D"><input type="radio" name="q33" value="D"><span class="letter">D</span><span>HR outsourcing services G&amp;A Partners (line 62)</span></label></div>
+        </div>
+        
+        </section>
+
+        <button class="next-btn" data-next="7">
+          NEXT PART →
+        </button>
+      </div>
+    </article>
+    
+    <article class="part " id="part-7">
+      <button class="part-head" type="button">
+        <div class="part-no">7</div>
+        <div class="part-meta">
+          <small>Questions 34–40</small>
+          <b>Part 7 · Beauty and personal care products</b>
+        </div>
+        <div class="plus">+</div>
+      </button>
+
+      <div class="part-body">
+        <section class="passage">
+          <div class="passage-top">
+            <span>READING TEXT</span>
+            <button class="expand" type="button">EXPAND</button>
+          </div>
+          <div class="passage-text">
+<p><em>Read a text about the use of beauty and personal care products by American teenagers.</em></p>
+<p><em>Answer questions 34 to 40 based on the text.</em></p>
+
+<p>In 2016’s Mintel report, it is found that across the United States (US), American tweens – those who aged 9 to 11 and teens – those who aged 12 to 17 are indulging in makeup. More than half of the US 12 to 14 year olds use mascara, as well as eye shadow, eye liner, and eyebrow pencils (54%). Meanwhile, some 45% use foundation/concealer, 30% use blush/bronzer, and 10% use hair colouring products.</p>
+
+<p>Surprisingly, beauty isn’t just the preserve of young girls; while 90% of girls aged 9 to 17 are beauty product users, today, seven in 10 (69%) boys of the same age enjoy a touch of beauty. Indeed, product usage among the American boys is high, with more than two in five boys aged 12 to 17 using facial cleansing products (44%), perfume/cologne (42%) and lip care products (41%), while three in 10 (29%) use hair styling mousse, gels, and creams.</p>
+
+<p>It seems you are never too young for a beauty regimen, as Mintel research indicates that a love of beauty starts early. One quarter (25%) of boys and two in five (39%) girls aged 6 to 8 use body spray/perfume/cologne, while 27% of boys and 35% of girls use hair styling creams, gels, lotions, spritz, and tonic. And another one in 20 (5%) boys and 45% of girls aged 6 to 8 use lipstick/lip gloss. Although more than half (56%) of the American teens say they use makeup to express themselves and their style, confidence is the major driver behind beauty and personal care product usage. Some 42% of the American teens aged 12 to 14 who use beauty and personal care products do so because it makes them feel more confident, rising to well over half (56%) of those aged 15 to 17. One in seven (16%) of the American teens aged 12 to 14 use personal care products to look older or more grown up, with young boys (19%) more likely than girls (14%) to feel the pressure to look good. “Beauty awareness starts at an early age, and both tweens and teens are becoming increasingly savvy due to the popularity of YouTube beauty tutorials. But it is certainly not just girls looking to express themselves through the use of beauty and personal care products as our research reveals that boys show a strong interest in male grooming products. Although self-expression is key to makeup usage, it’s evident that half of teens use makeup to feel more confident,” said Margie Nanninga, Beauty Analyst at Mintel.</p>
+
+<p>Mintel research further indicates that teen girls in particular are looking for relatable spokespeople as, overall, more than one third (36%) of all 12 to 17 year old beauty product users are eager to see people who are not photoshopped or airbrushed in beauty and personal care advertisements, with girls (41%) twice as likely as boys (21%) to say this. What’s more, half (51%) of teens are looking for a spokesperson who is “like them.” It is clear that in beauty and personal care advertising, different spokespeople appeal to different genders, as teen boys are particularly interested in seeing celebrities (40%) and athletes (33%); however, teen girls are considerably less moved by the use of celebrities (26%) and athletes (17%) than their male counterparts. Meanwhile, Hispanic American teens are largely influenced by the use of famous people (43%), and as many as 71% use products with celebrities in their ads compared to 54% of the American teens overall. Additionally, two thirds (65%) of Hispanic American teens use products with celebrity names on the packaging compared to 45% of all the American teens.</p>
+
+<p>“The saturation of film and TV stars and celebrity athletes, as well as the use of photoshopped imagery, in beauty and personal care advertising is driving many younger consumers to prefer more authentic representations, experiences, and communication. Teen girls are especially likely to seek authenticity, preferring those who aren’t airbrushed and those who are strong role models. A preference for relatable spokespeople is likely driving interest in YouTube vloggers and reality TV stars, who teens likely see as more relatable. However, we see the opposite with teen boys, who are more likely to want celebrity spokespeople,” concludes Nanninga.</p>
+
+<p><em>(Adapted from Mintel, 2016)</em></p>
+</div>
+        </section>
+
+        <section class="question-set">
+          <div class="set-head">
+            <h3>Questions 34–40</h3>
+            <span id="count-7">0 answered</span>
+          </div>
+          
+        <div class="question" id="question-34">
+          <div class="q-head"><span class="q-num">34</span><p>The writer begins the text by</p></div>
+          <div class="options"><label class="option" id="q34-A"><input type="radio" name="q34" value="A"><span class="letter">A</span><span>discussing beauty habits of the Americans</span></label><label class="option" id="q34-B"><input type="radio" name="q34" value="B"><span class="letter">B</span><span>giving a range of available beauty products in the US</span></label><label class="option" id="q34-C"><input type="radio" name="q34" value="C"><span class="letter">C</span><span>defining teen and tween in the American context</span></label><label class="option" id="q34-D"><input type="radio" name="q34" value="D"><span class="letter">D</span><span>showing evidence of beauty products use amongst the young in the US</span></label></div>
+        </div>
+        
+        <div class="question" id="question-35">
+          <div class="q-head"><span class="q-num">35</span><p>In paragraph 2, it is evident that</p></div>
+          <div class="options"><label class="option" id="q35-A"><input type="radio" name="q35" value="A"><span class="letter">A</span><span>boys love girls who use cosmetic products</span></label><label class="option" id="q35-B"><input type="radio" name="q35" value="B"><span class="letter">B</span><span>boys prefer girls’ cosmetic products to theirs</span></label><label class="option" id="q35-C"><input type="radio" name="q35" value="C"><span class="letter">C</span><span>boys use cosmetic products as much as girls do</span></label><label class="option" id="q35-D"><input type="radio" name="q35" value="D"><span class="letter">D</span><span>boys are the main users of girls’ cosmetic products</span></label></div>
+        </div>
+        
+        <div class="question" id="question-36">
+          <div class="q-head"><span class="q-num">36</span><p>Which of the following is true about Mintel’s findings in paragraph 3?</p></div>
+          <div class="options"><label class="option" id="q36-A"><input type="radio" name="q36" value="A"><span class="letter">A</span><span>The American boys used more hair styling products than the American girls.</span></label><label class="option" id="q36-B"><input type="radio" name="q36" value="B"><span class="letter">B</span><span>A large number of the American girls used more personal care products to look more mature.</span></label><label class="option" id="q36-C"><input type="radio" name="q36" value="C"><span class="letter">C</span><span>The biggest difference between the American boys and girls in percentages can be found in the use of lipstick or lip gloss.</span></label><label class="option" id="q36-D"><input type="radio" name="q36" value="D"><span class="letter">D</span><span>The smallest difference between the American boys and girls in percentages can be found in the use of body spray, perfume, or cologne.</span></label></div>
+        </div>
+        
+        <div class="question" id="question-37">
+          <div class="q-head"><span class="q-num">37</span><p>the major driver (line 18) can best be replaced by</p></div>
+          <div class="options"><label class="option" id="q37-A"><input type="radio" name="q37" value="A"><span class="letter">A</span><span>the only factor</span></label><label class="option" id="q37-B"><input type="radio" name="q37" value="B"><span class="letter">B</span><span>the main cause</span></label><label class="option" id="q37-C"><input type="radio" name="q37" value="C"><span class="letter">C</span><span>the main reason</span></label><label class="option" id="q37-D"><input type="radio" name="q37" value="D"><span class="letter">D</span><span>the only contributor</span></label></div>
+        </div>
+        
+        <div class="question" id="question-38">
+          <div class="q-head"><span class="q-num">38</span><p>When deciding to purchase beauty products</p></div>
+          <div class="options"><label class="option" id="q38-A"><input type="radio" name="q38" value="A"><span class="letter">A</span><span>both American boys and girls would prefer athletes as models in beauty advertisements</span></label><label class="option" id="q38-B"><input type="radio" name="q38" value="B"><span class="letter">B</span><span>both American boys and girls would prefer different types of people as models in beauty advertisements</span></label><label class="option" id="q38-C"><input type="radio" name="q38" value="C"><span class="letter">C</span><span>both American boys and girls would look highly upon the celebrities who become models in beauty advertisements</span></label><label class="option" id="q38-D"><input type="radio" name="q38" value="D"><span class="letter">D</span><span>both American boys and girls would first look at how models are photoshopped and airbrushed in beauty advertisements</span></label></div>
+        </div>
+        
+        <div class="question" id="question-39">
+          <div class="q-head"><span class="q-num">39</span><p>The use of celebrities for beauty advertisements is mostly effective for</p></div>
+          <div class="options"><label class="option" id="q39-A"><input type="radio" name="q39" value="A"><span class="letter">A</span><span>American girls</span></label><label class="option" id="q39-B"><input type="radio" name="q39" value="B"><span class="letter">B</span><span>American boys</span></label><label class="option" id="q39-C"><input type="radio" name="q39" value="C"><span class="letter">C</span><span>Hispanic American teens</span></label><label class="option" id="q39-D"><input type="radio" name="q39" value="D"><span class="letter">D</span><span>Both American and Hispanic American teens</span></label></div>
+        </div>
+        
+        <div class="question" id="question-40">
+          <div class="q-head"><span class="q-num">40</span><p>What is the most suitable title for the text?</p></div>
+          <div class="options"><label class="option" id="q40-A"><input type="radio" name="q40" value="A"><span class="letter">A</span><span>Beauty has No Limits</span></label><label class="option" id="q40-B"><input type="radio" name="q40" value="B"><span class="letter">B</span><span>Beauty is Child’s Play</span></label><label class="option" id="q40-C"><input type="radio" name="q40" value="C"><span class="letter">C</span><span>Beauty Prince and Princess</span></label><label class="option" id="q40-D"><input type="radio" name="q40" value="D"><span class="letter">D</span><span>Beauty is in the Eye of the Beholder</span></label></div>
+        </div>
+        
+        </section>
+
+        <button class="next-btn" data-next="0">
+          REVIEW & SUBMIT →
+        </button>
+      </div>
+    </article>
+    
+</div>
+
+<section class="mock-finish" id="submitPanel">
+  <h2>Finish Mock Practice 1 · Reading</h2>
+  <p id="answeredCount">0 of 40 questions answered.</p>
+  <button class="mock-submit-btn" id="submitExam">SUBMIT FULL READING MOCK →</button>
+  <span class="submit-note">Your score and correct-answer review appear after final submission.</span>
+  <div class="result" id="result"></div>
+</section>
+
+</main>
+
+<nav class="nav">
+<a href="muet-hub.html"><img src="assets/heroes/nav-home.svg" alt=""><span>Home</span></a>
+<a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg" alt=""><span>Guide</span></a>
+<a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg" alt=""><span>Vault</span></a>
+<a href="progress.html"><img src="assets/heroes/nav-progress.svg" alt=""><span>Progress</span></a>
+<a href="settings.html"><img src="assets/heroes/nav-profile.svg" alt=""><span>Profile</span></a>
+</nav>
+
+<script>
+const ANSWERS = {"1": "B", "2": "A", "3": "C", "4": "A", "5": "A", "6": "B", "7": "C", "8": "C", "9": "B", "10": "C", "11": "B", "12": "B", "13": "A", "14": "B", "15": "B", "16": "A", "17": "A", "18": "C", "19": "C", "20": "A", "21": "B", "22": "G", "23": "E", "24": "D", "25": "A", "26": "C", "27": "D", "28": "A", "29": "B", "30": "C", "31": "A", "32": "B", "33": "C", "34": "D", "35": "C", "36": "C", "37": "C", "38": "B", "39": "C", "40": "A"};
+
+let started=false;
+let submitted=false;
+let remaining=75*60;
+let timerId=null;
+
+function drawTimer(){
+  const m=Math.floor(remaining/60);
+  const s=remaining%60;
+  document.getElementById("timer").textContent=
+    String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+
+document.getElementById("startExam").addEventListener("click",()=>{
+  if(started)return;
+  started=true;
+
+  document.getElementById("startExam").textContent="TIMER RUNNING";
+
+  timerId=setInterval(()=>{
+    remaining--;
+    drawTimer();
+
+    if(remaining<=0){
+      clearInterval(timerId);
+      openSubmit();
+      submitPaper(true);
+    }
+  },1000);
+});
+
+document.querySelectorAll(".part-head").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const current=btn.closest(".part");
+    document.querySelectorAll(".part").forEach(p=>{
+      if(p!==current)p.classList.remove("open");
+    });
+    current.classList.toggle("open");
+  });
+});
+
+document.querySelectorAll(".expand").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const text=btn.closest(".passage").querySelector(".passage-text");
+    const open=text.classList.toggle("expanded");
+    btn.textContent=open ? "COLLAPSE" : "EXPAND";
+  });
+});
+
+function openPart(n){
+  document.querySelectorAll(".part").forEach(p=>p.classList.remove("open"));
+  const target=document.getElementById("part-"+n);
+  if(!target)return;
+
+  target.classList.add("open");
+
+  for(let i=1;i<=7;i++){
+    document.getElementById("prog-"+i).classList.toggle("on",i<=n);
+  }
+
+  setTimeout(()=>target.scrollIntoView({behavior:"smooth",block:"start"}),60);
+}
+
+document.querySelectorAll(".next-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const n=Number(btn.dataset.next);
+    if(n) openPart(n);
+    else openSubmit();
+  });
+});
+
+function updateCounts(){
+  let total=0;
+  const ranges=[[1,4],[5,9],[10,14],[15,20],[21,26],[27,33],[34,40]];
+
+  ranges.forEach((range,idx)=>{
+    let partCount=0;
+
+    for(let q=range[0];q<=range[1];q++){
+      if(document.querySelector(`input[name="q${q}"]:checked`)){
+        partCount++;
+        total++;
+      }
+    }
+
+    document.getElementById("count-"+(idx+1)).textContent=
+      partCount+" answered";
+  });
+
+  document.getElementById("answeredCount").textContent=
+    total+" of 40 questions answered.";
+
+  return total;
+}
+
+document.querySelectorAll('input[type="radio"]').forEach(input=>{
+  input.addEventListener("change",updateCounts);
+});
+
+function openSubmit(){
+  updateCounts();
+  document.getElementById("submitPanel").classList.add("show");
+  document.getElementById("submitPanel").scrollIntoView({behavior:"smooth"});
+}
+
+function submitPaper(auto=false){
+  if(submitted)return;
+
+  const answered=updateCounts();
+
+  if(!auto && answered<40){
+    const ok=confirm(`You answered ${answered} of 40 questions. Submit anyway?`);
+    if(!ok)return;
+  }
+
+  submitted=true;
+  clearInterval(timerId);
+
+  let correct=0;
+
+  for(let q=1;q<=40;q++){
+    const right=ANSWERS[q];
+    const selected=document.querySelector(`input[name="q${q}"]:checked`);
+    const chosen=selected ? selected.value : null;
+
+    if(chosen===right)correct++;
+
+    document.querySelectorAll(`input[name="q${q}"]`).forEach(input=>{
+      const label=document.getElementById(`q${q}-${input.value}`);
+
+      if(input.value===right){
+        label.classList.add("correct");
+      }else if(input.checked){
+        label.classList.add("wrong");
+      }
+
+      input.disabled=true;
+    });
+  }
+
+  const score90=Math.round(correct/40*90);
+  const percent=Math.round(correct/40*100);
+
+  const box=document.getElementById("result");
+  box.classList.add("show");
+  box.innerHTML=
+    `<div class="big">${correct}/40</div>
+     <div><b>${score90}/90 equivalent Reading score · ${percent}%</b></div>
+     <div style="margin-top:6px">${answered} answered · Time remaining: ${document.getElementById("timer").textContent}</div>
+     <div style="margin-top:8px">Correct answers are highlighted in green. Your selected incorrect answers are highlighted in red.</div>`;
+
+  localStorage.setItem("muet_mock1_reading","true");
+  localStorage.setItem("muet_mock1_reading_score",String(correct));
+  localStorage.setItem("muet_mock1_reading_score90",String(score90));
+
+  document.getElementById("submitExam").disabled=true;
+
+  document.getElementById("paper").style.pointerEvents="none";
+}
+
+document.getElementById("submitExam").addEventListener("click",()=>submitPaper(false));
+
+drawTimer();
+updateCounts();
+</script>
+</body>
+</html>

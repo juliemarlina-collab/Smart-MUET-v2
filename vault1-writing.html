@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#FF5A00">
+  <title>Writing · Vault 1 · Smart MUET Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111;
+      --white:#fff;
+      --soft:#f4f7f8;
+      --muted:#4f535b;
+
+      --orange:#FF5A00;
+      --gold:#FFC400;
+      --cyan:#18D9FF;
+      --lime:#19EF14;
+      --pink:#FF4FA3;
+
+      --line:3px solid var(--ink);
+      --shadow:5px 5px 0 var(--ink);
+
+      --fh:"Sora",sans-serif;
+      --fb:"DM Sans",sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+
+    body{
+      font-family:var(--fb);
+      background:var(--orange);
+      color:var(--ink);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button,textarea,input,select{font:inherit}
+
+    .app{
+      width:100%;
+      max-width:560px;
+      min-height:100dvh;
+      margin:auto;
+      background:var(--soft);
+      padding:15px 14px 112px;
+    }
+
+    .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:9px;
+    }
+
+    .brand img{
+      width:54px;
+      height:54px;
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:9px;
+      font-weight:1000;
+      letter-spacing:.08em;
+    }
+
+    .brand b{
+      display:block;
+      margin-top:3px;
+      font-family:var(--fh);
+      font-size:17px;
+    }
+
+    .back{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:#fff;
+      box-shadow:2px 2px 0 var(--ink);
+      padding:8px 11px;
+      font-size:11px;
+      font-weight:1000;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:#fff;
+      border:var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:22px 18px 20px;
+      margin-bottom:15px;
+    }
+
+    .hero::after{z-index:-1;
+      content:"";
+      position:absolute;
+      width:96px;
+      height:96px;
+      right:-25px;
+      top:-28px;
+      border:var(--line);
+      border-radius:50%;
+      background:var(--orange);
+    }
+
+    .tag{
+      position:relative;
+      z-index:2;
+      display:inline-block;
+      background:var(--ink);
+      color:#fff;
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:10px;
+      font-weight:1000;
+      letter-spacing:.08em;
+    }
+
+    .hero h1{
+      position:relative;
+      z-index:2;
+      margin-top:11px;
+      font-family:var(--fh);
+      font-size:clamp(36px,9vw,52px);
+      line-height:.96;
+      letter-spacing:-.05em;
+    }
+
+    .hero h1 span{
+      display:block;
+      color:var(--orange);
+    }
+
+    .hero p{
+      position:relative;
+      z-index:2;
+      margin-top:12px;
+      color:#3c4148;
+      font-size:16px;
+      line-height:1.5;
+      font-weight:700;
+    }
+
+    .tech{
+      background:var(--ink);
+      color:#fff;
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-bottom:15px;
+    }
+
+    .tech h2{
+      font-family:var(--fh);
+      font-size:20px;
+    }
+
+    .tech p{
+      margin-top:4px;
+      color:#ddd;
+      font-size:13px;
+      font-weight:700;
+    }
+
+    .techgrid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:7px;
+      margin-top:10px;
+    }
+
+    .techgrid div{
+      border:2px solid #fff;
+      border-radius:12px;
+      padding:9px 4px;
+      text-align:center;
+      color:#111;
+      font-size:9px;
+      font-weight:1000;
+    }
+
+    .techgrid div:nth-child(1){background:var(--orange)}
+    .techgrid div:nth-child(2){background:var(--gold)}
+    .techgrid div:nth-child(3){background:var(--cyan)}
+    .techgrid div:nth-child(4){background:var(--lime)}
+
+    .techgrid b{
+      display:block;
+      font-family:var(--fh);
+      font-size:22px;
+    }
+
+    .paperbar{
+      background:#fff;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:13px;
+      margin-bottom:14px;
+    }
+
+    .paperbar h2{
+      font-family:var(--fh);
+      font-size:19px;
+    }
+
+    .paperstats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:7px;
+      margin-top:9px;
+    }
+
+    .paperstats div{
+      border:2px solid var(--ink);
+      border-radius:11px;
+      padding:8px;
+      text-align:center;
+      background:#fafafa;
+    }
+
+    .paperstats b{
+      display:block;
+      font-family:var(--fh);
+      font-size:18px;
+    }
+
+    .paperstats span{
+      font-size:9px;
+      font-weight:900;
+      color:var(--muted);
+    }
+
+    .task{
+      overflow:hidden;
+      background:#fff;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      margin-bottom:11px;
+    }
+
+    .task-head{
+      width:100%;
+      min-height:76px;
+      border:0;
+      background:#fff0e8;
+      padding:12px;
+      display:grid;
+      grid-template-columns:48px 1fr auto;
+      gap:10px;
+      align-items:center;
+      text-align:left;
+      cursor:pointer;
+    }
+
+    .task-num{
+      width:46px;
+      height:46px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:#fff;
+      font-family:var(--fh);
+      font-size:18px;
+      font-weight:800;
+    }
+
+    .task-title b{
+      display:block;
+      font-family:var(--fh);
+      font-size:16px;
+    }
+
+    .task-title span{
+      display:block;
+      margin-top:3px;
+      color:var(--muted);
+      font-size:11px;
+      font-weight:750;
+    }
+
+    .chev{
+      font-size:24px;
+      font-weight:1000;
+    }
+
+    .task.open .chev{
+      transform:rotate(45deg);
+    }
+
+    .task-body{
+      display:none;
+      border-top:2px solid var(--ink);
+      padding:12px;
+      background:#fff;
+    }
+
+    .task.open .task-body{
+      display:block;
+    }
+
+    .prompt{
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:#fff7c9;
+      padding:10px;
+      font-size:12px;
+      line-height:1.5;
+      font-weight:750;
+      margin-bottom:10px;
+    }
+
+    .prompt ul{
+      margin:8px 0 0 18px;
+    }
+
+    .support{
+      margin:9px 0;
+      border:2px solid var(--ink);
+      border-radius:12px;
+      background:#fff5eb;
+      padding:9px;
+    }
+
+    .support summary{
+      cursor:pointer;
+      font-family:var(--fh);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .support p{
+      margin-top:7px;
+      color:#43474e;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .plan{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .plan-row{
+      display:grid;
+      grid-template-columns:32px 1fr;
+      gap:8px;
+      align-items:start;
+    }
+
+    .letter{
+      width:30px;
+      height:30px;
+      display:grid;
+      place-items:center;
+      border:2px solid var(--ink);
+      border-radius:9px;
+      background:var(--gold);
+      font-family:var(--fh);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    textarea{
+      width:100%;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:#fff;
+      padding:10px;
+      font-size:13px;
+      line-height:1.45;
+      resize:vertical;
+    }
+
+    .answer-box{
+      margin-top:10px;
+      border:2px solid var(--ink);
+      border-radius:13px;
+      background:#fafafa;
+      padding:10px;
+    }
+
+    .answer-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:8px;
+    }
+
+    .answer-head h3{
+      font-family:var(--fh);
+      font-size:15px;
+    }
+
+    .words{
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:#fff;
+      padding:4px 8px;
+      font-size:10px;
+      font-weight:1000;
+    }
+
+    .checks{
+      display:grid;
+      gap:7px;
+      margin-top:10px;
+    }
+
+    .check{
+      display:grid;
+      grid-template-columns:20px 1fr;
+      gap:8px;
+      align-items:start;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:#fff;
+      padding:9px;
+      font-size:12px;
+      line-height:1.35;
+      font-weight:750;
+    }
+
+    .check input{
+      width:18px;
+      height:18px;
+    }
+
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:100%;
+      min-height:50px;
+      margin-top:10px;
+      border:var(--line);
+      border-radius:12px;
+      background:var(--orange);
+      box-shadow:4px 4px 0 var(--ink);
+      font-size:12px;
+      font-weight:1000;
+      cursor:pointer;
+    }
+
+    .result{
+      display:none;
+      margin-top:10px;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:#e7fff5;
+      padding:9px;
+      font-size:12px;
+      line-height:1.45;
+      font-weight:800;
+    }
+
+    .result.show{display:block}
+
+    .finish{
+      background:#fff;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-top:14px;
+    }
+
+    .finish h2{
+      font-family:var(--fh);
+      font-size:20px;
+    }
+
+    .finish p{
+      margin-top:5px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.4;
+      font-weight:700;
+    }
+
+    .nav{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:10px;
+      width:calc(100% - 20px);
+      max-width:540px;
+      z-index:70;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      background:#fff;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:5px 5px 0 var(--ink);
+      padding:6px;
+    }
+
+    .nav a{
+      min-height:58px;
+      display:grid;
+      place-items:center;
+      align-content:center;
+      gap:3px;
+      border-radius:10px;
+      font-size:9px;
+      font-weight:1000;
+    }
+
+    .nav a.active{
+      background:var(--gold);
+      border:2px solid var(--ink);
+    }
+
+    .nav img{
+      width:26px;
+      height:26px;
+    }
+
+    @media(min-width:700px){
+      .app{max-width:850px;padding:24px 24px 120px}
+      .nav{max-width:810px}
+      .task-body{padding:16px}
+    }
+  
+/* ===== Vault 1 Writing · updated guided style ===== */
+.guide-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:13px;
+}
+.guide-strip div{
+  border:2px solid var(--ink);border-radius:10px;background:#fff;padding:8px 5px;
+  text-align:center;font-size:8px;font-weight:1000;
+}
+.guide-strip div:nth-child(1){background:#fff7c9}
+.guide-strip div:nth-child(2){background:#eafdff}
+.guide-strip div:nth-child(3){background:#e7fff5}
+.autosave{margin-top:6px;color:var(--muted);font-size:9px;font-weight:850}
+.words.ok{background:var(--lime)}
+.postcheck{
+  display:none;margin-top:10px;
+}
+.postcheck.show{display:block}
+.criteria{display:grid;gap:7px}
+.criterion{border:2px solid var(--ink);border-radius:11px;background:#fff;padding:9px}
+.criterion-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.criterion b{font-family:var(--fh);font-size:11px}
+.criterion-score{font-family:var(--fh);font-size:22px;font-weight:900}
+.criterion p{margin-top:4px;color:var(--muted);font-size:10px;line-height:1.4;font-weight:750}
+.score-card{
+  margin-top:8px;border:3px solid var(--ink);border-radius:12px;background:#e7fff5;
+  padding:10px;display:flex;justify-content:space-between;align-items:center;gap:8px;
+}
+.score-card b{font-family:var(--fh);font-size:12px}
+.score-card strong{font-family:var(--fh);font-size:28px}
+.coach{margin-top:8px;border:2px solid var(--ink);border-radius:11px;background:#fff7cc;padding:9px;font-size:11px;line-height:1.45;font-weight:800}
+.save-state{margin-top:8px;border:2px solid var(--ink);border-radius:10px;background:#fff;padding:8px;font-size:10px;font-weight:850}
+.secondary-btn{width:100%;min-height:46px;margin-top:8px;border:var(--line);border-radius:11px;background:#fff;box-shadow:3px 3px 0 var(--ink);font-size:11px;font-weight:1000;cursor:pointer}
+.self-reflect{margin-top:8px;border:2px dashed var(--ink);border-radius:11px;background:#fff;padding:9px;font-size:10px;line-height:1.45;font-weight:750}
+
+</style>
+</head>
+
+<body>
+<main class="app">
+
+  <header class="top">
+    <div class="brand">
+      <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET">
+      <div>
+        <small>VAULT 1 · 800/4 · WRITING</small>
+        <b>Writing Practice</b>
+      </div>
+    </div>
+
+    <a class="back" href="vault1.html">← Vault 1</a>
+  </header>
+
+
+  <section class="hero">
+    <span class="tag">MUET 800/4 · WRITING</span>
+
+    <h1>
+      Plan clearly.
+      <span>Write with purpose.</span>
+    </h1>
+
+    <p>
+      Complete both writing tasks. Use PEEL as support for developing ideas,
+      but keep the actual writing task at the centre of the practice.
+    </p>
+  </section>
+
+
+  <section class="tech">
+    <h2>Use PEEL while you practise</h2>
+
+    <p>
+      Use PEEL while planning, then move into the full writing task and post-submit rubric feedback.
+    </p>
+
+    <div class="techgrid">
+      <div><b>P</b>POINT</div>
+      <div><b>E</b>EXPLAIN</div>
+      <div><b>E</b>EXAMPLE</div>
+      <div><b>L</b>LINK</div>
+    </div>
+  </section>
+
+
+  <section class="paperbar">
+    <h2>Complete Writing Practice</h2>
+
+    <div class="paperstats">
+      <div><b>2</b><span>TASKS</span></div>
+      <div><b>75</b><span>MINUTES</span></div>
+      <div><b>PEEL</b><span>SUPPORT</span></div>
+    </div>
+  </section>
+
+  <div class="guide-strip">
+    <div>1 · PLAN WITH PEEL</div>
+    <div>2 · WRITE FULL RESPONSE</div>
+    <div>3 · SUBMIT & IMPROVE</div>
+  </div>
+
+  <!-- TASK 1 -->
+  <article class="task open">
+    <button class="task-head">
+      <div class="task-num">1</div>
+
+      <div class="task-title">
+        <b>Task 1 · Email / Letter</b>
+        <span>Read → Plan → Write → Submit</span>
+      </div>
+
+      <div class="chev">+</div>
+    </button>
+
+    <div class="task-body">
+
+      <div class="prompt">
+        <b>Situation:</b><br>
+        You received an email from your friend, Aina, who wants to organise
+        a study programme for MUET candidates during the semester break.
+
+        <ul>
+          <li>Suggest one suitable activity.</li>
+          <li>Explain why the activity would help MUET candidates.</li>
+          <li>Suggest a suitable place for the programme.</li>
+          <li>Tell Aina whether you can help organise it.</li>
+        </ul>
+      </div>
+
+      <details class="support">
+        <summary>Need Task 1 language support?</summary>
+
+        <p>
+          <b>Open:</b> “Thank you for your email…”<br>
+          <b>Suggest:</b> “I think we should…”<br>
+          <b>Explain:</b> “This would be useful because…”<br>
+          <b>Close:</b> “I hope these suggestions help. Best wishes,…”
+        </p>
+      </details>
+
+      <div class="answer-box">
+        <div class="answer-head">
+          <h3>Your Task 1 Answer</h3>
+          <div class="words"><span id="wc1">0</span> words</div>
+        </div>
+
+        <textarea id="answer1" rows="11" placeholder="Write your email / letter here..."></textarea>
+        <div class="autosave" id="save1">Autosave ready</div>
+      </div>
+
+      <details class="support">
+        <summary>Optional self-check before Submit</summary>
+        <p>Have I answered all four points? Is my tone suitable? Are my ideas organised? Have I checked grammar, spelling and punctuation?</p>
+      </details>
+<button class="btn" id="check1">SUBMIT TASK 1 →</button>
+      <div class="postcheck" id="result1"></div>
+
+    </div>
+  </article>
+
+
+  <!-- TASK 2 -->
+  <article class="task">
+    <button class="task-head">
+      <div class="task-num">2</div>
+
+      <div class="task-title">
+        <b>Task 2 · Essay</b>
+        <span>Plan → PEEL → Write → Submit</span>
+      </div>
+
+      <div class="chev">+</div>
+    </button>
+
+    <div class="task-body">
+
+      <div class="prompt">
+        <b>Essay Statement:</b><br><br>
+        “Students learn more effectively when technology is used in education.”
+
+        <br><br>
+
+        Write an essay expressing your opinion on this statement.
+      </div>
+
+      <details class="support" open>
+        <summary>Need PEEL planning support?</summary>
+
+        <p>
+          Use PEEL for your main body paragraphs. You do not need to force
+          PEEL into the introduction or conclusion.
+        </p>
+      </details>
+
+      <div class="plan">
+        <div class="plan-row">
+          <div class="letter">P</div>
+          <textarea id="pPoint" rows="2" placeholder="Main point for one body paragraph..."></textarea>
+        </div>
+
+        <div class="plan-row">
+          <div class="letter">E</div>
+          <textarea id="pExplain" rows="2" placeholder="Why / how does this point matter?"></textarea>
+        </div>
+
+        <div class="plan-row">
+          <div class="letter">E</div>
+          <textarea id="pExample" rows="2" placeholder="Example / evidence..."></textarea>
+        </div>
+
+        <div class="plan-row">
+          <div class="letter">L</div>
+          <textarea id="pLink" rows="2" placeholder="Link back to the essay argument..."></textarea>
+        </div>
+      </div>
+
+      <div class="answer-box">
+        <div class="answer-head">
+          <h3>Your Task 2 Essay</h3>
+          <div class="words"><span id="wc2">0</span> words</div>
+        </div>
+
+        <textarea id="answer2" rows="15" placeholder="Write your essay here..."></textarea>
+        <div class="autosave" id="save2">Autosave ready</div>
+      </div>
+
+      <details class="support">
+        <summary>Optional self-check before Submit</summary>
+        <p>Is my position clear? Do my body paragraphs develop relevant ideas? Did I explain or exemplify each point? Does my conclusion return to the statement?</p>
+      </details>
+<button class="btn" id="check2">SUBMIT TASK 2 →</button>
+      <div class="postcheck" id="result2"></div>
+
+    </div>
+  </article>
+
+
+  <section class="finish">
+    <h2>Complete Writing Vault 1</h2>
+
+    <p>
+      Submit both tasks, review the rubric feedback, then save this component to your Vault 1 progress.
+    </p>
+
+    <button class="btn" id="finishWriting">
+      SAVE WRITING PRACTICE →
+    </button>
+
+    <div class="result" id="finishResult"></div>
+  </section>
+
+</main>
+
+
+<nav class="nav">
+
+  <a href="muet-hub.html">
+    <img src="assets/heroes/nav-home.svg" alt="">
+    <span>Home</span>
+  </a>
+
+  <a href="guidance.html">
+    <img src="assets/heroes/icon-muet-intro.svg" alt="">
+    <span>Guide</span>
+  </a>
+
+  <a class="active" href="vault.html">
+    <img src="assets/heroes/nav-vault.svg" alt="">
+    <span>Vault</span>
+  </a>
+
+  <a href="progress.html">
+    <img src="assets/heroes/nav-progress.svg" alt="">
+    <span>Progress</span>
+  </a>
+
+  <a href="settings.html">
+    <img src="assets/heroes/nav-profile.svg" alt="">
+    <span>Profile</span>
+  </a>
+
+</nav>
+
+
+<script src="js/backend-config.js"></script>
+<script>
+document.querySelectorAll(".task-head").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    const current=btn.closest(".task");
+    document.querySelectorAll(".task").forEach(task=>{if(task!==current)task.classList.remove("open")});
+    current.classList.toggle("open");
+    if(current.classList.contains("open"))setTimeout(()=>current.scrollIntoView({behavior:"smooth",block:"start"}),80);
+  });
+});
+
+function countWords(text){const value=(text||"").trim();return value?value.split(/\s+/).filter(Boolean).length:0}
+const answer1=document.getElementById("answer1"),answer2=document.getElementById("answer2");
+
+function updateWC(task){
+  const field=task===1?answer1:answer2;
+  const wc=countWords(field.value);
+  document.getElementById("wc"+task).textContent=wc;
+  const box=document.getElementById("wc"+task).parentElement;
+  box.classList.toggle("ok",wc>=(task===1?100:250));
+}
+
+let st1=null,st2=null;
+answer1.value=localStorage.getItem("muet_v1_writing_draft1")||"";
+answer2.value=localStorage.getItem("muet_v1_writing_draft2")||"";
+updateWC(1);updateWC(2);
+answer1.addEventListener("input",()=>{updateWC(1);document.getElementById("save1").textContent="Saving...";clearTimeout(st1);st1=setTimeout(()=>{localStorage.setItem("muet_v1_writing_draft1",answer1.value);document.getElementById("save1").textContent="Saved locally ✓"},350)});
+answer2.addEventListener("input",()=>{updateWC(2);document.getElementById("save2").textContent="Saving...";clearTimeout(st2);st2=setTimeout(()=>{localStorage.setItem("muet_v1_writing_draft2",answer2.value);document.getElementById("save2").textContent="Saved locally ✓"},350)});
+
+function evaluateWriting(text,task){
+  const lower=text.toLowerCase(),wc=countWords(text),paras=text.split(/\n\s*\n|\n/).filter(p=>p.trim().length>20).length;
+  const connectors=(lower.match(/\b(firstly|secondly|however|therefore|moreover|furthermore|in addition|on the other hand|because|although|for example|for instance|as a result|consequently|in conclusion)\b/g)||[]).length;
+  const sentences=Math.max(1,(text.match(/[.!?]+/g)||[]).length),avg=wc/sentences,wl=lower.match(/\b[a-z]{4,}\b/g)||[],uniq=wl.length?new Set(wl).size/wl.length:0;
+  let tf=1;
+  if(task===1){
+    const groups=[['activity','programme','study'],['help','useful','because','candidates'],['place','venue','library','room','hall','centre','center'],['help organise','help organize','can help','cannot help','available']];
+    const hits=groups.filter(g=>g.some(k=>lower.includes(k))).length;
+    tf=hits===4?(wc>=100?5:4):hits===3?4:hits===2?3:hits===1?2:1;if(hits===4&&wc>=125)tf=6;
+  }else{
+    const stand=/\b(i agree|i disagree|in my opinion|i believe|i strongly|i partially|although|while some)\b/i.test(text);
+    const support=(lower.match(/\b(for example|for instance|because|therefore|as a result|this shows|this means)\b/g)||[]).length;
+    tf=stand?3:2;if(stand&&support>=2)tf=4;if(stand&&support>=3&&wc>=250)tf=5;if(stand&&support>=4&&wc>=300)tf=6;
+  }
+  let co=1;if(paras>=2)co=3;if(paras>=3&&connectors>=2)co=4;if(paras>=4&&connectors>=4)co=5;if(paras>=5&&connectors>=6)co=6;
+  let lg=2;if(avg>=8&&avg<=30)lg=3;if(uniq>=.48&&wc>=(task===1?80:200))lg=4;if(uniq>=.55&&wc>=(task===1?100:250)&&connectors>=3)lg=5;if(uniq>=.62&&wc>=(task===1?125:300)&&connectors>=5)lg=6;
+  let rs=null;if(task===2){const informal=(lower.match(/\b(gonna|wanna|kinda|lol|btw|yeah|stuff|u|ur)\b/g)||[]).length;rs=informal>=4?2:informal>=2?3:4;if(informal===0&&wc>=250)rs=5;if(informal===0&&wc>=300&&connectors>=4)rs=6}
+  const raw=task===1?tf+co+lg:tf+co+lg+rs,rawMax=task===1?18:24,scaledMax=task===1?30:60,scaled=Math.round(raw/rawMax*scaledMax);
+  let strength=tf>=5?'You covered the task requirements well.':co>=4?'Your response has a clear overall organisation.':'You completed a substantial writing attempt.';
+  let focus=tf<4?'Address every required point more explicitly.':co<4?'Use clearer paragraph progression and linking.':lg<4?'Improve grammatical control and vocabulary range.':task===2&&rs<4?'Keep the essay register consistently formal.':'Refine depth, precision and language control.';
+  return{tf,co,lg,rs,raw,rawMax,scaled,scaledMax,wc,strength,focus};
+}
+
+function renderResult(task,e){
+  const rows=[['Task Fulfilment',e.tf,'Coverage and development of the task requirements.'],['Organisation & Coherence',e.co,'Paragraphing, progression and cohesion.'],['Language',e.lg,'Control, range and clarity of language.']];
+  if(task===2)rows.push(['Register & Style',e.rs,'Suitability of formal academic register.']);
+  const box=document.getElementById('result'+task);box.classList.add('show');
+  box.innerHTML=`<div class="criteria">${rows.map(r=>`<div class="criterion"><div class="criterion-top"><b>${r[0]}</b><span class="criterion-score">${r[1]}/6</span></div><p>${r[2]}</p></div>`).join('')}</div><div class="score-card"><div><b>Guided Rubric Feedback</b><br><small>Raw ${e.raw}/${e.rawMax}</small></div><strong>${e.scaled}/${e.scaledMax}</strong></div><div class="coach"><b>💪 Strength</b><br>${e.strength}<br><br><b>🎯 Focus Next</b><br>${e.focus}</div><div class="self-reflect"><b>Vault 1 reflection:</b> Compare this feedback with your PEEL plan. Which part of your planning helped most, and what will you change on your second attempt?</div><div class="save-state" id="cloud${task}">Saving attempt…</div><button class="secondary-btn" type="button" onclick="revise(${task})">REVISE & TRY AGAIN</button>`;
+}
+
+async function saveAttempt(payload){
+  localStorage.setItem('muet_v1_writing_task'+payload.taskNumber,JSON.stringify(payload));
+  if(typeof window.saveSmartMuetAttempt==='function'){try{window.saveSmartMuetAttempt(payload)}catch(e){}}
+  const endpoint=window.SMART_MUET_APPS_SCRIPT_URL||window.SMART_MUET_BACKEND_URL||window.MUET_BACKEND_URL||'';
+  if(!endpoint)return{ok:false,message:'Saved locally · cloud endpoint not configured'};
+  try{const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'saveWritingAttempt',...payload})});return await r.json()}catch(e){return{ok:false,message:'Saved locally · cloud save pending'}}
+}
+
+let task1Complete=false,task2Complete=false;
+async function submit(task){
+  const answer=(task===1?answer1:answer2).value.trim(),min=task===1?100:250,wc=countWords(answer);
+  if(wc<50){alert('Develop your response further before submitting.');return}
+  if(wc<min&&!confirm(`Your response has ${wc} words. The task requires at least ${min}. Submit anyway?`))return;
+  const e=evaluateWriting(answer,task);renderResult(task,e);
+  const profile=(()=>{try{return JSON.parse(localStorage.getItem('smartMuetProfile')||'{}')}catch(e){return{}}})();
+  const peel=task===2?{point:document.getElementById('pPoint').value,explain:document.getElementById('pExplain').value,example:document.getElementById('pExample').value,link:document.getElementById('pLink').value}:null;
+  const payload={vaultId:'VAULT-01',component:'Writing',taskNumber:task,taskType:'Task '+task,studentName:profile.name||'',studentRegNo:profile.regNo||'',classGroup:profile.group||'',answerText:answer,wordCount:e.wc,peelPlan:peel,rubric:{taskFulfilment:e.tf,organisationCoherence:e.co,language:e.lg,registerStyle:e.rs},rawScore:e.raw,rawMax:e.rawMax,scaledScore:e.scaled,scaledMax:e.scaledMax,status:'Guided rubric-aligned practice evaluation',createdAt:new Date().toISOString()};
+  const saved=await saveAttempt(payload);document.getElementById('cloud'+task).textContent=saved&&saved.ok?'☁️ Saved to Google Sheet':'💾 '+((saved&&saved.message)||'Saved locally');
+  if(task===1)task1Complete=true;else task2Complete=true;
+}
+function revise(task){document.getElementById('result'+task).classList.remove('show');(task===1?answer1:answer2).focus();if(task===1)task1Complete=false;else task2Complete=false}
+
+document.getElementById('check1').addEventListener('click',()=>submit(1));
+document.getElementById('check2').addEventListener('click',()=>submit(2));
+document.getElementById('finishWriting').addEventListener('click',()=>{const result=document.getElementById('finishResult');result.classList.add('show');if(task1Complete&&task2Complete){localStorage.setItem('muet_v1_writing','true');result.innerHTML='<b>Writing Vault 1 completed ✓</b><br>Both tasks were submitted, reviewed and saved.'}else result.innerHTML='<b>Submit both writing tasks first.</b><br>Review Task 1 and Task 2 feedback before saving completion.'});
+</script>
+
+</body>
+</html>

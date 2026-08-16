@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#00C9C0">
+  <meta name="description" content="MUET Guide Hub — Smart MUET Guide">
+  <title>MUET Guide · Smart MUET Guide</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#111111;
+      --white:#ffffff;
+      --paper:#fffdf8;
+      --soft:#f4f7f8;
+
+      --electric:#12D8FF;
+      --hotpink:#FF4FA3;
+      --lime:#48F000;
+      --magenta:#FF00D4;
+      --orange:#FF5A00;
+      --purple:#9B00D7;
+      --coral:#FF6C3A;
+      --cyan:#12D7D7;
+      --gold:#F4C400;
+      --crimson:#E3003B;
+      --turquoise:#00C9C0;
+      --violet:#7C25DA;
+      --azure:#0D78E8;
+      --scarlet:#ff2525;
+      --emerald:#0DBD79;
+      --amber:#F3AB00;
+
+      --muted:#4f535b;
+      --line:3px solid var(--ink);
+      --shadow:5px 5px 0 var(--ink);
+
+      --font-heading:"Sora",sans-serif;
+      --font-body:"DM Sans",sans-serif;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{width:100%;min-height:100%}
+
+    body{
+      font-family:var(--font-body);
+      background:var(--turquoise);
+      color:var(--ink);
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .app{
+      width:100%;
+      max-width:520px;
+      min-height:100vh;
+      min-height:100dvh;
+      margin:0 auto;
+      padding:
+        max(15px,env(safe-area-inset-top))
+        max(14px,env(safe-area-inset-right))
+        max(112px,calc(96px + env(safe-area-inset-bottom)))
+        max(14px,env(safe-area-inset-left));
+      background:var(--soft);
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:0;
+    }
+
+    .brand img{
+      width:54px;
+      height:54px;
+      object-fit:contain;
+      flex:0 0 auto;
+    }
+
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-size:10px;
+      line-height:1.15;
+      font-weight:900;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+
+    .brand strong{
+      display:block;
+      margin-top:3px;
+      font-family:var(--font-heading);
+      font-size:17px;
+      line-height:1.15;
+    }
+
+    .home-btn{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+      flex:0 0 auto;
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:var(--white);
+      box-shadow:2px 2px 0 var(--ink);
+      padding:8px 11px;
+      font-size:11px;
+      font-weight:1000;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:var(--white);
+      border:var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:22px 18px 20px;
+      margin-bottom:15px;
+    }
+
+    .hero::before{z-index:-1;
+      content:"";
+      position:absolute;
+      width:88px;height:88px;
+      right:-24px;top:-24px;
+      border:var(--line);
+      border-radius:50%;
+      background:var(--gold);
+    }
+
+    .hero::after{z-index:-1;
+      content:"";
+      position:absolute;
+      width:42px;height:118px;
+      left:-14px;bottom:-30px;
+      border:var(--line);
+      background:var(--azure);
+    }
+
+    .eyebrow{
+      position:relative;
+      z-index:2;
+      display:inline-block;
+      background:var(--ink);
+      color:var(--white);
+      border:2px solid var(--ink);
+      border-radius:999px;
+      padding:6px 9px;
+      font-size:10px;
+      font-weight:1000;
+      letter-spacing:.09em;
+      text-transform:uppercase;
+    }
+
+    h1,h2,h3{font-family:var(--font-heading)}
+
+    .hero h1{
+      position:relative;
+      z-index:2;
+      margin-top:12px;
+      font-size:clamp(36px,9vw,50px);
+      line-height:.96;
+      letter-spacing:-.05em;
+    }
+
+    .hero h1 .red{
+      display:block;
+      color:var(--scarlet);
+    }
+
+    .hero p{
+      position:relative;
+      z-index:2;
+      margin-top:14px;
+      color:#343840;
+      font-size:17px;
+      line-height:1.5;
+      font-weight:650;
+      max-width:460px;
+    }
+
+    .system-banner{
+      background:var(--ink);
+      color:var(--white);
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:14px;
+      margin-bottom:15px;
+    }
+
+    .system-banner strong{
+      display:block;
+      font-family:var(--font-heading);
+      font-size:18px;
+    }
+
+    .system-banner p{
+      margin-top:5px;
+      color:#e8e8e8;
+      font-size:14px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .strategy-row{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:6px;
+      margin-top:11px;
+    }
+
+    .strategy-chip{
+      border:2px solid var(--white);
+      border-radius:10px;
+      padding:8px 4px;
+      text-align:center;
+      font-family:var(--font-heading);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .strategy-chip:nth-child(1){background:var(--cyan);color:var(--ink)}
+    .strategy-chip:nth-child(2){background:var(--hotpink);color:var(--ink)}
+    .strategy-chip:nth-child(3){background:var(--azure);color:var(--white)}
+    .strategy-chip:nth-child(4){background:var(--orange);color:var(--ink)}
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:11px;
+    }
+
+    .section-head h2{
+      font-size:22px;
+    }
+
+    .section-head span{
+      color:var(--muted);
+      font-size:11px;
+      font-weight:800;
+    }
+
+    .component-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:15px;
+    }
+
+    .component-card{
+      min-height:270px;
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:4px 4px 0 var(--ink);
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .component-card::after{
+      content:"";
+      position:absolute;
+      width:48px;height:48px;
+      right:-10px;bottom:-10px;
+      border:2px solid var(--ink);
+      background:rgba(255,255,255,.3);
+      transform:rotate(12deg);
+    }
+
+    .listening{background:var(--cyan)}
+    .speaking{background:var(--hotpink)}
+    .reading{background:var(--azure);color:var(--white)}
+    .writing{background:var(--orange)}
+
+    .card-top{
+      position:relative;
+      z-index:2;
+    }
+
+    .icon-box{
+      width:52px;
+      height:52px;
+      display:grid;
+      place-items:center;
+      background:var(--white);
+      border:2px solid var(--ink);
+      border-radius:13px;
+      font-size:27px;
+      box-shadow:2px 2px 0 var(--ink);
+    }
+
+    .component-card h3{
+      margin-top:12px;
+      font-size:20px;
+      line-height:1.05;
+    }
+
+    .component-card .tagline{
+      margin-top:6px;
+      font-size:13px;
+      line-height:1.35;
+      font-weight:750;
+    }
+
+    .technique{
+      position:relative;
+      z-index:2;
+      margin-top:12px;
+      background:var(--white);
+      color:var(--ink);
+      border:2px solid var(--ink);
+      border-radius:11px;
+      padding:10px;
+    }
+
+    .technique small{
+      display:block;
+      color:var(--muted);
+      font-size:9px;
+      font-weight:900;
+      letter-spacing:.07em;
+      text-transform:uppercase;
+    }
+
+    .technique b{
+      display:block;
+      margin-top:3px;
+      font-family:var(--font-heading);
+      font-size:20px;
+      line-height:1.05;
+    }
+
+    .technique em{
+      display:block;
+      margin-top:5px;
+      font-style:normal;
+      color:#373b42;
+      font-size:11px;
+      line-height:1.35;
+      font-weight:700;
+    }
+
+    .inside{
+      position:relative;
+      z-index:2;
+      margin-top:10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:5px;
+    }
+
+    .inside span{
+      border:2px solid var(--ink);
+      border-radius:999px;
+      background:rgba(255,255,255,.92);
+      color:var(--ink);
+      padding:5px 7px;
+      font-size:9px;
+      font-weight:900;
+    }
+
+    .card-cta{
+      position:relative;
+      z-index:2;
+      margin-top:13px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+      background:var(--ink);
+      color:var(--white);
+      border:2px solid var(--ink);
+      border-radius:11px;
+      font-size:11px;
+      font-weight:1000;
+    }
+
+    .flow-card{
+      background:var(--white);
+      border:var(--line);
+      border-radius:20px;
+      box-shadow:var(--shadow);
+      padding:15px;
+      margin-bottom:15px;
+    }
+
+    .flow-card h2{
+      font-size:21px;
+    }
+
+    .flow-card p{
+      margin-top:5px;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
+    .flow-row{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:6px;
+      margin-top:12px;
+    }
+
+    .flow-step{
+      text-align:center;
+      border:2px solid var(--ink);
+      border-radius:11px;
+      background:var(--white);
+      padding:9px 4px;
+      font-size:9px;
+      font-weight:900;
+    }
+
+    .flow-step.active{
+      background:var(--gold);
+      box-shadow:2px 2px 0 var(--ink);
+    }
+
+    .flow-step b{
+      display:block;
+      margin-top:4px;
+      font-size:10px;
+    }
+
+    .bottom-nav{
+      position:fixed;
+      left:50%;
+      transform:translateX(-50%);
+      bottom:max(10px,env(safe-area-inset-bottom));
+      width:calc(100% - 20px);
+      max-width:500px;
+      z-index:60;
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      background:var(--white);
+      border:var(--line);
+      border-radius:18px;
+      box-shadow:5px 5px 0 var(--ink);
+      padding:6px;
+    }
+
+    .bottom-nav a{
+      min-height:58px;
+      display:grid;
+      place-items:center;
+      align-content:center;
+      gap:3px;
+      border-radius:10px;
+      font-size:10px;
+      font-weight:1000;
+    }
+
+    .bottom-nav a.active{
+      background:var(--gold);
+      border:2px solid var(--ink);
+    }
+
+    .bottom-nav img{
+      width:27px;
+      height:27px;
+      object-fit:contain;
+    }
+
+    @media(min-width:700px){
+      .app{
+        max-width:840px;
+        padding:24px 24px 120px;
+      }
+
+      .brand img{width:62px;height:62px}
+      .brand small{font-size:11px}
+      .brand strong{font-size:19px}
+
+      .hero{
+        padding:28px 24px 25px;
+      }
+
+      .hero h1{font-size:56px}
+      .hero p{font-size:19px}
+
+      .component-card{
+        min-height:305px;
+        padding:18px;
+      }
+
+      .component-card h3{font-size:24px}
+      .component-card .tagline{font-size:15px}
+      .technique b{font-size:24px}
+
+      .bottom-nav{
+        max-width:800px;
+      }
+    }
+
+    @media(min-width:1024px){
+      .app{
+        max-width:1100px;
+        padding:30px 32px 122px;
+      }
+
+      .hero{
+        min-height:330px;
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        padding:34px;
+      }
+
+      .hero h1{font-size:66px}
+      .hero p{font-size:20px}
+
+      .component-grid{
+        grid-template-columns:repeat(4,1fr);
+      }
+
+      .component-card{
+        min-height:325px;
+      }
+
+      .bottom-nav{
+        max-width:1040px;
+      }
+    }
+
+    @media(max-width:360px){
+      .app{padding-inline:10px}
+      .brand img{width:48px;height:48px}
+      .hero h1{font-size:34px}
+      .hero p{font-size:15px}
+      .component-grid{gap:7px}
+      .component-card{padding:10px;min-height:255px}
+      .component-card h3{font-size:18px}
+      .component-card .tagline{font-size:12px}
+      .inside span{font-size:8px}
+      .strategy-row{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+<main class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <img
+        src="assets/heroes/small-muet-logo.svg"
+        alt="Smart MUET Guide"
+      >
+      <div>
+        <small>02 · LEARN</small>
+        <strong>MUET Guide</strong>
+      </div>
+    </div>
+
+    <a
+      class="home-btn"
+      href="muet-hub.html"
+    >
+      Home
+    </a>
+  </header>
+
+
+  <section class="hero">
+    <span class="eyebrow">MUET GUIDE</span>
+
+    <h1>
+      4 Components.
+      <span class="red">4 Techniques.</span>
+    </h1>
+
+    <p>
+      Each MUET component has one memorable strategy to help you think clearly
+      under exam pressure. Learn the technique first, then build the full exam skill around it.
+    </p>
+  </section>
+
+
+  <section class="system-banner">
+    <strong>One Exam-Ready System</strong>
+
+    <p>
+      CLUE · PREP · SCAN · PEEL give you a simple mental framework
+      for Listening, Speaking, Reading and Writing.
+    </p>
+
+    <div class="strategy-row">
+      <div class="strategy-chip">CLUE</div>
+      <div class="strategy-chip">PREP</div>
+      <div class="strategy-chip">SCAN</div>
+      <div class="strategy-chip">PEEL</div>
+    </div>
+  </section>
+
+
+  <div class="section-head">
+    <h2>Choose a Component</h2>
+    <span>4 focused guides</span>
+  </div>
+
+  <section class="component-grid">
+
+    <a
+      class="component-card listening"
+      href="listening-guidance.html"
+    >
+      <div class="card-top">
+        <div class="icon-box">🎧</div>
+
+        <h3>Listening</h3>
+
+        <p class="tagline">
+          Listen for meaning, not just words.
+        </p>
+
+        <div class="technique">
+          <small>Core Technique</small>
+          <b>CLUE</b>
+          <em>
+            Check → Listen → Understand → Eliminate
+          </em>
+        </div>
+
+        <div class="inside">
+          <span>Exam Snapshot</span>
+          <span>Keywords</span>
+          <span>Distractors</span>
+          <span>Note-taking</span>
+          <span>Exam Tips</span>
+        </div>
+      </div>
+
+      <div class="card-cta">
+        EXPLORE LISTENING →
+      </div>
+    </a>
+
+
+    <a
+      class="component-card speaking"
+      href="speaking-guidance.html"
+    >
+      <div class="card-top">
+        <div class="icon-box">🎤</div>
+
+        <h3>Speaking</h3>
+
+        <p class="tagline">
+          Think clearly. Speak with confidence.
+        </p>
+
+        <div class="technique">
+          <small>Core Technique</small>
+          <b>PREP</b>
+          <em>
+            Point → Reason → Example → Point
+          </em>
+        </div>
+
+        <div class="inside">
+          <span>Task A</span>
+          <span>Task B</span>
+          <span>Useful Language</span>
+          <span>Interaction</span>
+          <span>Exam Tips</span>
+        </div>
+      </div>
+
+      <div class="card-cta">
+        EXPLORE SPEAKING →
+      </div>
+    </a>
+
+
+    <a
+      class="component-card reading"
+      href="reading-guidance.html"
+    >
+      <div class="card-top">
+        <div class="icon-box">📖</div>
+
+        <h3>Reading</h3>
+
+        <p class="tagline">
+          Question first. Evidence always.
+        </p>
+
+        <div class="technique">
+          <small>Core Technique</small>
+          <b>SCAN</b>
+          <em>
+            Study → Circle → Analyse → Nail
+          </em>
+        </div>
+
+        <div class="inside">
+          <span>Question Types</span>
+          <span>Scanning</span>
+          <span>Paraphrase</span>
+          <span>Inference</span>
+          <span>Time Strategy</span>
+        </div>
+      </div>
+
+      <div class="card-cta">
+        EXPLORE READING →
+      </div>
+    </a>
+
+
+    <a
+      class="component-card writing"
+      href="writing-guidance.html"
+    >
+      <div class="card-top">
+        <div class="icon-box">✍️</div>
+
+        <h3>Writing</h3>
+
+        <p class="tagline">
+          Plan clearly. Write with purpose.
+        </p>
+
+        <div class="technique">
+          <small>Core Technique</small>
+          <b>PEEL</b>
+          <em>
+            Point → Explain → Example → Link
+          </em>
+        </div>
+
+        <div class="inside">
+          <span>Task 1</span>
+          <span>Task 2</span>
+          <span>Organisation</span>
+          <span>Development</span>
+          <span>Exam Tips</span>
+        </div>
+      </div>
+
+      <div class="card-cta">
+        EXPLORE WRITING →
+      </div>
+    </a>
+
+  </section>
+
+
+  <section class="flow-card">
+    <h2>Your Exam Ready Journey</h2>
+
+    <p>
+      You already know the exam. Now learn the strategies before moving into practice.
+    </p>
+
+    <div class="flow-row">
+      <div class="flow-step">
+        ✓
+        <b>KNOW</b>
+      </div>
+
+      <div class="flow-step active">
+        💡
+        <b>LEARN</b>
+      </div>
+
+      <div class="flow-step">
+        ✏️
+        <b>PRACTISE</b>
+      </div>
+
+      <div class="flow-step">
+        📊
+        <b>TRACK</b>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+  <a href="muet-hub.html">
+    <img
+      src="assets/heroes/nav-home.svg"
+      alt=""
+    >
+    <span>Home</span>
+  </a>
+
+  <a
+    class="active"
+    href="guidance.html"
+  >
+    <img
+      src="assets/heroes/icon-muet-intro.svg"
+      alt=""
+    >
+    <span>Guide</span>
+  </a>
+
+  <a href="vault.html">
+    <img
+      src="assets/heroes/nav-vault.svg"
+      alt=""
+    >
+    <span>Vault</span>
+  </a>
+
+  <a href="progress.html">
+    <img
+      src="assets/heroes/nav-progress.svg"
+      alt=""
+    >
+    <span>Progress</span>
+  </a>
+
+  <a href="settings.html">
+    <img
+      src="assets/heroes/nav-profile.svg"
+      alt=""
+    >
+    <span>Profile</span>
+  </a>
+
+</nav>
+
+</body>
+</html>
