@@ -11,7 +11,11 @@
  */
 
 const SMART_MUET_BACKEND_ENABLED = true;
-const SMART_MUET_BACKEND_URL     = 'https://script.google.com/macros/s/AKfycbxykw1lbRGwtBAg18s6MY04E3CQ3U9lIwRLJrCFQI1FoJosY4bpWTdaP7-Wca4cqtGmzA/exec';
+const SMART_MUET_BACKEND_URL     = 'https://script.google.com/macros/s/AKfycbziPu490skQA8JNPIMvTPJkdIYHqEK8esT32bjaJcFmmsSFcU7rAKW5wpLR7xe96xGg/exec';
+
+// Expose configuration to page-level scripts that use the window namespace.
+window.SMART_MUET_BACKEND_ENABLED = SMART_MUET_BACKEND_ENABLED;
+window.SMART_MUET_BACKEND_URL = SMART_MUET_BACKEND_URL;
 
 // ── Primary save function (called after every attempt) ────────────────
 async function saveSmartMuetAttempt(payload) {
@@ -56,6 +60,9 @@ async function sendRegistration(profile) {
     });
   } catch(_) {}
 }
+
+window.saveSmartMuetAttempt = saveSmartMuetAttempt;
+window.sendRegistration = sendRegistration;
 
 // ── Local attempt log (always runs, keeps last 200) ───────────────────
 function _saveAttemptLocally(payload) {
