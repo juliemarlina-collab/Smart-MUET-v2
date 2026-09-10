@@ -1,107 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Smart MUET Guide v2 - Your MUET Band Starts Here">
-  <title>Smart MUET Guide | Practice Platform</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+    <meta charset="UTF-8">
+  <link rel="icon" href="assets/heroes/small-muet-logo.svg" type="image/svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <title>Smart MUET Guide V2</title>
 
-  <!-- CSS - Order is Critical! -->
-  <link rel="stylesheet" href="css/muet-guide.css">
-  <link rel="stylesheet" href="css/display-standard.css">
+    <!--
+      Returning-user shortcut (Hick's Law fix):
+      If this device already has a saved Smart MUET profile, skip the
+      splash + welcome flow entirely and go straight to the dashboard.
+      First-time visitors (no profile yet) still get the full splash.html
+      intro exactly as before.
+    -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem('muet_profile');
+          var profile = raw ? JSON.parse(raw) : null;
+          if (profile && profile.email) {
+            window.location.replace('muet-hub.html');
+            return;
+          }
+        } catch (_) { /* fall through to splash */ }
+        window.location.replace('splash.html');
+      })();
+    </script>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-</head>
-<body class="page-index">
-  <div class="app">
-    <!-- HEADER -->
-    <header class="brandbar">
-      <img src="assets/logo.svg" alt="Smart MUET Guide" class="brand-logo">
-      <div class="brand-text">
-        <strong>Smart MUET Guide</strong>
-        <small>ELU · POLIPD</small>
-      </div>
-      <button class="avatar-btn" id="profileBtn">JM</button>
-    </header>
-
-    <!-- MAIN CONTENT -->
-    <main class="page">
-      <h1>Welcome to Smart MUET Guide</h1>
-      <p>Your comprehensive MUET practice platform with 4 complete vaults and guided learning paths.</p>
-
-      <!-- Vault Selector -->
-      <section class="vault-section">
-        <h2>Select Your Practice Vault</h2>
-        <div id="vault-selector"></div>
-      </section>
-
-      <!-- Quick Links -->
-      <section class="quick-links">
-        <a href="muet-hub.html" class="btn">Start Practicing</a>
-        <a href="guidance.html" class="btn">View Guidance</a>
-        <a href="progress.html" class="btn">Check Progress</a>
-      </section>
-    </main>
-
-    <!-- BOTTOM NAVIGATION -->
-    <nav class="bottom-nav">
-      <a href="index.html" class="nav-item active">
-        <img src="assets/icon-home.svg" alt="">
-        <span>Home</span>
-      </a>
-      <a href="progress.html" class="nav-item">
-        <img src="assets/icon-progress.svg" alt="">
-        <span>Progress</span>
-      </a>
-      <a href="guidance.html" class="nav-item">
-        <img src="assets/icon-guidance.svg" alt="">
-        <span>Guidance</span>
-      </a>
-      <a href="muet-hub.html" class="nav-item">
-        <img src="assets/icon-practice.svg" alt="">
-        <span>Practice</span>
-      </a>
-      <a href="settings.html" class="nav-item">
-        <img src="assets/icon-settings.svg" alt="">
-        <span>Settings</span>
-      </a>
-    </nav>
-  </div>
-
-  <!-- VAULT SOURCES AND APP LOGIC -->
-  <script src="js/vault-sources-standardized.js"></script>
-  <script src="js/muet-shared.js"></script>
-  <script src="js/app.js"></script>
-
-  <script>
-    // Initialize vault selector
-    document.addEventListener('DOMContentLoaded', function() {
-      const vaultSelector = document.getElementById('vault-selector');
-      if (vaultSelector) {
-        initVaultSelector(vaultSelector);
-      }
-    });
-
-    function initVaultSelector(element) {
-      const vaults = getAllVaults();
-      let html = '<select id="vault-dropdown" class="vault-selector">';
-      html += '<option value="">Select a Vault...</option>';
-      vaults.forEach(vault => {
-        html += `<option value="${vault.id}">${vault.title} (${vault.total_resources} resources)</option>`;
-      });
-      html += '</select>';
-      element.innerHTML = html;
-
-      document.getElementById('vault-dropdown').addEventListener('change', function(e) {
-        if (e.target.value) {
-          console.log('Selected vault:', e.target.value);
+    <!-- Fallback if the script above doesn't run (JS disabled) -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-      });
-    }
-  </script>
+        
+        body {
+            font-family: 'Sora', 'DM Sans', sans-serif;
+            background-color: #000000;
+            color: #FFFBF0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            color: #008080;
+            font-weight: 700;
+        }
+        
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #FFFBF0;
+        }
+        
+        a {
+            display: inline-block;
+            padding: 12px 20px;
+            background-color: #008080;
+            color: #000000;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 150ms ease-out;
+            border: 2px solid #008080;
+        }
+        
+        a:hover {
+            background-color: #006666;
+            border-color: #006666;
+        }
+        
+        a:active {
+            transform: scale(0.95);
+        }
+    </style>
+  <link rel="stylesheet" href="css/responsive-v2.css">
+  <link rel="stylesheet" href="css/display-standard.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Smart MUET Guide V2</h1>
+        <p>Redirecting to app...</p>
+        <a href="splash.html">Click here if not redirected</a>
+    </div>
 </body>
 </html>
