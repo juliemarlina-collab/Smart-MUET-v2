@@ -69,37 +69,133 @@ body[class] :is(.hero,.hero-copy,.progress-hero,.profile-cover,.vault-hero,.mock
   line-height:1.58 !important;
 }
 
-/* Consistent header rhythm */
-.top,
-.topbar,
-.brandbar{
-  min-height:64px;
-  gap:var(--muet-space-2) !important;
-  margin-bottom:var(--muet-space-2) !important;
+/* =========================================================
+   EXACT SHARED HEADER
+   Same physical scale across every page family.
+   ========================================================= */
+body[class] :is(.top,.topbar,.brandbar){
+  width:100%;
+  min-height:64px !important;
+  display:flex;
+  align-items:center !important;
+  justify-content:space-between;
+  gap:12px !important;
+  margin-bottom:16px !important;
 }
 
-.brand,
-.brandbar > div{
+body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text),
+body[class] .brandbar > div{
   min-width:0;
 }
 
-.brand img,
-.brandbar img{
-  width:clamp(50px,5vw,64px) !important;
-  height:clamp(50px,5vw,64px) !important;
+body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text){
+  display:flex;
+  align-items:center;
+  gap:12px !important;
+}
+
+body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) > div{
+  min-width:0;
+}
+
+body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) img,
+body[class] .brandbar > img{
+  width:64px !important;
+  height:64px !important;
+  flex:0 0 64px !important;
+  object-fit:contain !important;
+}
+
+body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) :is(b,strong),
+body[class] .brandbar > div > :is(b,strong){
+  display:block;
+  margin-top:3px;
+  font-family:"Sora",sans-serif !important;
+  font-size:20px !important;
+  line-height:1.15 !important;
+  font-weight:800 !important;
+  letter-spacing:-.02em !important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) small,
+body[class] .brandbar > div > small{
+  display:block;
+  font-family:"DM Sans",sans-serif !important;
+  font-size:12px !important;
+  line-height:1.2 !important;
+  font-weight:900 !important;
+  letter-spacing:.06em !important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+body[class] :is(.top,.topbar,.brandbar) .back{
+  min-height:46px !important;
+  padding:8px 13px !important;
+  font-size:14px !important;
+  line-height:1.15 !important;
   flex:0 0 auto;
 }
 
-.brand b,
-.brandbar b{
-  font-size:clamp(1rem,.35vw + .94rem,1.16rem) !important;
-  line-height:1.2 !important;
+/* =========================================================
+   EXACT SHARED BOTTOM NAVIGATION
+   Covers both .nav and .bottom-nav implementations.
+   ========================================================= */
+body[class] :is(.nav,.bottom-nav){
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  bottom:max(9px,env(safe-area-inset-bottom)) !important;
+  transform:translateX(-50%) !important;
+  width:calc(100% - 20px) !important;
+  max-width:760px !important;
+  min-height:80px !important;
+  display:grid !important;
+  grid-template-columns:repeat(5,minmax(0,1fr)) !important;
+  gap:2px !important;
+  padding:6px !important;
+  background:#fff !important;
+  border:3px solid #111 !important;
+  border-radius:18px !important;
+  box-shadow:5px 5px 0 #111 !important;
+  z-index:100 !important;
 }
 
-.brand small,
-.brandbar small{
-  font-size:clamp(.64rem,.18vw + .61rem,.73rem) !important;
-  line-height:1.25 !important;
+body[class] :is(.nav,.bottom-nav) a{
+  min-width:0 !important;
+  min-height:64px !important;
+  display:grid !important;
+  place-items:center !important;
+  align-content:center !important;
+  gap:3px !important;
+  padding:4px 2px !important;
+  border-radius:11px !important;
+  font-family:"DM Sans",sans-serif !important;
+  font-size:12px !important;
+  line-height:1.1 !important;
+  font-weight:900 !important;
+  text-align:center;
+}
+
+body[class] :is(.nav,.bottom-nav) img{
+  display:block !important;
+  width:32px !important;
+  height:32px !important;
+  object-fit:contain !important;
+}
+
+body[class] :is(.nav,.bottom-nav) a span{
+  display:block;
+  max-width:100%;
+  font-size:inherit !important;
+  line-height:inherit !important;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
 }
 
 /* One hero system */
@@ -341,10 +437,51 @@ body.page-splash{
     grid-template-columns:1fr !important;
   }
 
-  .top,
-  .topbar,
-  .brandbar{
-    align-items:flex-start;
+  body[class] :is(.top,.topbar,.brandbar){
+    min-height:56px !important;
+    gap:9px !important;
+    margin-bottom:13px !important;
+    align-items:center !important;
+  }
+
+  body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) img,
+  body[class] .brandbar > img{
+    width:54px !important;
+    height:54px !important;
+    flex:0 0 54px !important;
+  }
+
+  body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) :is(b,strong),
+  body[class] .brandbar > div > :is(b,strong){font-size:17px !important}
+
+  body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) small,
+  body[class] .brandbar > div > small{font-size:10px !important}
+
+  body[class] :is(.top,.topbar,.brandbar) .back{
+    min-height:44px !important;
+    padding:7px 10px !important;
+    font-size:12px !important;
+  }
+
+  body[class] :is(.nav,.bottom-nav){
+    width:calc(100% - 12px) !important;
+    max-width:calc(100% - 12px) !important;
+    min-height:68px !important;
+    padding:4px !important;
+    gap:1px !important;
+    border-radius:16px !important;
+  }
+
+  body[class] :is(.nav,.bottom-nav) a{
+    min-height:56px !important;
+    padding:3px 1px !important;
+    gap:2px !important;
+    font-size:10px !important;
+  }
+
+  body[class] :is(.nav,.bottom-nav) img{
+    width:25px !important;
+    height:25px !important;
   }
 
   .page-splash .content{
@@ -373,6 +510,36 @@ body.page-splash{
   body[class] :is(.component-grid,.skill-grid,.paper-grid,.practice-grid,
     .vault-grid,.level-grid,.path-grid,.panel-grid,.insight-grid){
     grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+
+  body[class] :is(.top,.topbar,.brandbar){min-height:60px !important}
+
+  body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) img,
+  body[class] .brandbar > img{
+    width:60px !important;
+    height:60px !important;
+    flex:0 0 60px !important;
+  }
+
+  body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) :is(b,strong),
+  body[class] .brandbar > div > :is(b,strong){font-size:19px !important}
+
+  body[class] :is(.top,.topbar,.brandbar) :is(.brand,.brand-text) small,
+  body[class] .brandbar > div > small{font-size:11px !important}
+
+  body[class] :is(.nav,.bottom-nav){
+    max-width:680px !important;
+    min-height:74px !important;
+  }
+
+  body[class] :is(.nav,.bottom-nav) a{
+    min-height:58px !important;
+    font-size:11px !important;
+  }
+
+  body[class] :is(.nav,.bottom-nav) img{
+    width:28px !important;
+    height:28px !important;
   }
 }
 
@@ -432,6 +599,21 @@ body.page-splash{
 }
 
 @media (orientation:landscape) and (max-height:650px){
+  body[class]:not(.page-splash) :is(.nav,.bottom-nav){
+    min-height:60px !important;
+    padding:3px !important;
+  }
+
+  body[class]:not(.page-splash) :is(.nav,.bottom-nav) a{
+    min-height:50px !important;
+    font-size:10px !important;
+  }
+
+  body[class]:not(.page-splash) :is(.nav,.bottom-nav) img{
+    width:23px !important;
+    height:23px !important;
+  }
+
   .page-splash .logo-wrap{width:72px !important;margin-bottom:10px !important}
   .page-splash .title-line{font-size:clamp(42px,8vh,64px) !important}
   .page-splash .subline{display:none}
