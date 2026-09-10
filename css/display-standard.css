@@ -1,0 +1,438 @@
+/* =========================================================
+   SMART MUET GUIDE V2 · DISPLAY STANDARD
+   Final visual layer loaded after page-specific styles.
+   Standardises typography, hero media, spacing and responsive
+   behaviour without changing page content or backend logic.
+   ========================================================= */
+
+:root{
+  --muet-canvas:1200px;
+  --muet-reading:68ch;
+  --muet-space-1:clamp(8px,1vw,12px);
+  --muet-space-2:clamp(12px,1.4vw,16px);
+  --muet-space-3:clamp(16px,2vw,24px);
+  --muet-space-4:clamp(22px,3vw,34px);
+  --muet-radius-card:clamp(16px,1.4vw,22px);
+}
+
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+}
+
+body{
+  min-width:320px;
+  font-size:16px;
+  line-height:1.55;
+}
+
+body:not(.page-splash) .app,
+.page-welcome .page,
+.page-register .page,
+.page-welcome-back .page{
+  width:min(100%,var(--muet-canvas)) !important;
+  max-width:var(--muet-canvas) !important;
+  margin-inline:auto !important;
+  padding:clamp(14px,2vw,28px) clamp(14px,2.5vw,32px)
+    max(124px,calc(108px + env(safe-area-inset-bottom))) !important;
+}
+
+h1{
+  font-size:clamp(2.25rem,4.4vw,3.75rem) !important;
+  line-height:1.02 !important;
+  letter-spacing:-.045em !important;
+  overflow-wrap:normal;
+  word-break:normal;
+  text-wrap:balance;
+}
+
+h2{
+  font-size:clamp(1.25rem,1.7vw,1.65rem) !important;
+  line-height:1.18 !important;
+  letter-spacing:-.025em;
+}
+
+h3{
+  font-size:clamp(1.02rem,1.15vw,1.25rem) !important;
+  line-height:1.25 !important;
+}
+
+p,
+.lead{
+  font-size:clamp(.96rem,.22vw + .92rem,1.04rem) !important;
+  line-height:1.55 !important;
+}
+
+body[class] :is(.hero,.hero-copy,.progress-hero,.profile-cover,.vault-hero,.mock-hero) p{
+  max-width:var(--muet-reading) !important;
+  font-size:clamp(1rem,.3vw + .94rem,1.08rem) !important;
+  line-height:1.58 !important;
+}
+
+/* Consistent header rhythm */
+.top,
+.topbar,
+.brandbar{
+  min-height:64px;
+  gap:var(--muet-space-2) !important;
+  margin-bottom:var(--muet-space-2) !important;
+}
+
+.brand,
+.brandbar > div{
+  min-width:0;
+}
+
+.brand img,
+.brandbar img{
+  width:clamp(50px,5vw,64px) !important;
+  height:clamp(50px,5vw,64px) !important;
+  flex:0 0 auto;
+}
+
+.brand b,
+.brandbar b{
+  font-size:clamp(1rem,.35vw + .94rem,1.16rem) !important;
+  line-height:1.2 !important;
+}
+
+.brand small,
+.brandbar small{
+  font-size:clamp(.64rem,.18vw + .61rem,.73rem) !important;
+  line-height:1.25 !important;
+}
+
+/* One hero system */
+body[class] :is(.hero,.vault-hero,.mock-hero,.progress-hero,.profile-cover){
+  border-radius:var(--muet-radius-card) !important;
+  margin-bottom:var(--muet-space-3) !important;
+}
+
+body[class] .hero-copy,
+body[class] .hero:not(:has(> .hero-copy)),
+body[class] .vault-hero,
+body[class] .mock-hero,
+body[class] .progress-hero,
+body[class] .profile-cover{
+  padding:var(--muet-space-4) !important;
+}
+
+body[class] .hero:has(> .hero-copy){
+  padding:0 !important;
+}
+
+body[class] :is(.hero,.vault-hero,.mock-hero,.progress-hero,.profile-cover) h1{
+  font-size:clamp(2.25rem,4.4vw,3.75rem) !important;
+  line-height:1.02 !important;
+}
+
+.hero-image,
+.hero-media,
+.hero-visual{
+  min-width:0;
+  overflow:hidden;
+}
+
+body[class] :is(.hero-art,.hero-banner),
+body[class] .hero-image img,
+body[class] .hero-media img,
+body[class] .hero-visual img,
+body[class] .hero > img,
+body[class] .progress-hero .hero-banner,
+body[class] .profile-cover .hero-banner{
+  display:block;
+  width:100% !important;
+  max-width:100% !important;
+  height:auto !important;
+  max-height:none !important;
+  aspect-ratio:16 / 9;
+  object-fit:cover !important;
+  object-position:center !important;
+}
+
+body[class] :is(.card,.benefit,.component-card,.skill-card,.paper-card,
+  .practice-card,.vault-card,.level-card,.path-card,.profile-section,
+  .feedback-card,.trend-card,.snapshot,.identity-card,.info,.howto,.how-to,
+  .instructions,.instruction-card,.tech-card,.prep-card,.vault,.mock-finish,
+  .submit-panel,.glance,.panel-body,.task-body,.part-body) p{
+  font-size:clamp(.92rem,.2vw + .88rem,1rem) !important;
+  line-height:1.52 !important;
+}
+
+/* Repeated content spacing */
+body[class] :is(.dashboard-grid,.journey-grid,.component-grid,.skill-grid,
+  .paper-grid,.practice-grid,.vault-grid,.level-grid,.path-grid,.panel-grid,
+  .insight-grid,.badge-grid,.field-grid,.form-grid){
+  gap:var(--muet-space-2) !important;
+}
+
+body[class] :is(.card,.benefit,.component-card,.skill-card,.paper-card,
+  .practice-card,.vault-card,.level-card,.path-card,.profile-section,
+  .feedback-card,.trend-card,.snapshot,.identity-card,.info,.howto,.how-to,
+  .instructions,.instruction-card,.tech-card,.prep-card,.vault,.mock-finish,
+  .submit-panel){
+  min-width:0;
+  border-radius:var(--muet-radius-card) !important;
+  padding:var(--muet-space-3) !important;
+}
+
+body[class] :is(.card,.benefit,.component-card,.skill-card,.paper-card,
+  .practice-card,.vault-card,.level-card,.path-card,.profile-section,
+  .feedback-card,.trend-card,.snapshot,.identity-card,.info,.howto,.how-to,
+  .instructions,.instruction-card,.tech-card,.prep-card,.vault,.mock-finish,
+  .submit-panel,.panel-body,.task-body,.part-body) p{
+  font-size:clamp(.94rem,.2vw + .9rem,1rem) !important;
+  line-height:1.52 !important;
+}
+
+body[class] :is(.task,.part,.listen-part,.accordion-task,.mock-task,.panel,.stage){
+  min-width:0;
+  margin-bottom:var(--muet-space-2) !important;
+  border-radius:var(--muet-radius-card) !important;
+}
+
+body[class] :is(.task-body,.part-body,.listen-part-body,.accordion-body,
+  .mock-task-body,.panel-body,.stage-body){
+  padding:var(--muet-space-3) !important;
+}
+
+body[class] :is(.task-head,.part-head,.listen-part-head,.accordion-head,
+  .mock-task-head,.panel-toggle),
+body[class] .stage summary{
+  gap:var(--muet-space-1) !important;
+  padding:clamp(11px,1.4vw,16px) !important;
+}
+
+.passage,
+.passage-scroll,
+.reading-text,
+.email-body,
+.source-paper,
+.stimulus,
+.prompt,
+.question-text,
+.task-body > p,
+.panel-body > p{
+  max-width:var(--muet-reading);
+  overflow-wrap:anywhere;
+}
+
+button,
+.btn,
+.back,
+a[class*="btn"],
+button[class*="btn"],
+button[class*="submit"]{
+  min-height:46px;
+}
+
+/* Mock listening was generated with a different class vocabulary. */
+.page-mock1-listening .exambar{
+  padding:var(--muet-space-3) !important;
+  margin-bottom:var(--muet-space-2) !important;
+}
+
+.page-mock1-listening .listen-part .part{
+  display:block !important;
+  margin:0 !important;
+  padding:var(--muet-space-3) !important;
+  border:0 !important;
+  border-radius:0 !important;
+  box-shadow:none !important;
+}
+
+.page-mock1-listening .qcard{
+  padding:clamp(11px,1.2vw,15px) !important;
+}
+
+/* Splash must use the viewport, not the former 620px desktop card. */
+body.page-splash{
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+.page-splash .splash{
+  width:100% !important;
+  min-height:100vh !important;
+  min-height:100dvh !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+.page-splash .content{
+  width:min(92vw,900px) !important;
+  min-width:0;
+  padding:max(20px,env(safe-area-inset-top)) clamp(28px,6vw,80px) 22px !important;
+}
+
+.page-splash .logo-wrap{
+  width:clamp(92px,13vh,138px) !important;
+  height:auto !important;
+  margin-bottom:clamp(14px,2.4vh,24px) !important;
+}
+
+.page-splash .title{width:100%}
+.page-splash .title-line{
+  font-size:clamp(58px,9vh,112px) !important;
+  white-space:nowrap;
+}
+.page-splash .divider{
+  margin:clamp(13px,2.2vh,24px) auto clamp(12px,2vh,20px) !important;
+}
+.page-splash .tagline{
+  font-size:clamp(24px,4.2vh,42px) !important;
+}
+
+@media (max-width:599px){
+  body:not(.page-splash) .app,
+  .page-welcome .page,
+  .page-register .page,
+  .page-welcome-back .page{
+    width:100% !important;
+    max-width:100% !important;
+    padding:14px 14px max(116px,calc(102px + env(safe-area-inset-bottom))) !important;
+  }
+
+  h1,
+  body[class] :is(.hero,.vault-hero,.mock-hero,.progress-hero,.profile-cover) h1{
+    font-size:clamp(2rem,10vw,2.65rem) !important;
+    line-height:1.04 !important;
+  }
+
+  body[class] .hero-copy,
+  body[class] .hero:not(:has(> .hero-copy)),
+  body[class] .vault-hero,
+  body[class] .mock-hero,
+  body[class] .progress-hero,
+  body[class] .profile-cover{
+    padding:16px !important;
+  }
+
+  .hero:has(> .hero-art),
+  .hero:has(> img),
+  .hero:has(> .hero-image),
+  .hero:has(> .hero-media),
+  .hero:has(> .hero-visual),
+  .progress-hero:has(.hero-banner),
+  .profile-cover:has(.hero-banner){
+    display:grid !important;
+    grid-template-columns:1fr !important;
+    gap:0 !important;
+  }
+
+  .hero-art,
+  .hero-banner,
+  .hero > img,
+  .hero-image img,
+  .hero-media img,
+  .hero-visual img{
+    aspect-ratio:16 / 9;
+  }
+
+  body[class] :is(.card,.benefit,.component-card,.skill-card,.paper-card,
+    .practice-card,.vault-card,.level-card,.path-card,.profile-section,
+    .feedback-card,.snapshot,.identity-card,.info,.howto,.how-to,.instructions,
+    .instruction-card,.tech-card,.prep-card,.vault,.mock-finish,.submit-panel){
+    padding:14px !important;
+  }
+
+  body[class] :is(.component-grid,.skill-grid,.paper-grid,.practice-grid,
+    .vault-grid,.level-grid,.path-grid,.panel-grid,.insight-grid){
+    grid-template-columns:1fr !important;
+  }
+
+  .top,
+  .topbar,
+  .brandbar{
+    align-items:flex-start;
+  }
+
+  .page-splash .content{
+    width:100% !important;
+    padding-inline:30px !important;
+  }
+  .page-splash .logo-wrap{width:clamp(82px,25vw,112px) !important}
+  .page-splash .title-line{font-size:clamp(44px,15vw,68px) !important}
+  .page-splash .tagline{font-size:clamp(20px,7vw,30px) !important}
+}
+
+@media (min-width:600px) and (max-width:899px){
+  body:not(.page-splash) .app,
+  .page-welcome .page,
+  .page-register .page,
+  .page-welcome-back .page{
+    max-width:900px !important;
+    padding:22px 24px 124px !important;
+  }
+
+  h1,
+  body[class] :is(.hero,.vault-hero,.mock-hero,.progress-hero,.profile-cover) h1{
+    font-size:clamp(2.5rem,5vw,3rem) !important;
+  }
+
+  body[class] :is(.component-grid,.skill-grid,.paper-grid,.practice-grid,
+    .vault-grid,.level-grid,.path-grid,.panel-grid,.insight-grid){
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  }
+}
+
+@media (min-width:900px){
+  body:not(.page-splash) .app,
+  .page-welcome .page,
+  .page-register .page,
+  .page-welcome-back .page{
+    max-width:var(--muet-canvas) !important;
+    padding:28px 32px 126px !important;
+  }
+
+  h1,
+  body[class] :is(.hero,.vault-hero,.mock-hero,.progress-hero,.profile-cover) h1{
+    font-size:clamp(2.8rem,4.4vw,3.75rem) !important;
+  }
+
+  .hero:has(> .hero-art),
+  .hero:has(> img),
+  .hero:has(> .hero-image),
+  .hero:has(> .hero-media),
+  .hero:has(> .hero-visual),
+  .progress-hero:has(.hero-banner),
+  .profile-cover:has(.hero-banner){
+    display:grid !important;
+    grid-template-columns:minmax(0,1fr) minmax(340px,.92fr) !important;
+    gap:var(--muet-space-3) !important;
+    align-items:center !important;
+  }
+
+  .hero:has(> .hero-art) > .hero-art,
+  .hero:has(> img) > img,
+  .hero:has(> .hero-image) > .hero-image,
+  .hero:has(> .hero-media) > .hero-media,
+  .hero:has(> .hero-visual) > .hero-visual{
+    grid-column:2;
+    grid-row:1;
+  }
+
+  .hero:has(> .hero-art) > .hero-copy,
+  .hero:has(> img) > .hero-copy,
+  .hero:has(> .hero-image) > .hero-copy,
+  .hero:has(> .hero-media) > .hero-copy,
+  .hero:has(> .hero-visual) > .hero-copy{
+    grid-column:1;
+    grid-row:1;
+  }
+
+  .hero-art,
+  .hero-banner,
+  .hero > img,
+  .hero-image img,
+  .hero-media img,
+  .hero-visual img{
+    aspect-ratio:16 / 9;
+  }
+}
+
+@media (orientation:landscape) and (max-height:650px){
+  .page-splash .logo-wrap{width:72px !important;margin-bottom:10px !important}
+  .page-splash .title-line{font-size:clamp(42px,8vh,64px) !important}
+  .page-splash .subline{display:none}
+}
