@@ -1384,19 +1384,23 @@
   border:3px solid var(--pro-line) !important;
   border-radius:22px !important;
   box-shadow:7px 7px 0 var(--pro-line) !important;
+  overflow:hidden !important;
 }
 .page-vault-hub .hero img{
   background:#fff !important;
-  border-right:3px solid var(--pro-line) !important;
-  border-bottom:3px solid var(--pro-line) !important;
+  width:100% !important;
+  max-width:100% !important;
+  border:0 !important;
   filter:none;
+  object-fit:cover !important;
+  object-position:center !important;
 }
 .page-vault-hub .hero-copy{background:#fff !important}
 .page-vault-hub .hero-copy::before,
 .page-vault-hub .hero-copy::after{display:none !important}
 .page-vault-hub .hero h1{color:var(--pro-navy) !important}
-.page-vault-hub .hero h1 .accent{color:#239f9a !important;text-shadow:none !important}
-.page-vault-hub .hero p{color:var(--pro-muted) !important;font-weight:650 !important}
+.page-vault-hub .hero h1 .accent{color:#00aaa3 !important;text-shadow:none !important}
+.page-vault-hub .hero p{color:#111 !important;font-weight:700 !important}
 .page-vault-hub .eyebrow{
   background:var(--pro-navy) !important;
   color:#fff !important;
@@ -1410,7 +1414,7 @@
   border:3px solid var(--pro-line) !important;
   box-shadow:7px 7px 0 var(--pro-line) !important;
 }
-.page-vault-hub .tech-system p{color:var(--pro-muted) !important}
+.page-vault-hub .tech-system p{color:#111 !important}
 .page-vault-hub .tech-system::after{display:none !important}
 .page-vault-hub .tech{
   min-height:54px !important;
@@ -1452,7 +1456,8 @@
   border:3px solid var(--pro-line) !important;
   box-shadow:7px 7px 0 var(--pro-line) !important;
 }
-.page-vault-hub .continue-card p{color:var(--pro-muted) !important}
+.page-vault-hub .continue-card p{color:#111 !important}
+.page-vault-hub .continue-copy small{color:#111 !important}
 .page-vault-hub .continue-icon{
   background:var(--pro-gold) !important;
   color:var(--pro-navy) !important;
@@ -1492,7 +1497,7 @@
 .page-vault-hub .vault-guide-head p{
   max-width:68ch;
   margin-top:6px;
-  color:var(--pro-muted);
+  color:#111;
   font-size:.96rem !important;
 }
 .page-vault-hub .vault-guide-grid{
@@ -1518,8 +1523,9 @@
   font-weight:900;
   letter-spacing:.07em;
 }
-.page-vault-hub .guide-level:nth-child(2) small{color:#315a9b}
-.page-vault-hub .guide-level:nth-child(3) small{color:#7a5700}
+.page-vault-hub .guide-level:nth-child(2) small,
+.page-vault-hub .guide-level:nth-child(3) small,
+.page-vault-hub .guide-level small{color:#111 !important}
 .page-vault-hub .guide-level h3{
   margin-top:6px;
   color:var(--pro-navy);
@@ -1527,7 +1533,7 @@
 }
 .page-vault-hub .guide-level p{
   margin-top:5px;
-  color:var(--pro-muted);
+  color:#111;
   font-size:.88rem !important;
   line-height:1.45 !important;
 }
@@ -1579,7 +1585,7 @@
   box-shadow:2px 2px 0 var(--pro-line) !important;
 }
 .page-vault-hub .vault-card h3{color:var(--pro-navy) !important}
-.page-vault-hub .vault-card p{color:var(--pro-muted) !important}
+.page-vault-hub .vault-card p{color:#111 !important}
 .page-vault-hub .purpose div{
   background:rgba(255,255,255,.92) !important;
   color:var(--pro-navy) !important;
@@ -1597,14 +1603,205 @@
 .page-vault-hub .vault-card.mock .vault-btn{background:var(--pro-red) !important}
 .page-vault-hub .bottom-nav a.active{background:var(--pro-gold) !important;border:2px solid var(--pro-line) !important}
 
+/* Consistent box sizing and spacing */
+.page-vault-hub .app > *{min-width:0}
+.page-vault-hub .hero,
+.page-vault-hub .tech-system,
+.page-vault-hub .vault-overview-grid,
+.page-vault-hub .continue-card,
+.page-vault-hub .vault-guide{margin-bottom:18px !important}
+.page-vault-hub .tech-system{padding:18px 20px !important}
+.page-vault-hub .tech-grid{gap:10px !important;margin-top:12px !important}
+.page-vault-hub .tech{min-height:50px !important;padding:8px !important}
+
+.page-vault-hub .vault-overview-grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:18px;
+  align-items:stretch;
+}
+.page-vault-hub .vault-overview-grid > .how,
+.page-vault-hub .vault-overview-grid > .progress-card{
+  height:100%;
+  min-width:0;
+  margin:0 !important;
+  padding:20px !important;
+}
+.page-vault-hub .vault-overview-grid .steps{gap:9px !important}
+.page-vault-hub .vault-overview-grid .step{min-height:76px !important;padding:9px 6px !important}
+.page-vault-hub .progress-note{max-width:48ch;color:#111 !important}
+
+.page-vault-hub .continue-card{padding:20px 22px !important;gap:14px !important}
+.page-vault-hub .continue-copy{min-width:0}
+.page-vault-hub .continue-actions{gap:10px !important;margin-top:12px !important}
+.page-vault-hub .continue-primary,
+.page-vault-hub .continue-secondary{min-height:48px !important;padding:9px 13px !important}
+
+.page-vault-hub .vault-guide{padding:20px !important}
+.page-vault-hub .vault-guide-grid{gap:10px;margin-top:14px}
+.page-vault-hub .guide-level{padding:13px;min-height:132px}
+
+.page-vault-hub .vault-list{align-items:stretch}
+.page-vault-hub .vault-card{
+  display:flex;
+  flex-direction:column;
+  min-height:100%;
+  padding:20px !important;
+}
+.page-vault-hub .vault-card .purpose{margin-bottom:14px !important}
+.page-vault-hub .vault-card .vault-btn{margin-top:auto !important}
+
 @media(hover:hover){
   .page-vault-hub .vault-card:hover{transform:translateY(-2px);box-shadow:9px 9px 0 var(--pro-line) !important}
   .page-vault-hub .vault-btn:hover{transform:none;filter:brightness(1.08)}
 }
 @media(max-width:699px){
+  .page-vault-hub .hero,
+  .page-vault-hub .tech-system,
+  .page-vault-hub .vault-overview-grid,
+  .page-vault-hub .continue-card,
+  .page-vault-hub .vault-guide{margin-bottom:14px !important}
+  .page-vault-hub .vault-overview-grid{grid-template-columns:1fr;gap:14px}
+  .page-vault-hub .vault-overview-grid > .how,
+  .page-vault-hub .vault-overview-grid > .progress-card{padding:16px !important}
+  .page-vault-hub .continue-card{padding:16px !important}
   .page-vault-hub .vault-guide-grid{grid-template-columns:1fr}
   .page-vault-hub .vault-guide{margin-top:18px;padding:16px}
-  .page-vault-hub .hero img{border-right:0 !important}
+  .page-vault-hub .guide-level{min-height:0}
+  .page-vault-hub .vault-card{padding:16px !important}
+  .page-vault-hub .hero img{border-bottom:3px solid var(--pro-line) !important}
+}
+@media(min-width:900px){
+  .page-vault-hub .hero{
+    height:360px !important;
+    min-height:0 !important;
+    grid-template-columns:1.05fr .95fr !important;
+    gap:0 !important;
+  }
+  .page-vault-hub .hero img{
+    height:100% !important;
+    min-height:0 !important;
+    border-left:3px solid var(--pro-line) !important;
+  }
+  .page-vault-hub .hero-copy{height:100% !important;padding:30px !important}
+}
+
+/* Final visual polish: high-contrast Smart MUET typography and contained hero art. */
+.page-vault-hub{
+  --sm-black:#111111;
+  --sm-teal:#25bdb7;
+  --sm-teal-bright:#36d6cf;
+  --sm-red:#ff2c32;
+  --sm-yellow:#ffd323;
+  --sm-blue:#3767ad;
+}
+
+/* Normal reading text remains black; colour is reserved for emphasis. */
+.page-vault-hub .hero p,
+.page-vault-hub .tech-system p,
+.page-vault-hub .how,
+.page-vault-hub .progress-card,
+.page-vault-hub .progress-note,
+.page-vault-hub .continue-card,
+.page-vault-hub .continue-card p,
+.page-vault-hub .vault-guide,
+.page-vault-hub .vault-guide-head p,
+.page-vault-hub .guide-level,
+.page-vault-hub .guide-level p,
+.page-vault-hub .vault-card,
+.page-vault-hub .vault-card p,
+.page-vault-hub .purpose div{
+  color:var(--sm-black) !important;
+}
+
+.page-vault-hub .hero h1,
+.page-vault-hub .tech-system h2,
+.page-vault-hub .how h2,
+.page-vault-hub .progress-card h2,
+.page-vault-hub .continue-card h2,
+.page-vault-hub .vault-guide h2,
+.page-vault-hub .guide-level h3,
+.page-vault-hub .section-head h2,
+.page-vault-hub .vault-card h3{
+  color:var(--sm-black) !important;
+}
+
+.page-vault-hub .hero h1 .accent{
+  position:relative;
+  display:inline-block;
+  color:var(--sm-red) !important;
+  text-shadow:none !important;
+}
+.page-vault-hub .hero h1 .accent::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:4%;
+  bottom:-7px;
+  height:7px;
+  border:2px solid var(--sm-black);
+  border-radius:99px;
+  background:var(--sm-yellow);
+  transform:rotate(-1deg);
+}
+.page-vault-hub .eyebrow{
+  background:var(--sm-black) !important;
+  color:#fff !important;
+}
+
+/* Keep the complete 16:9 artwork within the hero frame. */
+.page-vault-hub .hero img{
+  max-width:100% !important;
+  object-fit:contain !important;
+  object-position:center center !important;
+  background:#fff !important;
+  box-sizing:border-box !important;
+}
+
+/* Controlled vibrant accents that match the Home page. */
+.page-vault-hub .tech:nth-child(1){background:var(--sm-teal-bright) !important}
+.page-vault-hub .tech:nth-child(2){background:#ffc8df !important}
+.page-vault-hub .tech:nth-child(3){background:#c9d9ff !important;color:var(--sm-black) !important}
+.page-vault-hub .tech:nth-child(4){background:#ffe09b !important}
+.page-vault-hub .step b{color:var(--sm-teal) !important}
+.page-vault-hub .progress-card{background:#e2f8f6 !important}
+.page-vault-hub .progress-track i{
+  background:linear-gradient(90deg,var(--sm-teal),var(--sm-yellow),var(--sm-red)) !important;
+}
+.page-vault-hub .continue-card{
+  background:#dce6fb !important;
+  border-top:9px solid var(--sm-blue) !important;
+}
+.page-vault-hub .vault-guide{border-top:9px solid var(--sm-teal) !important}
+.page-vault-hub .guide-level:nth-child(1){background:#e9fbfa !important}
+.page-vault-hub .guide-level:nth-child(2){background:#eef3ff !important}
+.page-vault-hub .guide-level:nth-child(3){background:#fff8d8 !important}
+.page-vault-hub .section-head h2::after{background:var(--sm-red) !important}
+
+@media(min-width:900px){
+  .page-vault-hub .hero-copy{
+    order:1;
+    border-right:3px solid var(--sm-black);
+  }
+  .page-vault-hub .hero img{
+    order:2;
+    width:100% !important;
+    height:100% !important;
+    padding:8px 0 !important;
+    border:0 !important;
+  }
+}
+
+@media(max-width:899px){
+  .page-vault-hub .hero img{
+    width:100% !important;
+    height:auto !important;
+    aspect-ratio:16 / 9;
+    padding:0 !important;
+    border:0 !important;
+    border-bottom:3px solid var(--sm-black) !important;
+  }
+  .page-vault-hub .hero h1 .accent::after{height:5px;bottom:-5px}
 }
 </style>
 </head>
@@ -1664,6 +1861,7 @@
 
 
 
+  <div class="vault-overview-grid">
   <section class="how">
     <h2>How to Use the Vault</h2>
 
@@ -1702,6 +1900,8 @@
     </p>
 
   </section>
+
+  </div>
 
   <!-- CONTINUE MY JOURNEY -->
   <section class="continue-card" id="continueCard">
