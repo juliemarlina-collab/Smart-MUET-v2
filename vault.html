@@ -1364,6 +1364,243 @@
   .page-vault-hub .vault-btn{transition:none !important}
 }
 </style>
+
+<style id="vault-professional-theme">
+/* Clean academic refinement — intentionally loaded last. */
+.page-vault-hub{
+  --pro-navy:#102a43;
+  --pro-blue:#1769aa;
+  --pro-teal:#087f8c;
+  --pro-gold:#9a7118;
+  --pro-line:#d5dee7;
+  --pro-muted:#526273;
+  background:#e9eff3 !important;
+}
+.page-vault-hub .app{background:#f7f9fb !important}
+
+.page-vault-hub .hero{
+  background:#fff !important;
+  border:1px solid var(--pro-line) !important;
+  border-radius:20px !important;
+  box-shadow:0 12px 30px rgba(16,42,67,.10) !important;
+}
+.page-vault-hub .hero img{
+  background:#e8f3f7 !important;
+  border-right:1px solid var(--pro-line) !important;
+  border-bottom:1px solid var(--pro-line) !important;
+  filter:saturate(.78) contrast(.96);
+}
+.page-vault-hub .hero-copy{background:#fff !important}
+.page-vault-hub .hero-copy::before,
+.page-vault-hub .hero-copy::after{display:none !important}
+.page-vault-hub .hero h1{color:var(--pro-navy) !important}
+.page-vault-hub .hero h1 .accent{color:var(--pro-teal) !important;text-shadow:none !important}
+.page-vault-hub .hero p{color:var(--pro-muted) !important;font-weight:650 !important}
+.page-vault-hub .eyebrow{
+  background:var(--pro-navy) !important;
+  color:#fff !important;
+  border-color:var(--pro-navy) !important;
+  box-shadow:none !important;
+}
+
+.page-vault-hub .tech-system{
+  background:var(--pro-navy) !important;
+  border:0 !important;
+  box-shadow:0 10px 24px rgba(16,42,67,.16) !important;
+}
+.page-vault-hub .tech-system::after{display:none !important}
+.page-vault-hub .tech{
+  min-height:54px !important;
+  border:1px solid rgba(255,255,255,.55) !important;
+  box-shadow:none !important;
+}
+.page-vault-hub .tech:nth-child(1){background:#dff6f5 !important;color:var(--pro-navy) !important}
+.page-vault-hub .tech:nth-child(2){background:#f6edf2 !important;color:var(--pro-navy) !important}
+.page-vault-hub .tech:nth-child(3){background:#e7f0fa !important;color:var(--pro-navy) !important}
+.page-vault-hub .tech:nth-child(4){background:#f7f0e2 !important;color:var(--pro-navy) !important}
+
+.page-vault-hub .how,
+.page-vault-hub .progress-card{
+  background:#fff !important;
+  border:1px solid var(--pro-line) !important;
+  box-shadow:0 8px 22px rgba(16,42,67,.08) !important;
+}
+.page-vault-hub .step{
+  background:#f4f7f9 !important;
+  border:1px solid var(--pro-line) !important;
+  box-shadow:none !important;
+  color:var(--pro-navy) !important;
+}
+.page-vault-hub .step b{color:var(--pro-teal) !important}
+.page-vault-hub .progress-track{
+  height:14px !important;
+  border:1px solid #b8c5d1 !important;
+  background:#edf2f5 !important;
+}
+.page-vault-hub .progress-track i{background:var(--pro-teal) !important;border:0 !important}
+
+.page-vault-hub .continue-card{
+  background:#eef7f7 !important;
+  color:var(--pro-navy) !important;
+  border:1px solid #b9dada !important;
+  border-left:6px solid var(--pro-teal) !important;
+  box-shadow:0 8px 22px rgba(16,42,67,.08) !important;
+}
+.page-vault-hub .continue-card p{color:var(--pro-muted) !important}
+.page-vault-hub .continue-icon{
+  background:var(--pro-teal) !important;
+  color:#fff !important;
+  border-color:var(--pro-teal) !important;
+  box-shadow:none !important;
+}
+.page-vault-hub .continue-meta{
+  background:#fff !important;
+  color:var(--pro-navy) !important;
+  border-color:#c8d8df !important;
+}
+.page-vault-hub .continue-primary{
+  background:var(--pro-teal) !important;
+  color:#fff !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+.page-vault-hub .continue-secondary{
+  background:#fff !important;
+  color:var(--pro-navy) !important;
+  border:1px solid #b9cbd5 !important;
+  box-shadow:none !important;
+}
+
+.page-vault-hub .vault-guide{
+  margin:22px 0 24px;
+  padding:clamp(18px,2.2vw,26px);
+  border:1px solid var(--pro-line);
+  border-radius:18px;
+  background:#fff;
+  box-shadow:0 8px 22px rgba(16,42,67,.07);
+}
+.page-vault-hub .vault-guide-head h2{
+  color:var(--pro-navy);
+  font-size:clamp(1.35rem,.8vw + 1.18rem,1.7rem) !important;
+}
+.page-vault-hub .vault-guide-head p{
+  max-width:68ch;
+  margin-top:6px;
+  color:var(--pro-muted);
+  font-size:.96rem !important;
+}
+.page-vault-hub .vault-guide-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin-top:16px;
+}
+.page-vault-hub .guide-level{
+  min-width:0;
+  padding:15px;
+  border:1px solid var(--pro-line);
+  border-top:4px solid var(--pro-teal);
+  border-radius:12px;
+  background:#fbfcfd;
+}
+.page-vault-hub .guide-level:nth-child(2){border-top-color:var(--pro-blue)}
+.page-vault-hub .guide-level:nth-child(3){border-top-color:#b58925}
+.page-vault-hub .guide-level small{
+  display:block;
+  color:var(--pro-teal);
+  font-size:.72rem;
+  font-weight:900;
+  letter-spacing:.07em;
+}
+.page-vault-hub .guide-level:nth-child(2) small{color:var(--pro-blue)}
+.page-vault-hub .guide-level:nth-child(3) small{color:var(--pro-gold)}
+.page-vault-hub .guide-level h3{
+  margin-top:6px;
+  color:var(--pro-navy);
+  font-size:1.05rem !important;
+}
+.page-vault-hub .guide-level p{
+  margin-top:5px;
+  color:var(--pro-muted);
+  font-size:.88rem !important;
+  line-height:1.45 !important;
+}
+
+.page-vault-hub .section-head h2{display:block;color:var(--pro-navy);background:none !important}
+.page-vault-hub .section-head h2::after{
+  content:"";
+  display:block;
+  width:52px;
+  height:4px;
+  margin-top:8px;
+  border-radius:99px;
+  background:var(--pro-teal);
+}
+.page-vault-hub .section-head span{
+  background:#fff !important;
+  color:var(--pro-muted) !important;
+  border:1px solid var(--pro-line) !important;
+}
+
+.page-vault-hub .vault-list{gap:18px !important}
+.page-vault-hub .vault-card,
+.page-vault-hub .vault-card.v1,
+.page-vault-hub .vault-card.v2,
+.page-vault-hub .vault-card.mock{
+  background:#fff !important;
+  color:var(--pro-navy) !important;
+  border:1px solid var(--pro-line) !important;
+  border-top:6px solid var(--pro-teal) !important;
+  border-radius:18px !important;
+  box-shadow:0 9px 24px rgba(16,42,67,.09) !important;
+}
+.page-vault-hub .vault-card.v2{border-top-color:var(--pro-blue) !important}
+.page-vault-hub .vault-card.mock{border-top-color:#b58925 !important}
+.page-vault-hub .vault-card::after{display:none !important}
+.page-vault-hub .vault-number{
+  width:50px !important;
+  height:50px !important;
+  color:var(--pro-teal) !important;
+  border:1px solid #afd4d5 !important;
+  background:#edf8f8 !important;
+  box-shadow:none !important;
+}
+.page-vault-hub .vault-card.v2 .vault-number{color:var(--pro-blue) !important;border-color:#b9cfe5 !important;background:#eef4fa !important}
+.page-vault-hub .vault-card.mock .vault-number{color:var(--pro-gold) !important;border-color:#e0c887 !important;background:#fbf6e8 !important}
+.page-vault-hub .status{
+  background:#f4f7f9 !important;
+  color:var(--pro-muted) !important;
+  border:1px solid var(--pro-line) !important;
+  box-shadow:none !important;
+}
+.page-vault-hub .vault-card h3{color:var(--pro-navy) !important}
+.page-vault-hub .vault-card p{color:var(--pro-muted) !important}
+.page-vault-hub .purpose div{
+  background:#f6f8fa !important;
+  color:var(--pro-navy) !important;
+  border:1px solid var(--pro-line) !important;
+  box-shadow:none !important;
+}
+.page-vault-hub .vault-btn,
+.page-vault-hub .vault-card.mock .vault-btn{
+  background:var(--pro-navy) !important;
+  color:#fff !important;
+  border:0 !important;
+  box-shadow:none !important;
+}
+.page-vault-hub .vault-card.v2 .vault-btn{background:var(--pro-blue) !important}
+.page-vault-hub .vault-card.mock .vault-btn{background:var(--pro-gold) !important}
+.page-vault-hub .bottom-nav a.active{background:#e4f3f3 !important;border:1px solid #a9d2d3 !important}
+
+@media(hover:hover){
+  .page-vault-hub .vault-card:hover{transform:translateY(-2px);box-shadow:0 13px 28px rgba(16,42,67,.13) !important}
+  .page-vault-hub .vault-btn:hover{transform:none;filter:brightness(1.08)}
+}
+@media(max-width:699px){
+  .page-vault-hub .vault-guide-grid{grid-template-columns:1fr}
+  .page-vault-hub .vault-guide{margin-top:18px;padding:16px}
+}
+</style>
 </head>
 
 <body class="page-vault-hub">
@@ -1478,6 +1715,34 @@
         <a class="continue-primary" id="continueBtn" href="vault1.html">START VAULT 1 →</a>
         <a class="continue-secondary" href="progress.html">VIEW PROGRESS</a>
       </div>
+    </div>
+  </section>
+
+
+  <section class="vault-guide" aria-labelledby="vaultGuideTitle">
+    <div class="vault-guide-head">
+      <h2 id="vaultGuideTitle">Choose the right practice level</h2>
+      <p>Move through the levels in order. Each stage gradually reduces support and increases exam readiness.</p>
+    </div>
+
+    <div class="vault-guide-grid">
+      <article class="guide-level">
+        <small>LEVEL 01 · GUIDED</small>
+        <h3>Build the technique</h3>
+        <p>Best for first attempts, strategy practice and learning through feedback.</p>
+      </article>
+
+      <article class="guide-level">
+        <small>LEVEL 02 · INDEPENDENT</small>
+        <h3>Strengthen application</h3>
+        <p>Best for quicker decisions with less support and tighter timing.</p>
+      </article>
+
+      <article class="guide-level">
+        <small>LEVEL 03 · EXAM-STYLE</small>
+        <h3>Check your readiness</h3>
+        <p>Best for timed simulation, performance review and identifying final gaps.</p>
+      </article>
     </div>
   </section>
 
