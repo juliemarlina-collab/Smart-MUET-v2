@@ -447,73 +447,7 @@
     }
   </style>
   <link rel="stylesheet" href="css/responsive-v2.css">
-  <style id="splash-layout-fix">
-    /* Keep the splash full-screen. responsive-v2.css otherwise constrains it
-       to a 620px card while this page still uses desktop-sized title text. */
-    body.page-splash{
-      overflow-x:hidden;
-      overflow-y:auto;
-    }
-
-    .page-splash .splash{
-      width:100% !important;
-      min-height:100vh !important;
-      min-height:100dvh !important;
-      margin:0 !important;
-      padding:0 !important;
-    }
-
-    .page-splash .content{
-      width:min(92vw,900px) !important;
-      min-width:0;
-      padding:
-        max(20px,env(safe-area-inset-top))
-        clamp(28px,6vw,80px)
-        22px !important;
-    }
-
-    .page-splash .logo-wrap{
-      width:clamp(92px,13vh,138px) !important;
-      height:auto !important;
-      margin-bottom:clamp(14px,2.4vh,24px) !important;
-    }
-
-    .page-splash .title{
-      width:100%;
-    }
-
-    .page-splash .title-line{
-      font-size:clamp(58px,9vh,112px) !important;
-      white-space:nowrap;
-    }
-
-    .page-splash .divider{
-      margin:clamp(13px,2.2vh,24px) auto clamp(12px,2vh,20px) !important;
-    }
-
-    .page-splash .tagline{
-      font-size:clamp(24px,4.2vh,42px) !important;
-    }
-
-    @media (max-width:599px){
-      .page-splash .content{
-        width:100% !important;
-        padding-inline:30px !important;
-      }
-
-      .page-splash .logo-wrap{
-        width:clamp(82px,25vw,112px) !important;
-      }
-
-      .page-splash .title-line{
-        font-size:clamp(44px,15vw,68px) !important;
-      }
-
-      .page-splash .tagline{
-        font-size:clamp(20px,7vw,30px) !important;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/display-standard.css">
 </head>
 
 <body class="page-splash">

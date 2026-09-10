@@ -88,7 +88,61 @@
   display:block!important;
   margin:0;
   border:0;
-  box-shadow:<section class="listen-part open" id="listen-accordion-1">
+  border-radius:0;
+  box-shadow:none;
+  padding:12px;
+}
+.mock-finish{
+  background:#fff;
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:14px;
+  margin-top:14px;
+}
+.mock-finish h2{font-family:var(--fh);font-size:20px}
+.mock-finish p{margin-top:5px;color:var(--muted);font-size:12px;font-weight:700}
+.mock-submit-btn{
+  width:100%;min-height:50px;margin-top:10px;border:var(--line);
+  border-radius:11px;background:var(--red);color:#fff;
+  box-shadow:4px 4px 0 var(--ink);font-size:11px;font-weight:1000;cursor:pointer;
+}
+.submit-note{display:block;margin-top:7px;color:var(--muted);font-size:10px;font-weight:800}
+</style>
+<link rel="stylesheet" href="css/responsive-v2.css">
+<link rel="stylesheet" href="css/display-standard.css">
+</head>
+<body class="page-mock1-component page-mock1-listening">
+<main class="app">
+
+<header class="top">
+  <div class="brand">
+    <img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET">
+    <div><small>MOCK PRACTICE 1 · 800/1</small><b>Listening</b></div>
+  </div>
+  <a class="back" href="mock1.html">← Mock 1</a>
+</header>
+
+<section class="hero">
+  <span class="tag">FULL MOCK · 30 QUESTIONS</span>
+  <h1>Listen carefully.<span>Respond independently.</span></h1>
+  <p>Complete all five listening parts under mock conditions, then submit once to review your score.</p>
+</section>
+
+<section class="exambar">
+  <div class="examrow">
+    <div><h2>Listening Paper 800/1</h2><p>5 parts · 30 questions · 50 minutes</p></div>
+    <div class="timer" id="timer">50:00</div>
+  </div>
+  <button class="startbtn" id="startExam" type="button">START 50-MINUTE TIMER</button>
+</section>
+
+<div class="progress" aria-label="Listening mock progress">
+  <div class="pstep on"></div><div class="pstep"></div><div class="pstep"></div>
+  <div class="pstep"></div><div class="pstep"></div>
+</div>
+
+<section class="listen-part open" id="listen-accordion-1">
   <button class="listen-part-head" type="button">
     <div class="listen-part-no">1</div>
     <div class="listen-part-meta">
@@ -476,30 +530,11 @@
     </section>
   </div>
 </section>
->The main reason Madam Rajeswari rejected Diana's proposal was because</p>
-      
-      <div class="opts">
-        <label class="opt" id="opt-28-0"><input type="radio" name="q28" value="0"><span>A. the project was costly</span></label><label class="opt" id="opt-28-1"><input type="radio" name="q28" value="1"><span>B. there were mistakes in it</span></label><label class="opt" id="opt-28-2"><input type="radio" name="q28" value="2"><span>C. it was not submitted on time</span></label>
-      </div>
-    </div>
-    <div class="qcard">
-      <span class="qtag">Q30</span>
-      <p class="stem">Weather-bond paint is not suitable for their project because it</p>
-      
-      <div class="opts">
-        <label class="opt" id="opt-29-0"><input type="radio" name="q29" value="0"><span>A. can easily be washed off by heavy rain</span></label><label class="opt" id="opt-29-1"><input type="radio" name="q29" value="1"><span>B. has to be painted in several layers to last longer</span></label><label class="opt" id="opt-29-2"><input type="radio" name="q29" value="2"><span>C. can only be used on vertical walls and not the floor</span></label>
-      </div>
-    </div></div>
-      <div class="part-nav">
-        <button class='navbtn ghost prev' data-target='4'>← PREVIOUS</button>
-        <button class='navbtn finish-open' id='finishOpen'>REVIEW & SUBMIT →</button>
-      </div>
-    </section>
-</div>
 
 <section class="mock-finish" id="finishListening">
   <h2>Finish Mock Practice 1 · Listening</h2>
   <p>Submit all 30 questions together to complete the Listening mock and calculate your score.</p>
+  <span class="submit-note" id="answeredCount">0 of 30 questions answered.</span>
   <button class="mock-submit-btn" id="submitExam">SUBMIT FULL LISTENING MOCK →</button>
   <span class="submit-note">Your score and answer review appear after final submission.</span>
   <div class="result" id="result"></div>
@@ -537,16 +572,14 @@ let currentPart=1,remaining=3000,timerId=null,started=false,submitted=false;
 
 function showPart(n){
  currentPart=n;
- document.querySelectorAll(".part").forEach((p,i)=>p.classList.toggle("active",i===n-1));
+ openListeningPart(n);
  document.querySelectorAll(".pstep").forEach((p,i)=>p.classList.toggle("on",i<n));
  for(let i=1;i<=5;i++) document.getElementById("status-"+i).textContent=i===n?"CURRENT":i<n?"VISITED":"READY";
- window.scrollTo({top:document.querySelector("#part-"+n).offsetTop-15,behavior:"smooth"});
 }
 document.querySelectorAll(".next,.prev").forEach(btn=>btn.addEventListener("click",()=>showPart(Number(btn.dataset.target))));
 document.getElementById("finishOpen").addEventListener("click",()=>{
- document.getElementById("submitPanel").classList.add("show");
  updateAnswered();
- document.getElementById("submitPanel").scrollIntoView({behavior:"smooth"});
+ document.getElementById("finishListening").scrollIntoView({behavior:"smooth"});
 });
 
 function drawTimer(){
@@ -561,7 +594,6 @@ document.getElementById("startExam").addEventListener("click",()=>{
    remaining--; drawTimer();
    if(remaining<=0){
      clearInterval(timerId);
-     document.getElementById("submitPanel").classList.add("show");
      submitPaper(true);
    }
  },1000);
