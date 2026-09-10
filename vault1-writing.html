@@ -901,7 +901,7 @@ async function submit(task){
   if(wc<50){alert('Develop your response further before submitting.');return}
   if(wc<min&&!confirm(`Your response has ${wc} words. The task requires at least ${min}. Submit anyway?`))return;
   const e=evaluateWriting(answer,task);renderResult(task,e);
-  const profile=(()=>{try{return JSON.parse(localStorage.getItem('smartMuetProfile')||'{}')}catch(e){return{}}})();
+  const profile=(()=>{try{return JSON.parse(localStorage.getItem('muet_profile')||'{}')}catch(e){return{}}})();
   const peel=task===2?{point:document.getElementById('pPoint').value,explain:document.getElementById('pExplain').value,example:document.getElementById('pExample').value,link:document.getElementById('pLink').value}:null;
   const payload={vaultId:'VAULT-01',component:'Writing',taskNumber:task,taskType:'Task '+task,studentName:profile.name||'',studentRegNo:profile.regNo||'',classGroup:profile.group||'',answerText:answer,wordCount:e.wc,peelPlan:peel,rubric:{taskFulfilment:e.tf,organisationCoherence:e.co,language:e.lg,registerStyle:e.rs},rawScore:e.raw,rawMax:e.rawMax,scaledScore:e.scaled,scaledMax:e.scaledMax,status:'Guided rubric-aligned practice evaluation',createdAt:new Date().toISOString()};
   const saved=await saveAttempt(payload);document.getElementById('cloud'+task).textContent=saved&&saved.ok?'☁️ Saved to Google Sheet':'💾 '+((saved&&saved.message)||'Saved locally');

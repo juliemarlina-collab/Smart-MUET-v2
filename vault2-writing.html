@@ -679,7 +679,7 @@ async function submitTask(task){
   renderRubric(task,ev);
 
   const profile=(()=>{
-    try{return JSON.parse(localStorage.getItem("smartMuetProfile")||"{}")}
+    try{return JSON.parse(localStorage.getItem("muet_profile")||"{}")}
     catch(e){return{}}
   })();
 

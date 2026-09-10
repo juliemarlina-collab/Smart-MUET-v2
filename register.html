@@ -660,6 +660,7 @@ h1{
 
 </main>
 
+<script src="js/backend-config.js"></script>
 <script>
 const EXAMS = {
   "S1-2026":{label:"MUET Session 1 · 2026",written:"25 April 2026"},
@@ -710,6 +711,10 @@ document.getElementById("registerForm").addEventListener("submit",e=>{
 
   localStorage.setItem("muet_profile",JSON.stringify(profile));
   localStorage.setItem("muet_registered_email",email);
+
+  if(typeof window.sendRegistration === "function"){
+    window.sendRegistration(profile);
+  }
 
   document.getElementById("successBox").classList.add("show");
 

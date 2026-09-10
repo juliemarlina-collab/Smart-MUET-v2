@@ -1921,7 +1921,7 @@ document.getElementById("profileSettingsForm").addEventListener("submit",e=>{
   savedSpeakingDate=profile.speakingDate||"";
 
   /* Keep legacy key used by some Vault/Mock pages in sync. */
-  localStorage.setItem("smartMuetProfile",JSON.stringify({
+  localStorage.setItem("muet_profile",JSON.stringify({
     ...profile,
     studentRegNo:profile.regNo,
     classGroup:profile.group
