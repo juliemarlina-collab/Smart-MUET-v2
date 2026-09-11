@@ -1689,11 +1689,12 @@
 /* Final visual polish: high-contrast Smart MUET typography and contained hero art. */
 .page-vault-hub{
   --sm-black:#111111;
-  --sm-teal:#25bdb7;
-  --sm-teal-bright:#36d6cf;
-  --sm-red:#ff2c32;
-  --sm-yellow:#ffd323;
-  --sm-blue:#3767ad;
+  --sm-teal:#00C9C0;
+  --sm-aqua:#1FDCE8;
+  --sm-pink:#FF4FA3;
+  --sm-yellow:#F4C400;
+  --sm-blue:#0D78E8;
+  background:var(--sm-teal) !important;
 }
 
 /* Normal reading text remains black; colour is reserved for emphasis. */
@@ -1729,7 +1730,7 @@
 .page-vault-hub .hero h1 .accent{
   position:relative;
   display:inline-block;
-  color:var(--sm-red) !important;
+  color:var(--sm-blue) !important;
   text-shadow:none !important;
 }
 .page-vault-hub .hero h1 .accent::after{
@@ -1759,24 +1760,36 @@
 }
 
 /* Controlled vibrant accents that match the Home page. */
-.page-vault-hub .tech:nth-child(1){background:var(--sm-teal-bright) !important}
-.page-vault-hub .tech:nth-child(2){background:#ffc8df !important}
-.page-vault-hub .tech:nth-child(3){background:#c9d9ff !important;color:var(--sm-black) !important}
-.page-vault-hub .tech:nth-child(4){background:#ffe09b !important}
+.page-vault-hub .tech:nth-child(1){background:var(--sm-yellow) !important}
+.page-vault-hub .tech:nth-child(2){background:var(--sm-aqua) !important}
+.page-vault-hub .tech:nth-child(3){background:var(--sm-blue) !important;color:var(--sm-black) !important}
+.page-vault-hub .tech:nth-child(4){background:var(--sm-pink) !important}
+.page-vault-hub .how{background:var(--sm-yellow) !important}
 .page-vault-hub .step b{color:var(--sm-teal) !important}
-.page-vault-hub .progress-card{background:#e2f8f6 !important}
+.page-vault-hub .progress-card{background:var(--sm-aqua) !important}
 .page-vault-hub .progress-track i{
-  background:linear-gradient(90deg,var(--sm-teal),var(--sm-yellow),var(--sm-red)) !important;
+  background:linear-gradient(90deg,var(--sm-blue),var(--sm-pink),var(--sm-yellow)) !important;
 }
 .page-vault-hub .continue-card{
-  background:#dce6fb !important;
+  background:var(--sm-aqua) !important;
   border-top:9px solid var(--sm-blue) !important;
 }
-.page-vault-hub .vault-guide{border-top:9px solid var(--sm-teal) !important}
-.page-vault-hub .guide-level:nth-child(1){background:#e9fbfa !important}
-.page-vault-hub .guide-level:nth-child(2){background:#eef3ff !important}
-.page-vault-hub .guide-level:nth-child(3){background:#fff8d8 !important}
-.page-vault-hub .section-head h2::after{background:var(--sm-red) !important}
+.page-vault-hub .vault-guide{border-top:9px solid var(--sm-pink) !important}
+.page-vault-hub .guide-level:nth-child(1){background:var(--sm-yellow) !important}
+.page-vault-hub .guide-level:nth-child(2){background:var(--sm-aqua) !important}
+.page-vault-hub .guide-level:nth-child(3){background:var(--sm-pink) !important}
+.page-vault-hub .guide-level small,
+.page-vault-hub .guide-level:nth-child(2) small,
+.page-vault-hub .guide-level:nth-child(3) small{color:var(--sm-black) !important}
+.page-vault-hub .section-head h2::after{background:var(--sm-pink) !important}
+
+.page-vault-hub .vault-card.v1{background:var(--sm-yellow) !important}
+.page-vault-hub .vault-card.v2{background:var(--sm-aqua) !important}
+.page-vault-hub .vault-card.mock{background:var(--sm-pink) !important}
+.page-vault-hub .vault-card.v2 .vault-btn,
+.page-vault-hub .vault-card.mock .vault-btn{background:var(--sm-black) !important}
+.page-vault-hub .section-head span,
+.page-vault-hub .bottom-nav a.active{background:var(--sm-yellow) !important}
 
 @media(min-width:900px){
   .page-vault-hub .hero-copy{
