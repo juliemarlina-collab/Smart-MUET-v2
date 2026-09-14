@@ -2102,20 +2102,24 @@
     return localStorage.getItem(key) === "true";
   }
 
+  function stageComplete(stageKey,aggregateKey){
+    const components=["speaking","reading","listening","writing"];
+    const complete=components.every(component=>
+      localStorage.getItem(`muet_${stageKey}_${component}`)==="true"
+    );
+    if(complete) localStorage.setItem(aggregateKey,"true");
+    else localStorage.removeItem(aggregateKey);
+    return complete;
+  }
+
   function updateVaultProgress(){
     const attempts = readJSON("muet_attempt_log",[]);
 
-    const v1 =
-      vaultComplete("muet_vault1_complete") ||
-      attempts.some(x => String(x.vault || x.level || "").toUpperCase().includes("VAULT-01"));
+    const v1 = stageComplete("v1","muet_vault1_complete");
 
-    const v2 =
-      vaultComplete("muet_vault2_complete") ||
-      attempts.some(x => String(x.vault || x.level || "").toUpperCase().includes("VAULT-02"));
+    const v2 = stageComplete("v2","muet_vault2_complete");
 
-    const mock =
-      vaultComplete("muet_mock1_complete") ||
-      attempts.some(x => String(x.vault || x.level || "").toUpperCase().includes("MOCK"));
+    const mock = stageComplete("mock1","muet_mock1_complete");
 
     const complete = [v1,v2,mock].filter(Boolean).length;
     const percent = Math.round(complete / 3 * 100);

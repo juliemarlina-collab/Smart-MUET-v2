@@ -357,8 +357,11 @@ Audio mapping follows the Vault 02 source inventory: Track 1–5 = Parts I–V. 
 
 <nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
 
+<script src="js/backend-config.js"></script>
+<script src="js/objective-results.js"></script>
 <script>
 const answers=[2, 1, 0, 1, 0, 1, 1, 1, 0, 0, 2, 0, 1, 2, 4, 0, 2, 0, 1, 1, 0, 0, 1, 0, 2, 0, 1, 2, 2, 0];
+const objectivePaper=SmartMUETObjective.init({stageKey:"v2",vaultId:"VAULT-02",component:"Listening",totalItems:30,questionBase:0,answerMap:answers});
 const partMap={"Part I \u2014 Conversation": [0, 1, 2, 3, 4, 5, 6], "Part II \u2014 Talk": [7, 8, 9, 10, 11, 12, 13], "Part III \u2014 Matching": [14, 15, 16], "Part IV \u2014 Radio Interview": [17, 18, 19, 20, 21, 22, 23], "Part V \u2014 Dialogues": [24, 25, 26, 27, 28, 29]};
 
 document.querySelectorAll(".part-head").forEach(btn=>btn.addEventListener("click",()=>{
@@ -399,7 +402,7 @@ document.getElementById("finalSubmit").addEventListener("click",()=>{
   const box=document.getElementById("summary");
   box.classList.add("show");
   box.innerHTML=`<div class="big">${r.correct}/30</div><div>${score90}/90 equivalent practice score</div><div style="margin-top:6px">${r.answered===30?"All 30 questions completed.":`You answered ${r.answered} of 30 questions.`}</div>`;
-  if(r.answered===30)localStorage.setItem("muet_v2_listening","true");
+  objectivePaper.saveResult();
 });
 
 

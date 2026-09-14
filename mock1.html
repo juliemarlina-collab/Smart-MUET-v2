@@ -1005,6 +1005,12 @@ a{
   const pct =
     Math.round(done / 4 * 100);
 
+  if(done === 4){
+    localStorage.setItem("muet_mock1_complete","true");
+  }else{
+    localStorage.removeItem("muet_mock1_complete");
+  }
+
   document.getElementById("progressLabel").textContent =
     done + " / 4";
 

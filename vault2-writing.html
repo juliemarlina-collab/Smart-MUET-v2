@@ -592,7 +592,9 @@ function renderRubric(task, ev){
 
   const box=document.getElementById("result"+task);
   box.classList.add("show");
+  const confidence=ev.wc>=(task===1?100:250)?"High":ev.wc>=50?"Moderate":"Low";
   box.innerHTML=`
+    <div class="coach"><b>Immediate rubric-based practice feedback</b><br>Estimate confidence: ${confidence}. Based on task coverage, organisation, language evidence and response length. This is formative practice feedback, not an official MUET result.</div>
     <div class="criteria">
       ${rows.map(r=>`
         <div class="criterion">
@@ -606,7 +608,7 @@ function renderRubric(task, ev){
 
     <div class="score-card">
       <div>
-        <b>Rubric Practice Evaluation</b><br>
+        <b>Estimated Practice Score</b><br>
         <small>Raw ${ev.raw}/${ev.rawMax}</small>
       </div>
       <strong>${ev.scaled}/${ev.scaledMax}</strong>
@@ -615,7 +617,7 @@ function renderRubric(task, ev){
     <div class="coach">
       <b>💪 Strength</b><br>${ev.strength}
       <br><br>
-      <b>🎯 Focus Next</b><br>${ev.focus}
+      <b>🎯 Next action</b><br>${ev.focus}
     </div>
 
     <div class="save-state" id="cloudState${task}">Saving attempt…</div>
@@ -706,7 +708,8 @@ async function submitTask(task){
     rawMax:ev.rawMax,
     scaledScore:ev.scaled,
     scaledMax:ev.scaledMax,
-    status:"Rubric-aligned practice evaluation",
+    estimateConfidence:wc>=min?"High":"Moderate",
+    status:"Immediate rubric-based practice estimate",
     createdAt:new Date().toISOString()
   };
 

@@ -383,8 +383,11 @@
 <section class="summary"><h2>Finish the Full Paper</h2><p style="margin-top:5px;font-size:13px;line-height:1.4;font-weight:700;color:#555">You can check each Part as you go, then submit the whole paper for your overall score.</p><button class="final-submit" id="finalSubmit">SUBMIT FULL LISTENING PRACTICE →</button><div class="summary-result" id="summaryResult"></div></section>
 </main>
 <nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
+<script src="js/backend-config.js"></script>
+<script src="js/objective-results.js"></script>
 <script>
 const answers=[1, 2, 2, 0, 1, 1, 0, 1, 2, 2, 0, 1, 2, 2, 3, 1, 4, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1];
+const objectivePaper=SmartMUETObjective.init({stageKey:"v1",vaultId:"VAULT-01",component:"Listening",totalItems:30,questionBase:0,answerMap:answers});
 const explanations=["Leanne says she is the president of the Pet Club \u2014 she is in charge of the club.", "Leanne says tortoises are popular as pets now.", "Leanne explains Tito lives in the garden because he has his own house there.", "Leanne says the design was simple, so it was easy to build.", "The stones help Tito move around easily.", "Amir is surprised that tortoises are sensitive to touch.", "The Pet Club's table is at the back-left corner of the hall.", "Dr Yusof says he went to primary school in Negeri Sembilan.", "His first job was at Elizabeth University.", "His grandmother encouraged him and told him education was the key to success.", "His father read the newspaper every day to improve his English.", "He used weekends to do part-time teaching.", "He balanced study and work during his postgraduate studies.", "His key advice is to aim high in whatever you do.", "Lina travels mainly to have new experiences.", "Saiful travels to make new friends.", "Sarah travels to escape her routine life.", "Avoiding punishment is described as the most common reason for lying.", "A lie becomes serious when a rule or law has been broken.", "Fear may show in facial expressions, body movements, voice or words.", "This is described as a self-protection lie.", "The example illustrates lying to maintain privacy.", "The listener does not expect literal truth in this kind of polite remark.", "They enjoy the power of controlling information.", "Constantly increasing the TV or radio volume is an early sign of hearing loss.", "Blocked ears can occur in an enclosed space like an aeroplane.", "A leaking tap can waste as much as three litres of water a day.", "He recommends an automatic sensor tap.", "Recovery protects against that specific virus type only.", "Red spots can indicate damaged blood vessels."];
 const partMap={"Part I \u2014 Conversation": [0, 1, 2, 3, 4, 5, 6], "Part II \u2014 Talk": [7, 8, 9, 10, 11, 12, 13], "Part III \u2014 Matching": [14, 15, 16], "Part IV \u2014 Radio Interview": [17, 18, 19, 20, 21, 22, 23], "Part V \u2014 Dialogues": [24, 25, 26, 27, 28, 29]};
 document.querySelectorAll(".part-head").forEach(btn=>btn.addEventListener("click",()=>{
@@ -427,7 +430,7 @@ document.getElementById("finalSubmit").addEventListener("click",()=>{
   const box=document.getElementById("summaryResult");
   box.classList.add("show");
   box.innerHTML=`<div class="bigscore">${r.correct}/30</div><div>${score90}/90 equivalent practice score</div><div style="margin-top:6px">${r.answered<30?`You answered ${r.answered} of 30 questions.`:"All 30 questions completed."}</div>`;
-  if(r.answered===30) localStorage.setItem("muet_v1_listening","true");
+  objectivePaper.saveResult();
 });
 
 

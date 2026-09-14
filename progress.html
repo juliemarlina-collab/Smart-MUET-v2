@@ -1487,13 +1487,15 @@ body.page-final-progress-hero .next-card p{
 
   <div class="snapshot-grid">
     <div class="snap-mini"><span>SOURCE</span><b id="latestStage">No complete set</b></div>
+    <div class="snap-mini"><span>LIKELY RANGE</span><b id="bandRange">—</b></div>
+    <div class="snap-mini"><span>ESTIMATE CONFIDENCE</span><b id="estimateConfidence">—</b></div>
     <div class="snap-mini"><span>TARGET BAND</span><b id="targetBand">—</b></div>
     <div class="snap-mini"><span>TARGET GAP</span><b id="targetGap">—</b></div>
     <div class="snap-mini"><span>BADGES</span><b id="badgeCount">0 / 8</b></div>
   </div>
 
   <div class="progress-track"><div id="targetProgress"></div></div>
-  <div class="snapshot-note">Practice estimate only — not an official MUET result.</div>
+  <div class="snapshot-note">Immediate formative estimate based on completed practice and MUET-aligned criteria. It is designed to guide improvement and may differ from performance under examination conditions; it is not an official MUET result.</div>
   <div class="snapshot-empty">
     No marks yet. Complete a Vault or Mock component and submit it to start building your progress dashboard.
   </div>
@@ -1697,7 +1699,16 @@ function explicitScore(stage,component){
   ];
   for(const key of candidates){
     if(localStorage.getItem(key)!==null){
-      const s=scoreFromObject(safeJSON(localStorage.getItem(key)));
+      const value=safeJSON(localStorage.getItem(key));
+      let s=scoreFromObject(value);
+      /* Legacy objective pages stored raw marks under *_score. */
+      if(key.endsWith("_score") && (c==="listening" || c==="reading")){
+        const raw=Number(value);
+        const denominator=c==="listening"?30:40;
+        if(Number.isFinite(raw) && raw>=0 && raw<=denominator){
+          s=clamp90(raw/denominator*90);
+        }
+      }
       if(s!==null)return {score:s,source:key};
     }
   }
@@ -1813,6 +1824,24 @@ function bandFor(total){
   return BANDS.find(b=>total>=b.min)?.band || "—";
 }
 
+function stageEvidence(stage,rows){
+  if(!stage)return {confidence:"—",range:"—"};
+  const relevant=rows.filter(r=>keyMatchesStage(r.key,stage));
+  const speaking=relevant.filter(r=>/speaking.*task|task.*speaking/i.test(r.key) && r.value && typeof r.value==="object");
+  const writing=relevant.filter(r=>/writing.*task|task.*writing/i.test(r.key) && r.value && typeof r.value==="object");
+  const speakingAdequate=speaking.filter(r=>Number(r.value.wordCount)>=40).length>=2;
+  const writingAdequate=writing.some(r=>/task_?1/i.test(r.key)&&Number(r.value.wordCount)>=50) &&
+                        writing.some(r=>/task_?2/i.test(r.key)&&Number(r.value.wordCount)>=100);
+  const speakingStrong=speaking.filter(r=>Number(r.value.wordCount)>=70 && Number(r.value.durationSeconds)>=30).length>=2;
+  const writingStrong=writing.some(r=>/task_?1/i.test(r.key)&&Number(r.value.wordCount)>=100) &&
+                      writing.some(r=>/task_?2/i.test(r.key)&&Number(r.value.wordCount)>=250);
+  const confidence=speakingStrong&&writingStrong?"High":speakingAdequate&&writingAdequate?"Moderate":"Low";
+  const margin=confidence==="High"?8:confidence==="Moderate"?15:25;
+  const low=bandFor(Math.max(1,stage.total-margin));
+  const high=bandFor(Math.min(360,stage.total+margin));
+  return {confidence,range:low===high?`Band ${low}`:`Band ${low}–${high}`};
+}
+
 function getProfile(){
   const candidates=[
     safeJSON(localStorage.getItem("muet_profile")),
@@ -1906,6 +1935,7 @@ function setDataSectionState(id, show){
 function render(){
   const model=buildModel();
   const latest=latestCompleteStage(model.stages);
+  const evidence=stageEvidence(latest,model.rows);
   const target=getTargetBand();
   const hasData=hasAnyRealScore(model);
 
@@ -1916,8 +1946,10 @@ function render(){
 
   /* Snapshot */
   document.getElementById("totalScore").textContent=latest?latest.total:"—";
-  document.getElementById("bandEstimate").textContent=latest?latest.band:"—";
+  document.getElementById("bandEstimate").textContent=latest?`Band ${latest.band}`:"—";
   document.getElementById("latestStage").textContent=latest?latest.label:"—";
+  document.getElementById("bandRange").textContent=evidence.range;
+  document.getElementById("estimateConfidence").textContent=evidence.confidence;
   document.getElementById("targetBand").textContent=target==="—"?"—":`Band ${target}`;
 
   const targetMin=TARGET_MIN[target] ?? null;
@@ -1965,7 +1997,7 @@ function render(){
         </div>
         <div class="stage-foot">
           <span class="stage-status ${s.complete?"complete":""}">${s.complete?"COMPLETE ✓":`${count}/4 DONE`}</span>
-          <span class="stage-delta">${s.complete?`Practice Band ${s.band}`:(count===0?"No results yet":"Complete all 4 for total")}</span>
+          <span class="stage-delta">${s.complete?`Estimated Practice Band ${s.band}`:(count===0?"No results yet":"Complete all 4 for total")}</span>
         </div>
       </div>
     </details>`;
@@ -2007,10 +2039,10 @@ function render(){
   const latestSpeaking=latestScoreForComponent(model,"Speaking");
 
   if(latestSpeaking.score!==null){
-    feedback.push({icon:"🎤",title:"Speaking",text:`Latest score ${latestSpeaking.score}/90. ${focusCriterion&&/speaking/i.test(focusCriterion.key)?`Focus criterion: ${focusCriterion.name} (${focusCriterion.value}/6).`:"Review your latest speaking rubric before the next attempt."}`});
+    feedback.push({icon:"🎤",title:"Estimated Speaking Score",text:`${latestSpeaking.score}/90 · ${evidence.confidence} confidence. ${focusCriterion&&/speaking/i.test(focusCriterion.key)?`Evidence: ${focusCriterion.name} is currently ${focusCriterion.value}/6. Next action: practise this criterion in your next response.`:"Next action: review your latest rubric feedback and repeat one speaking task."}`});
   }
   if(latestWriting.score!==null){
-    feedback.push({icon:"✍️",title:"Writing",text:`Latest score ${latestWriting.score}/90. ${focusCriterion&&/writing/i.test(focusCriterion.key)?`Focus criterion: ${focusCriterion.name} (${focusCriterion.value}/6).`:"Use your last rubric feedback when revising."}`});
+    feedback.push({icon:"✍️",title:"Estimated Writing Score",text:`${latestWriting.score}/90 · ${evidence.confidence} confidence. ${focusCriterion&&/writing/i.test(focusCriterion.key)?`Evidence: ${focusCriterion.name} is currently ${focusCriterion.value}/6. Next action: revise this part of your response.`:"Next action: use your last rubric feedback when revising."}`});
   }
 
   const feedbackCard=document.getElementById("feedbackCard");

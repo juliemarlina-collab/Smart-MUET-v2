@@ -543,6 +543,8 @@
 
 <nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
 
+<script src="js/backend-config.js"></script>
+<script src="js/objective-results.js"></script>
 <script>
 document.querySelectorAll(".listen-part-head").forEach(btn=>{
   btn.addEventListener("click",()=>{
@@ -568,6 +570,7 @@ function openListeningPart(n){
 
 
 const answers=[0, 2, 2, 1, 0, 0, 1, 1, 1, 2, 0, 2, 1, 2, 4, 2, 1, 0, 1, 0, 1, 2, 1, 0, 1, 1, 2, 1, 0, 0];
+const objectivePaper=SmartMUETObjective.init({stageKey:"mock1",vaultId:"MOCK-01",component:"Listening",totalItems:30,questionBase:0,answerMap:answers});
 let currentPart=1,remaining=3000,timerId=null,started=false,submitted=false;
 
 function showPart(n){
@@ -631,8 +634,7 @@ function submitPaper(auto=false){
  const box=document.getElementById("result");
  box.classList.add("show");
  box.innerHTML=`<div class="big">${correct}/30</div><div><b>${score90}/90 equivalent listening practice score</b></div><div style="margin-top:6px">${answered} questions answered · Time remaining: ${document.getElementById("timer").textContent}</div><div style="margin-top:8px">Correct answers are now highlighted in green. Your selected incorrect answers are highlighted in red.</div>`;
- localStorage.setItem("muet_mock1_listening","true");
- localStorage.setItem("muet_mock1_listening_score",String(correct));
+ objectivePaper.saveResult({timeRemaining:document.getElementById("timer").textContent});
  document.getElementById("submitExam").disabled=true;
 }
 document.getElementById("submitExam").addEventListener("click",()=>submitPaper(false));

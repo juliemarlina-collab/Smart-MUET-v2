@@ -1329,8 +1329,11 @@ button,input{font:inherit}
 <a href="settings.html"><img src="assets/heroes/nav-profile.svg" alt=""><span>Profile</span></a>
 </nav>
 
+<script src="js/backend-config.js"></script>
+<script src="js/objective-results.js"></script>
 <script>
 const ANSWERS = {"1": "B", "2": "A", "3": "C", "4": "A", "5": "A", "6": "B", "7": "C", "8": "C", "9": "B", "10": "C", "11": "B", "12": "B", "13": "A", "14": "B", "15": "B", "16": "A", "17": "A", "18": "C", "19": "C", "20": "A", "21": "B", "22": "G", "23": "E", "24": "D", "25": "A", "26": "C", "27": "D", "28": "A", "29": "B", "30": "C", "31": "A", "32": "B", "33": "C", "34": "D", "35": "C", "36": "C", "37": "C", "38": "B", "39": "C", "40": "A"};
+const objectivePaper=SmartMUETObjective.init({stageKey:"mock1",vaultId:"MOCK-01",component:"Reading",totalItems:40,questionBase:1,answerMap:ANSWERS});
 
 let started=false;
 let submitted=false;
@@ -1482,9 +1485,7 @@ function submitPaper(auto=false){
      <div style="margin-top:6px">${answered} answered · Time remaining: ${document.getElementById("timer").textContent}</div>
      <div style="margin-top:8px">Correct answers are highlighted in green. Your selected incorrect answers are highlighted in red.</div>`;
 
-  localStorage.setItem("muet_mock1_reading","true");
-  localStorage.setItem("muet_mock1_reading_score",String(correct));
-  localStorage.setItem("muet_mock1_reading_score90",String(score90));
+  objectivePaper.saveResult({timeRemaining:document.getElementById("timer").textContent});
 
   document.getElementById("submitExam").disabled=true;
 
