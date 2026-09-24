@@ -512,6 +512,13 @@
       font-size:18px;
     }
 
+    .specification-viewer{margin-top:14px;border:2px solid var(--ink);border-radius:13px;background:var(--white);padding:14px;box-shadow:2px 2px 0 var(--ink)}
+    .specification-viewer summary{font-family:var(--font-heading);font-weight:800;cursor:pointer;line-height:1.4}
+    .specification-viewer p{font-size:14px;line-height:1.5;margin:10px 0}
+    .specification-viewer iframe{display:block;width:100%;height:min(70vh,700px);min-height:350px;border:1px solid #bbb;border-radius:8px;background:#fff}
+    .specification-viewer a{font-weight:750;text-decoration:underline;overflow-wrap:anywhere}
+    @media(max-width:600px){.specification-viewer{padding:11px}.specification-viewer iframe{height:65vh;min-height:320px}}
+
     /* =========================================================
        7. BOTTOM NAV — LARGE TAP TARGETS
        ========================================================= */
@@ -954,14 +961,14 @@
 
       <a
         class="official-link"
-        href="https://portal.mpm.edu.my/en/muet/regulations-and-test-specifications-bi"
+        href="https://drive.google.com/file/d/1ic-cDmrKMPw_7SyMwjdIioamLWFo-VlK/view?usp=drivesdk"
         target="_blank"
         rel="noopener"
       >
         <div class="icon">📖</div>
         <div>
-          <b>MUET test specifications</b>
-          <span>Official paper structure, timing, question types and score bands. Smart MUET scores remain practice estimates.</span>
+          <b>MUET regulations and test specifications · PDF</b>
+          <span>Open the document shared from Google Drive. Smart MUET scores remain practice estimates.</span>
         </div>
         <div class="arrow">↗</div>
       </a>
@@ -986,6 +993,11 @@
       </a>
 
     </div>
+    <details class="specification-viewer">
+      <summary>Read the MUET regulations and test specifications here</summary>
+      <p>Document shared from Google Drive. If the viewer does not load on your device, <a href="https://drive.google.com/file/d/1ic-cDmrKMPw_7SyMwjdIioamLWFo-VlK/view?usp=drivesdk" target="_blank" rel="noopener">open the PDF in Google Drive</a>. For future revisions, check the <a href="https://portal.mpm.edu.my/en/muet/regulations-and-test-specifications-bi" target="_blank" rel="noopener">MPM specifications page</a>.</p>
+      <iframe title="MUET regulations and test specifications PDF" loading="lazy" src="https://drive.google.com/file/d/1ic-cDmrKMPw_7SyMwjdIioamLWFo-VlK/view?usp=drivesdk"></iframe>
+    </details>
   </section>
 
 </main>
