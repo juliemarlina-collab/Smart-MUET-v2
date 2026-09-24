@@ -62,6 +62,20 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
 </style>
   <link rel="stylesheet" href="css/responsive-v2.css">
   <link rel="stylesheet" href="css/display-standard.css">
+<style>
+.page-v1-reading .passage-scroll p{margin:12px 0;line-height:1.7}
+.page-v1-reading .passage-scroll{font-size:15px;line-height:1.65;overflow-wrap:break-word;max-height:55vh}
+.page-v1-reading .passage-scroll.expanded{max-height:80vh}
+.page-v1-reading .part:not(.open) > .part-body{display:none !important}
+.page-v1-reading .part-head .chev{transform:none !important;line-height:1}
+.page-v1-reading .reading-gap{background:#fff1b8;border-bottom:2px solid #111;padding:1px 4px;white-space:nowrap}
+.page-v1-reading .sentence-bank{margin:12px 0;padding:12px;background:#fff9e5;border:2px solid #111;border-radius:12px;font-size:14px;line-height:1.5}
+.page-v1-reading .sentence-bank p{margin:6px 0}
+.page-v1-reading .sentence-options{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-top:8px}
+.page-v1-reading .sentence-options .opt{display:flex;justify-content:center;align-items:center;min-height:44px;margin:0;padding:5px;text-align:center}
+.page-v1-reading .sentence-options .opt:focus-within{outline:3px solid #0D78E8;outline-offset:2px}
+@media(max-width:380px){.page-v1-reading .sentence-options{gap:3px}.page-v1-reading .sentence-options .opt{padding:3px}}
+</style>
 </head>
 <body class="page-vault1-component page-v1-reading">
 <main class="app">
@@ -90,7 +104,7 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
 <section>
 
     <article class="part open" data-part="Part 1">
-      <button class="part-head">
+      <button class="part-head" type="button">
         <div class="part-num">1</div>
         <div class="part-title">
           <b>Part 1 · Places for Meetings</b>
@@ -157,7 +171,22 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
       <div class="part-body">
         <div class="passage-card">
           <div class="passage-title">The Little Mouse and the Lion</div>
-          <div class="passage-scroll" id="passage-2"><b>Part 2 — The Little Mouse and the Lion</b><br><br>Once a little mouse entered the den of a lion. The lion became very angry to see him there. He threatened to kill the mouse, but the mouse begged for mercy and promised to remember the lion's kindness. The lion spared him, believing such a small creature could never help him. Later, the lion was trapped in a hunter's net. The mouse heard him roar, came to help, and nibbled through the net until the lion was free. The lion then realised the small mouse had kept his word.</div>
+          <div class="passage-scroll" id="passage-2"><b>Part 2 — The Little Mouse and the Lion</b>
+<p>Once a little mouse entered the den of a lion. The lion became very angry to see him there.</p>
+<p>He roared in a thundering voice and said, “How dare you intrude my den just like that? I will kill you!”</p>
+<p>Nowhere to run, the poor little mouse began trembling with fear. He said, “Please do not kill me. I request you kindly to spare my life. Though, I am too small and weak to do anything for you. But, still I promise that I shall remember your kindness throughout my life and shall feel obliged, if I could do anything for you at any point of time.”</p>
+<p>The lion looked at his small size and said with a smile, “You are too small and weak to do anything for a powerful creature like me. But do not worry. I am going to spare your life. But, remember not to enter my den in the future. You can go now.”</p>
+<p>“Thank you very much, sir,” said the little mouse still trembling with fear. He left, but he was indeed very grateful to the lion.</p>
+<p>One day, a hunter set a net with skilful maneuver to trap the lion and hid himself in a tree.</p>
+<p>Meanwhile, the lion was wandering in search of prey. He did not notice the contrivance and stepped into it. And before he could understand anything, he was trapped.</p>
+<p>This was so sudden that the lion was taken aback. He roared loudly and took up the cudgels. But all in vain. The net proved to be beyond his physical power.</p>
+<p>The little mouse heard him roaring and immediately understood that the lion was in great trouble. He came out of his hole and saw the lion trapped.</p>
+<p>The little mouse went near him, expressed his sympathies and said, “Have patience. I shall nibble at the net and free you within no time.”</p>
+<p>“Little mouse,” said the lion, “Do you really think you shall be able to free me from this trap? I am at least a thousand times stronger than you and despite all my efforts have not been able to free myself and you? Being so small a creature, say that you shall free me. Funny! Isn’t it?”</p>
+<p>“Sir, just wait and see,” said the little mouse.</p>
+<p>And really, within a very short time the little mouse nibbled at the net in hundreds of places. Soon, the lion was freed from the net.</p>
+<p>Now it was the lion’s turn. He was full of gratitude. He gave him hearty thanks. And the little mouse was happy that at last he could do something for the lion.</p>
+<p><i>Adapted from English for Students, 2020. Source: MUET Session 3 2022 Reading paper, p. 4.</i></p></div>
           <button class="expand-btn" data-target="passage-2">EXPAND / COLLAPSE PASSAGE</button>
         </div>
 
@@ -220,7 +249,14 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
       <div class="part-body">
         <div class="passage-card">
           <div class="passage-title">Visit to the Lotus Temple</div>
-          <div class="passage-scroll" id="passage-3"><b>Part 3 — A Boy’s Visit to the Lotus Temple</b><br><br>A visit to a historical place that you’ve never been to is always an exciting experience. During the summer vacation, the writer visited Delhi with his family. Delhi is special because it has been called by different names in different periods and contains both historical landmarks and modern wonders. The family visited the Lotus Temple, which is famous for its flowerlike shape. It is open to visitors regardless of faith. Because it is a holy place, visitors remove their shoes before entering. Inside, the writer saw people of different religions sitting and praying in silence. The visit was unforgettable and gave him a better understanding of his country's history.</div>
+          <div class="passage-scroll" id="passage-3"><b>Part 3 — A Boy’s Visit to the Lotus Temple</b>
+<p>A visit to a historical place that you’ve never been to is always an exciting experience. It is a fascinating adventure. I had one such experience during the last summer vacation, when I visited Delhi.</p>
+<p>With my family, I reached Delhi by train. After some rest, we took a tour to Delhi. Delhi is a historical city. I found it unique because it has been called by different names in different periods of time. On one hand, there are the Red Fort, the Jama Masjid, the Jantar Mantar, the Qutub Minar, the India Gate, which narrate the glorious past of India; while the Rashtrapati Bhawan, the Lotus Temple, Parliament, to name a few, are the wonders of modern times.</p>
+<p>We visited the Lotus Temple. The beautiful lotus-shaped temple was opened in the year 1986, and since then has invited many local and foreign visitors to its premises. Well known for its flowerlike shape, it has become one of the biggest attractions in Delhi. Although it is built for Bahai followers, the Lotus Temple is open to all, regardless of faith or any other qualification.</p>
+<p>The entry to the temple is through a gate that leads to a pathway with landscaped gardens on both sides. Because of its holiness, cleanliness is a must. So, we had to take off our shoes and leave them on the shoe racks. From there, we stood in a queue until we could enter the temple.</p>
+<p>Once inside, it was complete silence and peace took over. We saw people of different religions sitting and praying. The hall inside has nine doors and a capacity to seat 2500 people at one time. We spent quite some time there and then came out.</p>
+<p>By noon, we had completed the tour of the Lotus Temple and returned. I enjoyed my trip to the Lotus Temple very much. It was really an unforgettable experience apart from being intellectually rewarding, gave us a glimpse of our country’s proud history.</p>
+<p><i>Adapted from All Essay, 2016. Source: MUET Session 3 2022 Reading paper, p. 6.</i></p></div>
           <button class="expand-btn" data-target="passage-3">EXPAND / COLLAPSE PASSAGE</button>
         </div>
 
@@ -283,7 +319,13 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
       <div class="part-body">
         <div class="passage-card">
           <div class="passage-title">Environmental Problems</div>
-          <div class="passage-scroll" id="passage-4"><b>Part 4 — Environmental Problems</b><br><br><b>Text 1</b><br>The greenhouse effect occurs when gases in Earth's atmosphere trap the sun's heat. Human activities such as burning fossil fuels increase carbon dioxide, causing more heat to be trapped. Plants can help balance the greenhouse effect, while warmer waters and ocean acidification can harm marine life.<br><br><b>Text 2</b><br>Global warming is a gradual rise in Earth's temperature and represents a serious threat to life on the planet. It can make climate more erratic, force species into extinction and make life harder for people. By the end of the century, Earth's temperature may rise significantly if current trends continue.</div>
+          <div class="passage-scroll" id="passage-4"><b>Part 4 — Environmental Problems</b><p><b>Text 1 · The Greenhouse Effect</b></p><p>The greenhouse effect is a process that occurs when gases in Earth’s atmosphere trap the sun’s heat. This process makes Earth much warmer than it would be without an atmosphere. The greenhouse effect is one of the things that makes Earth a comfortable place to live.</p>
+<p>As you might expect from the name, the greenhouse effect works like a greenhouse. A greenhouse has glass walls and roof that trap heat, keeping plants warm even in winter. Greenhouse gases such as carbon dioxide likewise trap heat released from Earth’s surface at night. This keeps Earth at a warm average of 58 degrees Fahrenheit (14 degrees Celsius).</p>
+<p>Human activities are changing the natural greenhouse effect. Burning fossil fuels puts more carbon dioxide into the atmosphere, trapping more heat. Plants can help balance this effect by taking in carbon dioxide and giving off oxygen. Oceans also absorb carbon dioxide, but this makes the water more acidic and can harm shellfish and coral. Warmer waters contribute to coral bleaching.</p>
+<p><i>Adapted from NASA Climate Kids, 2020.</i></p><p><b>Text 2 · Global Warming</b></p>
+<p>Natural disasters, terrorist attacks and nuclear accidents can affect many people, but their impacts are usually confined to a region or continent. Global warming is different: a gradual rise in Earth’s temperature that could transform the entire planet. It could make climate more erratic, drive species to extinction and make life harder, especially in developing countries.</p>
+<p>Imagine a timber shack in Alaska with a large log fire. If the fire supplies heat at the same rate as the shack loses it, its temperature stays stable. Make the fire too big and the shack grows hotter even after you stop adding wood. Global warming works similarly: Earth warms slightly year by year. Since 1900 the planet has warmed by about 0.8 degrees Celsius. By the end of the 21st century, an increase of around 2 to 5 degrees Celsius is likely. Five degrees is roughly the difference between today’s world and the last Ice Age; that earlier change took about 5000 years, whereas modern warming could occur within a century. Once the planet starts warming, slowing the process is difficult.</p>
+<p><i>Adapted from Explain That Stuff, 2022. Source: MUET Session 3 2022 Reading paper, pp. 8–10.</i></p></div>
           <button class="expand-btn" data-target="passage-4">EXPAND / COLLAPSE PASSAGE</button>
         </div>
 
@@ -353,7 +395,16 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
       <div class="part-body">
         <div class="passage-card">
           <div class="passage-title">Challenges & Cohesion</div>
-          <div class="passage-scroll" id="passage-5"><b>Part 5 — The Importance of Challenges and Problems in Life</b><br><br>The writer describes business difficulties during the global financial crisis and later challenges during the oil crisis. He explains that problems are unavoidable, but people can become stronger by facing them directly, adapting and learning from experience. The original exercise contains six gaps, Questions 21–26, where students choose the sentence that best restores the flow and cohesion of the text.</div>
+          <div class="passage-scroll" id="passage-5"><b>Part 5 — The Importance of Challenges and Problems in Life</b>
+<p>Six sentences have been removed. Choose from A–G for gaps 21–26. One sentence is extra.</p>
+<p>In 2006, together with two business partners, I started a property company. The company grew exceptionally in its first year. However, in 2007 when the global financial crisis struck, the property business and our company took a major hit. For the next year, we encountered an endless number of problems and worked day and night to keep control of the company and our property portfolio.</p>
+<p>These problems were tough and tiresome, and in the darkest hours we wondered if they would ever end. <strong class="reading-gap">21 ________</strong>. How did we? Holding our heads high, we managed it by never giving up, by facing them head on, instead of ignoring them, and by always looking for new ways to deal with the problems. In retrospect, the problems, and the way we dealt with them became important and valuable experiences, both personally and in business.</p>
+<p>In 2014, when the global oil crisis struck, I worked as a senior manager in a major international company within the oil industry. Companies in the oil industry around the world were struck hard with the sudden and brutal drop in new orders. <strong class="reading-gap">22 ________</strong>. Commodities are generally traded in this currency, which means there is a direct relationship between the dollar and oil prices.</p>
+<p>Through 2015, my management team and I had to downsize from 120 to 45 people. <strong class="reading-gap">23 ________</strong>. It was a tough challenge, both practically and emotionally. Instead of seeing it as a problem, I decided to see it as the most important and rewarding leadership challenge and experience I had been given so far.</p>
+<p>There are not many ways you get to test your leadership skills in a more challenging way than to be responsible for a major downsizing and complete it in a proper and respectful manner. This change of mindset, which I saw as a unique leadership experience, made me place a high degree of focus, dedication, and energy into making the process as fair and good as possible. <strong class="reading-gap">24 ________</strong>. But by making a positive mental shift and focusing on the things I could still control, I dealt with the problem and process in a much better way, which strengthened me as a person and as a leader.</p>
+<p>Challenges and problems are important parts of life that give you experiences, make you learn, and help you to become wiser and stronger. Problems make us grow and shape us. The biggest problem people have is that they hope for a life without problems. <strong class="reading-gap">25 ________</strong>. We will all have problems — small or large — the difference is how we deal with the problems and challenges that occur.</p>
+<p>A famous saying by M. Schulz was my guiding star, “No problem is so formidable that you can’t walk away from it”. <strong class="reading-gap">26 ________</strong>. Don’t ignore them or try to hide from them. Face them. Deal with them. The greatest growth in life and the most important lessons you will learn will come when you face and deal with a serious challenge or problem.</p>
+<p><i>Adapted from Fast Company, 2017. Source: MUET Session 3 2022 Reading paper, pp. 12–13.</i></p></div>
           <button class="expand-btn" data-target="passage-5">EXPAND / COLLAPSE PASSAGE</button>
         </div>
 
@@ -363,6 +414,14 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
         </details>
 
         
+      <div class="sentence-bank" id="vault1-sentence-bank"><b>Sentence Bank · Questions 21–26</b><p>Use each sentence once. One sentence is extra.</p>
+<p><b>A</b> A stronger U.S. dollar was one of the principal reasons for the falling of natural gas and oil prices.</p>
+<p><b>B</b> This was a 62% cut in the staffing, with several experienced people losing their jobs.</p>
+<p><b>C</b> So, don’t bury yourself from the problems and challenges you are facing in life.</p>
+<p><b>D</b> This is an impossible goal, and would make our life dull without character.</p>
+<p><b>E</b> Downsizing could not be avoided as the problem was just as real.</p>
+<p><b>F</b> No matter what the results would be, value the experience.</p>
+<p><b>G</b> We managed to work ourselves out of the problems.</p></div>
       <div class="qcard">
         <div class="qtag">Q21</div>
         <p class="stem">Choose the sentence that best fits Gap 21 (reason for falling oil prices).</p>
@@ -423,7 +482,15 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
       <div class="part-body">
         <div class="passage-card">
           <div class="passage-title">Running in the Family</div>
-          <div class="passage-scroll" id="passage-6"><b>Part 6 — Running in the Family</b><br><br>The writer recalls family life in Nuwara Eliya during the early twentieth century. Families travelled from Colombo to escape the lowland heat, taking books, sweaters, golf clubs and dogs with them. Nuwara Eliya offered a cooler climate, parties, horse racing, tennis and golf. The wider original passage also describes members of the writer's family and social circle, including incidents and personalities referred to in Questions 29–33.</div>
+          <div class="passage-scroll" id="passage-6"><b>Part 6 — Running in the Family</b>
+<p>The early twenties had been a busy and expensive time for my grandparents. They spent most of the year in Colombo and during the hot months of April and May moved to Nuwara Eliya. In various family journals, there are references made to the time spent “upcountry” away from the lowland heat. Cars would leave Colombo and perform the tiring five-hour journey, the radiators steaming as they wound their way up into the mountains. Books and sweaters and golf clubs and rifles were packed into trunks, children were taken out of school, dogs were bathed and made ready for the drive.</p>
+<p>Nuwara Eliya was a different world. One did not sweat there and only those who had asthma tried to avoid these vacations. At an elevation of 6000 feet, the families could look forward to constant parties, horse racing, the All Ceylon Tennis Tournament, and serious golf. Although the best Sinhalese tennis players competed upcountry, they would move back to Colombo if they had to play champions from other nations as the excessive heat could be guaranteed to destroy the visitors. And so, while monsoon and heat moved into deserted Colombo homes, it was to Nuwara Eliya that my grandparents and their circle of friends would go. They danced in large living rooms to the music of a Bijou-Moutrie piano, while the log fires crackled in every room, or on quiet evenings read books on the moonlit porch, slicing open the pages as they progressed through a novel.</p>
+<p>The gardens were full of cypress, rhododendrons, foxgloves, arum lilies, and sweet peas; and people like the Van Langenbergs, the Vernon Dickmans, the Henry de Mels and the Philip Ondaatjes were there. There were casual tragedies such as Lucas Cantley’s wife, Jessica, almost died after being shot by an unknown assailant while playing croquet with my grandfather. They found 113 pellets in her. And poor Wilfred Batholomeusz who had large teeth, kicked the bucket while out hunting when one of his companions mistook him for a wild boar. Most of the men belonged to the CLI reserves and usually borrowed guns when going on vacation.</p>
+<p>It was in Nuwara Eliya that Dick de Vos danced with his wife Etta, who fell flat on the floor; she had not danced for years. He picked her up, deposited her on a cane chair, came over to Rex Daniels and said, “Now you know why I gave up dancing and took to drink.” Each morning the men departed for the club to play a game of billiards. They would arrive around eleven in buggy carts pulled by bulls and play until the afternoon rest hours while the punkah, the large cloth fan, floated and waved above them and the twenty or so bulls snorted in a circle around the clubhouse. Major Robinson, who ran the prison, would officiate at the tournaments.</p>
+<p>During the month of May, the circus came to Nuwara Eliya. Once, when the circus lights failed, Major Robinson drove the fire engine into the tent and focused the headlights on the trapeze artist, who had no intention of continuing and sat there straddling his trapeze. At one of these touring circuses my Aunt Christie, then only twenty-five, stood up and volunteered to have an apple shot off her head by a total stranger in the circus profession. That night, T. W. Roberts was bitten in the leg by a dog while he danced with her. Later the dog was discovered to be rabid, but as T. W. Roberts had left for England, nobody bothered to tell him. Most assume he survived. They were all there, Piggford of the police, Paynter the planter, the Finnellis who were Baptist missionaries — “she being an artist and a very good tap dancer”.</p>
+<p>This was Nuwara Eliya in the twenties and thirties. Everyone was vaguely related and had Sinhalese, Tamil, Dutch, British, and Burgher blood in them going back many generations. There was a large social gap between this circle and the Europeans and English who were never part of the Ceylonese community. The English were seen as transients and were quite separate from those who had intermarried and who lived here permanently. My father always claimed to be a Ceylon Tamil, though that was probably more valid about three centuries earlier. Emil Daniels summed up the situation for most of them when he was asked by one of the British governors what his nationality was — “God alone knows, your excellency.”</p>
+<p>Philip Ondaatje was supposed to have the greatest collection of wine glasses in the Orient — my other grandfather, Willy Gratiaen, dreamt of snakes. Both my grandmothers lived cautiously, at least until their husbands died. Then they blossomed, especially Lalla who managed to persuade all those she met into chaos. It was Lalla who told us that the twenties were so whimsical, so busy — that we were always tired.</p>
+<p><i>Adapted from Michael Ondaatje’s Running in the Family, 1982. Source: MUET Session 3 2022 Reading paper, pp. 14–15.</i></p></div>
           <button class="expand-btn" data-target="passage-6">EXPAND / COLLAPSE PASSAGE</button>
         </div>
 
@@ -500,7 +567,14 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
       <div class="part-body">
         <div class="passage-card">
           <div class="passage-title">IVF Treatment in Nigeria</div>
-          <div class="passage-scroll" id="passage-7"><b>Part 7 — A Treatment to Get Pregnant</b><br><br>Over 180 million couples suffer from infertility worldwide. Assisted pregnancy techniques such as IVF give infertile couples a chance to have a child. In Nigeria, infertility affects millions of people, and age is one major contributing factor. IVF access is limited by cost, low awareness, insufficient healthcare services and a lack of trained professionals. The text also warns about unlicensed doctors performing IVF and stresses the need for proper regulation, professional responsibility and updated codes of practice.</div>
+          <div class="passage-scroll" id="passage-7"><b>Part 7 — A Treatment to Get Pregnant</b>
+<p>Over 180 million couples suffer from infertility worldwide, a majority of whom are in developing countries, according to the World Health Organization (WHO). The main symptom of infertility is that the woman cannot get pregnant but the problem could lie with either the woman or the man. The WHO estimates that infertility affects up to 10.5% of couples of reproductive age group globally and 20% of couples of the same group in Nigeria. More than eight million babies have been born as a result of assisted pregnancies, according to data from the WHO.</p>
+<p>Assisted pregnancy means that medical techniques are used to bring about the conception and birth of a child. An example of assisted pregnancy is in vitro fertilization (IVF). In IVF, mature eggs are collected from the ovaries of a woman and fertilised with sperms of a man in a lab. The fertilised embryo is then put into the womb of the woman. While assisted pregnancy gives infertile couples the chance to have a child, a recent study has shown that the children born this way are more likely to develop high blood pressure in their teens. In addition, because of the lack of regulation, the dishonest practices in the IVF industry endanger not only childless couples, but the country in general. Hospitals in Nigeria charge about 1.5 to 3.5 million naira (about USD3000 to USD7000) for IVF treatment but “quacks” (incompetent doctors) charge as low as NGN350 000.</p>
+<p>Available statistics shows that there are about 12 million infertile persons in Nigeria, which is almost 10% of the total population. On the rising cases of infertility, Professor of Obstetrics and Gynecology, University of Tokyo, Japan, Yutaka Osuga, explained to The Guardian that age is one of the major causes leading to rise in infertility. He said, “most couples seek IVF treatment at an older age, especially when they are 40 years old. So the success rate of the IVF procedure is low as the woman does not produce enough eggs.” The impact of this is particularly prominent in cultures where there is strong emphasis on childbirth, like Nigeria and other African countries, leading to social, psychological, and financial challenges.</p>
+<p>The IVF procedures have helped couples to deal with the high rate of infertility, but many factors slow down the growth of the IVF treatment market in Africa. Some of these factors are poor income, high cost, complications associated with IVF treatment, low awareness regarding IVF, inadequacy of healthcare services, and lack of trained healthcare professionals. The estimated number of IVF clinics in Nigeria is about 70, while the total number in Africa is near 160. This is a small number compared to the number of clinics in Chicago city alone, which is over 80. According to the Medical Director of Medical Art Centre (MART Clinics), Professor Oladapo Ashiru, these statistics show that Nigeria is now recognised worldwide as having expertise in assisted pregnancy because 95% of IVF cases are treated in Nigeria by Nigerians.</p>
+<p>Recently, the MART Clinics raised alarm that there have been cases of quacks performing IVF treatment. The situation has grown worse in recent years with unlicensed doctors boldly operating in public and private hospitals to take advantage of the demand. According to a 2014 survey in Nigeria, over half of the population had received treatment from quacks. He said, “if this becomes a public knowledge, Nigerians would lose faith in the centres available in the country and start getting IVF treatment in other countries, which could hurt the industry.”</p>
+<p>Professor Oladapo Ashiru further stressed that the specialists have a very big task in Nigeria and need to address it. He said, “just as the specialists cannot overcharge, they cannot also lower the price, and the price for different types of procedures must be clearly stated.” At the same time, governmental authorities need to provide an acceptable code of practice, with regular revision of the practice code in line with the latest research and societal norms to meet patients’ expectations. He added that the process would be completed in the next few months. A list of licensed centres would be published to guide patients to the right centre for IVF treatment. “Ethics is not putting a policy document out there, it is the foundation of our practice and it is important to protect the industry from being ruined by quacks,” he noted.</p>
+<p><i>Adapted from The Guardian, 2018. Source: MUET Session 3 2022 Reading paper, pp. 17–18.</i></p></div>
           <button class="expand-btn" data-target="passage-7">EXPAND / COLLAPSE PASSAGE</button>
         </div>
 
@@ -586,16 +660,63 @@ a{color:inherit;text-decoration:none} button,input{font:inherit}
 <script src="js/backend-config.js"></script>
 <script src="js/objective-results.js"></script>
 <script>
-const answers=[0, 2, 1, 2, 0, 2, 0, 0, 2, 1, 1, 1, 2, 0, 0, 0, 1, 0, 2, 2, 0, 1, 2, 2, 1, 2, 3, 0, 3, 2, 3, 0, 3, 0, 2, 3, 2, 0, 2, 3];
+const answers=[0, 2, 1, 2, 0, 2, 0, 0, 2, 1, 1, 1, 2, 0, 0, 0, 1, 0, 2, 2, 6, 0, 1, 4, 3, 2, 3, 0, 3, 2, 3, 0, 3, 0, 2, 3, 2, 0, 2, 3];
+const readingParts=[...document.querySelectorAll('.page-v1-reading article.part')];
+function setReadingPart(part,open){
+  part.classList.toggle('open',open);
+  const button=part.querySelector('.part-head');
+  button.setAttribute('aria-expanded',String(open));
+  button.querySelector('.chev').textContent=open?'×':'+';
+  button.setAttribute('aria-label',`${open?'Close':'Open'} ${part.dataset.part}`);
+}
+readingParts.forEach(part=>{
+  const button=part.querySelector('.part-head');
+  button.type='button';
+  setReadingPart(part,part.classList.contains('open'));
+  button.addEventListener('click',()=>{
+    const shouldOpen=!part.classList.contains('open');
+    readingParts.forEach(other=>setReadingPart(other,false));
+    if(shouldOpen){
+      setReadingPart(part,true);
+      part.scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  });
+});
+// Part 5 is a single seven-sentence bank, not six separate multiple-choice sets.
+for(let i=20;i<=25;i++){
+  const card=document.querySelector(`input[name="q${i}"]`).closest('.qcard');
+  const number=i+1;
+  card.querySelector('.stem').textContent=`Which sentence fits Gap ${number}? Refer to the Sentence Bank above.`;
+  card.querySelectorAll('.opt').forEach(label=>label.remove());
+  const choices=document.createElement('div');
+  choices.className='sentence-options';
+  for(let choice=0;choice<7;choice++){
+    const letter=String.fromCharCode(65+choice);
+    const label=document.createElement('label');
+    label.className='opt';
+    label.id=`opt-${i}-${choice}`;
+    const input=document.createElement('input');
+    input.type='radio';input.name=`q${i}`;input.value=String(choice);
+    input.setAttribute('aria-label',`Gap ${number}: sentence ${letter}`);
+    const caption=document.createElement('span');caption.textContent=letter;
+    label.append(input,caption);choices.append(label);
+  }
+  card.querySelector('.explain').before(choices);
+  card.querySelector('.explain').textContent=`Sentence ${String.fromCharCode(65+answers[i])} restores the link between the surrounding ideas.`;
+}
+// Old Part 5 options used unrelated per-gap choices; do not reinterpret saved selections.
+try{
+  if(localStorage.getItem('muet_v1_reading_part5_bank_version')!=='2'){
+    const key='muet_v1_reading_responses';
+    const saved=JSON.parse(localStorage.getItem(key)||'{}');
+    for(let i=20;i<=25;i++)delete saved[String(i)];
+    localStorage.setItem(key,JSON.stringify(saved));
+    for(const suffix of ['','_score','_score90','_result'])localStorage.removeItem('muet_v1_reading'+suffix);
+    localStorage.setItem('muet_v1_reading_part5_bank_version','2');
+  }
+}catch(_){/* Local storage may be unavailable; the paper remains usable. */}
 const objectivePaper=SmartMUETObjective.init({stageKey:"v1",vaultId:"VAULT-01",component:"Reading",totalItems:40,questionBase:0,answerMap:answers});
 const partMap={"Part 1": [0, 1, 2, 3], "Part 2": [4, 5, 6, 7, 8], "Part 3": [9, 10, 11, 12, 13], "Part 4": [14, 15, 16, 17, 18, 19], "Part 5": [20, 21, 22, 23, 24, 25], "Part 6": [26, 27, 28, 29, 30, 31, 32], "Part 7": [33, 34, 35, 36, 37, 38, 39]};
-
-document.querySelectorAll(".part-head").forEach(btn=>btn.addEventListener("click",()=>{
-  const current=btn.closest(".part");
-  document.querySelectorAll(".part").forEach(p=>{if(p!==current)p.classList.remove("open");});
-  current.classList.toggle("open");
-  if(current.classList.contains("open")) setTimeout(()=>current.scrollIntoView({behavior:"smooth",block:"start"}),80);
-}));
 
 document.querySelectorAll(".expand-btn").forEach(btn=>btn.addEventListener("click",()=>{
   document.getElementById(btn.dataset.target).classList.toggle("expanded");
@@ -637,20 +758,6 @@ document.getElementById("finalSubmit").addEventListener("click",()=>{
   objectivePaper.saveResult();
 });
 
-
-/* Accessibility: keep aria-expanded in sync with the accordion state.
-   Added as a separate listener so the existing toggle logic above is
-   untouched — this only reads the resulting state and reflects it. */
-document.querySelectorAll(".part-head").forEach(btn=>{
-  const part = btn.closest(".part");
-  if(!part) return;
-  btn.setAttribute("aria-expanded", part.classList.contains("open"));
-  btn.addEventListener("click", () => {
-    setTimeout(() => {
-      btn.setAttribute("aria-expanded", part.classList.contains("open"));
-    }, 0);
-  });
-});
 
 </script>
 </body>
