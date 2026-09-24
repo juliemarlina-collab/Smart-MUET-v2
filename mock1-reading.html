@@ -736,7 +736,7 @@ button,input{font:inherit}
             <span>READING TEXT</span>
             <button class="expand" type="button">EXPAND</button>
           </div>
-          <div class="passage-text">
+          <div class="passage-text" tabindex="0" role="region" aria-label="Reading passage">
 <p><em>Read three short texts about restaurants.</em></p>
 <p><em>Answer questions 1 to 4 based on the short texts about restaurants (A to C).</em></p>
 
@@ -798,7 +798,7 @@ button,input{font:inherit}
             <span>READING TEXT</span>
             <button class="expand" type="button">EXPAND</button>
           </div>
-          <div class="passage-text">
+          <div class="passage-text" tabindex="0" role="region" aria-label="Reading passage">
 <p><em>Read a letter from Vijay Pillai to Classico Hotel.</em></p>
 <p><em>Answer questions 5 to 9 based on the letter.</em></p>
 
@@ -881,7 +881,7 @@ button,input{font:inherit}
             <span>READING TEXT</span>
             <button class="expand" type="button">EXPAND</button>
           </div>
-          <div class="passage-text">
+          <div class="passage-text" tabindex="0" role="region" aria-label="Reading passage">
 <p><em>Read a story about Rajkumar and Dolly’s journey to Malaya.</em></p>
 <p><em>Answer questions 10 to 14 based on the story.</em></p>
 
@@ -956,7 +956,7 @@ button,input{font:inherit}
             <span>READING TEXT</span>
             <button class="expand" type="button">EXPAND</button>
           </div>
-          <div class="passage-text">
+          <div class="passage-text" tabindex="0" role="region" aria-label="Reading passage">
 <p><em>Read two texts about music.</em></p>
 
 <div class="text-label">TEXT 1</div>
@@ -1059,7 +1059,7 @@ button,input{font:inherit}
             <span>READING TEXT</span>
             <button class="expand" type="button">EXPAND</button>
           </div>
-          <div class="passage-text">
+          <div class="passage-text" tabindex="0" role="region" aria-label="Reading passage">
 <p><em>Read a text about the partnership between Rolls-Royce and Cambridge. Six sentences have been removed from the text. Choose from the sentences A to G the one which fits each gap (21 to 26). There is one extra sentence which you do not need to use.</em></p>
 
 <p>Getting planes in the air and keeping them there is a complex and expensive business. It is also responsible for more than two percent of the world’s fossil fuel-based CO₂ emissions.</p>
@@ -1158,7 +1158,7 @@ button,input{font:inherit}
             <span>READING TEXT</span>
             <button class="expand" type="button">EXPAND</button>
           </div>
-          <div class="passage-text">
+          <div class="passage-text" tabindex="0" role="region" aria-label="Reading passage">
 <p><em>Read a text about gig work.</em></p>
 <p><em>Answer questions 27 to 33 based on the text.</em></p>
 
@@ -1249,7 +1249,7 @@ button,input{font:inherit}
             <span>READING TEXT</span>
             <button class="expand" type="button">EXPAND</button>
           </div>
-          <div class="passage-text">
+          <div class="passage-text" tabindex="0" role="region" aria-label="Reading passage">
 <p><em>Read a text about the use of beauty and personal care products by American teenagers.</em></p>
 <p><em>Answer questions 34 to 40 based on the text.</em></p>
 
@@ -1337,10 +1337,9 @@ button,input{font:inherit}
 </nav>
 
 <script src="js/backend-config.js"></script>
-<script src="js/objective-results.js"></script>
+<script src="js/mock-remote.js"></script>
 <script>
-const ANSWERS = {"1": "B", "2": "A", "3": "C", "4": "A", "5": "A", "6": "B", "7": "C", "8": "C", "9": "B", "10": "C", "11": "B", "12": "B", "13": "A", "14": "B", "15": "B", "16": "A", "17": "A", "18": "C", "19": "C", "20": "A", "21": "B", "22": "G", "23": "E", "24": "D", "25": "A", "26": "C", "27": "D", "28": "A", "29": "B", "30": "C", "31": "A", "32": "B", "33": "C", "34": "D", "35": "C", "36": "C", "37": "C", "38": "B", "39": "C", "40": "A"};
-const objectivePaper=SmartMUETObjective.init({stageKey:"mock1",vaultId:"MOCK-01",component:"Reading",totalItems:40,questionBase:1,answerMap:ANSWERS});
+
 
 // Part 5 shares one sentence bank: display only compact answer letters per gap.
 for(let question=21;question<=26;question++){
@@ -1470,50 +1469,15 @@ function submitPaper(auto=false){
   submitted=true;
   clearInterval(timerId);
 
-  let correct=0;
-
-  for(let q=1;q<=40;q++){
-    const right=ANSWERS[q];
-    const selected=document.querySelector(`input[name="q${q}"]:checked`);
-    const chosen=selected ? selected.value : null;
-
-    if(chosen===right)correct++;
-
-    document.querySelectorAll(`input[name="q${q}"]`).forEach(input=>{
-      const label=document.getElementById(`q${q}-${input.value}`);
-
-      if(input.value===right){
-        label.classList.add("correct");
-      }else if(input.checked){
-        label.classList.add("wrong");
-      }
-
-      input.disabled=true;
-    });
-  }
-
-  const score90=Math.round(correct/40*90);
-  const percent=Math.round(correct/40*100);
-
-  const box=document.getElementById("result");
-  box.classList.add("show");
-  box.innerHTML=
-    `<div class="big">${correct}/40</div>
-     <div><b>${score90}/90 equivalent Reading score · ${percent}%</b></div>
-     <div style="margin-top:6px">${answered} answered · Time remaining: ${document.getElementById("timer").textContent}</div>
-     <div style="margin-top:8px">Correct answers are highlighted in green. Your selected incorrect answers are highlighted in red.</div>`;
-
-  objectivePaper.saveResult({timeRemaining:document.getElementById("timer").textContent});
-
   document.getElementById("submitExam").disabled=true;
-
-  document.getElementById("paper").style.pointerEvents="none";
+  SmartMUETRemoteMock.submit({component:'Reading',total:40,base:1,box:document.getElementById('result'),timeRemaining:document.getElementById('timer').textContent});
 }
 
 document.getElementById("submitExam").addEventListener("click",()=>submitPaper(false));
 
 drawTimer();
 updateCounts();
+SmartMUETRemoteMock.resume({component:'Reading',total:40,base:1,box:document.getElementById('result'),timeRemaining:document.getElementById('timer').textContent});
 </script>
 </body>
 </html>

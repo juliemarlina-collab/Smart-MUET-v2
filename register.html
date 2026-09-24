@@ -566,6 +566,8 @@ h1{
             </span>
           </label>
 
+          <label class="field">Student / registration number<input id="regNo" type="text" autocomplete="off" maxlength="40" placeholder="Your institution student ID" required><span class="help">Matches your attempts and optional Speaking recording to your profile.</span></label>
+
           <label class="field">
             Institution
             <input id="institution" type="text"
@@ -591,8 +593,8 @@ h1{
             MUET exam session
             <select id="examSession" required>
               <option value="">Choose your session</option>
-              <option value="S1-2026">MUET Session 1 · 2026</option>
-              <option value="S2-2026">MUET Session 2 · 2026</option>
+              <option value="S1-2026">MUET Session 1 · 2026 (past)</option>
+              <option value="S2-2026">MUET Session 2 · 2026 (past)</option>
               <option value="S3-2026">MUET Session 3 · 2026</option>
             </select>
             <span class="help">
@@ -603,6 +605,7 @@ h1{
           <label class="field">
             Target band
             <select id="targetBand">
+              <option value="3.0">Band 3.0</option>
               <option value="3.5">Band 3.5</option>
               <option value="4.0" selected>Band 4.0</option>
               <option value="4.5">Band 4.5</option>
@@ -627,11 +630,7 @@ h1{
 
       <section class="card">
         <div class="notice">
-          Your profile and learning activity may be stored for progress tracking
-          and pilot testing. No password is stored in this prototype.
-          <strong>Right now your progress is saved on this device only</strong> —
-          clearing your browser data or switching devices will lose it until
-          cloud sync is enabled. Use the same device and browser to continue
+          Your profile and attempts may be sent to the pilot spreadsheet. Progress and badges also remain on this device. A browser send does not confirm a spreadsheet write. Clearing browser data or changing devices may remove local progress. No password is stored. Use the same device and browser to continue
           your journey.
         </div>
 
@@ -700,6 +699,7 @@ document.getElementById("registerForm").addEventListener("submit",e=>{
   const profile = {
     name:document.getElementById("name").value.trim(),
     email,
+    regNo:document.getElementById("regNo").value.trim().toUpperCase(),
     institution:document.getElementById("institution").value.trim(),
     group:document.getElementById("group").value.trim(),
     examSession:session,

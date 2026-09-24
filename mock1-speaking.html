@@ -659,7 +659,7 @@
     <div class="task-body">
 
     <label class="field-label" for="candidate">SELECT YOUR CANDIDATE</label>
-    <select id="candidate">
+    <select id="candidate" aria-label="Speaking candidate">>
       <option value="A">Candidate A · Taking part in sports</option>
       <option value="B">Candidate B · Camping</option>
       <option value="C">Candidate C · Gardening</option>
@@ -719,7 +719,7 @@
 </section>
 </main>
 
-<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
+<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg" alt=""><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg" alt=""><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg" alt=""><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg" alt=""><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg" alt=""><span>Profile</span></a></nav>
 
 <script src="js/backend-config.js"></script>
 <script>
@@ -793,11 +793,12 @@ document.getElementById("submitMock").onclick=async()=>{
  const estimateConfidence=eA.wc>=70&&eB.wc>=70&&mA.durationSeconds>=30&&mB.durationSeconds>=30?"High":eA.wc>=40&&eB.wc>=40?"Moderate":"Low";
  const payloadA={studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",vaultId:"MOCK-01",component:"Speaking",taskType:"Task A",topicId:candidate.value,topicTitle:candidate.options[candidate.selectedIndex].text,prompt:candidatePrompts[candidate.value],transcript:tA,wordCount:eA.wc,durationSeconds:mA.durationSeconds,wordsPerMinute:mA.wpm,silenceRatio:mA.silenceRatio,recognitionConfidence:mA.recognitionConfidence,taskFulfilment:eA.tf,languageUse:eA.lg,coherenceOrganisation:eA.co,interactionReadiness:null,rubricRaw:eA.tf+eA.lg+eA.co,rubricMax:18,estimateConfidence,audioMimeType:RecA.mime(),audioBase64:RecA.hasAudio()?await RecA.b64():"",createdAt:new Date().toISOString()};
  const payloadB={studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",vaultId:"MOCK-01",component:"Speaking",taskType:"Task B",topicId:"health_influence",topicTitle:"Children's attitudes towards health",prompt:"Discuss the factors that influence children's attitudes towards health and decide the main factor.",transcript:tB,wordCount:eB.wc,durationSeconds:mB.durationSeconds,wordsPerMinute:mB.wpm,silenceRatio:mB.silenceRatio,recognitionConfidence:mB.recognitionConfidence,taskFulfilment:eB.tf,languageUse:eB.lg,coherenceOrganisation:eB.co,interactionReadiness:eB.ir,rubricRaw:eB.tf+eB.lg+eB.co,rubricMax:18,estimateConfidence,audioMimeType:RecB.mime(),audioBase64:RecB.hasAudio()?await RecB.b64():"",createdAt:new Date().toISOString()};
+ [payloadA,payloadB].forEach(payload=>{payload.studentEmail=profile.email||'';payload.attemptId=crypto.randomUUID();payload.audioConsent=window.smartMuetAudioConsent?.()===true;if(!payload.audioConsent)payload.audioBase64=""});
  const [sA,sB]=await Promise.all([cloudSave(payloadA),cloudSave(payloadB)]);
  const rawA=eA.tf+eA.lg+eA.co,rawB=eB.tf+eB.lg+eB.co,totalRaw=rawA+rawB,scaled=Math.round(totalRaw/36*90);
  const rows=(e,task)=>[['Task Fulfilment',e.tf],['Language Use',e.lg],['Coherence & Organisation',e.co]].concat(task==="B"?[['Interaction Readiness',e.ir]]:[]);
  const section=(name,e,task)=>`<div class="section-report"><h3>${name}</h3><div class="criteria">${rows(e,task).map(r=>`<div class="criterion"><div class="criterion-top"><b>${r[0]}</b><span class="criterion-score">${r[1]}/6</span></div><p>${r[0]==="Interaction Readiness"?"Solo-practice indicator; full Communicative Ability still requires real interaction/examiner judgement.":"Rubric-aligned practice estimate based on the submitted evidence."}</p></div>`).join("")}</div><div class="coach"><b>💪 Strength:</b> ${e.strength}<br><br><b>🎯 Focus:</b> ${e.focus}</div></div>`;
- const report=document.getElementById("report");report.classList.add("show");report.innerHTML=`<div class="coach"><b>Immediate estimated Speaking result</b><br>Estimate confidence: ${estimateConfidence}. This uses the submitted transcript and available delivery indicators. It is formative and not an official MUET result.</div>`+section("Task A · Individual Presentation",eA,"A")+section("Task B · Group Discussion",eB,"B")+`<div class="score-card"><div><b>Estimated Mock 1 Speaking Score</b><br><small>TF/LG/CO only · CA not included in automated total</small></div><strong>${scaled}/90</strong></div><div class="save-state">${sA.sent&&sB.sent?"☁️ Both speaking attempts sent for sync; verify the Speaking tab and audio":"💾 Mock saved locally; cloud sync not confirmed"}</div>`;
+ const report=document.getElementById("report");report.classList.add("show");report.innerHTML=`<div class="coach"><b>Immediate estimated Speaking result</b><br>Estimate confidence: ${estimateConfidence}. This uses the submitted transcript and available delivery indicators. It is formative and not an official MUET result.</div>`+section("Task A · Individual Presentation",eA,"A")+section("Task B · Group Discussion",eB,"B")+`<div class="score-card"><div><b>Estimated Mock 1 Speaking Score</b><br><small>TF/LG/CO only · CA not included in automated total</small></div><strong>${scaled}/90</strong></div><div class="save-state">${sA.audioTooLarge||sB.audioTooLarge?"⚠️ A recording exceeds 3 MB. Download its backup; audio was not uploaded.":sA.audioConfirmed&&sB.audioConfirmed?"☁️ Both audio files confirmed in private Drive":sA.sent&&sB.sent?"☁️ Transcripts sent for sync; verify Speaking tab and any unconfirmed audio":"💾 Mock saved locally; cloud sync not confirmed"}</div>`;
  localStorage.setItem("muet_mock1_speaking","true");localStorage.setItem("muet_mock1_speaking_score90",String(scaled));document.getElementById("p4").classList.add("on");if(mainTick){clearInterval(mainTick);mainTick=null}
 };
 </script>

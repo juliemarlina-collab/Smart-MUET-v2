@@ -28,7 +28,7 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 .finish{background:#fff;border:var(--line);border-radius:18px;box-shadow:var(--shadow);padding:13px;margin-top:14px}.finish h2{font-family:var(--fh);font-size:19px}.finish p{margin-top:5px;color:var(--muted);font-size:11px;line-height:1.4;font-weight:700}
 .nav{position:fixed;left:50%;transform:translateX(-50%);bottom:10px;width:calc(100% - 20px);max-width:570px;z-index:70;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border:var(--line);border-radius:18px;box-shadow:5px 5px 0 var(--ink);padding:6px}.nav a{min-height:58px;display:grid;place-items:center;align-content:center;gap:3px;border-radius:10px;font-size:9px;font-weight:1000}.nav a.active{background:var(--gold);border:2px solid var(--ink)}.nav img{width:26px;height:26px}
 @media(min-width:760px){.app{max-width:900px;padding:24px 24px 120px}.nav{max-width:860px}.evidence{grid-template-columns:repeat(4,1fr)}}
-</style>  <link rel="stylesheet" href="css/responsive-v2.css">
+</style>  
 
 <style id="vault1-speaking-current-style">
 .guided-note{background:#e7fff5;border:var(--line);border-radius:14px;box-shadow:4px 4px 0 var(--ink);padding:11px;margin-bottom:13px;font-size:11px;line-height:1.45;font-weight:850}
@@ -80,7 +80,7 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 <article class="task open" id="taskA">
 <button class="task-head"><div class="num">A</div><div class="title"><b>Task A · Individual Presentation</b><span>Job Choice · Candidate A–D</span></div><div class="plus">+</div></button>
 <div class="task-body">
-<select id="topicA">
+<select id="topicA" aria-label="Speaking topic">>
 <option value="a1">Candidate A — Location</option>
 <option value="a2">Candidate B — Salary</option>
 <option value="a3">Candidate C — Working Hours</option>
@@ -140,7 +140,7 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 </div>
 </main>
 
-<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
+<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg" alt=""><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg" alt=""><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg" alt=""><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg" alt=""><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg" alt=""><span>Profile</span></a></nav>
 <script src="js/backend-config.js"></script>
 <script>
 const prompts={
@@ -189,7 +189,7 @@ function evaluate(text,task,m){
  const focus=m.silenceRatio>40?'Reduce long pauses and keep your response moving.':lg<4?'Use a wider range of accurate language and linking phrases.':tf<5?'Develop one point with a more specific example.':'Refine delivery and make the ending more decisive.';
  return{tf,lg,co,ir,strength,focus,wc}
 }
-async function cloudSave(payload){const url=window.SMART_MUET_APPS_SCRIPT_URL||window.SMART_MUET_BACKEND_URL||window.MUET_BACKEND_URL||'';if(!url)return{ok:false,message:'Cloud endpoint not configured'};try{const r=await fetch(url,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({action:'saveSpeakingAttempt',...payload})});return await r.json()}catch(e){return{ok:false,message:e.message}}}
+async function cloudSave(payload){if(typeof window.saveSmartMuetAttempt!=='function')return{ok:false,localOnly:true};return window.saveSmartMuetAttempt(payload,'saveSpeakingAttempt')}
 let doneA=false,doneB=false;
 async function submitSpeaking(task){
  const rec=task==='A'?RecA:RecB,txt=document.getElementById('transcript'+task).value.trim();if(!txt){alert('Record your response or add the transcript first.');return}
@@ -199,8 +199,10 @@ async function submitSpeaking(task){
  box.innerHTML=`<div class="coach"><b>Immediate rubric-based practice feedback</b><br>Estimate confidence: ${estimateConfidence}. Based on the submitted transcript${m.durationSeconds?', recording duration and delivery indicators':''}. This is formative practice feedback, not an official MUET result.</div><div class="criteria">${rows.map(r=>`<div class="crit"><div class="crit-top"><b>${r[0]}</b><span class="score">${r[1]}/6</span></div><p>${r[2]}</p></div>`).join('')}</div><div class="coach"><b>💪 Strength</b><br>${ev.strength}<br><br><b>🎯 Next action</b><br>${ev.focus}</div><div class="save-state" id="save${task}">Saving evidence…</div><button class="retry" onclick="retryTask('${task}')">TRY THIS TASK AGAIN</button>`;
  const profile=(()=>{try{return JSON.parse(localStorage.getItem('muet_profile')||'{}')}catch(e){return{}}})();
  const payload={studentName:profile.name||'',studentRegNo:profile.regNo||profile.studentRegNo||'',classGroup:profile.group||profile.classGroup||'',vaultId:'VAULT-01',component:'Speaking',taskType:'Task '+task,topicId:task==='A'?topicA.value:'B',topicTitle:task==='A'?topicA.options[topicA.selectedIndex].text:'Career Guidance — Group Discussion',prompt:task==='A'?prompts[topicA.value]:"It is very important for students to choose the right career. Discuss how universities can provide better career guidance for students and decide the best way.",prepNotes:task==='A'?{point:document.getElementById('prepAP').value,reason:document.getElementById('prepAR').value,example:document.getElementById('prepAE').value,close:document.getElementById('prepAC').value}:{discussionPlan:document.getElementById('notesB').value},transcript:txt,wordCount:ev.wc,durationSeconds:m.durationSeconds,wordsPerMinute:m.wpm,silenceRatio:m.silenceRatio,recognitionConfidence:m.recognitionConfidence,taskFulfilment:ev.tf,languageUse:ev.lg,coherenceOrganisation:ev.co,interactionReadiness:ev.ir,rubricRaw:ev.tf+ev.lg+ev.co,rubricMax:18,estimateConfidence,audioMimeType:rec.mime(),audioBase64:rec.hasAudio()?await rec.b64():'',createdAt:new Date().toISOString()};
+ payload.studentEmail=profile.email||'';payload.attemptId=crypto.randomUUID();payload.audioConsent=window.smartMuetAudioConsent?.()===true;
+ if(!payload.audioConsent)payload.audioBase64='';
  localStorage.setItem('muet_v1_speaking_task'+task,JSON.stringify({...payload,audioBase64:''}));
- const saved=await cloudSave(payload);document.getElementById('save'+task).textContent=saved.ok?'☁️ Saved to Google Sheet + Drive':'💾 Saved locally · cloud save pending';if(task==='A')doneA=true;else doneB=true;document.getElementById('f4').classList.add('on');
+ const saved=await cloudSave(payload);document.getElementById('save'+task).textContent=saved.audioTooLarge?'⚠️ Recording exceeds 3 MB. Download a backup; transcript sent, audio not uploaded.':saved.audioConfirmed?'☁️ Transcript sent · audio confirmed in private Drive':saved.sent&&!payload.audioConsent?'☁️ Transcript sent; recording stays on this device':saved.sent?'☁️ Transcript sent; audio not confirmed · verify Speaking tab':'💾 Transcript saved locally · cloud sync not confirmed';if(task==='A')doneA=true;else doneB=true;document.getElementById('f4').classList.add('on');
 }
 function retryTask(task){if(task==='A'){RecA.clear();['prepAP','prepAR','prepAE','prepAC'].forEach(id=>document.getElementById(id).value='');document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
 document.getElementById('finishBtn').onclick=()=>{const b=document.getElementById('finishResult');b.classList.add('show');if(doneA&&doneB){localStorage.setItem('muet_v1_speaking','true');b.innerHTML='<div class="coach"><b>Vault 1 Speaking completed ✓</b><br>Task A and Task B have both been recorded, submitted and reviewed with guided rubric feedback.</div>'}else b.innerHTML='<div class="coach"><b>Submit both Task A and Task B first.</b></div>'};

@@ -1661,6 +1661,10 @@ body.page-final-profile-hero .save-status{
       <span>💬</span>
       <div><b>Feedback</b><small>Share experience</small></div>
     </a>
+    <a class="quick-link" href="about.html">
+      <span>ℹ️</span>
+      <div><b>About &amp; data policy</b><small>Developer, pilot scope and storage</small></div>
+    </a>
   </div>
 </section>
 
@@ -1954,20 +1958,6 @@ document.getElementById("resetProgressBtn").addEventListener("click",()=>{
 
   /* Existing shared reset first. */
   SmartMUET.resetProgressOnly();
-
-  /* Remove newer Vault/Mock keys created during V2 development. */
-  const remove=[];
-  for(let i=0;i<localStorage.length;i++){
-    const key=localStorage.key(i);
-    if(
-      /^muet_(v1|v2|mock1)_/i.test(key) ||
-      /^muet_v[12]_/i.test(key) ||
-      /^muet_mock1_/i.test(key)
-    ){
-      remove.push(key);
-    }
-  }
-  remove.forEach(k=>localStorage.removeItem(k));
 
   alert("Progress reset. Your profile and preferences were kept.");
 });

@@ -47,7 +47,7 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 <article class="task open" id="taskA">
 <button class="task-head"><div class="num">A</div><div class="title"><b>Task A · Individual Presentation</b><span>Session 2 2022 · Candidate prompt</span></div><div class="plus">+</div></button>
 <div class="task-body">
-<select id="topicA">
+<select id="topicA" aria-label="Speaking topic">>
 <option value="a1">Candidate A — Making New Friends</option>
 <option value="a2">Candidate B — Staying in Safe Places</option>
 <option value="a3">Candidate C — Enjoying Hostel Activities</option>
@@ -92,7 +92,7 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 </div>
 </main>
 
-<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg"><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg"><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg"><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg"><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg"><span>Profile</span></a></nav>
+<nav class="nav"><a href="muet-hub.html"><img src="assets/heroes/nav-home.svg" alt=""><span>Home</span></a><a href="guidance.html"><img src="assets/heroes/icon-muet-intro.svg" alt=""><span>Guide</span></a><a class="active" href="vault.html"><img src="assets/heroes/nav-vault.svg" alt=""><span>Vault</span></a><a href="progress.html"><img src="assets/heroes/nav-progress.svg" alt=""><span>Progress</span></a><a href="settings.html"><img src="assets/heroes/nav-profile.svg" alt=""><span>Profile</span></a></nav>
 <script src="js/backend-config.js"></script>
 <script>
 const prompts={
@@ -151,8 +151,10 @@ async function submitSpeaking(task){
  box.innerHTML=`<div class="coach"><b>Immediate rubric-based practice feedback</b><br>Estimate confidence: ${estimateConfidence}. Based on the submitted transcript${m.durationSeconds?', recording duration and delivery indicators':''}. This is formative practice feedback, not an official MUET result.</div><div class="criteria">${rows.map(r=>`<div class="crit"><div class="crit-top"><b>${r[0]}</b><span class="score">${r[1]}/6</span></div><p>${r[2]}</p></div>`).join('')}</div><div class="coach"><b>💪 Strength</b><br>${ev.strength}<br><br><b>🎯 Next action</b><br>${ev.focus}</div><div class="save-state" id="save${task}">Saving evidence…</div><button class="retry" onclick="retryTask('${task}')">TRY THIS TASK AGAIN</button>`;
  const profile=(()=>{try{return JSON.parse(localStorage.getItem('muet_profile')||'{}')}catch(e){return{}}})();
  const payload={studentName:profile.name||'',studentEmail:profile.email||'',studentRegNo:profile.regNo||'',classGroup:profile.group||'',vaultId:'VAULT-02',component:'Speaking',taskType:'Task '+task,topicId:task==='A'?topicA.value:'B',topicTitle:task==='A'?topicA.options[topicA.selectedIndex].text:'Hostel Improvement',prompt:task==='A'?prompts[topicA.value]:"It is important for hostels to meet the needs of their students. Discuss how the hostel can be improved to better meet students' needs.",prepNotes:{point:task==='A'?document.getElementById('notesA').value:'',reason:'',example:'',close:task==='B'?document.getElementById('notesB').value:''},transcript:txt,wordCount:ev.wc,durationSeconds:m.durationSeconds,wordsPerMinute:m.wpm,silenceRatio:m.silenceRatio,recognitionConfidence:m.recognitionConfidence,taskFulfilment:ev.tf,languageUse:ev.lg,coherenceOrganisation:ev.co,interactionReadiness:ev.ir,rubricRaw:ev.tf+ev.lg+ev.co,rubricMax:18,estimateConfidence,audioMimeType:rec.mime(),audioBase64:rec.hasAudio()?await rec.b64():'',createdAt:new Date().toISOString()};
+ payload.attemptId=crypto.randomUUID();payload.audioConsent=window.smartMuetAudioConsent?.()===true;
+ if(!payload.audioConsent)payload.audioBase64='';
  localStorage.setItem('muet_v2_speaking_task'+task,JSON.stringify({...payload,audioBase64:''}));
- const saved=await cloudSave(payload);document.getElementById('save'+task).textContent=saved.sent?'☁️ Transcript sent for sync · verify Speaking tab':'💾 Transcript saved locally · cloud sync not confirmed';if(task==='A')doneA=true;else doneB=true;document.getElementById('f4').classList.add('on');
+ const saved=await cloudSave(payload);document.getElementById('save'+task).textContent=saved.audioTooLarge?'⚠️ Recording exceeds 3 MB. Download a backup; transcript sent, audio not uploaded.':saved.audioConfirmed?'☁️ Transcript sent · audio confirmed in private Drive':saved.sent&&!payload.audioConsent?'☁️ Transcript sent; recording stays on this device':saved.sent?'☁️ Transcript sent; audio not confirmed · verify Speaking tab':'💾 Transcript saved locally · cloud sync not confirmed';if(task==='A')doneA=true;else doneB=true;document.getElementById('f4').classList.add('on');
 }
 function retryTask(task){if(task==='A'){RecA.clear();document.getElementById('notesA').value='';document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
 document.getElementById('finishBtn').onclick=()=>{const b=document.getElementById('finishResult');b.classList.add('show');if(doneA&&doneB){clearInterval(overallTimer);localStorage.setItem('muet_v2_speaking','true');b.innerHTML='<div class="coach"><b>Vault 2 Speaking completed ✓</b><br>Task A and Task B have both been recorded, submitted and reviewed.</div>'}else b.innerHTML='<div class="coach"><b>Submit both Task A and Task B first.</b></div>'};

@@ -1560,6 +1560,7 @@ body.page-final-progress-hero .next-card p{
     <span>LEARNING MILESTONES</span>
   </div>
   <div class="badge-grid" id="badgeGrid"></div>
+  <p style="margin:10px 2px 0;font-size:13px;line-height:1.5;color:#333">Badges appear immediately on this device. Pilot records are sent to the database when you open Progress; database delivery is checked separately.</p>
 </section>
 
 <section class="next-card">
@@ -1572,6 +1573,12 @@ body.page-final-progress-hero .next-card p{
   </div>
 </section>
 
+<section id="deliveryStatus" style="margin:18px 0;padding:16px;border:2px solid #172027;border-radius:14px;background:#fff" aria-live="polite">
+  <h2 style="font-size:19px">Spreadsheet delivery</h2>
+  <p id="pendingAttemptCount">Checking attempts saved on this device…</p>
+  <button type="button" id="retryAttempts" style="min-height:44px;padding:10px 18px;border:2px solid #172027;border-radius:10px;background:#126147;color:#fff;font-weight:800">Retry pending attempts</button>
+  <p style="margin-top:8px">A receipt confirms an Attempts row. Your lecturer should still check the component tabs during pilot testing.</p>
+</section>
 </main>
 
 <nav class="nav">
@@ -1583,6 +1590,18 @@ body.page-final-progress-hero .next-card p{
 </nav>
 
 <script src="js/phase1-state.js"></script>
+<script src="js/backend-config.js"></script>
+<script>
+function showPendingAttempts(){
+  let pending=0;try{pending=JSON.parse(localStorage.getItem('muet_pending_attempts_v1')||'[]').length}catch(_){}
+  document.getElementById('pendingAttemptCount').textContent=pending?`${pending} attempt(s) still waiting for a backend receipt. Keep this browser data.`:'No attempts are waiting for a backend receipt on this device.';
+}
+document.getElementById('retryAttempts').addEventListener('click',async()=>{
+  const button=document.getElementById('retryAttempts');button.disabled=true;button.textContent='Retrying…';
+  await window.retryPendingSmartMuetAttempts();showPendingAttempts();button.disabled=false;button.textContent='Retry pending attempts';
+});
+showPendingAttempts();
+</script>
 <script>
 /* =========================================================
    SMART MUET PROGRESS AGGREGATOR
@@ -1912,8 +1931,8 @@ function computeBadges(model){
     {id:"first",icon:"🚀",name:"First Step",desc:"First practice attempt",earned:anyAttempt},
     {id:"prep",icon:"🎤",name:"PREP Starter",desc:"Speaking Task A",earned:hasKeyLike("speaking","task","a") || v1.scores.Speaking.score!==null},
     {id:"discussion",icon:"💬",name:"Discussion Builder",desc:"Speaking Task B",earned:hasKeyLike("speaking","task","b")},
-    {id:"passage",icon:"🔎",name:"Passage Hunter",desc:"Reading practice",earned:[v1,v2,mock].some(s=>s.scores.Reading.score!==null)},
-    {id:"audio",icon:"🎧",name:"Audio Focus",desc:"Listening practice",earned:[v1,v2,mock].some(s=>s.scores.Listening.score!==null)},
+    {id:"passage",icon:"🔎",name:"Passage Hunter",desc:"Complete Reading practice",earned:["v1","v2","mock1"].some(s=>localStorage.getItem(`muet_${s}_reading`)==="true")},
+    {id:"audio",icon:"🎧",name:"Audio Focus",desc:"Complete Listening practice",earned:["v1","v2","mock1"].some(s=>localStorage.getItem(`muet_${s}_listening`)==="true")},
     {id:"essay",icon:"✍️",name:"Essay Builder",desc:"Writing Task 2",earned:hasKeyLike("writing","task2")||hasKeyLike("writing","task_2")},
     {id:"vault",icon:"🏆",name:"Vault Finisher",desc:"Complete 4 skills",earned:v1.complete||v2.complete},
     {id:"climber",icon:"📈",name:"Band Climber",desc:"Improve a checkpoint",earned:totals.length>=2 && totals.some((t,i)=>i>0&&t>totals[i-1])}
@@ -2056,6 +2075,10 @@ function render(){
   /* Badges */
   const badges=computeBadges(model);
   const earned=badges.filter(b=>b.earned).length;
+  // Send the earned IDs on every dashboard visit. The backend deduplicates by learner and badge ID.
+  if(typeof window.saveSmartMuetBadges==="function"){
+    window.saveSmartMuetBadges(getProfile(),badges.filter(b=>b.earned).map(b=>b.id));
+  }
   document.getElementById("badgeCount").textContent=`${earned} / ${badges.length}`;
   document.getElementById("badgeGrid").innerHTML=badges.map(b=>`<div class="badge ${b.earned?"":"locked"}"><div class="badge-icon">${b.icon}</div><b>${b.name}</b><span>${b.earned?"EARNED ✓":b.desc}</span></div>`).join("");
 
