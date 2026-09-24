@@ -111,6 +111,17 @@
 </style>
 <link rel="stylesheet" href="css/responsive-v2.css">
 <link rel="stylesheet" href="css/display-standard.css">
+<style>
+/* Mobile player only. Tablet and desktop keep their existing layout. */
+.page-mock1-listening .audio-fallback{display:none}
+@media(max-width:600px){
+  .page-mock1-listening .audio-wrap{width:100%;max-width:100%;min-width:0;margin:14px auto 18px}
+  .page-mock1-listening .audio-card{width:100%;min-width:0;max-width:100%;padding:10px;background:#fff;color:#111;overflow:hidden}
+  .page-mock1-listening .audio-title{font-size:14px;line-height:1.4;margin-bottom:9px}
+  .page-mock1-listening .audio-card iframe{display:block;width:100%!important;height:190px!important;border:1px solid #bcc7d2;border-radius:8px;background:#fff}
+  .page-mock1-listening .audio-fallback{display:inline-block;margin-top:9px;color:#095aa6;font-size:13px;font-weight:700;text-decoration:underline}
+}
+</style>
 </head>
 <body class="page-mock1-component page-mock1-listening">
 <main class="app">
@@ -546,6 +557,17 @@
 <script src="js/backend-config.js"></script>
 <script src="js/objective-results.js"></script>
 <script>
+document.querySelectorAll('.audio-card iframe').forEach((frame,index)=>{
+  frame.title=`Listening audio track ${index+1}`;
+  frame.loading='lazy';
+  const fallback=document.createElement('a');
+  fallback.className='audio-fallback';
+  fallback.href=frame.src;
+  fallback.target='_blank';
+  fallback.rel='noopener noreferrer';
+  fallback.textContent='Open track in Google Drive if player does not load';
+  frame.parentElement.append(fallback);
+});
 document.querySelectorAll(".listen-part-head").forEach(btn=>{
   btn.addEventListener("click",()=>{
     const current=btn.closest(".listen-part");
