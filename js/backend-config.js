@@ -19,12 +19,14 @@ window.SMART_MUET_BACKEND_URL = SMART_MUET_BACKEND_URL;
 
 // ── Primary save function (called after every attempt) ────────────────
 async function saveSmartMuetAttempt(payload, action = 'saveAttempt') {
+  payload.attemptId ||= crypto.randomUUID();
   _saveAttemptLocally(payload);  // Always save locally first
   const audioTooLarge=!!payload.audioConsent && (payload.audioBase64||'').length>4000000;
   const outgoing=audioTooLarge?{...payload,audioBase64:''}:payload;
 
-  if (!SMART_MUET_BACKEND_ENABLED) return { ok:false, localOnly:true };
+  if (!SMART_MUET_BACKEND_ENABLED) {queueSmartMuetAttempt(outgoing,action);return { ok:false, localOnly:true };}
   if (!SMART_MUET_BACKEND_URL || SMART_MUET_BACKEND_URL.includes('PASTE_')) {
+    queueSmartMuetAttempt(outgoing,action);
     return { ok:false, localOnly:true, note:'Backend URL not configured' };
   }
 
@@ -37,14 +39,73 @@ async function saveSmartMuetAttempt(payload, action = 'saveAttempt') {
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body:    JSON.stringify({ ...outgoing, action })
     });
-    const receipt=outgoing.audioConsent && outgoing.audioBase64 && outgoing.attemptId
+    const delivered=await confirmSmartMuetAttempt(outgoing.attemptId);
+    if(!delivered)queueSmartMuetAttempt(outgoing,action);
+    const receipt=delivered && outgoing.audioConsent && outgoing.audioBase64 && outgoing.attemptId
       ? await confirmSmartMuetAudio(payload)
       : null;
-    return { ok:true, sent:true, audioTooLarge, audioConfirmed:receipt?.stored===true, audioStatus:receipt?.audioStatus||'unconfirmed', note:'Attempt sent; verify component sheet.' };
+    return { ok:delivered, sent:true, confirmed:delivered, queued:!delivered, audioTooLarge, audioConfirmed:receipt?.stored===true, audioStatus:receipt?.audioStatus||'unconfirmed', note:delivered?'Attempt receipt confirmed; verify component sheet.':'Delivery unconfirmed; queued for retry.' };
   } catch(err) {
-    return { ok:false, error: String(err) };
+    queueSmartMuetAttempt(outgoing,action);
+    return { ok:false, queued:true, error: String(err) };
   }
 }
+
+const SMART_MUET_QUEUE_KEY='muet_pending_attempts_v1';
+function queueSmartMuetAttempt(payload,action) {
+  try {
+    const items=JSON.parse(localStorage.getItem(SMART_MUET_QUEUE_KEY)||'[]');
+    // Recordings may exceed browser storage; keep the result and let the learner download the audio backup.
+    const {audioBase64,...safe}=payload;
+    const entry={payload:{...safe,audioConsent:false},action,queuedAt:new Date().toISOString()};
+    const index=items.findIndex(x=>x.payload.attemptId===safe.attemptId);
+    if(index<0)items.push(entry);else items[index]=entry;
+    localStorage.setItem(SMART_MUET_QUEUE_KEY,JSON.stringify(items.slice(-100)));
+  } catch(e){console.warn('Could not queue attempt',e);}
+}
+function receiptQuery(action,attemptId) {
+  return new Promise(resolve=>{
+    const callback='muetReceipt'+Math.random().toString(36).slice(2);
+    const script=document.createElement('script');let done=false;
+    const finish=value=>{if(done)return;done=true;clearTimeout(timer);delete window[callback];script.remove();resolve(value)};
+    window[callback]=value=>finish(value?.stored===true);
+    script.src=SMART_MUET_BACKEND_URL+'?'+new URLSearchParams({action,attemptId,callback});
+    script.onerror=()=>finish(false);
+    const timer=setTimeout(()=>finish(false),8500);
+    document.head.append(script);
+  });
+}
+async function confirmSmartMuetAttempt(id) {
+  if(!id)return false;
+  for(let tries=0;tries<3;tries++){
+    if(await receiptQuery('attempt_status',id))return true;
+    if(tries<2)await new Promise(resolve=>setTimeout(resolve,1200));
+  }
+  return false;
+}
+async function retryPendingSmartMuetAttempts() {
+  if(!navigator.onLine || retryPendingSmartMuetAttempts.running || !SMART_MUET_BACKEND_ENABLED)return;
+  retryPendingSmartMuetAttempts.running=true;
+  try {
+    const items=JSON.parse(localStorage.getItem(SMART_MUET_QUEUE_KEY)||'[]');
+    for(const entry of items){
+      if(await confirmSmartMuetAttempt(entry.payload.attemptId)){
+        removePendingAttempt(entry.payload.attemptId);continue;
+      }
+      try {
+        await fetch(SMART_MUET_BACKEND_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({...entry.payload,action:entry.action})});
+        if(await confirmSmartMuetAttempt(entry.payload.attemptId))removePendingAttempt(entry.payload.attemptId);
+      } catch(_) {break;}
+    }
+  } catch(e){console.warn('Retry postponed',e);} finally {retryPendingSmartMuetAttempts.running=false;}
+}
+function removePendingAttempt(id){
+  const items=JSON.parse(localStorage.getItem(SMART_MUET_QUEUE_KEY)||'[]');
+  localStorage.setItem(SMART_MUET_QUEUE_KEY,JSON.stringify(items.filter(x=>x.payload.attemptId!==id)));
+}
+window.addEventListener('online',retryPendingSmartMuetAttempts);
+window.addEventListener('load',()=>setTimeout(retryPendingSmartMuetAttempts,1500));
+window.retryPendingSmartMuetAttempts=retryPendingSmartMuetAttempts;
 
 // ── Registration send ─────────────────────────────────────────────────
 async function sendRegistration(profile) {
@@ -77,8 +138,7 @@ function confirmSmartMuetAudio(payload) {
     let finished=false;
     const finish=result=>{if(finished)return;finished=true;clearTimeout(timer);delete window[callback];script.remove();resolve(result)};
     window[callback]=result=>finish(result);
-    const query=new URLSearchParams({action:'audio_status',attemptId:payload.attemptId,
-      studentRegNo:payload.studentRegNo||'',studentEmail:payload.studentEmail||'',callback});
+    const query=new URLSearchParams({action:'audio_status',attemptId:payload.attemptId,callback});
     script.src=SMART_MUET_BACKEND_URL+'?'+query;
     script.onerror=()=>finish(null);
     const timer=setTimeout(()=>finish(null),9000);

@@ -29,6 +29,12 @@
         'muet_writing_sessions','muet_attempt_log',
         'muet_activity_log'
       ].forEach(k => localStorage.removeItem(k));
+      const keys=[];
+      for(let i=0;i<localStorage.length;i++){
+        const key=localStorage.key(i);
+        if(/^muet_(v1|v2|mock1)_/i.test(key) && !/^muet_mock1_pending_/i.test(key))keys.push(key);
+      }
+      keys.forEach(k=>localStorage.removeItem(k));
     },
     resetAll() {
       localStorage.clear();

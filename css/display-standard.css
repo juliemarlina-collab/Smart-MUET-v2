@@ -618,3 +618,10 @@ body.page-splash{
   .page-splash .title-line{font-size:clamp(42px,8vh,64px) !important}
   .page-splash .subline{display:none}
 }
+
+/* Pilot keyboard, contrast and touch support. */
+:where(.opt,.option,.expand,.part-head,.listen-part-head,.next,.prev,.navbtn){min-height:44px}
+:where(input[type="radio"],input[type="checkbox"]){min-width:20px;min-height:20px}
+:where(a,button,input,select,textarea,[tabindex="0"]):focus-visible{outline:3px solid #103f86!important;outline-offset:3px!important}
+:where(.passage-text,.passage-scroll)[tabindex="0"]{scrollbar-width:thin}
+:where(.btn.red,#nextBtn,#submitExam,.submitbtn){background-color:#a91424!important;color:#fff!important}

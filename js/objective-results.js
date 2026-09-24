@@ -75,6 +75,7 @@
     function saveResult(extra) {
       const result = persistResponses();
       const savedAt = new Date().toISOString();
+      const attemptId = crypto.randomUUID();
       const record = Object.assign({}, result, extra || {}, {
         stageKey: config.stageKey,
         vaultId: config.vaultId,
@@ -108,6 +109,7 @@
           status: record.status,
           answerText: JSON.stringify(result.responses),
           createdAt: savedAt
+          ,attemptId
         });
       }
 
