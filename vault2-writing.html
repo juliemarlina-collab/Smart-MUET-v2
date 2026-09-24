@@ -626,39 +626,12 @@ function renderRubric(task, ev){
 }
 
 async function saveToBackend(payload){
-  // Existing local save always works.
   localStorage.setItem(
     "muet_v2_writing_task"+payload.taskNumber,
     JSON.stringify(payload)
   );
-
-  // Existing app helper, if present.
-  if(typeof window.saveSmartMuetAttempt==="function"){
-    try{ window.saveSmartMuetAttempt(payload); }catch(e){}
-  }
-
-  // Optional Apps Script endpoint.
-  const endpoint =
-    window.SMART_MUET_APPS_SCRIPT_URL ||
-    window.SMART_MUET_BACKEND_URL ||
-    window.MUET_BACKEND_URL ||
-    "";
-
-  if(!endpoint){
-    return {ok:false,message:"Saved locally · cloud endpoint not configured"};
-  }
-
-  try{
-    const response=await fetch(endpoint,{
-      method:"POST",
-      headers:{"Content-Type":"text/plain;charset=utf-8"},
-      body:JSON.stringify({action:"saveWritingAttempt",...payload})
-    });
-    const data=await response.json();
-    return data;
-  }catch(err){
-    return {ok:false,message:"Saved locally · cloud save pending"};
-  }
+  if(typeof window.saveSmartMuetAttempt!=="function")return {ok:false,localOnly:true};
+  return window.saveSmartMuetAttempt(payload,"saveWritingAttempt");
 }
 
 let done1=false,done2=false;
@@ -693,7 +666,9 @@ async function submitTask(task){
     taskType:"Task "+task,
     questionId:task===1 ? "session2_linda_online_business" : q2.value,
     questionText:task===1 ? "Linda — Online Business" : TASK2_BANK[q2.value].statement,
+    topicTitle:task===1 ? "Linda — Online Business" : TASK2_BANK[q2.value].statement,
     studentName:profile.name||"",
+    studentEmail:profile.email||"",
     studentRegNo:profile.regNo||"",
     classGroup:profile.group||"",
     answerText:answer,
@@ -706,6 +681,9 @@ async function submitTask(task){
     },
     rawScore:ev.raw,
     rawMax:ev.rawMax,
+    taskFulfilment:ev.tf,
+    organisation:ev.co,
+    language:ev.lg,
     scaledScore:ev.scaled,
     scaledMax:ev.scaledMax,
     estimateConfidence:wc>=min?"High":"Moderate",
@@ -715,9 +693,9 @@ async function submitTask(task){
 
   const saved=await saveToBackend(payload);
   const state=document.getElementById("cloudState"+task);
-  state.textContent = saved && saved.ok
-    ? "☁️ Saved to Google Sheet"
-    : "💾 " + ((saved&&saved.message)||"Saved locally");
+  state.textContent = saved && saved.sent
+    ? "☁️ Sent for sync · verify Writing tab"
+    : "💾 Saved locally · cloud sync not confirmed";
 
   if(task===1)done1=true;
   else done2=true;

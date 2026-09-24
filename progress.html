@@ -1809,7 +1809,9 @@ function buildModel(){
     });
 
     const vals=COMPONENTS.map(c=>stages[stage.id].scores[c.id].score);
-    stages[stage.id].complete=vals.every(v=>v!==null);
+    const stageKey=stage.id==="VAULT-01"?"v1":stage.id==="VAULT-02"?"v2":"mock1";
+    const allSubmitted=COMPONENTS.every(c=>localStorage.getItem(`muet_${stageKey}_${c.id.toLowerCase()}`)==="true");
+    stages[stage.id].complete=allSubmitted&&vals.every(v=>v!==null);
     if(stages[stage.id].complete){
       stages[stage.id].total=vals.reduce((a,b)=>a+b,0);
       stages[stage.id].band=bandFor(stages[stage.id].total);
