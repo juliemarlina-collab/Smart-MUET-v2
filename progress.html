@@ -1563,6 +1563,14 @@ body.page-final-progress-hero .next-card p{
   <p style="margin:10px 2px 0;font-size:13px;line-height:1.5;color:#333">Badges appear immediately on this device. Pilot records are sent to the database when you open Progress; database delivery is checked separately.</p>
 </section>
 
+<section class="dashboard-section" aria-labelledby="achievementHeading">
+  <div class="dashboard-title"><h2 id="achievementHeading">Achievement Report</h2><span>PRINT OR SAVE AS PDF</span></div>
+  <div style="background:#fff;border:2px solid #111;border-radius:18px;padding:18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px">
+    <p style="margin:0;max-width:680px;line-height:1.5">View your completed checkpoints, component scores and earned learning milestones in one printable report.</p>
+    <a href="achievement.html" style="display:inline-block;background:#ffda48;color:#111;border:2px solid #111;border-radius:12px;padding:13px 18px;font-weight:850;text-decoration:none">VIEW FULL REPORT →</a>
+  </div>
+</section>
+
 <section class="next-card">
   <small>YOUR NEXT ACTION</small>
   <h2 id="nextTitle">Continue your practice</h2>
@@ -1791,6 +1799,11 @@ function speakingScore(stage,rows){
 }
 
 function genericComponentScore(stage,component,rows){
+  if(component==="Reading" || component==="Listening"){
+    const stageKey=stage.id==="VAULT-01"?"v1":stage.id==="VAULT-02"?"v2":"mock1";
+    const result=safeJSON(localStorage.getItem(`muet_${stageKey}_${component.toLowerCase()}_result`));
+    if(result && result.complete===false)return {score:null,source:"Incomplete paper"};
+  }
   const explicit=explicitScore(stage,component);
   if(explicit)return explicit;
 
@@ -1828,9 +1841,10 @@ function buildModel(){
     });
 
     const vals=COMPONENTS.map(c=>stages[stage.id].scores[c.id].score);
-    const stageKey=stage.id==="VAULT-01"?"v1":stage.id==="VAULT-02"?"v2":"mock1";
-    const allSubmitted=COMPONENTS.every(c=>localStorage.getItem(`muet_${stageKey}_${c.id.toLowerCase()}`)==="true");
-    stages[stage.id].complete=allSubmitted&&vals.every(v=>v!==null);
+    /* Older attempts may have scores for every component without all four
+       completion flags. A saved score is the authoritative evidence here;
+       writing and speaking only produce a combined score after both tasks. */
+    stages[stage.id].complete=vals.every(v=>v!==null);
     if(stages[stage.id].complete){
       stages[stage.id].total=vals.reduce((a,b)=>a+b,0);
       stages[stage.id].band=bandFor(stages[stage.id].total);
@@ -1945,6 +1959,27 @@ function hasAnyRealScore(model){
   return STAGES.some(def =>
     COMPONENTS.some(c => model.stages[def.id].scores[c.id].score !== null)
   );
+}
+
+function recommendedAction(model,hasData){
+  if(!hasData)return {title:"Start your first practice",text:"Open Vault 1 and choose a MUET component to begin.",href:"vault1.html",button:"OPEN VAULT 1 →"};
+  const stages=[
+    {id:"VAULT-01",slug:"vault1"},
+    {id:"VAULT-02",slug:"vault2"},
+    {id:"MOCK-01",slug:"mock1"}
+  ];
+  for(const item of stages){
+    const stage=model.stages[item.id];
+    if(stage.complete)continue;
+    const missing=COMPONENTS.filter(c=>stage.scores[c.id].score===null);
+    if(missing.length){
+      const first=missing[0].id.toLowerCase();
+      return {title:`Continue ${stage.label}`,text:`${missing.length} component${missing.length===1?"":"s"} remaining: ${missing.map(c=>c.id).join(", ")}.`,href:`${item.slug}-${first}.html`,button:`OPEN ${missing[0].id.toUpperCase()} →`};
+    }
+  }
+  const mock=model.stages["MOCK-01"];
+  const focus=[...COMPONENTS].sort((a,b)=>mock.scores[a.id].score-mock.scores[b.id].score)[0];
+  return {title:`Strengthen ${focus.id}`,text:`You completed all three practice stages. ${focus.id} was your lowest Mock score (${mock.scores[focus.id].score}/90). Review its guide before your next attempt.`,href:`${focus.id.toLowerCase()}-guidance.html`,button:"OPEN COMPONENT GUIDE →"};
 }
 
 function setDataSectionState(id, show){
@@ -2083,29 +2118,11 @@ function render(){
   document.getElementById("badgeGrid").innerHTML=badges.map(b=>`<div class="badge ${b.earned?"":"locked"}"><div class="badge-icon">${b.icon}</div><b>${b.name}</b><span>${b.earned?"EARNED ✓":b.desc}</span></div>`).join("");
 
   /* Next action */
-  const incompleteStage=[model.stages["VAULT-01"],model.stages["VAULT-02"],model.stages["MOCK-01"]].find(s=>!s.complete);
-  const focusAvailable=available.length?[...available].sort((a,b)=>a.score-b.score)[0]:null;
-  if(!hasData){
-    document.getElementById("nextTitle").textContent="Start your first practice";
-    document.getElementById("nextText").textContent="Open the Vault and choose any MUET component to begin.";
-    document.getElementById("nextLink").href="vault.html";
-    document.getElementById("nextLink").textContent="OPEN STUDY VAULT →";
-  }else if(incompleteStage){
-    const missing=COMPONENTS.filter(c=>incompleteStage.scores[c.id].score===null).map(c=>c.id);
-    document.getElementById("nextTitle").textContent=`Continue ${incompleteStage.label}`;
-    document.getElementById("nextText").textContent=missing.length?`Still to complete: ${missing.join(", ")}.`:"Complete the remaining practice.";
-    document.getElementById("nextLink").href="vault.html";
-    document.getElementById("nextLink").textContent="CONTINUE PRACTICE →";
-  }else if(focusAvailable){
-    document.getElementById("nextTitle").textContent=`Strengthen ${focusAvailable.component}`;
-    document.getElementById("nextText").textContent=`Your latest ${focusAvailable.component} score is ${focusAvailable.score}/90. Use the Guide or Vault for another focused attempt.`;
-    document.getElementById("nextLink").href="guidance.html";
-    document.getElementById("nextLink").textContent="OPEN GUIDE →";
-  }else{
-    document.getElementById("nextTitle").textContent="Start Vault 1";
-    document.getElementById("nextText").textContent="Complete your first component practice to activate the dashboard.";
-    document.getElementById("nextLink").href="vault.html";
-  }
+  const action=recommendedAction(model,hasData);
+  document.getElementById("nextTitle").textContent=action.title;
+  document.getElementById("nextText").textContent=action.text;
+  document.getElementById("nextLink").href=action.href;
+  document.getElementById("nextLink").textContent=action.button;
 }
 
 document.getElementById("refreshBtn").addEventListener("click",render);

@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Achievement Report · Smart MUET Guide</title>
+<style>
+:root{font-family:Inter,Arial,sans-serif;color:#142025;background:#e9f5f2}*{box-sizing:border-box}body{margin:0}.toolbar{max-width:1080px;margin:20px auto;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:0 15px}.toolbar a,.toolbar button{border:2px solid #142025;background:#fff;color:#142025;border-radius:10px;padding:12px 17px;text-decoration:none;font:700 14px inherit;cursor:pointer}.toolbar button{background:#ffda48}.sheet{max-width:1080px;margin:0 auto 36px;background:#fff;border:2px solid #142025;border-radius:20px;overflow:hidden;box-shadow:7px 8px 0 #142025}.hero{background:#113f3e;color:#fff;padding:32px 36px;display:flex;justify-content:space-between;align-items:center;gap:20px}.hero img{width:126px;max-height:95px;object-fit:contain}.eyebrow{font-size:12px;letter-spacing:.16em;font-weight:850;color:#ffe173}.hero h1{font-size:clamp(29px,4vw,49px);line-height:1.08;margin:8px 0}.hero p{margin:0;color:#dcf3ed}.body{padding:28px 36px 38px}.identity{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:22px}.info{background:#f3f9f7;border:1px solid #bfd8d1;border-radius:10px;padding:12px;min-width:0;overflow-wrap:anywhere}.info small,.metric small{display:block;color:#465e5b;text-transform:uppercase;letter-spacing:.06em;font-size:11px;font-weight:800;margin-bottom:5px}.info b{font-size:15px}.section-title{border-bottom:2px solid #142025;padding-bottom:8px;margin:29px 0 15px;font-size:21px}.overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.metric{border:2px solid #142025;border-radius:12px;padding:17px}.metric:nth-child(1){background:#fff3bb}.metric:nth-child(2){background:#efe7fa}.metric:nth-child(3){background:#dff8ec}.metric strong{font-size:27px;display:block}.metric span{font-size:12px;color:#39514c}.stage{border:1.5px solid #142025;border-radius:12px;overflow:hidden;margin:13px 0;break-inside:avoid}.stage-head{padding:14px 18px;background:#f3f9f7;display:flex;justify-content:space-between;align-items:center;gap:12px}.stage-head b{font-size:19px}.stage-head span{font-weight:800}.score-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px}.score{border:1px solid #cddfda;border-radius:9px;padding:10px}.score span{display:block;font-size:12px;color:#3c5550}.score b{font-size:19px}.badge-list{display:flex;flex-wrap:wrap;gap:8px}.badge{background:#fff3bb;border:1px solid #ad8b34;border-radius:999px;padding:9px 12px;font-weight:750;font-size:13px}.note{background:#f2f6f5;border-left:4px solid #127c73;padding:14px 17px;line-height:1.5}.footer{font-size:12px;color:#53635f;margin-top:28px}.empty{padding:20px;border:1px dashed #758c86;border-radius:12px}.sr-only{position:absolute;left:-9999px}@media(max-width:650px){.hero{padding:25px 19px}.hero img{width:70px}.body{padding:20px 16px}.identity{grid-template-columns:1fr 1fr}.overview{grid-template-columns:1fr}.score-grid{grid-template-columns:1fr 1fr}.toolbar{margin:12px auto}}@media print{@page{size:A4;margin:12mm}:root{background:#fff}body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}.toolbar{display:none}.sheet{border:0;box-shadow:none;max-width:none;margin:0;border-radius:0}.hero{padding:20px 24px}.body{padding:18px 24px}.overview{grid-template-columns:repeat(3,1fr)}.identity{grid-template-columns:repeat(3,1fr)}.stage{break-inside:avoid}.section-title{margin-top:17px}}
+</style></head><body><div class="toolbar"><a href="progress.html">← BACK TO PROGRESS</a><button type="button" onclick="window.print()">PRINT / SAVE AS PDF</button></div>
+<main class="sheet"><header class="hero"><div><div class="eyebrow">SMART MUET GUIDE · LEARNING RECORD</div><h1>Achievement Report</h1><p>A personal snapshot of completed practice.</p></div><img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide logo"></header>
+<div class="body"><div class="identity" id="identity"></div><h2 class="section-title">Practice overview</h2><div class="overview" id="overview"></div><h2 class="section-title">Component results</h2><div id="stages"></div><h2 class="section-title">Achievements earned</h2><div id="badges"></div><h2 class="section-title">Recommended next step</h2><p class="note" id="recommendation"></p><p class="footer">Generated from results saved in this browser. Scores and bands are formative practice estimates, not an official MUET result or certificate. Speaking and Writing estimates require lecturer review. This report is not a database receipt.</p></div></main>
+<script>
+const COMPONENTS = [
+  {id:"Speaking", emoji:"🎤", cls:"speaking"},
+  {id:"Reading", emoji:"📖", cls:"reading"},
+  {id:"Listening", emoji:"🎧", cls:"listening"},
+  {id:"Writing", emoji:"✍️", cls:"writing"}
+];
+
+const STAGES = [
+  {id:"VAULT-01", label:"Vault 1", sub:"Guided Practice", number:"1", prefix:["muet_v1_","vault1","VAULT-01"]},
+  {id:"VAULT-02", label:"Vault 2", sub:"Independent Practice", number:"2", prefix:["muet_v2_","vault2","VAULT-02"]},
+  {id:"MOCK-01",  label:"Mock 1",  sub:"Full Practice Test", number:"M", prefix:["muet_mock1_","mock1","MOCK-01"]}
+];
+
+/* Current MPM aggregated-score thresholds. */
+const BANDS = [
+  {min:331, band:"5+"},
+  {min:294, band:"5.0"},
+  {min:258, band:"4.5"},
+  {min:211, band:"4.0"},
+  {min:164, band:"3.5"},
+  {min:123, band:"3.0"},
+  {min:82,  band:"2.5"},
+  {min:36,  band:"2.0"},
+  {min:1,   band:"1.0"},
+  {min:0,   band:"—"}
+];
+
+const TARGET_MIN = {
+  "5+":331, "5.0":294, "5":294,
+  "4.5":258, "4.0":211, "4":211,
+  "3.5":164, "3.0":123, "3":123,
+  "2.5":82, "2.0":36, "2":36,
+  "1.0":1, "1":1
+};
+
+function safeJSON(value){
+  if(value===null || value===undefined)return null;
+  try{return JSON.parse(value)}catch{return value}
+}
+
+function clamp90(n){
+  n=Number(n);
+  if(!Number.isFinite(n))return null;
+  return Math.max(0,Math.min(90,Math.round(n)));
+}
+
+function scoreFromObject(obj){
+  if(obj===null || obj===undefined)return null;
+  if(typeof obj==="number")return clamp90(obj);
+  if(typeof obj==="string" && !isNaN(Number(obj)))return clamp90(Number(obj));
+  if(Array.isArray(obj)){
+    for(let i=obj.length-1;i>=0;i--){
+      const s=scoreFromObject(obj[i]);
+      if(s!==null)return s;
+    }
+    return null;
+  }
+  if(typeof obj!=="object")return null;
+
+  for(const k of ["score90","scaledScore90","finalScore90","score_90"]){
+    if(obj[k]!==undefined){
+      const s=clamp90(obj[k]);
+      if(s!==null)return s;
+    }
+  }
+
+  /* A component result may already be /90. */
+  if(obj.score!==undefined && Number(obj.score)>=0 && Number(obj.score)<=90){
+    return clamp90(obj.score);
+  }
+
+  /* Convert generic raw result only if a clear denominator exists. */
+  const raw = obj.rawScore ?? obj.raw ?? obj.correct ?? null;
+  const max = obj.totalItems ?? obj.rawMax ?? obj.max ?? null;
+  if(raw!==null && max!==null && Number(max)>0){
+    return clamp90(Number(raw)/Number(max)*90);
+  }
+
+  return null;
+}
+
+function allStorage(){
+  const rows=[];
+  for(let i=0;i<localStorage.length;i++){
+    const key=localStorage.key(i);
+    rows.push({key,value:safeJSON(localStorage.getItem(key))});
+  }
+  return rows;
+}
+
+function keyMatchesStage(key,stage){
+  const k=key.toLowerCase();
+  return stage.prefix.some(p=>k.includes(String(p).toLowerCase()));
+}
+function keyMatchesComponent(key,component){
+  return key.toLowerCase().includes(component.toLowerCase());
+}
+
+function explicitScore(stage,component){
+  const c=component.toLowerCase();
+  const stageKey=stage.id==="VAULT-01"?"v1":stage.id==="VAULT-02"?"v2":"mock1";
+  const candidates=[
+    `muet_${stageKey}_${c}_score90`,
+    `muet_${stageKey}_${c}_score_90`,
+    `muet_${stageKey}_${c}_final_score`,
+    `muet_${stageKey}_${c}_score`
+  ];
+  for(const key of candidates){
+    if(localStorage.getItem(key)!==null){
+      const value=safeJSON(localStorage.getItem(key));
+      let s=scoreFromObject(value);
+      /* Legacy objective pages stored raw marks under *_score. */
+      if(key.endsWith("_score") && (c==="listening" || c==="reading")){
+        const raw=Number(value);
+        const denominator=c==="listening"?30:40;
+        if(Number.isFinite(raw) && raw>=0 && raw<=denominator){
+          s=clamp90(raw/denominator*90);
+        }
+      }
+      if(s!==null)return {score:s,source:key};
+    }
+  }
+  return null;
+}
+
+function writingScore(stage,rows){
+  const relevant=rows.filter(r=>keyMatchesStage(r.key,stage)&&keyMatchesComponent(r.key,"writing"));
+  let t1=null,t2=null;
+  for(const r of relevant){
+    const k=r.key.toLowerCase();
+    if(k.includes("task1") || k.includes("task_1")){
+      const o=r.value;
+      if(o && typeof o==="object" && Number.isFinite(Number(o.scaledScore))){
+        const max=Number(o.scaledMax||30);
+        t1={points:Number(o.scaledScore),max,source:r.key,obj:o};
+      }
+    }
+    if(k.includes("task2") || k.includes("task_2")){
+      const o=r.value;
+      if(o && typeof o==="object" && Number.isFinite(Number(o.scaledScore))){
+        const max=Number(o.scaledMax||60);
+        t2={points:Number(o.scaledScore),max,source:r.key,obj:o};
+      }
+    }
+  }
+  if(t1&&t2){
+    const score=clamp90((t1.points+t2.points)/(t1.max+t2.max)*90);
+    return {score,source:"Task 1 + Task 2",objects:[t1.obj,t2.obj]};
+  }
+  return null;
+}
+
+function speakingScore(stage,rows){
+  const relevant=rows.filter(r=>keyMatchesStage(r.key,stage)&&keyMatchesComponent(r.key,"speaking"));
+  const taskObjects=[];
+  for(const r of relevant){
+    const o=r.value;
+    if(!o || typeof o!=="object")continue;
+    const raw=Number(o.rubricRaw ?? o.rawScore);
+    const max=Number(o.rubricMax ?? o.rawMax);
+    if(Number.isFinite(raw)&&Number.isFinite(max)&&max>0){
+      taskObjects.push({raw,max,obj:o,key:r.key});
+    }
+  }
+  /* Deduplicate likely Task A/B records by task label. */
+  const byTask={};
+  taskObjects.forEach(x=>{
+    const label=String(x.obj.taskType||x.key).toLowerCase();
+    const id=label.includes("task b")||label.includes("task_b")?"B":
+             label.includes("task a")||label.includes("task_a")?"A":x.key;
+    byTask[id]=x;
+  });
+  const vals=Object.values(byTask);
+  if(vals.length>=2){
+    const raw=vals.reduce((a,b)=>a+b.raw,0);
+    const max=vals.reduce((a,b)=>a+b.max,0);
+    return {score:clamp90(raw/max*90),source:"Task A + Task B",objects:vals.map(x=>x.obj)};
+  }
+  return null;
+}
+
+function genericComponentScore(stage,component,rows){
+  if(component==="Reading" || component==="Listening"){
+    const stageKey=stage.id==="VAULT-01"?"v1":stage.id==="VAULT-02"?"v2":"mock1";
+    const result=safeJSON(localStorage.getItem(`muet_${stageKey}_${component.toLowerCase()}_result`));
+    if(result && result.complete===false)return {score:null,source:"Incomplete paper"};
+  }
+  const explicit=explicitScore(stage,component);
+  if(explicit)return explicit;
+
+  if(component==="Writing"){
+    const combined=writingScore(stage,rows);
+    if(combined)return combined;
+  }
+  if(component==="Speaking"){
+    const combined=speakingScore(stage,rows);
+    if(combined)return combined;
+  }
+
+  const matches=rows.filter(r=>keyMatchesStage(r.key,stage)&&keyMatchesComponent(r.key,component));
+  /* Prefer keys that explicitly look like final / score / summary. */
+  matches.sort((a,b)=>{
+    const rank=k=>/score90|final|summary|result|complete/.test(k.toLowerCase())?2:1;
+    return rank(b.key)-rank(a.key);
+  });
+
+  for(const r of matches){
+    const s=scoreFromObject(r.value);
+    if(s!==null)return {score:s,source:r.key,obj:r.value};
+  }
+  return {score:null,source:null};
+}
+
+function buildModel(){
+  const rows=allStorage();
+  const stages={};
+
+  STAGES.forEach(stage=>{
+    stages[stage.id]={...stage,scores:{},complete:false,total:null,band:"—"};
+    COMPONENTS.forEach(c=>{
+      stages[stage.id].scores[c.id]=genericComponentScore(stage,c.id,rows);
+    });
+
+    const vals=COMPONENTS.map(c=>stages[stage.id].scores[c.id].score);
+    /* Older attempts may have scores for every component without all four
+       completion flags. A saved score is the authoritative evidence here;
+       writing and speaking only produce a combined score after both tasks. */
+    stages[stage.id].complete=vals.every(v=>v!==null);
+    if(stages[stage.id].complete){
+      stages[stage.id].total=vals.reduce((a,b)=>a+b,0);
+      stages[stage.id].band=bandFor(stages[stage.id].total);
+    }
+  });
+
+  return {rows,stages};
+}
+
+function bandFor(total){
+  if(total===null || total===undefined)return "—";
+  return BANDS.find(b=>total>=b.min)?.band || "—";
+}
+
+
+function hasKeyLike(...parts){
+  return allStorage().some(r=>parts.every(p=>r.key.toLowerCase().includes(p.toLowerCase())));
+}
+
+function computeBadges(model){
+  const anyAttempt=model.rows.some(r=>{
+    const k=r.key.toLowerCase();
+    return /^muet_(v1|v2|mock1)_/.test(k) &&
+           /(task|score|result|reading|writing|listening|speaking)/.test(k);
+  });
+  const v1=model.stages["VAULT-01"],v2=model.stages["VAULT-02"],mock=model.stages["MOCK-01"];
+  const totals=[v1,v2,mock].filter(x=>x.complete).map(x=>x.total);
+
+  const badges=[
+    {id:"first",icon:"🚀",name:"First Step",desc:"First practice attempt",earned:anyAttempt},
+    {id:"prep",icon:"🎤",name:"PREP Starter",desc:"Speaking Task A",earned:hasKeyLike("speaking","task","a") || v1.scores.Speaking.score!==null},
+    {id:"discussion",icon:"💬",name:"Discussion Builder",desc:"Speaking Task B",earned:hasKeyLike("speaking","task","b")},
+    {id:"passage",icon:"🔎",name:"Passage Hunter",desc:"Complete Reading practice",earned:["v1","v2","mock1"].some(s=>localStorage.getItem(`muet_${s}_reading`)==="true")},
+    {id:"audio",icon:"🎧",name:"Audio Focus",desc:"Complete Listening practice",earned:["v1","v2","mock1"].some(s=>localStorage.getItem(`muet_${s}_listening`)==="true")},
+    {id:"essay",icon:"✍️",name:"Essay Builder",desc:"Writing Task 2",earned:hasKeyLike("writing","task2")||hasKeyLike("writing","task_2")},
+    {id:"vault",icon:"🏆",name:"Vault Finisher",desc:"Complete 4 skills",earned:v1.complete||v2.complete},
+    {id:"climber",icon:"📈",name:"Band Climber",desc:"Improve a checkpoint",earned:totals.length>=2 && totals.some((t,i)=>i>0&&t>totals[i-1])}
+  ];
+  return badges;
+}
+
+
+
+function escapeHTML(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"})[c])}
+function renderReport(){
+ const model=buildModel(),stages=[model.stages["VAULT-01"],model.stages["VAULT-02"],model.stages["MOCK-01"]];
+ const profile=safeJSON(localStorage.getItem("muet_profile"))||{};
+ const info=[["Learner",profile.name||"Not provided"],["Registration no.",profile.regNo||"Not provided"],["Institution",profile.institution||"Not provided"],["Group",profile.group||"Not provided"],["Target band",profile.targetBand||"Not set"],["Report date",new Date().toLocaleDateString("en-MY",{year:"numeric",month:"long",day:"numeric"})]];
+ document.getElementById("identity").innerHTML=info.map(([k,v])=>`<div class="info"><small>${escapeHTML(k)}</small><b>${escapeHTML(v)}</b></div>`).join("");
+ const latest=[stages[2],stages[1],stages[0]].find(s=>s.complete),completed=stages.filter(s=>s.complete).length;
+ const badges=computeBadges(model).filter(b=>b.earned);
+ document.getElementById("overview").innerHTML=`<div class="metric"><small>Stages complete</small><strong>${completed}/3</strong><span>Vault 1 · Vault 2 · Mock 1</span></div><div class="metric"><small>Latest complete checkpoint</small><strong>${latest?latest.total+"/360":"—"}</strong><span>${latest?escapeHTML(latest.label):"No complete stage yet"}</span></div><div class="metric"><small>Estimated practice band</small><strong>${latest?"Band "+escapeHTML(latest.band):"—"}</strong><span>Based on latest complete checkpoint</span></div>`;
+ document.getElementById("stages").innerHTML=stages.map(s=>`<section class="stage"><div class="stage-head"><b>${escapeHTML(s.label)}</b><span>${s.complete?s.total+"/360 · Band "+escapeHTML(s.band):COMPONENTS.filter(c=>s.scores[c.id].score!==null).length+"/4 components"}</span></div><div class="score-grid">${COMPONENTS.map(c=>`<div class="score"><span>${escapeHTML(c.id)}</span><b>${s.scores[c.id].score===null?"—":s.scores[c.id].score+"/90"}</b></div>`).join("")}</div></section>`).join("");
+ document.getElementById("badges").innerHTML=badges.length?`<div class="badge-list">${badges.map(b=>`<span class="badge">${escapeHTML(b.icon)} ${escapeHTML(b.name)}</span>`).join("")}</div>`:'<div class="empty">No learning milestones recorded yet.</div>';
+ const next=stages.find(s=>!s.complete);
+ if(next){const missing=COMPONENTS.filter(c=>next.scores[c.id].score===null).map(c=>c.id);document.getElementById("recommendation").textContent=`Continue ${next.label}: complete ${missing.join(", ")||"your remaining tasks"}.`}
+ else{const weakest=[...COMPONENTS].sort((a,b)=>stages[2].scores[a.id].score-stages[2].scores[b.id].score)[0];document.getElementById("recommendation").textContent=`All three stages are complete. Review ${weakest.id} (${stages[2].scores[weakest.id].score}/90 in Mock 1) and try another focused practice.`}
+}
+renderReport();
+</script></body></html>
