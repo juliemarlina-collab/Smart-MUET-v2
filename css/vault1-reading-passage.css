@@ -1,0 +1,12 @@
+/* Layout only: passage text, questions, options and answer keys stay unchanged. */
+.page-v1-reading .part.open .part-body{min-width:0}
+.page-v1-reading .part.open .passage-card{display:block;width:min(100%,900px);max-width:900px;margin:0 auto 16px!important;padding:clamp(12px,2vw,20px);min-width:0;background:#edf7ff}
+.page-v1-reading .passage-title{max-width:760px;margin:0 auto 10px;font-size:clamp(15px,1.2vw,19px)!important;line-height:1.35}
+.page-v1-reading .passage-scroll{display:block;width:100%;max-width:760px;min-width:0;margin:0 auto;text-align:left;white-space:normal;overflow-x:hidden;overflow-y:auto;overflow-wrap:break-word;word-break:normal;max-height:min(54vh,530px)!important;padding:clamp(15px,2vw,24px)!important;font-size:clamp(15px,1.1vw,17px)!important;line-height:1.75!important;font-weight:600!important;scrollbar-width:auto;scrollbar-color:#225acb #e6f2ff;overscroll-behavior:contain}
+.page-v1-reading .passage-scroll.expanded{max-height:min(78vh,790px)!important}
+.page-v1-reading .passage-scroll:focus-visible{outline:4px solid #174fb2;outline-offset:3px}
+.page-v1-reading .passage-scroll::-webkit-scrollbar{width:13px}
+.page-v1-reading .passage-scroll::-webkit-scrollbar-thumb{background:#225acb;border:3px solid #e6f2ff;border-radius:10px}
+.page-v1-reading .passage-scroll::-webkit-scrollbar-track{background:#e6f2ff}
+.page-v1-reading .expand-btn{display:block;width:min(100%,760px);margin:10px auto 0}
+@media(max-width:599px){.page-v1-reading .part.open .passage-card{padding:10px!important}.page-v1-reading .passage-scroll{max-height:48vh!important;padding:14px!important;line-height:1.68!important}.page-v1-reading .passage-scroll.expanded{max-height:75vh!important}}

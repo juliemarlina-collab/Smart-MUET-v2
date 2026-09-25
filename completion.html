@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Personal practice completion certificate from Smart MUET Guide V2."><title>Practice Completion · Smart MUET Guide</title><link rel="stylesheet" href="css/completion-certificate.css"></head>
+<body>
+<nav class="actions" aria-label="Certificate actions"><a href="achievement.html">← BACK TO ACHIEVEMENT REPORT</a><button id="printCertificate" type="button" onclick="window.print()" hidden>PRINT / SAVE AS PDF</button></nav>
+<main id="certificate" class="certificate" hidden>
+  <div class="top-stripe" aria-hidden="true"></div>
+  <header class="certificate-brand"><img src="assets/heroes/smart-muet-logo.svg" alt="Smart MUET Guide logo" width="130" height="130"><div><small>SMART MUET GUIDE V2</small><strong>PRACTICE COMPLETION</strong><span>Listening · Speaking · Reading · Writing</span></div></header>
+  <div class="certificate-main"><div class="overline">CERTIFICATE OF PRACTICE COMPLETION</div><h1>Every step counts.</h1><p class="award-label">Presented to</p><p class="learner" id="learnerName"></p><p class="certificate-copy">for completing the guided Vault 1 practice, independent Vault 2 practice and Mock 1 across all four MUET components in Smart MUET Guide V2.</p>
+  <div class="checkpoints"><div><b>01</b><span>VAULT 1<br><small>GUIDED PRACTICE</small></span></div><div><b>02</b><span>VAULT 2<br><small>INDEPENDENT PRACTICE</small></span></div><div><b>03</b><span>MOCK 1<br><small>FULL PRACTICE</small></span></div></div>
+  <p class="date">Report generated <time id="reportDate"></time></p></div>
+  <footer><span>English Language Unit · Jabatan Pengajian Am<br>Politeknik Port Dickson</span><span>This document records practice completion on this device. It is not an official MUET certificate, examination result or independently verified credential.</span></footer>
+</main>
+<section id="incomplete" class="incomplete" hidden><h1>Keep going.</h1><p id="missingMessage"></p><a href="progress.html">SEE YOUR PROGRESS →</a></section>
+<script>
+function stageComplete(stage){
+  return ['listening','speaking','reading','writing'].every(component=>{
+    const prefix=`muet_${stage}_${component}`;
+    try{if(JSON.parse(localStorage.getItem(prefix+'_result')||'null')?.complete===false)return false}catch(_){}
+    if(localStorage.getItem(prefix)==='true'||localStorage.getItem(prefix+'_score90')!==null)return true;
+    if(component==='writing')return localStorage.getItem(prefix+'_task1')!==null&&localStorage.getItem(prefix+'_task2')!==null;
+    if(component==='speaking')return localStorage.getItem(prefix+'_taskA')!==null&&localStorage.getItem(prefix+'_taskB')!==null;
+    return false;
+  });
+}
+const missing=[['v1','Vault 1'],['v2','Vault 2'],['mock1','Mock 1']].filter(([key])=>!stageComplete(key));
+if(missing.length){
+  document.getElementById('incomplete').hidden=false;
+  document.getElementById('missingMessage').textContent=`Finish ${missing.map(([,label])=>label).join(', ')} to open your practice completion certificate. Your existing results remain in Progress.`;
+}else{
+  let profile={};try{profile=JSON.parse(localStorage.getItem('muet_profile')||'{}')}catch(_){}
+  document.getElementById('learnerName').textContent=String(profile.name||'MUET Candidate').trim();
+  const date=new Date();document.getElementById('reportDate').dateTime=date.toISOString();document.getElementById('reportDate').textContent=date.toLocaleDateString('en-MY',{day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('certificate').hidden=false;
+  document.getElementById('printCertificate').hidden=false;
+}
+</script></body></html>
