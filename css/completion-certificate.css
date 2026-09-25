@@ -2,4 +2,7 @@
 @media print{@page{size:A4 landscape;margin:9mm}:root,body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}.actions,.incomplete{display:none!important}.certificate{width:100%;min-height:0;height:185mm;border:3px solid #15242a;border-radius:15px;box-shadow:none;margin:0}.certificate-brand{padding:12px 25px}.certificate-brand img{width:75px;height:75px}.certificate-brand strong{font-size:26px}.certificate-main{padding:15px 35px}.certificate-main h1{font-size:40px;margin:10px 0 6px}.learner{font-size:35px;margin:5px auto 10px}.certificate-copy{font-size:13px}.checkpoints{margin:14px auto 0;gap:8px}.checkpoints div{padding:7px}.checkpoints b{font-size:18px}.checkpoints span{font-size:11px}.date{margin:12px 0 0}footer{padding:10px 25px;font-size:9px}}
 .certificate-brand img{width:178px;height:100px;max-width:38vw}
 @media(max-width:650px){.certificate-brand img{width:108px;height:65px}}
-@media print{.certificate-brand img{width:135px;height:75px}}
+@media print{.certificate-brand img{width:190px;height:86px}}
+.certificate-brand img{width:230px;height:105px;max-width:42vw}
+@media(max-width:650px){.certificate-brand img{width:155px;height:73px;max-width:42vw}}
+@media print{.certificate-brand img{width:190px;height:86px}}
