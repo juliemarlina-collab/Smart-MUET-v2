@@ -625,3 +625,108 @@ body.page-splash{
 :where(a,button,input,select,textarea,[tabindex="0"]):focus-visible{outline:3px solid #103f86!important;outline-offset:3px!important}
 :where(.passage-text,.passage-scroll)[tabindex="0"]{scrollbar-width:thin}
 :where(.btn.red,#nextBtn,#submitExam,.submitbtn){background-color:#a91424!important;color:#fff!important}
+
+/* =========================================================
+   WCAG 2.1 AA CONTRAST PATCH · 25 Sep 2026
+   Same colour families; shades adjusted only where text
+   fell below 4.5:1 (normal text) or 3:1 (large headings).
+   ========================================================= */
+
+/* Azure #0D78E8 with WHITE text -> deeper azure (5.8:1) */
+.page-guidance-intro .glance:nth-child(3),
+.page-guidance-intro .band-card.my-target,
+.page-guidance-intro .my-target,
+body:is(.page-mock1-landing-final,.page-vault-landing) .comp.reading,
+body:is(.page-mock1-landing-final,.page-vault-landing) .reading,
+.page-mock1-speaking #readyA,
+.page-v1-reading .techgrid > div:nth-child(1),
+.page-v1-reading .qtag,
+.page-v1-reading button[data-result]{
+  background-color:#0A64C2 !important;
+}
+
+/* Azure #0D78E8 with BLACK text -> lighter azure (6.1:1) */
+.page-guide-reading button[data-tech="0"],
+.page-guide-reading .vault,
+.page-vault-hub .tech:nth-child(3){
+  background-color:#3D95EF !important;
+}
+
+/* Gold accent words in large headings (3:1 minimum for large text) */
+.page-mock1-landing-final h1 > span,
+.page-vault1-landing h1 > span{
+  color:#A37000 !important;
+}
+
+/* Paper duration lines on coloured paper headers */
+.page-guidance-intro details.component summary .component-title > span{
+  color:inherit !important;
+  opacity:1 !important;
+}
+
+/* Magenta strips and Band 5.0 card with white text (5.4:1) */
+.page-guidance-intro .important-strip,
+.page-guidance-intro [data-band="5.0"]{
+  background-color:#C400A4 !important;
+}
+
+/* Pink action buttons on Vault 1 Speaking: dark text (6.2:1) */
+.page-v1-speaking button[onclick^="submitSpeaking"],
+.page-v1-speaking #finishBtn{
+  color:#111111 !important;
+}
+
+/* Audio download links on dark audio panels (11:1) */
+body:is(.page-v1-listening,.page-v2-listening) .audio-download{
+  color:#8FD3FF !important;
+}
+
+/* Welcome primary button: deeper red (5.7:1) */
+.page-welcome .btn-primary{
+  background-color:#D10000 !important;
+}
+
+/* Progress: score labels and locked badges stay muted but readable */
+.page-final-progress-hero .component-score > span{
+  color:#595959 !important;
+}
+.page-final-progress-hero .badge.locked b{
+  color:#5F6368 !important;
+}
+.page-final-progress-hero .badge.locked span{
+  color:#6B7075 !important;
+}
+/* Locked badges: fade the icon only, keep the label readable */
+.page-final-progress-hero .badge.locked{
+  opacity:1 !important;
+}
+.page-final-progress-hero .badge.locked .badge-icon{
+  opacity:.42;
+}
+
+/* Vault hub technique tile 3 (black text) */
+body.page-vault-hub .tech-grid .tech:nth-child(3){
+  background:#3D95EF !important;
+  color:#111111 !important;
+}
+
+/* Vault 1 Listening heading accent (large text, 3:1) */
+.page-v1-listening h1 > span{
+  color:#0B8F8F !important;
+}
+
+/* Welcome journey: final step label */
+.page-welcome .journey-step:last-child b{
+  color:#C40000 !important;
+}
+
+/* Mock Listening play counter on dark audio card */
+.audio-card .audio-play-status{
+  display:inline-block;
+  margin-top:8px;
+  padding:4px 10px;
+  border-radius:999px;
+  background:#111111 !important;
+  color:#FFFFFF !important;
+  font-weight:800;
+}
