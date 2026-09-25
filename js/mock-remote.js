@@ -8,7 +8,7 @@
       window[callback]=finish;
       script.src=window.SMART_MUET_BACKEND_URL+'?'+new URLSearchParams({action:'mock_result',attemptId:id,callback});
       script.onerror=()=>finish(null);
-      const timer=setTimeout(()=>finish(null),9000);
+      const timer=setTimeout(()=>finish(null),5000);
       document.head.append(script);
     });
   }
@@ -16,7 +16,7 @@
     for(let i=0;i<4;i++){
       const result=await resultReceipt(id);
       if(result?.status==='ok')return result;
-      if(i<3)await new Promise(resolve=>setTimeout(resolve,1400));
+      if(i<3)await new Promise(resolve=>setTimeout(resolve,1500*(i+1)));
     }
     return null;
   }
@@ -30,15 +30,18 @@
     }
     box.classList.add('show');box.textContent='Submitting for scoring… Your responses remain on this device if delivery fails.';
     const payload={attemptId:id,vaultId:'MOCK-01',component,studentName:profile.name||'',studentEmail:profile.email||'',studentRegNo:profile.regNo||'',classGroup:profile.group||'',responses,answerText:JSON.stringify(responses),taskType:'Mock 1',timeRemaining};
-    const sent=await window.saveSmartMuetAttempt(payload,'gradeMockAttempt');
-    const result=sent.confirmed?await pollResult(id):null;
+    await window.saveSmartMuetAttempt(payload,'gradeMockAttempt');
+    // The Mock result may already be stored while the generic Attempts receipt
+    // is still unavailable. The result receipt is the authority for scoring.
+    const result=await pollResult(id);
     if(!result){
-      box.innerHTML='Scoring is pending. Your attempt is queued on this device. Reopen this page online to retry, then ask your lecturer to confirm the result if it remains pending.';
       localStorage.setItem('muet_mock1_pending_'+component.toLowerCase(),id);
       localStorage.setItem('muet_mock1_pending_responses_'+id,JSON.stringify(responses));
+      showPending({component,total,base,box,timeRemaining});
       return;
     }
     localStorage.removeItem('muet_mock1_pending_'+component.toLowerCase());
+    window.clearPendingSmartMuetAttempt?.(id);
     finalize({component,total,base,box,timeRemaining},result,responses);
   }
   function finalize({component,total,base,box,timeRemaining},result,responses){
@@ -60,14 +63,23 @@
     localStorage.setItem(prefix+'_result',JSON.stringify(record));
     if(complete)localStorage.setItem(prefix,'true');else localStorage.removeItem(prefix);
   }
+  function showPending(config){
+    config.box.replaceChildren();
+    const message=document.createElement('p');
+    message.textContent='Your responses are saved on this device. Scoring is awaiting a database receipt. Keep this browser data and reconnect if needed.';
+    const retry=document.createElement('button');retry.type='button';retry.textContent='CHECK RESULT AGAIN';
+    retry.style.cssText='min-height:44px;padding:10px 15px;border:2px solid #111;border-radius:10px;background:#ffdb49;color:#111;font-weight:800;cursor:pointer';
+    retry.addEventListener('click',()=>resume(config));
+    config.box.append(message,retry);
+  }
   async function resume(config){
     const id=localStorage.getItem('muet_mock1_pending_'+config.component.toLowerCase());
     if(!id)return;
     const saved=JSON.parse(localStorage.getItem('muet_mock1_pending_responses_'+id)||'{}');
     config.box.classList.add('show');config.box.textContent='Checking your pending Mock result…';
     const result=await pollResult(id);
-    if(result){finalize(config,result,saved);localStorage.removeItem('muet_mock1_pending_'+config.component.toLowerCase());localStorage.removeItem('muet_mock1_pending_responses_'+id);}
-    else config.box.textContent='This Mock attempt is still pending. Keep this browser data and reconnect to the internet; then reopen this page.';
+    if(result){finalize(config,result,saved);localStorage.removeItem('muet_mock1_pending_'+config.component.toLowerCase());localStorage.removeItem('muet_mock1_pending_responses_'+id);window.clearPendingSmartMuetAttempt?.(id);}
+    else showPending(config);
   }
   window.SmartMUETRemoteMock={submit,resume};
 })();

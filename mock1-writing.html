@@ -1338,6 +1338,7 @@ textarea:focus{
 
   <link rel="stylesheet" href="css/display-standard.css">
 <link rel="stylesheet" href="css/component-experience.css">
+<link rel="stylesheet" href="css/beginner-support.css">
 </head>
 
 <body class="page-mock1-component page-mock1-writing">
@@ -1693,14 +1694,15 @@ document.getElementById("finishMock").onclick=async()=>{
  const p2={vaultId:"MOCK-01",component:"Writing",taskNumber:2,taskType:"Task 2",questionId:"modernisation_peace_of_mind",questionText:"Modernisation has robbed us of our peace of mind.",studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",answerText:task2.value.trim(),wordCount:e2.words,rubric:{taskFulfilment:e2.tf,organisationCoherence:e2.co,language:e2.lg,registerStyle:e2.rs},rawScore:e2.raw,rawMax:e2.rawMax,scaledScore:e2.scaled,scaledMax:60,estimateConfidence:confidence,status:"Immediate rubric-based practice estimate",createdAt:new Date().toISOString()};
  const [s1,s2]=await Promise.all([saveAttempt(p1),saveAttempt(p2)]);
  const total=e1.scaled+e2.scaled;
- const box=document.getElementById("finalResult");box.classList.add("show");box.innerHTML=`<div class="coach"><b>Immediate estimated Writing result</b><br>Estimate confidence: ${confidence}. This formative estimate supports practice and is not an official MUET result.</div>`+section("Task 1 · Guided Writing",e1,1)+section("Task 2 · Extended Writing",e2,2)+`<div class="score-card"><div><b>Estimated Mock 1 Writing Score</b><br><small>Task 1 ${e1.scaled}/30 · Task 2 ${e2.scaled}/60</small></div><strong>${total}/90</strong></div><div class="save-state2">${s1.sent&&s2.sent?"☁️ Both writing attempts sent for sync; verify the Writing tab":"💾 Mock saved locally; cloud sync not confirmed"}</div>`;
- localStorage.setItem("muet_mock1_writing","true");localStorage.setItem("muet_mock1_writing_score90",String(total));if(timerId){clearInterval(timerId);timerId=null}
+ const box=document.getElementById("finalResult");box.classList.add("show");box.innerHTML=`<div class="coach"><b>Immediate estimated Writing result</b><br>Estimate confidence: ${confidence}. This formative estimate supports practice and is not an official MUET result.</div>`+section("Task 1 · Guided Writing",e1,1)+section("Task 2 · Extended Writing",e2,2)+`<div class="score-card"><div><b>Estimated Mock 1 Writing Score</b><br><small>Task 1 ${e1.scaled}/30 · Task 2 ${e2.scaled}/60</small></div><strong>${total}/90</strong></div><div class="save-state2">${s1.confirmed&&s2.confirmed?"✓ Both writing attempts confirmed in the database":"💾 Mock saved on this device · database receipt pending. Open Progress to retry."}</div>`;
+ localStorage.setItem("muet_mock1_writing","true");localStorage.setItem("muet_mock1_writing_score90",String(total));window.SmartMUETWritingModels?.show('mock1',1,box);window.SmartMUETWritingModels?.show('mock1',2,box);if(timerId){clearInterval(timerId);timerId=null}
 };
 
 task1.value=localStorage.getItem(KEY1)||"";task2.value=localStorage.getItem(KEY2)||"";updateCounts();drawTimer();
 </script>
 
 <script src="js/smart-coach.js"></script>
+<script src="js/writing-models.js"></script>
 <script src="js/component-experience.js" defer></script>
 </body>
 </html>

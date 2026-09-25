@@ -1,0 +1,11 @@
+.model-after-submit{margin:18px 0 0;border:3px solid #151e24;border-radius:16px;background:#fff9e4;overflow:hidden;box-shadow:4px 4px 0 #151e24;color:#162126}
+.model-after-submit summary{list-style:none;cursor:pointer;background:#ffdb49;padding:15px 18px;font-weight:900;font-size:14px;line-height:1.4}
+.model-after-submit summary::-webkit-details-marker{display:none}
+.model-after-submit summary::after{content:' +';float:right;font-size:20px;line-height:1}
+.model-after-submit[open] summary::after{content:' −'}
+.model-after-submit summary:focus-visible{outline:3px solid #145acb;outline-offset:-5px}
+.model-body{padding:16px 19px;max-width:840px}
+.model-body p{margin:0 0 13px;white-space:pre-line;font-size:15px;line-height:1.65;color:#162126}
+.model-body .model-notice{padding:12px 14px;border-left:5px solid #13a98e;background:#e8fbf4;font-weight:750}
+.model-body .model-count{border-top:1px solid #bcc9c5;padding-top:10px;font-size:13px;color:#344a47}
+@media(max-width:600px){.model-after-submit summary{padding:13px 14px;font-size:13px}.model-body{padding:13px 14px}.model-body p{font-size:14px}}

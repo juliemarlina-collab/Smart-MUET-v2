@@ -236,6 +236,7 @@
   <link rel="stylesheet" href="css/display-standard.css">
 <style>.component-hero-image{position:relative;z-index:1;display:block;width:100%;height:auto;max-height:280px;object-fit:cover;object-position:center;border-radius:14px;margin-top:16px}@media(max-width:480px){.component-hero-image{max-height:200px}}</style>
 <link rel="stylesheet" href="css/component-experience.css">
+<link rel="stylesheet" href="css/beginner-support.css">
 </head>
 <body class="page-vault2-component page-v2-writing">
 <main class="app">
@@ -639,6 +640,7 @@ async function saveToBackend(payload){
 let done1=false,done2=false;
 
 async function submitTask(task){
+  const selectedTask2Question=q2.value;
   const answer = task===1 ? a1.value.trim() : a2.value.trim();
   const min = task===1 ? 100 : 250;
   const wc = words(answer);
@@ -695,10 +697,11 @@ async function submitTask(task){
 
   const saved=await saveToBackend(payload);
   const state=document.getElementById("cloudState"+task);
-  state.textContent = saved && saved.sent
-    ? "☁️ Sent for sync · verify Writing tab"
-    : "💾 Saved locally · cloud sync not confirmed";
+  state.textContent = saved && saved.confirmed
+    ? "✓ Saved locally · database receipt confirmed"
+    : "💾 Saved on this device · database receipt pending. Open Progress to retry.";
 
+  window.SmartMUETWritingModels?.show('vault2',task,document.getElementById('result'+task),selectedTask2Question);
   if(task===1)done1=true;
   else done2=true;
 }
@@ -726,6 +729,7 @@ document.getElementById("finish").onclick=()=>{
   }
 };
 </script>
+<script src="js/writing-models.js"></script>
 <script src="js/component-experience.js" defer></script>
 </body>
 </html>

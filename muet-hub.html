@@ -653,6 +653,7 @@
   </style>
   <link rel="stylesheet" href="css/responsive-v2.css">
   <link rel="stylesheet" href="css/display-standard.css">
+<link rel="stylesheet" href="css/home-study-plan.css">
 </head>
 
 <body class="page-home">
@@ -816,6 +817,17 @@
     </div>
   </div>
 
+
+  <section class="study-plan" aria-labelledby="studyPlanHeading">
+    <div class="plan-head"><div><span class="plan-kicker">A BEGINNER-FRIENDLY ROUTE</span><h2 id="studyPlanHeading">Your three-week practice plan</h2></div><span class="plan-date" id="planDate">Based on your exam session</span></div>
+    <p id="planIntro">Start with guided practice, then practise independently and review a full Mock result. Adjust the pace to suit your date.</p>
+    <div class="plan-steps">
+      <a class="plan-step" href="vault1.html" data-plan-stage="v1"><small>WEEK 1 · GUIDED</small><b>Vault 1</b><span>Learn one technique per skill and try every component with support.</span><span class="plan-status">Start here →</span></a>
+      <a class="plan-step" href="vault2.html" data-plan-stage="v2"><small>WEEK 2 · INDEPENDENT</small><b>Vault 2</b><span>Use the techniques on a second set and review your weaker skill.</span><span class="plan-status">Coming next</span></a>
+      <a class="plan-step" href="mock1.html" data-plan-stage="mock1"><small>WEEK 3 · EXAM PRACTICE</small><b>Mock + review</b><span>Practise under timed conditions, then use Progress and your report.</span><span class="plan-status">Final checkpoint</span></a>
+    </div>
+    <p class="beginner-help">New to the terms? <a href="glossary.html">Open the beginner glossary →</a></p>
+  </section>
 
   <!-- JOURNEY -->
   <section class="section">
@@ -1167,6 +1179,27 @@
 
     startCountdown(session.target);
     updateReadiness(profile);
+    updateStudyPlan(profile,session);
+  }
+
+  function updateStudyPlan(profile,session){
+    const target=new Date(session.target),days=Math.ceil((target-Date.now())/86400000);
+    document.getElementById('planDate').textContent=days>0?`${days} day${days===1?'':'s'} to the written test`:'Check your upcoming session in Profile';
+    document.getElementById('planIntro').textContent=days>0&&days<21?`You have fewer than three weeks. Follow the same Vault 1 → Vault 2 → Mock order at a pace that suits your remaining ${days} days.`:'Start with guided practice, then practise independently and review a full Mock result. Adjust the pace to suit your date.';
+    const complete=stage=>['listening','speaking','reading','writing'].every(component=>{
+      const prefix=`muet_${stage}_${component}`;
+      try{if(JSON.parse(localStorage.getItem(prefix+'_result')||'null')?.complete===false)return false}catch(_){}
+      if(localStorage.getItem(prefix)==='true'||localStorage.getItem(prefix+'_score90')!==null)return true;
+      if(component==='writing')return localStorage.getItem(prefix+'_task1')!==null&&localStorage.getItem(prefix+'_task2')!==null;
+      if(component==='speaking')return localStorage.getItem(prefix+'_taskA')!==null&&localStorage.getItem(prefix+'_taskB')!==null;
+      return false;
+    });
+    const states=['v1','v2','mock1'].map(complete),current=states.findIndex(done=>!done);
+    document.querySelectorAll('[data-plan-stage]').forEach((card,i)=>{
+      card.classList.toggle('done',states[i]);card.classList.toggle('current',i===current);
+      card.querySelector('.plan-status').textContent=states[i]?'Completed ✓':i===current?'Your next checkpoint →':'After the previous checkpoint';
+    });
+    if(current<0)document.getElementById('planIntro').textContent='All three checkpoints have results on this device. Review your Achievement Report and practise the component that needs the most attention.';
   }
 
 

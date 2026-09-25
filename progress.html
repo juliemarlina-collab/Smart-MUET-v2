@@ -1496,6 +1496,7 @@ body.page-final-progress-hero .next-card p{
 
   <div class="progress-track"><div id="targetProgress"></div></div>
   <div class="snapshot-note">Immediate formative estimate based on completed practice and MUET-aligned criteria. It is designed to guide improvement and may differ from performance under examination conditions; it is not an official MUET result.</div>
+  <p style="margin:12px 0 0;font-size:13px;line-height:1.5">A component score is out of 90; the estimated band uses a complete set of four component scores out of 360. <a href="glossary.html" style="color:#0759aa;font-weight:850">Explain unfamiliar terms →</a></p>
   <div class="snapshot-empty">
     No marks yet. Complete a Vault or Mock component and submit it to start building your progress dashboard.
   </div>
@@ -1602,13 +1603,16 @@ body.page-final-progress-hero .next-card p{
 <script>
 function showPendingAttempts(){
   let pending=0;try{pending=JSON.parse(localStorage.getItem('muet_pending_attempts_v1')||'[]').length}catch(_){}
-  document.getElementById('pendingAttemptCount').textContent=pending?`${pending} attempt(s) still waiting for a backend receipt. Keep this browser data.`:'No attempts are waiting for a backend receipt on this device.';
+  let receipt=null;try{receipt=JSON.parse(localStorage.getItem('muet_last_confirmed_receipt')||'null')}catch(_){}
+  const last=receipt?.at?` Last database receipt: ${new Date(receipt.at).toLocaleString('en-MY')}.`:'';
+  document.getElementById('pendingAttemptCount').textContent=pending?`${pending} attempt(s) saved on this device are still awaiting a database receipt. Keep this browser data; use the button below to retry.${last}`:`No attempts are currently awaiting a database receipt on this device.${last} Check the component tabs in the Sheet for pilot verification.`;
 }
 document.getElementById('retryAttempts').addEventListener('click',async()=>{
   const button=document.getElementById('retryAttempts');button.disabled=true;button.textContent='Retrying…';
   await window.retryPendingSmartMuetAttempts();showPendingAttempts();button.disabled=false;button.textContent='Retry pending attempts';
 });
 showPendingAttempts();
+window.addEventListener('smartmuet:delivery-updated',showPendingAttempts);
 </script>
 <script>
 /* =========================================================
@@ -2026,11 +2030,13 @@ function render(){
   componentGrid.innerHTML=COMPONENTS.map(c=>{
     const item=latestScoreForComponent(model,c.id);
     const score=item.score;
+    const meaning=score===null?'Complete a practice attempt to see this score.':score>=75?'Strong practice result. Review any remaining errors before the next test.':score>=55?'Developing practice result. Review feedback and retry one weaker task.':'Focus here next. Revisit the component guide, then try another task.';
     return `<div class="component-card ${c.cls} ${score===null?"no-score":""}">
       <div class="component-icon">${c.emoji}</div>
       <h3>${c.id}</h3>
       <div class="component-score">${score===null?"—":score}<span>/90</span></div>
       <div class="component-source">${item.stage?item.stage.label:"Not submitted"}</div>
+      <p style="font-size:12px;line-height:1.4;margin:8px 0 0;color:#253a40">${meaning}</p>
       <div class="score-bar"><i style="width:${score===null?0:Math.round(score/90*100)}%"></i></div>
     </div>`;
   }).join("");

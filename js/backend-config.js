@@ -41,6 +41,7 @@ async function saveSmartMuetAttempt(payload, action = 'saveAttempt') {
     });
     const delivered=await confirmSmartMuetAttempt(outgoing.attemptId);
     if(!delivered)queueSmartMuetAttempt(outgoing,action);
+    else markSmartMuetConfirmed(outgoing.attemptId);
     const receipt=delivered && outgoing.audioConsent && outgoing.audioBase64 && outgoing.attemptId
       ? await confirmSmartMuetAudio(payload)
       : null;
@@ -61,6 +62,7 @@ function queueSmartMuetAttempt(payload,action) {
     const index=items.findIndex(x=>x.payload.attemptId===safe.attemptId);
     if(index<0)items.push(entry);else items[index]=entry;
     localStorage.setItem(SMART_MUET_QUEUE_KEY,JSON.stringify(items.slice(-100)));
+    window.dispatchEvent(new CustomEvent('smartmuet:delivery-updated'));
   } catch(e){console.warn('Could not queue attempt',e);}
 }
 function receiptQuery(action,attemptId) {
@@ -71,15 +73,15 @@ function receiptQuery(action,attemptId) {
     window[callback]=value=>finish(value?.stored===true);
     script.src=SMART_MUET_BACKEND_URL+'?'+new URLSearchParams({action,attemptId,callback});
     script.onerror=()=>finish(false);
-    const timer=setTimeout(()=>finish(false),8500);
+    const timer=setTimeout(()=>finish(false),5000);
     document.head.append(script);
   });
 }
 async function confirmSmartMuetAttempt(id) {
   if(!id)return false;
-  for(let tries=0;tries<3;tries++){
+  for(let tries=0;tries<4;tries++){
     if(await receiptQuery('attempt_status',id))return true;
-    if(tries<2)await new Promise(resolve=>setTimeout(resolve,1200));
+    if(tries<3)await new Promise(resolve=>setTimeout(resolve,1500*(tries+1)));
   }
   return false;
 }
@@ -90,11 +92,11 @@ async function retryPendingSmartMuetAttempts() {
     const items=JSON.parse(localStorage.getItem(SMART_MUET_QUEUE_KEY)||'[]');
     for(const entry of items){
       if(await confirmSmartMuetAttempt(entry.payload.attemptId)){
-        removePendingAttempt(entry.payload.attemptId);continue;
+        markSmartMuetConfirmed(entry.payload.attemptId);continue;
       }
       try {
         await fetch(SMART_MUET_BACKEND_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({...entry.payload,action:entry.action})});
-        if(await confirmSmartMuetAttempt(entry.payload.attemptId))removePendingAttempt(entry.payload.attemptId);
+        if(await confirmSmartMuetAttempt(entry.payload.attemptId))markSmartMuetConfirmed(entry.payload.attemptId);
       } catch(_) {break;}
     }
   } catch(e){console.warn('Retry postponed',e);} finally {retryPendingSmartMuetAttempts.running=false;}
@@ -102,10 +104,22 @@ async function retryPendingSmartMuetAttempts() {
 function removePendingAttempt(id){
   const items=JSON.parse(localStorage.getItem(SMART_MUET_QUEUE_KEY)||'[]');
   localStorage.setItem(SMART_MUET_QUEUE_KEY,JSON.stringify(items.filter(x=>x.payload.attemptId!==id)));
+  window.dispatchEvent(new CustomEvent('smartmuet:delivery-updated'));
 }
+function markSmartMuetConfirmed(id){
+  try{localStorage.setItem('muet_last_confirmed_receipt',JSON.stringify({attemptId:id,at:new Date().toISOString()}));}catch(_){}
+  removePendingAttempt(id);
+}
+function smartMuetDeliveryText(saved,description='Attempt'){
+  if(saved?.confirmed)return `${description} saved on this device and confirmed in the database. Open Progress to review your result.`;
+  if(saved?.queued)return `${description} saved on this device. Database receipt is pending; reconnect or open Progress to retry.`;
+  return `${description} saved on this device. Database delivery is not confirmed; open Progress to check.`;
+}
+window.smartMuetDeliveryText=smartMuetDeliveryText;
 window.addEventListener('online',retryPendingSmartMuetAttempts);
 window.addEventListener('load',()=>setTimeout(retryPendingSmartMuetAttempts,1500));
 window.retryPendingSmartMuetAttempts=retryPendingSmartMuetAttempts;
+window.clearPendingSmartMuetAttempt=markSmartMuetConfirmed;
 
 // ── Registration send ─────────────────────────────────────────────────
 async function sendRegistration(profile) {

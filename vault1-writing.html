@@ -583,6 +583,7 @@
   <link rel="stylesheet" href="css/display-standard.css">
 <style>.component-hero-image{position:relative;z-index:1;display:block;width:100%;height:auto;max-height:280px;object-fit:cover;object-position:center;border-radius:14px;margin-top:16px}@media(max-width:480px){.component-hero-image{max-height:200px}}</style>
 <link rel="stylesheet" href="css/component-experience.css">
+<link rel="stylesheet" href="css/beginner-support.css">
 </head>
 
 <body class="page-vault1-component page-v1-writing">
@@ -906,7 +907,8 @@ async function submit(task){
   const profile=(()=>{try{return JSON.parse(localStorage.getItem('muet_profile')||'{}')}catch(e){return{}}})();
   const peel=task===2?{point:document.getElementById('pPoint').value,explain:document.getElementById('pExplain').value,example:document.getElementById('pExample').value,link:document.getElementById('pLink').value}:null;
   const payload={vaultId:'VAULT-01',component:'Writing',taskNumber:task,taskType:'Task '+task,studentName:profile.name||'',studentRegNo:profile.regNo||'',classGroup:profile.group||'',answerText:answer,wordCount:e.wc,peelPlan:peel,rubric:{taskFulfilment:e.tf,organisationCoherence:e.co,language:e.lg,registerStyle:e.rs},rawScore:e.raw,rawMax:e.rawMax,scaledScore:e.scaled,scaledMax:e.scaledMax,estimateConfidence:e.wc>=min?'High':'Moderate',status:'Immediate rubric-based practice estimate',createdAt:new Date().toISOString()};
-  const saved=await saveAttempt(payload);document.getElementById('cloud'+task).textContent=saved&&saved.sent?'☁️ Sent for sync · verify Writing tab':'💾 Saved locally · cloud sync not confirmed';
+  const saved=await saveAttempt(payload);document.getElementById('cloud'+task).textContent=saved&&saved.confirmed?'✓ Saved locally · database receipt confirmed':'💾 Saved on this device · database receipt pending. Open Progress to retry.';
+  window.SmartMUETWritingModels?.show('vault1',task,document.getElementById('result'+task));
   if(task===1)task1Complete=true;else task2Complete=true;
 }
 function revise(task){document.getElementById('result'+task).classList.remove('show');(task===1?answer1:answer2).focus();if(task===1)task1Complete=false;else task2Complete=false}
@@ -916,6 +918,7 @@ document.getElementById('check2').addEventListener('click',()=>submit(2));
 document.getElementById('finishWriting').addEventListener('click',()=>{const result=document.getElementById('finishResult');result.classList.add('show');if(task1Complete&&task2Complete){localStorage.setItem('muet_v1_writing','true');result.innerHTML='<b>Writing Vault 1 completed ✓</b><br>Both tasks were submitted, reviewed and saved.'}else result.innerHTML='<b>Submit both writing tasks first.</b><br>Review Task 1 and Task 2 feedback before saving completion.'});
 </script>
 
+<script src="js/writing-models.js"></script>
 <script src="js/component-experience.js" defer></script>
 </body>
 </html>
