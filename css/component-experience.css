@@ -57,3 +57,16 @@ body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) :is
   background:#ffcf26;color:#151515;font-family:Sora,sans-serif;font-size:clamp(25px,3vw,37px);
 }
 body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration{background:#ffefad!important}
+
+/* Mock Writing: the result rows are display cards, not the editable rubric grid. */
+.page-mock1-writing #finalResult .score-block{padding:clamp(12px,1.5vw,18px);margin-top:12px}
+.page-mock1-writing #finalResult .score-block h3{margin:0 0 10px;font-size:clamp(16px,1.5vw,20px)}
+.page-mock1-writing #finalResult .criteria{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px!important;margin:0}
+.page-mock1-writing #finalResult .criterion{display:block!important;min-width:0;height:auto!important;padding:12px 14px!important;background:#fff!important}
+.page-mock1-writing #finalResult .criterion-top{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;min-width:0}
+.page-mock1-writing #finalResult .criterion-top b{min-width:0;overflow-wrap:break-word;font-size:clamp(13px,1vw,15px)!important;line-height:1.35}
+.page-mock1-writing #finalResult .criterion-score{flex:none;white-space:nowrap;font-size:clamp(19px,1.8vw,25px)!important;line-height:1.2}
+.page-mock1-writing #finalResult .criterion p{display:none!important}
+.page-mock1-writing #finalResult .score-block>.coach{margin-top:10px!important;padding:11px 13px!important;line-height:1.55!important}
+.page-mock1-writing #finalResult .score-card{flex-wrap:wrap;gap:10px}
+@media(max-width:620px){.page-mock1-writing #finalResult .criteria{grid-template-columns:minmax(0,1fr)}}
