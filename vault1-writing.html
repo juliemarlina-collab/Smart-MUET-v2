@@ -581,6 +581,7 @@
 </style>
   <link rel="stylesheet" href="css/responsive-v2.css">
   <link rel="stylesheet" href="css/display-standard.css">
+<style>.component-hero-image{position:relative;z-index:1;display:block;width:100%;height:auto;max-height:280px;object-fit:cover;object-position:center;border-radius:14px;margin-top:16px}@media(max-width:480px){.component-hero-image{max-height:200px}}</style>
 </head>
 
 <body class="page-vault1-component page-v1-writing">
@@ -611,7 +612,7 @@
       Complete both writing tasks. Use PEEL as support for developing ideas,
       but keep the actual writing task at the centre of the practice.
     </p>
-  </section>
+  <img class="component-hero-image" src="assets/heroes/muet-writing-hero.webp" alt="Writing practice illustration" width="1200" height="675" decoding="async" fetchpriority="high"></section>
 
 
   <section class="tech">
@@ -914,6 +915,5 @@ document.getElementById('check2').addEventListener('click',()=>submit(2));
 document.getElementById('finishWriting').addEventListener('click',()=>{const result=document.getElementById('finishResult');result.classList.add('show');if(task1Complete&&task2Complete){localStorage.setItem('muet_v1_writing','true');result.innerHTML='<b>Writing Vault 1 completed ✓</b><br>Both tasks were submitted, reviewed and saved.'}else result.innerHTML='<b>Submit both writing tasks first.</b><br>Review Task 1 and Task 2 feedback before saving completion.'});
 </script>
 
-<script src="js/smart-coach.js"></script>
 </body>
 </html>
