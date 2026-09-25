@@ -1,0 +1,30 @@
+/* Shared compact practice hero, route, and completion treatment. */
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero:has(> .component-hero-image){
+  display:grid !important;grid-template-columns:minmax(0,1.05fr) minmax(0,.85fr) !important;
+  align-items:center !important;gap:clamp(12px,2vw,28px) !important;
+  min-height:0 !important;padding:clamp(16px,2.4vw,28px) !important;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero .component-hero-copy{
+  grid-column:1 !important;grid-row:1 !important;min-width:0;align-self:center;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero .component-hero-copy .tag{display:inline-block !important;max-width:100%;width:auto !important}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero .component-hero-copy h1{
+  font-size:clamp(2rem,3.7vw,3.5rem) !important;line-height:1.05 !important;
+  overflow-wrap:normal;word-break:normal;margin:12px 0 8px !important;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero .component-hero-copy p{margin:8px 0 0 !important;font-size:clamp(.9rem,1vw,1.05rem) !important;line-height:1.5 !important;max-width:54ch}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero > .component-hero-image{
+  grid-column:2 !important;grid-row:1 !important;width:100% !important;height:auto !important;
+  max-height:270px !important;aspect-ratio:16 / 9 !important;object-fit:contain !important;
+  margin:0 !important;border-radius:12px;
+}
+.practice-route{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 34px;padding:12px;border:2px solid #151515;border-radius:16px;background:#fff;box-shadow:4px 4px 0 #151515}
+.practice-route a{min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:9px 14px;border:2px solid #151515;border-radius:11px;color:#151515;background:#fff;text-decoration:none;font-weight:800;font-size:13px}
+.practice-route a.next,.top a.practice-next{background:#ffcf26;color:#151515}
+.top a.practice-next{white-space:normal;text-align:center;line-height:1.2}
+.component-celebration{position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;margin:14px 0 4px;padding:14px 16px;border:2px solid #151515;border-radius:14px;background:#fff9df;box-shadow:4px 4px 0 #151515;color:#151515;text-align:left}
+.component-celebration strong{display:block;font-size:16px;line-height:1.3}.component-celebration p{margin:4px 0 !important;color:#343434 !important;font-size:13px !important;line-height:1.45 !important;font-weight:600 !important}.component-celebration a{color:#134db3;font-weight:800;text-decoration:underline}.component-celebration .badge-icon{flex:0 0 40px;display:grid;place-items:center;width:40px;height:40px;border:2px solid #151515;border-radius:10px;background:#ffd226;font-size:23px}
+.component-confetti{position:absolute;width:7px;height:12px;top:-14px;left:var(--x);background:var(--c);border-radius:2px;pointer-events:none;animation:component-fall 1.15s ease-out forwards;animation-delay:var(--d)}
+@keyframes component-fall{to{transform:translate(var(--dx),140px) rotate(260deg);opacity:0}}
+@media(max-width:700px){body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero:has(> .component-hero-image){grid-template-columns:1fr !important;gap:8px !important}body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero .component-hero-copy{grid-column:1 !important;grid-row:1 !important}body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero > .component-hero-image{grid-column:1 !important;grid-row:2 !important;max-height:170px !important}body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero .component-hero-copy h1{font-size:clamp(2rem,8vw,2.7rem) !important}.practice-route a{flex:1 1 150px}}
+@media(prefers-reduced-motion:reduce){.component-confetti{animation:none;display:none}}
