@@ -76,6 +76,7 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 @media(max-width:480px){.prep-guide label{grid-template-columns:34px minmax(0,1fr)!important;align-items:start}.prep-guide label textarea{grid-column:1/-1}}
 </style>
 <style>.component-hero-image{position:relative;z-index:1;display:block;width:100%;height:auto;max-height:280px;object-fit:cover;object-position:center;border-radius:14px;margin-top:16px}@media(max-width:480px){.component-hero-image{max-height:200px}}</style>
+<link rel="stylesheet" href="css/component-experience.css">
 </head>
 <body class="page-vault1-component page-v1-speaking">
 <main class="app">
@@ -228,4 +229,5 @@ async function submitSpeaking(task){
 function retryTask(task){if(task==='A'){RecA.clear();['prepAP','prepAR','prepAE','prepAC','prep2P','prep2R','prep2E','prep2C'].forEach(id=>document.getElementById(id).value='');document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
 document.getElementById('finishBtn').onclick=()=>{const b=document.getElementById('finishResult');b.classList.add('show');if(doneA&&doneB){localStorage.setItem('muet_v1_speaking','true');b.innerHTML='<div class="coach"><b>Vault 1 Speaking completed ✓</b><br>Task A and Task B have both been recorded, submitted and reviewed with guided rubric feedback.</div>'}else b.innerHTML='<div class="coach"><b>Submit both Task A and Task B first.</b></div>'};
 </script>
+<script src="js/component-experience.js" defer></script>
 </body></html>

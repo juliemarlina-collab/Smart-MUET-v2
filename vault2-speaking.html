@@ -40,6 +40,7 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 </style>
 <style id="vault2-optional-prep-style">.prep-outline{display:grid;gap:5px;margin-top:12px;padding:12px;border:2px solid #111;border-radius:12px;background:#fff}.prep-outline strong{font-family:Sora,sans-serif;font-size:13px}.prep-outline label{font-size:12px;font-weight:800}.prep-outline textarea{width:100%;min-height:52px;resize:vertical}.prep-outline + .prep-outline{background:#f0fbff}</style>
 <style>.component-hero-image{position:relative;z-index:1;display:block;width:100%;height:auto;max-height:280px;object-fit:cover;object-position:center;border-radius:14px;margin-top:16px}@media(max-width:480px){.component-hero-image{max-height:200px}}</style>
+<link rel="stylesheet" href="css/component-experience.css">
 </head>
 <body class="page-vault2-component page-v2-speaking">
 <main class="app">
@@ -171,4 +172,5 @@ async function submitSpeaking(task){
 function retryTask(task){if(task==='A'){RecA.clear();document.getElementById('notesA').value='';document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
 document.getElementById('finishBtn').onclick=()=>{const b=document.getElementById('finishResult');b.classList.add('show');if(doneA&&doneB){clearInterval(overallTimer);localStorage.setItem('muet_v2_speaking','true');b.innerHTML='<div class="coach"><b>Vault 2 Speaking completed ✓</b><br>Task A and Task B have both been recorded, submitted and reviewed.</div>'}else b.innerHTML='<div class="coach"><b>Submit both Task A and Task B first.</b></div>'};
 </script>
+<script src="js/component-experience.js" defer></script>
 </body></html>
