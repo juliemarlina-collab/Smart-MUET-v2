@@ -1440,6 +1440,36 @@ body.page-final-profile-hero .save-status{
 </style>
 
   <link rel="stylesheet" href="css/display-standard.css">
+  <style id="quick-access-card-layout">
+    /* Keep each card title and its description in separate rows at every width. */
+    body.page-final-profile-hero .quick-links .quick-link{
+      display:grid!important;
+      grid-template-columns:minmax(0,1fr);
+      grid-template-rows:auto 1fr;
+      align-items:start;
+      gap:10px;
+      min-width:0;
+      height:auto;
+    }
+    body.page-final-profile-hero .quick-link > span:first-child{line-height:1}
+    body.page-final-profile-hero .quick-link > div{
+      display:grid!important;
+      grid-template-columns:minmax(0,1fr);
+      align-content:start;
+      gap:6px;
+      width:100%;
+      min-width:0;
+    }
+    body.page-final-profile-hero .quick-link > div > b,
+    body.page-final-profile-hero .quick-link > div > small{
+      display:block!important;
+      width:100%;
+      margin:0;
+      white-space:normal!important;
+      overflow-wrap:break-word;
+      line-height:1.35!important;
+    }
+  </style>
 </head>
 
 <body class="page-part8-settings page-final-profile-hero">
