@@ -509,11 +509,18 @@ body[class*="page-part8-"] .hero p{
 </style>
 
   <link rel="stylesheet" href="css/display-standard.css">
+  <style>
+    .page-part8-feedback .survey-intro{display:grid;align-items:center;gap:8px;overflow:hidden}
+    .page-part8-feedback .survey-intro-copy{min-width:0}
+    .page-part8-feedback .survey-intro h1{max-width:16ch;line-height:1.1}
+    .page-part8-feedback .survey-hero-art{display:block;width:min(100%,480px);height:auto;max-height:320px;object-fit:contain;justify-self:center}
+    @media (min-width:760px){.page-part8-feedback .survey-intro{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding:clamp(20px,3vw,38px)!important}.page-part8-feedback .survey-hero-art{max-height:360px}}
+  </style>
 </head>
 <body class="page-part8-feedback"><main class="app">
 <header class="topbar"><div class="brand"><img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide"><div><small>SMART MUET GUIDE · PHASE 1</small><strong>Feedback</strong></div></div><a class="back" href="muet-hub.html">Home</a></header>
 
-<section class="card survey-intro" aria-labelledby="feedbackHeading"><span class="kicker">AFTER TESTING</span><h1 id="feedbackHeading">Feedback and improvement comments</h1><p class="lead">Thank you for testing Smart MUET Guide V2. Your experience will help the project team identify what works well and what needs improvement.</p></section>
+<section class="card survey-intro" aria-labelledby="feedbackHeading"><div class="survey-intro-copy"><span class="kicker">AFTER TESTING</span><h1 id="feedbackHeading">Feedback and improvement comments</h1><p class="lead">Thank you for testing Smart MUET Guide V2. Your experience will help the project team identify what works well and what needs improvement.</p></div><img class="survey-hero-art" src="assets/heroes/muet-feedback-hero.webp" width="1536" height="1024" alt="Illustration of a completed questionnaire, comments and improvement ideas" decoding="async"></section>
 <section class="card" aria-labelledby="feedbackInstructions"><h2 id="feedbackInstructions">Before you complete the questionnaire</h2><ol class="survey-steps"><li>Try the Listening, Speaking, Reading and Writing activities available to you.</li><li>Review your practice results and note any unclear questions, audio issues or display problems.</li><li>Complete the questionnaire and include specific suggestions for improvement in the comment fields.</li></ol></section>
 <section class="card survey-action" aria-labelledby="feedbackTitle"><h2 id="feedbackTitle">Smart MUET Guide V2 user testing questionnaire</h2><p>When you have finished testing, please submit your feedback through the Google Form.</p><p><a class="btn" href="https://forms.gle/zyHQTVY2DHmLdY7S9" target="_blank" rel="noopener noreferrer">Complete the feedback questionnaire ↗</a></p><p class="survey-note">The form opens in a new tab. Questionnaire responses are collected through Google Forms, separately from your practice attempts.</p></section>
 
