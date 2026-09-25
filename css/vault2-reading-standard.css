@@ -1,0 +1,26 @@
+/* Match Vault 1 reading: passage, SCAN, questions, then submission. */
+.page-v2-reading .part.open .part-body{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;align-items:stretch!important;padding:clamp(12px,2vw,22px)!important}
+.page-v2-reading .part.open .part-body>:is(.passage,.help,.check-part,.part-result){grid-column:1/-1!important;min-width:0;width:100%}
+.page-v2-reading .part.open .part-body>.question{min-width:0;width:100%;height:100%;margin:0!important}
+.page-v2-reading .passage{background:#e8f5ff;padding:clamp(12px,2vw,18px);margin:0}
+.page-v2-reading .passage-head{font-size:14px;min-height:44px}
+.page-v2-reading .passage-text{font-size:clamp(14px,1.3vw,16px);line-height:1.7;max-height:430px;padding:clamp(14px,2vw,22px)}
+.page-v2-reading .expand{min-height:44px;padding:8px 14px;font-size:12px;background:#ffcf26}
+.page-v2-reading .help{margin:0;padding:0;background:#c9f4ef;border-radius:14px}
+.page-v2-reading .help summary{display:flex;align-items:center;min-height:50px;padding:12px 16px;font-size:14px}
+.page-v2-reading .help p{padding:0 16px 14px;font-size:13px;line-height:1.55}
+.page-v2-reading .question{background:#fff9e4;padding:clamp(13px,1.7vw,18px)}
+.page-v2-reading .question:nth-of-type(4n+1){background:#e7f4ff}
+.page-v2-reading .question:nth-of-type(4n+2){background:#f5eaff}
+.page-v2-reading .question:nth-of-type(4n+3){background:#e8faef}
+.page-v2-reading .qtag{font-size:12px;padding:5px 10px}
+.page-v2-reading .stem{font-size:clamp(14px,1.2vw,16px);line-height:1.5}
+.page-v2-reading .option{min-height:44px;align-items:center;font-size:13px;line-height:1.4}
+.page-v2-reading .option input{width:18px;height:18px;accent-color:#7c25da}
+.page-v2-reading .part-head{background:#ead8ff}
+.page-v2-reading .part:nth-child(3n+2) .part-head{background:#c9f4ef}
+.page-v2-reading .part:nth-child(3n+3) .part-head{background:#fff0b8}
+.page-v2-reading .check-part{min-height:52px;background:#7c25da;color:#fff;font-size:14px}
+.page-v2-reading .final{min-height:52px;font-size:14px}
+.page-v2-reading :is(.part-head,.expand,.option,.help summary,.check-part,.final):focus-visible{outline:3px solid #0d78e8;outline-offset:3px}
+@media(max-width:699px){.page-v2-reading .part.open .part-body{grid-template-columns:minmax(0,1fr)!important}.page-v2-reading .part.open .part-body>.question{grid-column:1/-1}.page-v2-reading .passage-text{max-height:360px}.page-v2-reading .part-head{grid-template-columns:44px minmax(0,1fr) 28px}.page-v2-reading .ptitle{min-width:0}}

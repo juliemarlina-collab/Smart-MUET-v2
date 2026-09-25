@@ -28,3 +28,19 @@ body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .he
 @keyframes component-fall{to{transform:translate(var(--dx),140px) rotate(260deg);opacity:0}}
 @media(max-width:700px){body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero:has(> .component-hero-image){grid-template-columns:1fr !important;gap:8px !important}body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero .component-hero-copy{grid-column:1 !important;grid-row:1 !important}body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero > .component-hero-image{grid-column:1 !important;grid-row:2 !important;max-height:170px !important}body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .hero .component-hero-copy h1{font-size:clamp(2rem,8vw,2.7rem) !important}.practice-route a{flex:1 1 150px}}
 @media(prefers-reduced-motion:reduce){.component-confetti{animation:none;display:none}}
+
+/* Results across Vault 1, Vault 2 and Mock use the same clear visual language. */
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(.summary-result,.summary,.result,.feedback,.report,.final-result,.mock-eval).show{
+  border:3px solid #151515!important;border-radius:18px!important;
+  background:#e4f8f3!important;color:#151515!important;
+  padding:clamp(16px,2.5vw,24px)!important;box-shadow:5px 5px 0 #151515!important;
+  line-height:1.55!important;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration{
+  gap:16px;padding:clamp(16px,2vw,22px);background:#fff1bc;
+  border-radius:16px;box-shadow:4px 4px 0 #151515;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration strong{font-family:Sora,sans-serif;font-size:clamp(16px,1.8vw,20px)}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration .badge-icon{flex-basis:50px;width:50px;height:50px;background:#aee7ff;font-size:25px}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration a{display:inline-flex;align-items:center;min-height:44px;padding:6px 10px;border:2px solid #151515;border-radius:9px;background:#fff;color:#151515;text-decoration:none}
+@media(max-width:480px){body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration{align-items:flex-start;gap:10px}body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration .badge-icon{flex-basis:42px;width:42px;height:42px}}
