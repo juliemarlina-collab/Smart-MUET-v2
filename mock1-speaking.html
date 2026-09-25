@@ -634,6 +634,14 @@
 </style>
 
   <link rel="stylesheet" href="css/display-standard.css">
+<style id="speaking-stimulus-layout">
+.speaking-situation{margin:0 0 12px;border:2px solid #111;border-radius:13px;background:#eaf7fd;padding:clamp(13px,2vw,18px);line-height:1.5;font-size:clamp(14px,1.4vw,17px);color:#182537}
+.speaking-situation strong{display:block;font-family:Sora,sans-serif;font-size:.78em;letter-spacing:.08em;margin-bottom:5px;text-transform:uppercase}
+.speaking-situation p{margin:0}
+.speaking-assignment{margin:10px 0 4px;font-size:13px;font-weight:800;color:#27354a}
+.prep-guide + .prep-guide{background:#e9f8fa}
+@media(max-width:480px){.prep-guide label{grid-template-columns:34px minmax(0,1fr)!important;align-items:start}.prep-guide label textarea{grid-column:1/-1}}
+</style>
 </head>
 <body class="page-mock1-component page-mock1-speaking">
 <main class="app">
@@ -659,7 +667,9 @@
     <div class="task-body">
 
     <label class="field-label" for="candidate">SELECT YOUR CANDIDATE</label>
-    <select id="candidate" aria-label="Speaking candidate">>
+    <div class="speaking-situation"><strong>Task A · Situation</strong><p>Children spend too much time indoors. Suggest some outdoor activities for them.</p></div>
+<label class="speaking-assignment" for="candidate">Choose your candidate. Read the assigned presentation prompt below.</label>
+<select id="candidate" aria-label="Speaking candidate">
       <option value="A">Candidate A · Taking part in sports</option>
       <option value="B">Candidate B · Camping</option>
       <option value="C">Candidate C · Gardening</option>
@@ -724,10 +734,10 @@
 <script src="js/backend-config.js"></script>
 <script>
 const candidatePrompts={
-A:"Your task is to talk about taking part in sports as an outdoor activity for children. Explain why taking part in sports is suitable.",
-B:"Your task is to talk about camping as an outdoor activity for children. Explain why camping is suitable.",
-C:"Your task is to talk about gardening as an outdoor activity for children. Explain why gardening is suitable.",
-D:"Your task is to talk about doing recycling projects as an outdoor activity for children. Explain why doing recycling projects is suitable."
+A:"Candidate A: You have to give a presentation to your class. Talk about taking part in sports.",
+B:"Candidate B: You have to give a presentation to your class. Talk about camping.",
+C:"Candidate C: You have to give a presentation to your class. Talk about gardening.",
+D:"Candidate D: You have to give a presentation to your class. Talk about doing recycling projects."
 };
 const candidate=document.getElementById("candidate"),candidatePrompt=document.getElementById("candidatePrompt");
 function renderCandidate(){candidatePrompt.textContent=candidatePrompts[candidate.value]}candidate.onchange=renderCandidate;renderCandidate();
@@ -791,7 +801,7 @@ document.getElementById("submitMock").onclick=async()=>{
  const tA=document.getElementById("transcriptA").value.trim(),tB=document.getElementById("transcriptB").value.trim(),mA=RecA.metrics(),mB=RecB.metrics(),eA=evaluate(tA,"A",mA),eB=evaluate(tB,"B",mB);
  const profile=(()=>{try{return JSON.parse(localStorage.getItem("muet_profile")||"{}")}catch(e){return{}}})();
  const estimateConfidence=eA.wc>=70&&eB.wc>=70&&mA.durationSeconds>=30&&mB.durationSeconds>=30?"High":eA.wc>=40&&eB.wc>=40?"Moderate":"Low";
- const payloadA={studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",vaultId:"MOCK-01",component:"Speaking",taskType:"Task A",topicId:candidate.value,topicTitle:candidate.options[candidate.selectedIndex].text,prompt:candidatePrompts[candidate.value],transcript:tA,wordCount:eA.wc,durationSeconds:mA.durationSeconds,wordsPerMinute:mA.wpm,silenceRatio:mA.silenceRatio,recognitionConfidence:mA.recognitionConfidence,taskFulfilment:eA.tf,languageUse:eA.lg,coherenceOrganisation:eA.co,interactionReadiness:null,rubricRaw:eA.tf+eA.lg+eA.co,rubricMax:18,estimateConfidence,audioMimeType:RecA.mime(),audioBase64:RecA.hasAudio()?await RecA.b64():"",createdAt:new Date().toISOString()};
+ const payloadA={studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",vaultId:"MOCK-01",component:"Speaking",taskType:"Task A",topicId:candidate.value,topicTitle:candidate.options[candidate.selectedIndex].text,prompt:"Children spend too much time indoors. Suggest some outdoor activities for them. "+candidatePrompts[candidate.value],transcript:tA,wordCount:eA.wc,durationSeconds:mA.durationSeconds,wordsPerMinute:mA.wpm,silenceRatio:mA.silenceRatio,recognitionConfidence:mA.recognitionConfidence,taskFulfilment:eA.tf,languageUse:eA.lg,coherenceOrganisation:eA.co,interactionReadiness:null,rubricRaw:eA.tf+eA.lg+eA.co,rubricMax:18,estimateConfidence,audioMimeType:RecA.mime(),audioBase64:RecA.hasAudio()?await RecA.b64():"",createdAt:new Date().toISOString()};
  const payloadB={studentName:profile.name||"",studentRegNo:profile.regNo||"",classGroup:profile.group||"",vaultId:"MOCK-01",component:"Speaking",taskType:"Task B",topicId:"health_influence",topicTitle:"Children's attitudes towards health",prompt:"Discuss the factors that influence children's attitudes towards health and decide the main factor.",transcript:tB,wordCount:eB.wc,durationSeconds:mB.durationSeconds,wordsPerMinute:mB.wpm,silenceRatio:mB.silenceRatio,recognitionConfidence:mB.recognitionConfidence,taskFulfilment:eB.tf,languageUse:eB.lg,coherenceOrganisation:eB.co,interactionReadiness:eB.ir,rubricRaw:eB.tf+eB.lg+eB.co,rubricMax:18,estimateConfidence,audioMimeType:RecB.mime(),audioBase64:RecB.hasAudio()?await RecB.b64():"",createdAt:new Date().toISOString()};
  [payloadA,payloadB].forEach(payload=>{payload.studentEmail=profile.email||'';payload.attemptId=crypto.randomUUID();payload.audioConsent=window.smartMuetAudioConsent?.()===true;if(!payload.audioConsent)payload.audioBase64=""});
  const [sA,sB]=await Promise.all([cloudSave(payloadA),cloudSave(payloadB)]);

@@ -30,6 +30,15 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 @media(min-width:760px){.app{max-width:900px;padding:24px 24px 120px}.nav{max-width:860px}.evidence{grid-template-columns:repeat(4,1fr)}}
 </style>  <link rel="stylesheet" href="css/responsive-v2.css">
   <link rel="stylesheet" href="css/display-standard.css">
+<style id="speaking-stimulus-layout">
+.speaking-situation{margin:0 0 12px;border:2px solid #111;border-radius:13px;background:#eaf7fd;padding:clamp(13px,2vw,18px);line-height:1.5;font-size:clamp(14px,1.4vw,17px);color:#182537}
+.speaking-situation strong{display:block;font-family:Sora,sans-serif;font-size:.78em;letter-spacing:.08em;margin-bottom:5px;text-transform:uppercase}
+.speaking-situation p{margin:0}
+.speaking-assignment{margin:10px 0 4px;font-size:13px;font-weight:800;color:#27354a}
+.prep-guide + .prep-guide{background:#e9f8fa}
+@media(max-width:480px){.prep-guide label{grid-template-columns:34px minmax(0,1fr)!important;align-items:start}.prep-guide label textarea{grid-column:1/-1}}
+</style>
+<style id="vault2-optional-prep-style">.prep-outline{display:grid;gap:5px;margin-top:12px;padding:12px;border:2px solid #111;border-radius:12px;background:#fff}.prep-outline strong{font-family:Sora,sans-serif;font-size:13px}.prep-outline label{font-size:12px;font-weight:800}.prep-outline textarea{width:100%;min-height:52px;resize:vertical}.prep-outline + .prep-outline{background:#f0fbff}</style>
 </head>
 <body class="page-vault2-component page-v2-speaking">
 <main class="app">
@@ -47,14 +56,16 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 <article class="task open" id="taskA">
 <button class="task-head"><div class="num">A</div><div class="title"><b>Task A · Individual Presentation</b><span>Session 2 2022 · Candidate prompt</span></div><div class="plus">+</div></button>
 <div class="task-body">
-<select id="topicA" aria-label="Speaking topic">>
+<div class="speaking-situation"><strong>Task A · Situation</strong><p>Living in a hostel has its advantages. Suggest some of these advantages.</p></div>
+<label class="speaking-assignment" for="topicA">Choose your candidate. Read the assigned presentation prompt below.</label>
+<select id="topicA" aria-label="Speaking topic">
 <option value="a1">Candidate A — Making New Friends</option>
 <option value="a2">Candidate B — Staying in Safe Places</option>
 <option value="a3">Candidate C — Enjoying Hostel Activities</option>
 <option value="a4">Candidate D — Learning Life Skills</option>
 </select>
 <div class="prompt" id="promptA"></div>
-<details class="help"><summary>Need PREP? Open only if needed</summary><p><b>P</b> Point → <b>R</b> Reason → <b>E</b> Example → <b>P</b> Point again. Use brief keywords only; do not write a full script.</p></details>
+<details class="help" id="optionalPrep"><summary>Optional: plan two PREP points for Task A</summary><p>Use two distinct reasons for your chosen candidate topic. Keep notes brief and speak naturally.</p><div class="prep-outline"><strong>PREP 1 · FIRST POINT</strong><label for="v2prep1P">Point</label><textarea id="v2prep1P" rows="2" placeholder="Your main idea"></textarea><label for="v2prep1R">Reason</label><textarea id="v2prep1R" rows="2" placeholder="Why it matters"></textarea><label for="v2prep1E">Example</label><textarea id="v2prep1E" rows="2" placeholder="One concrete example"></textarea><label for="v2prep1C">Point again</label><textarea id="v2prep1C" rows="2" placeholder="Link back to the topic"></textarea></div><div class="prep-outline"><strong>PREP 2 · SECOND POINT</strong><label for="v2prep2P">Point</label><textarea id="v2prep2P" rows="2" placeholder="Your main idea"></textarea><label for="v2prep2R">Reason</label><textarea id="v2prep2R" rows="2" placeholder="Why it matters"></textarea><label for="v2prep2E">Example</label><textarea id="v2prep2E" rows="2" placeholder="One concrete example"></textarea><label for="v2prep2C">Point again</label><textarea id="v2prep2C" rows="2" placeholder="Link back to the topic"></textarea></div></details>
 <div class="notes"><small>OPTIONAL QUICK NOTES</small><textarea id="notesA" rows="4" placeholder="Jot down a few keywords only..."></textarea></div>
 <div class="phase-timer"><span><b id="prepATimer">02:00</b><br><small>Optional preparation timer</small></span><button onclick="PhaseA.toggle()">START / PAUSE</button></div>
 
@@ -96,10 +107,10 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 <script src="js/backend-config.js"></script>
 <script>
 const prompts={
-a1:"Hostel activities offer several advantages to students. Your task is to talk about: MAKING NEW FRIENDS. Explain why making new friends is an important advantage of hostel activities.",
-a2:"Hostel activities offer several advantages to students. Your task is to talk about: STAYING IN SAFE PLACES. Explain why staying in a safe place is an important advantage of hostel activities.",
-a3:"Hostel activities offer several advantages to students. Your task is to talk about: ENJOYING HOSTEL ACTIVITIES. Explain why enjoying hostel activities is an important advantage for students.",
-a4:"Hostel activities offer several advantages to students. Your task is to talk about: LEARNING LIFE SKILLS. Explain why learning life skills is an important advantage of hostel activities."
+a1:"Candidate A: Talk about making new friends as an advantage of living in a hostel.",
+a2:"Candidate B: Talk about living in a safe place as an advantage of living in a hostel.",
+a3:"Candidate C: Talk about enjoying hostel activities as an advantage of living in a hostel.",
+a4:"Candidate D: Talk about learning life skills as an advantage of living in a hostel."
 };
 const topicA=document.getElementById("topicA"),promptA=document.getElementById("promptA");
 function renderPrompt(){promptA.textContent=prompts[topicA.value]}topicA.onchange=renderPrompt;renderPrompt();
@@ -150,7 +161,7 @@ async function submitSpeaking(task){
  const rows=[['Task Fulfilment',ev.tf,'How fully and relevantly the assigned task was developed.'],['Language Use',ev.lg,'Language range and clarity, supported by transcript and delivery evidence.'],['Coherence & Organisation',ev.co,'Progression, linking and continuity of ideas.']];if(task==='B')rows.push(['Interaction Readiness',ev.ir,'Solo practice indicator only. Full Communicative Ability requires real interaction.']);
  box.innerHTML=`<div class="coach"><b>Immediate rubric-based practice feedback</b><br>Estimate confidence: ${estimateConfidence}. Based on the submitted transcript${m.durationSeconds?', recording duration and delivery indicators':''}. This is formative practice feedback, not an official MUET result.</div><div class="criteria">${rows.map(r=>`<div class="crit"><div class="crit-top"><b>${r[0]}</b><span class="score">${r[1]}/6</span></div><p>${r[2]}</p></div>`).join('')}</div><div class="coach"><b>💪 Strength</b><br>${ev.strength}<br><br><b>🎯 Next action</b><br>${ev.focus}</div><div class="save-state" id="save${task}">Saving evidence…</div><button class="retry" onclick="retryTask('${task}')">TRY THIS TASK AGAIN</button>`;
  const profile=(()=>{try{return JSON.parse(localStorage.getItem('muet_profile')||'{}')}catch(e){return{}}})();
- const payload={studentName:profile.name||'',studentEmail:profile.email||'',studentRegNo:profile.regNo||'',classGroup:profile.group||'',vaultId:'VAULT-02',component:'Speaking',taskType:'Task '+task,topicId:task==='A'?topicA.value:'B',topicTitle:task==='A'?topicA.options[topicA.selectedIndex].text:'Hostel Improvement',prompt:task==='A'?prompts[topicA.value]:"It is important for hostels to meet the needs of their students. Discuss how the hostel can be improved to better meet students' needs.",prepNotes:{point:task==='A'?document.getElementById('notesA').value:'',reason:'',example:'',close:task==='B'?document.getElementById('notesB').value:''},transcript:txt,wordCount:ev.wc,durationSeconds:m.durationSeconds,wordsPerMinute:m.wpm,silenceRatio:m.silenceRatio,recognitionConfidence:m.recognitionConfidence,taskFulfilment:ev.tf,languageUse:ev.lg,coherenceOrganisation:ev.co,interactionReadiness:ev.ir,rubricRaw:ev.tf+ev.lg+ev.co,rubricMax:18,estimateConfidence,audioMimeType:rec.mime(),audioBase64:rec.hasAudio()?await rec.b64():'',createdAt:new Date().toISOString()};
+ const payload={studentName:profile.name||'',studentEmail:profile.email||'',studentRegNo:profile.regNo||'',classGroup:profile.group||'',vaultId:'VAULT-02',component:'Speaking',taskType:'Task '+task,topicId:task==='A'?topicA.value:'B',topicTitle:task==='A'?topicA.options[topicA.selectedIndex].text:'Hostel Improvement',prompt:task==='A'?"Living in a hostel has its advantages. Suggest some of these advantages. "+prompts[topicA.value]:"It is important for hostels to meet the needs of their students. Discuss how the hostel can be improved to better meet students' needs.",prepNotes:task==='A'?{point:'PREP 1: '+document.getElementById('v2prep1P').value+'\nPREP 2: '+document.getElementById('v2prep2P').value+'\nOther notes: '+document.getElementById('notesA').value,reason:'PREP 1: '+document.getElementById('v2prep1R').value+'\nPREP 2: '+document.getElementById('v2prep2R').value,example:'PREP 1: '+document.getElementById('v2prep1E').value+'\nPREP 2: '+document.getElementById('v2prep2E').value,close:'PREP 1: '+document.getElementById('v2prep1C').value+'\nPREP 2: '+document.getElementById('v2prep2C').value}:{point:'',reason:'',example:'',close:document.getElementById('notesB').value},transcript:txt,wordCount:ev.wc,durationSeconds:m.durationSeconds,wordsPerMinute:m.wpm,silenceRatio:m.silenceRatio,recognitionConfidence:m.recognitionConfidence,taskFulfilment:ev.tf,languageUse:ev.lg,coherenceOrganisation:ev.co,interactionReadiness:ev.ir,rubricRaw:ev.tf+ev.lg+ev.co,rubricMax:18,estimateConfidence,audioMimeType:rec.mime(),audioBase64:rec.hasAudio()?await rec.b64():'',createdAt:new Date().toISOString()};
  payload.attemptId=crypto.randomUUID();payload.audioConsent=window.smartMuetAudioConsent?.()===true;
  if(!payload.audioConsent)payload.audioBase64='';
  localStorage.setItem('muet_v2_speaking_task'+task,JSON.stringify({...payload,audioBase64:''}));

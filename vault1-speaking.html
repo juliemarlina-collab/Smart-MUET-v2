@@ -67,6 +67,14 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 </style>
 
   <link rel="stylesheet" href="css/display-standard.css">
+<style id="speaking-stimulus-layout">
+.speaking-situation{margin:0 0 12px;border:2px solid #111;border-radius:13px;background:#eaf7fd;padding:clamp(13px,2vw,18px);line-height:1.5;font-size:clamp(14px,1.4vw,17px);color:#182537}
+.speaking-situation strong{display:block;font-family:Sora,sans-serif;font-size:.78em;letter-spacing:.08em;margin-bottom:5px;text-transform:uppercase}
+.speaking-situation p{margin:0}
+.speaking-assignment{margin:10px 0 4px;font-size:13px;font-weight:800;color:#27354a}
+.prep-guide + .prep-guide{background:#e9f8fa}
+@media(max-width:480px){.prep-guide label{grid-template-columns:34px minmax(0,1fr)!important;align-items:start}.prep-guide label textarea{grid-column:1/-1}}
+</style>
 </head>
 <body class="page-vault1-component page-v1-speaking">
 <main class="app">
@@ -80,19 +88,29 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 <article class="task open" id="taskA">
 <button class="task-head"><div class="num">A</div><div class="title"><b>Task A · Individual Presentation</b><span>Job Choice · Candidate A–D</span></div><div class="plus">+</div></button>
 <div class="task-body">
-<select id="topicA" aria-label="Speaking topic">>
+<div class="speaking-situation"><strong>Task A · Situation</strong><p>Everyone has different reasons when choosing a job. Suggest some of these reasons.</p></div>
+<label class="speaking-assignment" for="topicA">Choose your candidate. Read the assigned presentation prompt below.</label>
+<select id="topicA" aria-label="Speaking topic">
 <option value="a1">Candidate A — Location</option>
 <option value="a2">Candidate B — Salary</option>
 <option value="a3">Candidate C — Working Hours</option>
 <option value="a4">Candidate D — Facilities</option>
 </select>
 <div class="prompt" id="promptA"></div>
-<div class="prep-guide">
-  <div class="prep-head"><b>PREP PLANNER</b><span>Use keywords, not a full script.</span></div>
+<p class="speaking-assignment">Develop two different points for your assigned topic. Complete PREP 1 and PREP 2 before recording.</p>
+<div class="prep-guide" aria-labelledby="prepOneTitle">
+  <div class="prep-head"><b id="prepOneTitle">PREP 1 · FIRST POINT</b><span>Use keywords, not a full script.</span></div>
   <label><strong>P</strong><span>Point</span><textarea id="prepAP" rows="2" placeholder="My clear stand..."></textarea></label>
   <label><strong>R</strong><span>Reason</span><textarea id="prepAR" rows="2" placeholder="Why is this important?"></textarea></label>
   <label><strong>E</strong><span>Example</span><textarea id="prepAE" rows="2" placeholder="Specific example / Malaysian context..."></textarea></label>
   <label><strong>P</strong><span>Point again</span><textarea id="prepAC" rows="2" placeholder="How will I conclude?"></textarea></label>
+</div>
+<div class="prep-guide" aria-labelledby="prepTwoTitle">
+  <div class="prep-head"><b id="prepTwoTitle">PREP 2 · SECOND POINT</b><span>Add a different reason and example.</span></div>
+  <label><strong>P</strong><span>Point</span><textarea id="prep2P" rows="2" placeholder="My second point..."></textarea></label>
+  <label><strong>R</strong><span>Reason</span><textarea id="prep2R" rows="2" placeholder="Why does this second point matter?"></textarea></label>
+  <label><strong>E</strong><span>Example</span><textarea id="prep2E" rows="2" placeholder="A different, specific example..."></textarea></label>
+  <label><strong>P</strong><span>Point again</span><textarea id="prep2C" rows="2" placeholder="Link the second point to your conclusion..."></textarea></label>
 </div>
 <div class="phase-timer"><span><b id="prepATimer">02:00</b><br><small>Task A preparation timer</small></span><button onclick="PhaseA.toggle()">START / PAUSE</button></div>
 
@@ -144,10 +162,10 @@ select,textarea{width:100%;border:2px solid var(--ink);border-radius:11px;backgr
 <script src="js/backend-config.js"></script>
 <script>
 const prompts={
-a1:"Everyone has different reasons when choosing a job. Talk about: LOCATION. Explain why location is an important reason when choosing a job.",
-a2:"Everyone has different reasons when choosing a job. Talk about: SALARY. Explain why salary is an important reason when choosing a job.",
-a3:"Everyone has different reasons when choosing a job. Talk about: WORKING HOURS. Explain why working hours are an important reason when choosing a job.",
-a4:"Everyone has different reasons when choosing a job. Talk about: FACILITIES. Explain why workplace facilities are an important reason when choosing a job."
+a1:"Candidate A: Talk about the location as a reason for choosing a job.",
+a2:"Candidate B: Talk about the salary as a reason for choosing a job.",
+a3:"Candidate C: Talk about the working hours as a reason for choosing a job.",
+a4:"Candidate D: Talk about the facilities as a reason for choosing a job."
 };
 const topicKeywords={a1:['location','commute','distance','family','living'],a2:['salary','income','financial','ptptn','living'],a3:['working hours','hours','balance','shift','flexible'],a4:['facilities','gym','childcare','medical','canteen','tools']};
 const topicA=document.getElementById("topicA"),promptA=document.getElementById("promptA");
@@ -159,7 +177,7 @@ function fmt(s){return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60)
 
 function phaseTimer(id,seconds){let left=seconds,t=null,running=false;return{toggle(){document.getElementById('f2').classList.add('on');if(running){clearInterval(t);running=false;return}running=true;t=setInterval(()=>{left--;document.getElementById(id).textContent=fmt(left);if(left<=0){clearInterval(t);running=false}},1000)},reset(){clearInterval(t);left=seconds;running=false;document.getElementById(id).textContent=fmt(left)}}}
 const PhaseA=phaseTimer('prepATimer',120),PhaseB=phaseTimer('prepBTimer',180);
-['prepAP','prepAR','prepAE','prepAC','notesB'].forEach(id=>document.getElementById(id)?.addEventListener('input',()=>document.getElementById('f2').classList.add('on')));
+['prepAP','prepAR','prepAE','prepAC','prep2P','prep2R','prep2E','prep2C','notesB'].forEach(id=>document.getElementById(id)?.addEventListener('input',()=>document.getElementById('f2').classList.add('on')));
 
 function createRecorder(prefix, transcriptId){
  let recorder=null,stream=null,chunks=[],blob=null,url=null,startAt=0,tick=null,ctx=null,analyser=null,sampleTimer=null,samples=0,silent=0,recognition=null,recWanted=false,confidence=[],base='';
@@ -198,13 +216,15 @@ async function submitSpeaking(task){
  const rows=[['Task Fulfilment',ev.tf,'How fully and relevantly the assigned task was developed.'],['Language Use',ev.lg,'Language range and clarity, supported by transcript and delivery evidence.'],['Coherence & Organisation',ev.co,'Progression, linking and continuity of ideas.']];if(task==='B')rows.push(['Interaction Readiness',ev.ir,'Solo practice indicator only. Full Communicative Ability requires real interaction.']);
  box.innerHTML=`<div class="coach"><b>Immediate rubric-based practice feedback</b><br>Estimate confidence: ${estimateConfidence}. Based on the submitted transcript${m.durationSeconds?', recording duration and delivery indicators':''}. This is formative practice feedback, not an official MUET result.</div><div class="criteria">${rows.map(r=>`<div class="crit"><div class="crit-top"><b>${r[0]}</b><span class="score">${r[1]}/6</span></div><p>${r[2]}</p></div>`).join('')}</div><div class="coach"><b>💪 Strength</b><br>${ev.strength}<br><br><b>🎯 Next action</b><br>${ev.focus}</div><div class="save-state" id="save${task}">Saving evidence…</div><button class="retry" onclick="retryTask('${task}')">TRY THIS TASK AGAIN</button>`;
  const profile=(()=>{try{return JSON.parse(localStorage.getItem('muet_profile')||'{}')}catch(e){return{}}})();
- const payload={studentName:profile.name||'',studentRegNo:profile.regNo||profile.studentRegNo||'',classGroup:profile.group||profile.classGroup||'',vaultId:'VAULT-01',component:'Speaking',taskType:'Task '+task,topicId:task==='A'?topicA.value:'B',topicTitle:task==='A'?topicA.options[topicA.selectedIndex].text:'Career Guidance — Group Discussion',prompt:task==='A'?prompts[topicA.value]:"It is very important for students to choose the right career. Discuss how universities can provide better career guidance for students and decide the best way.",prepNotes:task==='A'?{point:document.getElementById('prepAP').value,reason:document.getElementById('prepAR').value,example:document.getElementById('prepAE').value,close:document.getElementById('prepAC').value}:{discussionPlan:document.getElementById('notesB').value},transcript:txt,wordCount:ev.wc,durationSeconds:m.durationSeconds,wordsPerMinute:m.wpm,silenceRatio:m.silenceRatio,recognitionConfidence:m.recognitionConfidence,taskFulfilment:ev.tf,languageUse:ev.lg,coherenceOrganisation:ev.co,interactionReadiness:ev.ir,rubricRaw:ev.tf+ev.lg+ev.co,rubricMax:18,estimateConfidence,audioMimeType:rec.mime(),audioBase64:rec.hasAudio()?await rec.b64():'',createdAt:new Date().toISOString()};
+ const prepValue=id=>document.getElementById(id).value;
+ const prepNotesA={point:'PREP 1: '+prepValue('prepAP')+'\nPREP 2: '+prepValue('prep2P'),reason:'PREP 1: '+prepValue('prepAR')+'\nPREP 2: '+prepValue('prep2R'),example:'PREP 1: '+prepValue('prepAE')+'\nPREP 2: '+prepValue('prep2E'),close:'PREP 1: '+prepValue('prepAC')+'\nPREP 2: '+prepValue('prep2C')};
+ const payload={studentName:profile.name||'',studentRegNo:profile.regNo||profile.studentRegNo||'',classGroup:profile.group||profile.classGroup||'',vaultId:'VAULT-01',component:'Speaking',taskType:'Task '+task,topicId:task==='A'?topicA.value:'B',topicTitle:task==='A'?topicA.options[topicA.selectedIndex].text:'Career Guidance — Group Discussion',prompt:task==='A'?"Everyone has different reasons when choosing a job. Suggest some of these reasons. "+prompts[topicA.value]:"It is very important for students to choose the right career. Discuss how universities can provide better career guidance for students and decide the best way.",prepNotes:task==='A'?prepNotesA:{discussionPlan:document.getElementById('notesB').value},transcript:txt,wordCount:ev.wc,durationSeconds:m.durationSeconds,wordsPerMinute:m.wpm,silenceRatio:m.silenceRatio,recognitionConfidence:m.recognitionConfidence,taskFulfilment:ev.tf,languageUse:ev.lg,coherenceOrganisation:ev.co,interactionReadiness:ev.ir,rubricRaw:ev.tf+ev.lg+ev.co,rubricMax:18,estimateConfidence,audioMimeType:rec.mime(),audioBase64:rec.hasAudio()?await rec.b64():'',createdAt:new Date().toISOString()};
  payload.studentEmail=profile.email||'';payload.attemptId=crypto.randomUUID();payload.audioConsent=window.smartMuetAudioConsent?.()===true;
  if(!payload.audioConsent)payload.audioBase64='';
  localStorage.setItem('muet_v1_speaking_task'+task,JSON.stringify({...payload,audioBase64:''}));
  const saved=await cloudSave(payload);document.getElementById('save'+task).textContent=saved.audioTooLarge?'⚠️ Recording exceeds 3 MB. Download a backup; transcript sent, audio not uploaded.':saved.audioConfirmed?'☁️ Transcript sent · audio confirmed in private Drive':saved.sent&&!payload.audioConsent?'☁️ Transcript sent; recording stays on this device':saved.sent?'☁️ Transcript sent; audio not confirmed · verify Speaking tab':'💾 Transcript saved locally · cloud sync not confirmed';if(task==='A')doneA=true;else doneB=true;document.getElementById('f4').classList.add('on');
 }
-function retryTask(task){if(task==='A'){RecA.clear();['prepAP','prepAR','prepAE','prepAC'].forEach(id=>document.getElementById(id).value='');document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
+function retryTask(task){if(task==='A'){RecA.clear();['prepAP','prepAR','prepAE','prepAC','prep2P','prep2R','prep2E','prep2C'].forEach(id=>document.getElementById(id).value='');document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
 document.getElementById('finishBtn').onclick=()=>{const b=document.getElementById('finishResult');b.classList.add('show');if(doneA&&doneB){localStorage.setItem('muet_v1_speaking','true');b.innerHTML='<div class="coach"><b>Vault 1 Speaking completed ✓</b><br>Task A and Task B have both been recorded, submitted and reviewed with guided rubric feedback.</div>'}else b.innerHTML='<div class="coach"><b>Submit both Task A and Task B first.</b></div>'};
 </script>
 </body></html>
