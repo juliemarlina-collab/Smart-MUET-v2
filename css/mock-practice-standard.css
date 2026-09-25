@@ -4,6 +4,8 @@
   padding:clamp(14px,2vw,22px)!important;
 }
 .page-mock1-reading .part.open .part-body>:is(.passage,.question-set,.next-btn){width:100%!important;min-width:0!important;margin:0!important}
+.page-mock1-reading .part.open .part-body>.passage{max-width:none!important;margin-inline:auto!important;align-self:stretch!important}
+.page-mock1-reading .part.open .part-body>.passage .passage-text{width:100%;max-width:none}
 .page-mock1-reading .passage{background:#eaf4ff}
 .page-mock1-reading .passage-text{font-size:clamp(14px,1.2vw,16px);line-height:1.68;overflow-wrap:break-word}
 .page-mock1-reading .passage-text .mini-grid{grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch}
