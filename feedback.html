@@ -497,6 +497,15 @@ body[class*="page-part8-"] .hero p{
     grid-template-columns:repeat(5,minmax(0,1fr))!important;
   }
 }
+/* Dedicated, readable survey invitation for the pilot. */
+.page-part8-feedback .survey-intro{background:#eaf4fa;border-color:#123b56}
+.page-part8-feedback .survey-intro .kicker{background:#123b56;color:#fff}
+.page-part8-feedback .survey-steps{padding-left:1.35rem;line-height:1.65;color:#15334b;font-weight:700}
+.page-part8-feedback .survey-steps li{padding:3px 0}
+.page-part8-feedback .survey-action{background:#f2faf5;border-color:#24513a}
+.page-part8-feedback .survey-action .btn{background:#184b38;color:#fff;text-decoration:none;border-color:#102e25;max-width:430px}
+.page-part8-feedback .survey-action .btn:focus-visible{outline:3px solid #d28500;outline-offset:4px}
+.page-part8-feedback .survey-note{color:#31485a;line-height:1.55}
 </style>
 
   <link rel="stylesheet" href="css/display-standard.css">
@@ -504,8 +513,9 @@ body[class*="page-part8-"] .hero p{
 <body class="page-part8-feedback"><main class="app">
 <header class="topbar"><div class="brand"><img src="assets/heroes/small-muet-logo.svg" alt="Smart MUET Guide"><div><small>SMART MUET GUIDE · PHASE 1</small><strong>Feedback</strong></div></div><a class="back" href="muet-hub.html">Home</a></header>
 
-<section class="card pink"><span class="kicker">PILOT FEEDBACK</span><h1>Feedback</h1><p class="lead">A short reflection after using Smart MUET Guide helps us improve the exam-ready experience.</p></section>
-<section class="card" aria-labelledby="feedbackTitle"><h2 id="feedbackTitle">Smart MUET user testing questionnaire</h2><p>After trying the components, complete the Google Form. Your form responses are stored by Google Forms, separately from practice attempts.</p><p><a class="btn" href="https://forms.gle/zyHQTVY2DHmLdY7S9" target="_blank" rel="noopener noreferrer">Open feedback form in a new tab ↗</a></p><iframe title="Smart MUET Guide V2 user testing feedback form" src="https://forms.gle/zyHQTVY2DHmLdY7S9" loading="lazy" style="display:block;width:100%;min-height:760px;border:1px solid #9ba9b8;border-radius:14px;background:white"></iframe><p>If the form does not appear here, use the button above.</p></section>
+<section class="card survey-intro" aria-labelledby="feedbackHeading"><span class="kicker">AFTER TESTING</span><h1 id="feedbackHeading">Feedback and improvement comments</h1><p class="lead">Thank you for testing Smart MUET Guide V2. Your experience will help the project team identify what works well and what needs improvement.</p></section>
+<section class="card" aria-labelledby="feedbackInstructions"><h2 id="feedbackInstructions">Before you complete the questionnaire</h2><ol class="survey-steps"><li>Try the Listening, Speaking, Reading and Writing activities available to you.</li><li>Review your practice results and note any unclear questions, audio issues or display problems.</li><li>Complete the questionnaire and include specific suggestions for improvement in the comment fields.</li></ol></section>
+<section class="card survey-action" aria-labelledby="feedbackTitle"><h2 id="feedbackTitle">Smart MUET Guide V2 user testing questionnaire</h2><p>When you have finished testing, please submit your feedback through the Google Form.</p><p><a class="btn" href="https://forms.gle/zyHQTVY2DHmLdY7S9" target="_blank" rel="noopener noreferrer">Complete the feedback questionnaire ↗</a></p><p class="survey-note">The form opens in a new tab. Questionnaire responses are collected through Google Forms, separately from your practice attempts.</p></section>
 
 </main><nav class="nav"><a href="muet-hub.html" class=""><img src="assets/heroes/nav-home.svg" alt=""><span>Home</span></a><a href="guidance.html" class=""><img src="assets/heroes/icon-muet-intro.svg" alt=""><span>Guide</span></a><a href="vault.html" class=""><img src="assets/heroes/nav-vault.svg" alt=""><span>Vault</span></a><a href="progress.html" class=""><img src="assets/heroes/nav-progress.svg" alt=""><span>Progress</span></a><a href="settings.html" class="active"><img src="assets/heroes/nav-profile.svg" alt=""><span>Profile</span></a></nav><script>
 document.getElementById('submitFeedback')?.addEventListener('click',()=>{
