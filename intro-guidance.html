@@ -823,6 +823,245 @@
   </style>
   <link rel="stylesheet" href="css/responsive-v2.css">
   <link rel="stylesheet" href="css/display-standard.css">
+<style id="why-who-when-how-infographic">
+.context-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+}
+
+.context-card{
+  position:relative;
+  border:var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:16px;
+  overflow:hidden;
+}
+
+.context-card::after{
+  content:"";
+  position:absolute;
+  width:80px;
+  height:80px;
+  border:3px solid var(--ink);
+  border-radius:50%;
+  right:-34px;
+  top:-34px;
+  background:rgba(255,255,255,.34);
+}
+
+.context-why{background:var(--gold);}
+.context-who{background:var(--aqua);}
+.context-when{background:var(--azure);}
+.context-how{background:var(--hotpink);}
+
+.context-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  position:relative;
+  z-index:1;
+}
+
+.context-icon{
+  width:58px;
+  height:58px;
+  display:grid;
+  place-items:center;
+  border:var(--line);
+  border-radius:16px;
+  background:#fff;
+  box-shadow:3px 3px 0 var(--ink);
+  font-size:30px;
+}
+
+.context-label{
+  border:2px solid var(--ink);
+  border-radius:999px;
+  background:#111;
+  color:#fff;
+  padding:7px 10px;
+  font-size:11px;
+  font-weight:1000;
+  letter-spacing:.08em;
+}
+
+.context-card h3{
+  position:relative;
+  z-index:1;
+  margin:14px 0 10px;
+  font-size:clamp(1.18rem,.55vw + 1.05rem,1.4rem);
+  line-height:1.15;
+}
+
+.context-points{
+  position:relative;
+  z-index:1;
+  display:grid;
+  gap:8px;
+  margin:0;
+  padding:0;
+  list-style:none;
+}
+
+.context-points li{
+  position:relative;
+  padding-left:26px;
+  font-size:clamp(.9rem,.3vw + .84rem,1rem);
+  line-height:1.43;
+  font-weight:800;
+}
+
+.context-points li::before{
+  content:"✓";
+  position:absolute;
+  left:0;
+  top:1px;
+  width:18px;
+  height:18px;
+  display:grid;
+  place-items:center;
+  border:2px solid var(--ink);
+  border-radius:50%;
+  background:#fff;
+  font-size:10px;
+  font-weight:1000;
+}
+
+.fact-toggle{
+  position:relative;
+  z-index:1;
+  width:100%;
+  min-height:44px;
+  margin-top:14px;
+  padding:9px 12px;
+  border:2px solid var(--ink);
+  border-radius:12px;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  font-size:12px;
+  font-weight:1000;
+  cursor:pointer;
+  box-shadow:3px 3px 0 var(--ink);
+}
+
+.fact-toggle span{
+  font-size:20px;
+  line-height:1;
+  transition:transform .2s ease;
+}
+
+.fact-toggle[aria-expanded="true"] span{
+  transform:rotate(45deg);
+}
+
+.fact-reveal{
+  display:none;
+  position:relative;
+  z-index:1;
+  margin-top:10px;
+  padding:11px 12px;
+  border:2px dashed var(--ink);
+  border-radius:12px;
+  background:rgba(255,255,255,.72);
+  font-size:clamp(.84rem,.28vw + .79rem,.94rem);
+  line-height:1.45;
+  font-weight:800;
+}
+
+.fact-reveal.show{
+  display:block;
+  animation:contextReveal .18s ease-out;
+}
+
+@keyframes contextReveal{
+  from{opacity:0;transform:translateY(-4px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.context-summary{
+  margin-top:14px;
+  border:var(--line);
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  background:#111;
+  color:#fff;
+  padding:14px 16px;
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+}
+
+.summary-icon{
+  width:46px;
+  height:46px;
+  display:grid;
+  place-items:center;
+  border:2px solid #fff;
+  border-radius:13px;
+  font-size:25px;
+}
+
+.context-summary b{
+  font-size:clamp(1rem,.4vw + .92rem,1.15rem);
+}
+
+.context-summary p{
+  margin-top:3px;
+  color:rgba(255,255,255,.78);
+  font-size:clamp(.84rem,.3vw + .78rem,.94rem);
+  line-height:1.4;
+  font-weight:750;
+}
+
+@media(min-width:600px){
+  .context-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .context-card{
+    min-height:365px;
+    display:flex;
+    flex-direction:column;
+  }
+  .fact-toggle{
+    margin-top:auto;
+  }
+}
+
+@media(min-width:900px){
+  .context-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+  .context-card{
+    min-height:390px;
+  }
+}
+
+@media(max-width:420px){
+  .context-card{
+    padding:14px;
+  }
+  .context-icon{
+    width:52px;
+    height:52px;
+    font-size:27px;
+  }
+  .context-points li{
+    font-size:.88rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .fact-reveal.show{animation:none}
+  .fact-toggle span{transition:none}
+}
+</style>
 </head>
 
 <body class="page-guidance-intro">
@@ -843,9 +1082,9 @@
 
     <a
       class="home-btn"
-      href="muet-hub.html"
+      href="guidance.html"
     >
-      Home
+      ← Guide
     </a>
   </header>
 
@@ -867,6 +1106,102 @@
     </p>
   </section>
 
+
+  <!-- WHY / WHO / WHEN / HOW -->
+  <section class="section context-section">
+    <div class="section-head">
+      <h2>Why, Who, When &amp; How</h2>
+      <p>Four things every MUET candidate should know before preparing.</p>
+    </div>
+
+    <div class="context-grid">
+
+      <article class="context-card context-why">
+        <div class="context-top">
+          <div class="context-icon">🎓</div>
+          <div class="context-label">01 · WHY</div>
+        </div>
+        <h3>Why MUET Matters</h3>
+        <ul class="context-points">
+          <li>Supports entry into Bachelor’s Degree programmes at Malaysian Public Universities.</li>
+          <li>Shows your academic English proficiency level.</li>
+          <li>Your required band may differ by programme or university.</li>
+        </ul>
+        <button class="fact-toggle" type="button" aria-expanded="false">
+          QUICK FACT <span>＋</span>
+        </button>
+        <div class="fact-reveal">
+          MUET requirements are subject to the admission conditions set by each university and its Senate.
+        </div>
+      </article>
+
+      <article class="context-card context-who">
+        <div class="context-top">
+          <div class="context-icon">👥</div>
+          <div class="context-label">02 · WHO</div>
+        </div>
+        <h3>Who Sits For MUET?</h3>
+        <ul class="context-points">
+          <li>STPM students</li>
+          <li>Matriculation and Diploma students</li>
+          <li>Private candidates who need MUET for higher-education requirements</li>
+        </ul>
+        <button class="fact-toggle" type="button" aria-expanded="false">
+          QUICK FACT <span>＋</span>
+        </button>
+        <div class="fact-reveal">
+          MUET is commonly taken before progressing into degree-level study.
+        </div>
+      </article>
+
+      <article class="context-card context-when">
+        <div class="context-top">
+          <div class="context-icon">🗓️</div>
+          <div class="context-label">03 · WHEN</div>
+        </div>
+        <h3>When Is MUET Held?</h3>
+        <ul class="context-points">
+          <li>MPM runs Session 1, Session 2 and Session 3 in 2026.</li>
+          <li>Registration and test dates differ by session.</li>
+          <li>Always check the current MPM timetable.</li>
+        </ul>
+        <button class="fact-toggle" type="button" aria-expanded="false">
+          QUICK FACT <span>＋</span>
+        </button>
+        <div class="fact-reveal">
+          Plan your preparation backwards from your selected MUET session date.
+        </div>
+      </article>
+
+      <article class="context-card context-how">
+        <div class="context-top">
+          <div class="context-icon">📝</div>
+          <div class="context-label">04 · HOW</div>
+        </div>
+        <h3>How Do I Register?</h3>
+        <ul class="context-points">
+          <li>Register through the Malaysian Examinations Council (MPM) registration service.</li>
+          <li>Select the MUET session available to you.</li>
+          <li>Follow MPM instructions and complete the required registration details.</li>
+        </ul>
+        <button class="fact-toggle" type="button" aria-expanded="false">
+          QUICK FACT <span>＋</span>
+        </button>
+        <div class="fact-reveal">
+          Keep your registration information and MUET timetable details together for easy reference.
+        </div>
+      </article>
+
+    </div>
+
+    <div class="context-summary">
+      <span class="summary-icon">💡</span>
+      <div>
+        <b>Remember</b>
+        <p>Know your target programme, target band and MUET session before building your study plan.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- AT A GLANCE -->
   <section class="section">
@@ -1352,5 +1687,15 @@
   highlightMyTargetBand();
 </script>
 
+<script id="why-who-when-how-interaction">
+document.querySelectorAll('.fact-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const reveal=btn.nextElementSibling;
+    const isOpen=btn.getAttribute('aria-expanded')==='true';
+    btn.setAttribute('aria-expanded',String(!isOpen));
+    reveal.classList.toggle('show',!isOpen);
+  });
+});
+</script>
 </body>
 </html>

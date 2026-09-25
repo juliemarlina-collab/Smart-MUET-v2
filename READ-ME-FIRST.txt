@@ -1,0 +1,22 @@
+SMART MUET V2 — FIX PACK (25 Sep 2026)
+
+1) UPLOAD (replace existing files, same folders)
+   guidance.html            One Guide hub: new "Start here · Know your exam" card; same nav + display standard as other guide pages
+   intro-guidance.html      "← Guide" back button; restored Why / Who / When / How section
+   mock1-listening.html     2-play rule: counts from start, no rewinding, survives reload/new tab
+   settings.html            Labels for photo, target band, session and date fields
+   welcome.html             Journey strip keyboard-accessible
+   css/display-standard.css Contrast patch appended at the end (WCAG 2.1 AA)
+
+2) DELETE from the repo (GitHub > file > ... > Delete file)
+   Smart-MUET-backend-pilot-Code.gs   (contains Mock 1 answer keys + Sheet ID; keep it only in Apps Script)
+   css/1
+   assets/audio/1
+   assets/audio/vault1-source-7.mp3   (not used by any page)
+   assets/audio/vault1-source-8.mp3   (not used by any page)
+
+3) CHECK after upload
+   Home > CONTINUE > MUET General Info > "← Guide" opens the Guide hub
+   Guide tab > "Open MUET General Info →" opens the same page
+   Mock 1 Listening: play a track twice > player locks; reload > still locked
+   (Settings > Reset progress clears the play count)

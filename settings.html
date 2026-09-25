@@ -1498,7 +1498,7 @@ body.page-final-profile-hero .save-status{
     <span id="profileInitials">MU</span>
     <img id="profilePhoto" alt="Profile picture">
     <span class="avatar-edit">📷</span>
-    <input class="avatar-input" id="profilePhotoInput" type="file" accept="image/*">
+    <input class="avatar-input" id="profilePhotoInput" type="file" accept="image/*" aria-label="Upload profile picture">
   </div>
   <div class="identity-copy">
     <small>SMART MUET CANDIDATE</small>
@@ -1585,8 +1585,8 @@ body.page-final-profile-hero .save-status{
 
     <div class="field-grid two">
       <div class="field">
-        <span>Target MUET band *</span>
-        <select id="profileTarget">
+        <span id="lblProfileTarget">Target MUET band *</span>
+        <select id="profileTarget" aria-labelledby="lblProfileTarget">
           <option value="">Select target band</option>
           <option value="3.0">Band 3.0</option>
           <option value="3.5">Band 3.5</option>
@@ -1598,8 +1598,8 @@ body.page-final-profile-hero .save-status{
       </div>
 
       <div class="field">
-        <span>MUET session</span>
-        <select id="profileExamSession">
+        <span id="lblProfileExamSession">MUET session</span>
+        <select id="profileExamSession" aria-labelledby="lblProfileExamSession">
           <option value="">Select session</option>
           <option value="S1-2026">MUET Session 1 · 2026</option>
           <option value="S2-2026">MUET Session 2 · 2026</option>
@@ -1608,15 +1608,15 @@ body.page-final-profile-hero .save-status{
       </div>
 
       <div class="field">
-        <span>My Speaking date</span>
-        <input id="profileSpeakingDate" type="date">
+        <span id="lblProfileSpeakingDate">My Speaking date</span>
+        <input id="profileSpeakingDate" type="date" aria-labelledby="lblProfileSpeakingDate">
         <span class="help">You can update this anytime if your Speaking date changes. Use the latest date shown on your official MUET/D slip.</span>
         <div class="date-status" id="speakingDateStatus"></div>
       </div>
 
       <div class="field">
-        <span>Written test date</span>
-        <input id="profileWrittenDate" type="date">
+        <span id="lblProfileWrittenDate">Written test date</span>
+        <input id="profileWrittenDate" type="date" aria-labelledby="lblProfileWrittenDate">
         <span class="help">Optional. Enter your confirmed test date.</span>
       </div>
     </div>

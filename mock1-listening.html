@@ -148,7 +148,7 @@
   <button class="startbtn" id="startExam" type="button">START 50-MINUTE TIMER</button>
 </section>
 
-<div class="progress" aria-label="Listening mock progress">
+<div class="progress" role="group" aria-label="Listening mock progress">
   <div class="pstep on"></div><div class="pstep"></div><div class="pstep"></div>
   <div class="pstep"></div><div class="pstep"></div>
 </div>
@@ -574,13 +574,26 @@ function openListeningPart(n){
 
 
 document.querySelectorAll('.audio-card audio').forEach((audio,index)=>{
+  /* Exam rule: each recording may be played twice. A play is counted when playback
+     starts from the beginning; pausing and resuming does not count, rewinding is blocked,
+     and the count survives page reloads and new tabs (cleared by Reset progress). */
   const status=document.createElement('span');status.className='audio-play-status';status.setAttribute('aria-live','polite');audio.insertAdjacentElement('afterend',status);
-  const key='muet_mock1_audio_play_'+index;
-  let finished=Number(sessionStorage.getItem(key)||0);
-  if(finished>=2)audio.controls=false;
-  status.textContent=finished>=2?'Two plays completed':`${2-finished} plays remaining`;
-  audio.addEventListener('play',()=>{if(finished>=2){audio.pause();status.textContent='Two plays completed';}});
-  audio.addEventListener('ended',()=>{finished++;sessionStorage.setItem(key,String(finished));status.textContent=finished>=2?'Two plays completed':`${2-finished} play remaining`;if(finished>=2)audio.controls=false;});
+  const key='muet_mock1_audio_play_'+index,MAX=2;
+  let plays=0;try{plays=Number(localStorage.getItem(key)||0)}catch(_){}
+  let furthest=0,inPlay=false,guard=false;
+  const label=()=>{const left=Math.max(0,MAX-plays);status.textContent=inPlay?`Playing · play ${plays} of ${MAX}`:(left?`${left} play${left>1?'s':''} remaining`:'Two plays completed');};
+  const lock=()=>{audio.pause();audio.controls=false;status.textContent='Two plays completed';};
+  if(plays>=MAX)lock();else label();
+  audio.addEventListener('play',()=>{
+    if(inPlay){label();return;}
+    if(plays>=MAX){lock();return;}
+    plays++;inPlay=true;furthest=0;guard=true;audio.currentTime=0;setTimeout(()=>guard=false,300);
+    try{localStorage.setItem(key,String(plays))}catch(_){}
+    label();
+  });
+  audio.addEventListener('timeupdate',()=>{if(!audio.seeking&&audio.currentTime>furthest)furthest=audio.currentTime;});
+  audio.addEventListener('seeking',()=>{if(!guard&&inPlay&&audio.currentTime<furthest-1.5){audio.currentTime=furthest;}});
+  audio.addEventListener('ended',()=>{inPlay=false;furthest=0;if(plays>=MAX)lock();else label();});
 });
 
 let currentPart=1,remaining=3000,timerId=null,started=false,submitted=false;
