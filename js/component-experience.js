@@ -44,8 +44,8 @@
    shown=true;
    const name=badges[component],panel=document.createElement('div');panel.className='component-celebration';
    const icon=document.createElement('span');icon.className='badge-icon';icon.setAttribute('aria-hidden','true');icon.textContent=name[0];
-   const copy=document.createElement('div');const heading=document.createElement('strong');heading.textContent='Practice completed — well done.';
-   const detail=document.createElement('p');detail.append('Badge earned: '+name[1]+'. Review your feedback, then continue when you are ready. ');
+   const copy=document.createElement('div');const heading=document.createElement('strong');heading.textContent=`${stages[stage]} ${component}: complete`;
+   const detail=document.createElement('p');detail.append('Badge unlocked: '+name[1]+'. Check your results and decide what to practise next. ');
    const link=document.createElement('a');link.href='progress.html';link.textContent='View badges';detail.append(link);
    copy.append(heading,detail);panel.append(icon,copy);box.append(panel);
    if(!matchMedia('(prefers-reduced-motion: reduce)').matches){

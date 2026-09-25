@@ -44,3 +44,16 @@ body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .co
 body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration .badge-icon{flex-basis:50px;width:50px;height:50px;background:#aee7ff;font-size:25px}
 body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration a{display:inline-flex;align-items:center;min-height:44px;padding:6px 10px;border:2px solid #151515;border-radius:9px;background:#fff;color:#151515;text-decoration:none}
 @media(max-width:480px){body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration{align-items:flex-start;gap:10px}body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration .badge-icon{flex-basis:42px;width:42px;height:42px}}
+
+/* Visible submitted result cards, including scores returned by the Mock service. */
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(#summaryResult,#finishResult,#summary,#result,#report,#finalResult).show{
+  display:block;min-width:0;padding:clamp(16px,2vw,24px)!important;
+  border:3px solid #151515!important;border-radius:18px!important;
+  background:#daf5ef!important;box-shadow:5px 5px 0 #151515!important;
+  color:#151515!important;font-size:clamp(13px,1vw,16px)!important;line-height:1.55!important;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(#summaryResult,#finishResult,#summary,#result,#report,#finalResult).show .big{
+  display:inline-block;margin:0 0 8px;padding:5px 14px;border:2px solid #151515;border-radius:12px;
+  background:#ffcf26;color:#151515;font-family:Sora,sans-serif;font-size:clamp(25px,3vw,37px);
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .component-celebration{background:#ffefad!important}
