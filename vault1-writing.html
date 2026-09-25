@@ -914,5 +914,6 @@ document.getElementById('check2').addEventListener('click',()=>submit(2));
 document.getElementById('finishWriting').addEventListener('click',()=>{const result=document.getElementById('finishResult');result.classList.add('show');if(task1Complete&&task2Complete){localStorage.setItem('muet_v1_writing','true');result.innerHTML='<b>Writing Vault 1 completed ✓</b><br>Both tasks were submitted, reviewed and saved.'}else result.innerHTML='<b>Submit both writing tasks first.</b><br>Review Task 1 and Task 2 feedback before saving completion.'});
 </script>
 
+<script src="js/smart-coach.js"></script>
 </body>
 </html>

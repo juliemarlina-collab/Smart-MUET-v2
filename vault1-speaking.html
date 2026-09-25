@@ -227,4 +227,5 @@ async function submitSpeaking(task){
 function retryTask(task){if(task==='A'){RecA.clear();['prepAP','prepAR','prepAE','prepAC','prep2P','prep2R','prep2E','prep2C'].forEach(id=>document.getElementById(id).value='');document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
 document.getElementById('finishBtn').onclick=()=>{const b=document.getElementById('finishResult');b.classList.add('show');if(doneA&&doneB){localStorage.setItem('muet_v1_speaking','true');b.innerHTML='<div class="coach"><b>Vault 1 Speaking completed ✓</b><br>Task A and Task B have both been recorded, submitted and reviewed with guided rubric feedback.</div>'}else b.innerHTML='<div class="coach"><b>Submit both Task A and Task B first.</b></div>'};
 </script>
+<script src="js/smart-coach.js"></script>
 </body></html>

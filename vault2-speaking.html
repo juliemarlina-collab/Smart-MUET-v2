@@ -170,4 +170,5 @@ async function submitSpeaking(task){
 function retryTask(task){if(task==='A'){RecA.clear();document.getElementById('notesA').value='';document.getElementById('feedbackA').classList.remove('show');doneA=false}else{RecB.clear();document.getElementById('notesB').value='';document.getElementById('feedbackB').classList.remove('show');doneB=false}}
 document.getElementById('finishBtn').onclick=()=>{const b=document.getElementById('finishResult');b.classList.add('show');if(doneA&&doneB){clearInterval(overallTimer);localStorage.setItem('muet_v2_speaking','true');b.innerHTML='<div class="coach"><b>Vault 2 Speaking completed ✓</b><br>Task A and Task B have both been recorded, submitted and reviewed.</div>'}else b.innerHTML='<div class="coach"><b>Submit both Task A and Task B first.</b></div>'};
 </script>
+<script src="js/smart-coach.js"></script>
 </body></html>

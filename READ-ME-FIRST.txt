@@ -1,22 +1,27 @@
-SMART MUET V2 — FIX PACK (25 Sep 2026)
+SMART MUET V2 — SMART COACH (FREE) + VAULT/MOCK TYPE STANDARD
 
-1) UPLOAD (replace existing files, same folders)
-   guidance.html            One Guide hub: new "Start here · Know your exam" card; same nav + display standard as other guide pages
-   intro-guidance.html      "← Guide" back button; restored Why / Who / When / How section
-   mock1-listening.html     2-play rule: counts from start, no rewinding, survives reload/new tab
-   settings.html            Labels for photo, target band, session and date fields
-   welcome.html             Journey strip keyboard-accessible
-   css/display-standard.css Contrast patch appended at the end (WCAG 2.1 AA)
+UPLOAD TO GITHUB (replace, same folders)
+ css/display-standard.css   Type standard for every Vault, Mock and component page
+ js/smart-coach.js          NEW — free Writing/Speaking coach (no API key, works offline)
+ vault1-writing.html  vault2-writing.html  mock1-writing.html
+ vault1-speaking.html vault2-speaking.html mock1-speaking.html
+ (each page only gains one line before </body>: <script src="js/smart-coach.js"></script>)
 
-2) DELETE from the repo (GitHub > file > ... > Delete file)
-   Smart-MUET-backend-pilot-Code.gs   (contains Mock 1 answer keys + Sheet ID; keep it only in Apps Script)
-   css/1
-   assets/audio/1
-   assets/audio/vault1-source-7.mp3   (not used by any page)
-   assets/audio/vault1-source-8.mp3   (not used by any page)
+NO Apps Script change is needed. Do NOT use the earlier "AI-coach" ZIP.
 
-3) CHECK after upload
-   Home > CONTINUE > MUET General Info > "← Guide" opens the Guide hub
-   Guide tab > "Open MUET General Info →" opens the same page
-   Mock 1 Listening: play a track twice > player locks; reload > still locked
-   (Settings > Reset progress clears the play count)
+TYPE STANDARD (all Vault + Mock pages)
+ Reading text 16px · passages 17px · buttons 15px (48px tall) · back links 14px
+ sub-titles 14px · labels / tags / chips / counters 13px (was 8–12px)
+
+EDIT WHAT THE COACH CHECKS (js/smart-coach.js, top of file)
+ 1 TASK_BANK    Task 1 notes (Aina, Linda, Sabrina) + topic words for Task 2
+ 2 FN / FN_SETS MPM language functions per task + suggested phrases
+ 3 ERROR_RULES  common learner errors with fixes
+
+CHECK AFTER UPLOAD (hard refresh: Ctrl+Shift+R)
+ Vault 1 Writing > submit Task 1 > "Smart Coach" panel appears under the task.
+ Vault 1 Speaking > submit Task A > panel shows PREP checklist + MPM functions.
+ Mock 1 Writing > finish > two panels (Task 1, Task 2).
+
+STILL TO DO
+ Delete Smart-MUET-backend-pilot-Code.gs from GitHub (Mock answer keys are public).

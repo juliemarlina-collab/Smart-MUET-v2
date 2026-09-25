@@ -730,3 +730,102 @@ body.page-vault-hub .tech-grid .tech:nth-child(3){
   color:#FFFFFF !important;
   font-weight:800;
 }
+
+/* =========================================================
+   VAULT & MOCK TYPE STANDARD · 25 Sep 2026
+   One readable scale for every Vault, Mock and component page:
+   16px reading text · 17px passages · 15px buttons ·
+   14px back links · 13px labels, tags, chips and counters.
+   Colours, layout and page designs are unchanged.
+   ========================================================= */
+body:is(.page-vault-hub,.page-vault-landing,.page-mock1-landing-final,.page-vault1-component,.page-vault2-component,.page-mock1-component){
+  --type-body:16px;
+  --type-passage:17px;
+  --type-button:15px;
+  --type-back:14px;
+  --type-meta:13px;
+}
+
+/* Reading text: passages, options, emails/letters, notes */
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(
+  .passage-text, .passage-text b, .passage-text i, .passage-text div:not(.text-label)
+){
+  font-size:var(--type-passage) !important;
+  line-height:1.7 !important;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(
+  label.option > span, label.opt > span,
+  .email-meta > div, .letter-box > div, .letter-box .address, details.stimulus i,
+  section.guided-note, .mock-note, main.app > div:not([class]),
+  .speaking-assignment, .speaking-situation p, details.stimulus > summary
+){
+  font-size:var(--type-body) !important;
+  line-height:1.55 !important;
+}
+body:is(.page-vault2-component,.page-mock1-component) .exam > div > p,
+body:is(.page-vault2-component,.page-mock1-component) section.exam p{
+  font-size:var(--type-body) !important;
+}
+
+/* Buttons (content buttons only; bottom nav untouched) */
+body:is(.page-vault-hub,.page-vault-landing,.page-mock1-landing-final,.page-vault1-component,.page-vault2-component,.page-mock1-component)
+main :is(
+  button.submit, button.btn, button.final, button.final-submit, button.part-submit, button.check-part,
+  button.next-btn, button.navbtn, button.startbtn, button.start, button.done-btn, button.complete-btn,
+  button.record-btn, button.clear-btn, button.smallbtn, button.expand, button.expand-btn,
+  button.mock-submit-btn, .phase-timer > button,
+  a.continue-primary, a.continue-secondary
+){
+  font-size:var(--type-button) !important;
+  font-weight:800 !important;
+  letter-spacing:.02em !important;
+  min-height:48px;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) main :is(button.expand, button.expand-btn){
+  min-height:40px;
+}
+
+/* Back / home links */
+body:is(.page-vault-hub,.page-vault-landing,.page-mock1-landing-final,.page-vault1-component,.page-vault2-component,.page-mock1-component)
+:is(header.top > a.back, header.topbar > a.home-btn, main.app > a.backvault){
+  font-size:var(--type-back) !important;
+}
+
+/* Labels, tags, chips, counters, sub-titles */
+body:is(.page-vault-hub,.page-vault-landing,.page-mock1-landing-final,.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(
+  main small, .hero-copy > .eyebrow, .hero-copy > span.tag, section.hero > span.tag,
+  .continue-meta > span, .section-head > span, .vault-top > .status,
+  .rules > .rule, span.tech, span.paper, a.comp > span.open, a.comp > span.start,
+  .flow > div, .progress > div, .guide-strip > div, .techgrid > div,
+  .passage-top > span, .set-head > span, .question-meta > span,
+  .prep-head > b, .prep-head > span, .passage-head > b, .clue-mini > b, .speaking-situation > strong,
+  section.guided-note > b, .mock-note > b,
+  .qtag, .q-num, .part-label, .text-label, .field-label, .time-chip, .note-pill, .note-chip,
+  .pill, .audio-pill, .status, span.count, .answer-head > .words, .answer-head > .wc,
+  .autosave, .submit-note, .question-picker > label,
+  .email-meta > .label, .metric > small, .notes > small, .part-head > .status
+){
+  font-size:var(--type-meta) !important;
+  line-height:1.35 !important;
+}
+
+/* Small inline label spans inside PREP / phrase cards */
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(label > span, .prep-outline > label){
+  font-size:14px !important;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(.phrase-grid > div > b, .paperstats > div > span, .audio-head > div > span){
+  font-size:var(--type-meta) !important;
+}
+body:is(.page-vault1-component,.page-vault2-component,.page-mock1-component) .phrase-grid > div > span{
+  font-size:14px !important;
+}
+/* Accordion / task sub-titles and journey steps read at 14px */
+body:is(.page-vault-hub,.page-vault-landing,.page-mock1-landing-final,.page-vault1-component,.page-vault2-component,.page-mock1-component) :is(
+  .title > span, .task-title > span, .mock-task-title > span, .accordion-title > span,
+  .part-title > span, .ptitle > span, .steps > .step, .writer > .save-state, .audio-card > .audio-title
+){
+  font-size:14px !important;
+}
+body:is(.page-vault2-component) :is(.stats > div > span, .paperstats > div > span, .meta-grid > div > span){
+  font-size:var(--type-meta) !important;
+}
