@@ -1,0 +1,22 @@
+/* The same four component illustrations appear on guide cards and guide headers. */
+.guide-hub .guide-card .guide-card-art{display:block;width:100%;height:clamp(145px,17vw,205px);object-fit:contain;object-position:center;margin:0 0 2px;flex:none}
+.guide-hub .guide-card{overflow:hidden}
+.guide-hub .guide-card .btn{margin-top:auto}
+.page-guidance-component .hero:has(.guide-component-art){
+  display:grid!important;grid-template-columns:minmax(0,1.1fr) minmax(0,.85fr)!important;
+  gap:clamp(14px,2.5vw,30px)!important;align-items:center!important;
+  min-height:0!important;padding:clamp(20px,3vw,34px)!important;
+}
+.page-guidance-component .hero .guide-component-copy{min-width:0;position:relative;z-index:2}
+.page-guidance-component .hero .guide-component-art{
+  display:block;width:100%;height:auto;max-height:clamp(210px,25vw,300px);
+  aspect-ratio:16/9;object-fit:contain;justify-self:center;position:relative;z-index:1;
+}
+.page-guidance-component .hero .guide-component-copy h1{font-size:clamp(2.2rem,4.3vw,4rem)!important;line-height:1.06!important;overflow-wrap:normal}
+.page-guidance-component .hero .guide-component-copy p{font-size:clamp(.95rem,1.35vw,1.18rem)!important;line-height:1.5!important;max-width:54ch}
+@media(max-width:700px){
+  .page-guidance-component .hero:has(.guide-component-art){grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+  .page-guidance-component .hero .guide-component-art{max-height:190px;width:min(100%,390px)}
+  .page-guidance-component .hero .guide-component-copy h1{font-size:clamp(2.05rem,8vw,3rem)!important}
+  .guide-hub .guide-card .guide-card-art{height:165px}
+}
