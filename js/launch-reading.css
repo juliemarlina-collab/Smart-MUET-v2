@@ -1,0 +1,9 @@
+.page-v1-reading .passage-scroll,.page-v2-reading .passage-text,.page-mock1-reading .passage-text{font-weight:400!important;line-height:1.72!important}
+.page-v1-reading .passage-scroll b,.page-v2-reading .passage-text b,.page-mock1-reading .passage-text b{font-weight:700}
+.page-v2-reading .sentence-bank{grid-column:1/-1;border:2px solid #111;border-radius:14px;background:#fff;padding:15px;line-height:1.55}
+.page-v2-reading .sentence-bank h3{margin:0 0 8px;font-size:16px}
+.page-v2-reading .sentence-bank p{margin:7px 0;font-size:14px}
+.page-v2-reading .part:nth-of-type(5) .question .option{display:inline-flex;min-width:44px;min-height:44px;margin:4px;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.page-v2-reading .part:nth-of-type(5) .question .option input{margin:0 5px 0 0}
+.page-v2-reading .gap-marker{display:inline-block;border-radius:5px;background:#ffdf67;padding:1px 5px;font-weight:800}
+@media(max-width:699px){.page-v1-reading .passage-scroll,.page-v1-reading .passage-scroll.expanded,.page-v2-reading .passage-text,.page-v2-reading .passage-text.expanded,.page-mock1-reading .passage-text,.page-mock1-reading .passage-text.expanded{max-height:none!important;overflow:visible!important}.page-v2-reading .sentence-bank{position:relative}}
